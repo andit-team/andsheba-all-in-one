@@ -2,6 +2,7 @@
  * Auth-----------------------
  */
 const jwt = require("jsonwebtoken") 
+const RESPONDER = require("../responder/responder") 
 module.exports = (req, res, next) => {
     try{
 
@@ -18,10 +19,18 @@ module.exports = (req, res, next) => {
             }
             next()
         }else{
-            return res.status(200).json({error: true, msg: "You are not authenticated"}) 
+            const data = {
+                msg: "You are not authenticated",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
         }
 
     }catch (err) {
-        return res.status(400).json({error: true,status: 201, msg: "You are not authenticated",err: err})
+        const data = {
+            msg: "You are not authenticated",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
     }
 }
