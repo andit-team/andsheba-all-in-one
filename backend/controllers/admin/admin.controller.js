@@ -12,6 +12,7 @@ exports.createAdmin =  (req, res, next) => {
     const newUser = new User({
         mobile: req.body.mobile,
         password: hash,
+        name: req.body.name,
         role:'admin'
     }) 
     newUser.save().then( result => {
@@ -25,6 +26,7 @@ exports.createAdmin =  (req, res, next) => {
         }
         RESPONDER.response(res, 200, data)
     }).catch((err) => {
+        console.log(err)
         const data = {
             msg: "Admin Creation was Unsuccessful",
             error:true

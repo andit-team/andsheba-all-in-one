@@ -4,8 +4,8 @@ const Auth = require("../../auth/auth")
 
 // Admin Controller--------------------------
 const Admin = require('../../controllers/admin/admin.controller') 
-router.post('/create-admin', Admin.createAdmin) 
-router.post('/login-admin', Admin.adminLogin) 
+router.post('/create', Admin.createAdmin) 
+router.post('/login', Admin.adminLogin) 
 
 
 // Export the Router
