@@ -3,7 +3,7 @@
  */
 const jwt = require("jsonwebtoken") 
 const RESPONDER = require("../responder/responder") 
-module.exports = (req, res, next) => {
+module.exports.admin = (req, res, next) => {
     try{
 
         const token = req.headers.authorization.split(" ")[1] 
@@ -14,8 +14,7 @@ module.exports = (req, res, next) => {
 
         if(decodedToken.role === 'admin'){
             req.userData = {
-                user_id: decodedToken._id,
-                role: decodedToken.role
+                user_id: decodedToken._id
             }
             next()
         }else{
