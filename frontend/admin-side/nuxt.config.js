@@ -22,8 +22,22 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: 'img/favicon.png' },
+      { rel: 'stylesheet', href: 'plugins/bootstrap/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: 'plugins/fontawesome/css/fontawesome.min.css' },
+      { rel: 'stylesheet', href: 'plugins/fontawesome/css/all.min.css' },
+      { rel: 'stylesheet', href: 'css/animate.min.css' },
+      { rel: 'stylesheet', href: 'css/admin.css' },
+    ],
+    script: [
+      {
+        src: 'js/jquery-3.5.0.min.js',
+        src: 'js/popper.min.js',
+        src: 'plugins/bootstrap/js/bootstrap.min.js',
+        src: 'plugins/slimscroll/jquery.slimscroll.min.js',
+        src: 'js/admin.js',
+      }
+    ],
   },
   /*
   ** Global CSS
@@ -50,8 +64,6 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
   ],
   /*
   ** Build configuration
