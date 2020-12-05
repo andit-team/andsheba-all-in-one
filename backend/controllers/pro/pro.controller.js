@@ -50,3 +50,47 @@ exports.signUpPro = (req, res, next) => {
         RESPONDER.response(res, 200, data)
     })
 }
+
+exports.login = (req, res, next) => {
+    let fetchPro 
+    User.findOne({
+        mobile: req.body.mobile,
+        role: 'pro'
+    })
+        .then(user => {
+            if(!user){
+                const data = {
+                    error: true,
+                    msg: "Pro Not Found"
+                }
+                RESPONDER.response(res, 200, data)
+            }
+            fetchPro = user 
+            return bcrypt.compare(req.body.password, user.password) 
+        })
+        .then(result => {
+            if(!result){
+                const data = {
+                    error: true,
+                    msg: "Password Not Matched"
+                }
+                RESPONDER.response(res, 200, data)
+            }
+            const token = jwt.sign({_id: fetchPro._id, role: fetchPro.role}, process.env.SECRET, {
+                expiresIn: "8h"
+            }) 
+            const data = {
+                token: token,
+                msg: "Successfully Log in Pro",
+                error:false
+            }
+            RESPONDER.response(res, 200, data)
+        })
+        .catch((err) => {
+            const data = {
+                error: true,
+                msg: "Pro Log in Unsuccessful"
+            }
+            RESPONDER.response(res, 200, data)
+        }) 
+}
