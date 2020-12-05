@@ -4,35 +4,35 @@
 		<!-- Header -->
 		<div class="header">
 			<div class="header-left"> 
-				<a href="index-2.html" class="logo logo-small">
-					<img src="img/logo-icon.png" alt="Logo" width="30" height="30">
-				</a>
+				<router-link to="index-2" class="logo logo-small">
+					<img src="/img/logo-icon.png" alt="Logo" width="30" height="30">
+				</router-link>
 			</div>
-			<a href="javascript:void(0);" id="toggle_btn">
+			<router-link to="javascript:void(0);" id="toggle_btn">
 				<i class="fas fa-align-left"></i>
-			</a>
-			<a class="mobile_btn" id="mobile_btn" href="javascript:void(0);">
+			</router-link>
+			<router-link class="mobile_btn" id="mobile_btn" to="javascript:void(0);">
 				<i class="fas fa-align-left"></i>
-			</a>
+			</router-link>
 			
 			<ul class="nav user-menu">
 				<!-- Notifications -->
 				<li class="nav-item dropdown noti-dropdown">
-					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+					<router-link to="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						<i class="far fa-bell"></i>  <span class="badge badge-pill"></span>
-					</a>
+					</router-link>
 					<div class="dropdown-menu dropdown-menu-right notifications">
 						<div class="topnav-dropdown-header">
 							<span class="notification-title">Notifications</span>
-							<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+							<router-link to="javascript:void(0)" class="clear-noti"> Clear All </router-link>
 						</div>
 						<div class="noti-content">
 							<ul class="notification-list">
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="" src="img/provider/provider-01.jpg">
+												<img class="avatar-img rounded-circle" alt="" src="/img/provider/provider-01.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -43,13 +43,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="" src="img/provider/provider-02.jpg">
+												<img class="avatar-img rounded-circle" alt="" src="/img/provider/provider-02.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -60,13 +60,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="" src="img/provider/provider-03.jpg">
+												<img class="avatar-img rounded-circle" alt="" src="/img/provider/provider-03.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -77,13 +77,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="User Image" src="img/provider/provider-04.jpg">
+												<img class="avatar-img rounded-circle" alt="User Image" src="/img/provider/provider-04.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -94,13 +94,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="User Image" src="img/provider/provider-05.jpg">
+												<img class="avatar-img rounded-circle" alt="User Image" src="/img/provider/provider-05.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -111,13 +111,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="User Image" src="img/provider/provider-06.jpg">
+												<img class="avatar-img rounded-circle" alt="User Image" src="/img/provider/provider-06.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -128,13 +128,13 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 								<li class="notification-message">
-									<a href="admin-notification.html">
+									<router-link to="admin-notification">
 										<div class="media">
 											<span class="avatar avatar-sm">
-												<img class="avatar-img rounded-circle" alt="User Image" src="img/provider/provider-07.jpg">
+												<img class="avatar-img rounded-circle" alt="User Image" src="/img/provider/provider-07.jpg">
 											</span>
 											<div class="media-body">
 												<p class="noti-details">
@@ -145,12 +145,12 @@
 												</p>
 											</div>
 										</div>
-									</a>
+									</router-link>
 								</li>
 							</ul>
 						</div>
 						<div class="topnav-dropdown-footer">
-							<a href="admin-notification.html">View all Notifications</a>
+							<router-link to="admin-notification">View all Notifications</router-link>
 						</div>
 					</div>
 				</li>
@@ -158,14 +158,14 @@
 				
 				<!-- User Menu -->
 				<li class="nav-item dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
+					<router-link to="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
 						<span class="user-img">
-							<img class="rounded-circle" src="img/user.jpg" width="40" alt="Admin">
+							<img class="rounded-circle" src="/img/user.jpg" width="40" alt="Admin">
 						</span>
-					</a>
+					</router-link>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="admin-profile.html">Profile</a>
-						<a class="dropdown-item" href="login.html">Logout</a>
+						<router-link class="dropdown-item" to="admin-profile">Profile</router-link>
+						<router-link class="dropdown-item" to="login">Logout</router-link>
 					</div>
 				</li>
 				<!-- /User Menu -->
@@ -177,51 +177,51 @@
 		<!-- Sidebar -->
 		<div class="sidebar" id="sidebar">
 			<div class="sidebar-logo">
-				<a href="index-2.html">
-					<img src="img/logo-icon.png" class="img-fluid" alt="">
-				</a>
+				<router-link to="index-2">
+					<img src="/img/logo-icon.png" class="img-fluid" alt="">
+				</router-link>
 			</div>
 			<div class="sidebar-inner slimscroll">
 				<div id="sidebar-menu" class="sidebar-menu">
 					<ul>
 						<li class="active">
-							<a href="index-2.html"><i class="fas fa-columns"></i> <span>Dashboard</span></a>
+							<router-link to="/"><i class="fas fa-columns"></i> <span>Dashboard</span></router-link>
 						</li>
 						<li>
-							<a href="categories.html"><i class="fas fa-layer-group"></i> <span>Categories</span></a>
+							<router-link to="/categories"><i class="fas fa-layer-group"></i> <span>Categories</span></router-link>
 						</li>
 						<li>
-							<a href="subcategories.html"><i class="fab fa-buffer"></i> <span>Sub Categories</span></a>
+							<router-link to="/subcategories"><i class="fab fa-buffer"></i> <span>Sub Categories</span></router-link>
 						</li>
 						<li>
-							<a href="service-list.html"><i class="fas fa-bullhorn"></i> <span> Services</span></a>
+							<router-link to="/service-list"><i class="fas fa-bullhorn"></i> <span> Services</span></router-link>
 						</li>
 						<li>
-							<a href="total-report.html"><i class="far fa-calendar-check"></i> <span> Booking List</span></a>
+							<router-link to="/total-report"><i class="far fa-calendar-check"></i> <span> Booking List</span></router-link>
 						</li>
 						<li>
-							<a href="payment_list.html"><i class="fas fa-hashtag"></i> <span>Payments</span></a>
+							<router-link to="/payment_list"><i class="fas fa-hashtag"></i> <span>Payments</span></router-link>
 						</li>
 						<li>
-							<a href="ratingstype.html"><i class="fas fa-star-half-alt"></i> <span>Rating Type</span></a>
+							<router-link to="/ratingstype"><i class="fas fa-star-half-alt"></i> <span>Rating Type</span></router-link>
 						</li>
 						<li>
-							<a href="review-reports.html"><i class="fas fa-star"></i> <span>Ratings</span></a>
+							<router-link to="/review-reports"><i class="fas fa-star"></i> <span>Ratings</span></router-link>
 						</li>
 						<li>
-							<a href="subscriptions.html"><i class="far fa-calendar-alt"></i> <span>Subscriptions</span></a>
+							<router-link to="/subscriptions"><i class="far fa-calendar-alt"></i> <span>Subscriptions</span></router-link>
 						</li>
 						<li>
-							<a href="wallet.html"><i class="fas fa-wallet"></i> <span> Wallet</span></a>
+							<router-link to="/wallet"><i class="fas fa-wallet"></i> <span> Wallet</span></router-link>
 						</li>
 						<li>
-							<a href="service-providers.html"><i class="fas fa-user-tie"></i> <span> Service Providers</span></a>
+							<router-link to="/service-providers"><i class="fas fa-user-tie"></i> <span> Service Providers</span></router-link>
 						</li>
 						<li>
-							<a href="users.html"><i class="fas fa-user"></i> <span>Users</span></a>
+							<router-link to="/users"><i class="fas fa-user"></i> <span>Users</span></router-link>
 						</li>
 						<li>
-							<a href="settings.html"><i class="fas fa-cog"></i> <span> Settings</span></a>
+							<router-link to="/settings"><i class="fas fa-cog"></i> <span> Settings</span></router-link>
 						</li>
 					</ul>
 				</div>
@@ -235,7 +235,29 @@
 	</div>
 </template>
 
+<!-- jQuery -->
+	<script src="/js/jquery-3.5.0.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/js/popper.min.js"></script>
+	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Datepicker Core JS -->
+	<script src="/js/moment.min.js"></script>
+	<script src="/js/bootstrap-datetimepicker.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/js/bootstrapValidator.min.html"></script>
+
+	<!-- Datatables JS -->
+	<script src="/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="/js/select2.min.js"></script>
+
 <script>
+
 export default {
   
 }

@@ -96,7 +96,7 @@
                     <td class="text-nowrap">
                       <img
                         class="avatar-xs rounded-circle"
-                        src="img/customer/user-05.jpg"
+                        src="/img/customer/user-05.jpg"
                         alt="User Image"
                       />
                       Annette Silva
@@ -114,7 +114,7 @@
                     <td class="text-nowrap">
                       <img
                         class="avatar-xs rounded-circle"
-                        src="img/customer/user-06.jpg"
+                        src="/img/customer/user-06.jpg"
                         alt="User Image"
                       />
                       Stephen Wilson
@@ -132,7 +132,7 @@
                     <td class="text-nowrap">
                       <img
                         class="avatar-xs rounded-circle"
-                        src="img/customer/user-07.jpg"
+                        src="/img/customer/user-07.jpg"
                         alt="User Image"
                       />
                       Ryan Rodriguez
@@ -150,7 +150,7 @@
                     <td class="text-nowrap">
                       <img
                         class="avatar-xs rounded-circle"
-                        src="img/customer/user-08.jpg"
+                        src="/img/customer/user-08.jpg"
                         alt="User Image"
                       />
                       Lucile Devera
@@ -168,7 +168,7 @@
                     <td class="text-nowrap">
                       <img
                         class="avatar-xs rounded-circle"
-                        src="img/customer/user-09.jpg"
+                        src="/img/customer/user-09.jpg"
                         alt="User Image"
                       />
                       Roland Storey
@@ -217,7 +217,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/customer/user-02.jpg"
+                            src="/img/customer/user-02.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Nancy Olson</a>
@@ -229,7 +229,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/provider/provider-02.jpg"
+                            src="/img/provider/provider-02.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Matthew Garcia</a>
@@ -249,7 +249,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/customer/user-03.jpg"
+                            src="/img/customer/user-03.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Ramona Kingsley</a>
@@ -261,7 +261,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/provider/provider-03.jpg"
+                            src="/img/provider/provider-03.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Yolanda Potter</a>
@@ -281,7 +281,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/customer/user-04.jpg"
+                            src="/img/customer/user-04.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Ricardo Lung</a>
@@ -293,7 +293,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/provider/provider-04.jpg"
+                            src="/img/provider/provider-04.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Ricardo Flemings</a>
@@ -313,7 +313,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/customer/user-05.jpg"
+                            src="/img/customer/user-05.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Annette Silva</a>
@@ -325,7 +325,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/provider/provider-05.jpg"
+                            src="/img/provider/provider-05.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Maritza Wasson</a>
@@ -345,7 +345,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/customer/user-06.jpg"
+                            src="/img/customer/user-06.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Stephen Wilson</a>
@@ -357,7 +357,7 @@
                           <img
                             class="avatar-img rounded-circle"
                             alt=""
-                            src="img/provider/provider-06.jpg"
+                            src="/img/provider/provider-06.jpg"
                           />
                         </a>
                         <a href="javascript:void(0);">Marya Ruiz</a>

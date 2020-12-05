@@ -1,10 +1,10 @@
-
 export default {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
   mode: 'spa',
+  base:'/',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -22,20 +22,18 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'img/favicon.png' },
-      { rel: 'stylesheet', href: 'plugins/bootstrap/css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: 'plugins/fontawesome/css/fontawesome.min.css' },
-      { rel: 'stylesheet', href: 'plugins/fontawesome/css/all.min.css' },
-      { rel: 'stylesheet', href: 'css/animate.min.css' },
-      { rel: 'stylesheet', href: 'css/admin.css' },
+      { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.png' },
+      { rel: 'stylesheet', href: '/plugins/bootstrap/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: '/plugins/fontawesome/css/fontawesome.min.css' },
+      { rel: 'stylesheet', href: '/plugins/fontawesome/css/all.min.css' },
+      { rel: 'stylesheet', href: '/css/bootstrap-datetimepicker.min.css' },
+      { rel: 'stylesheet', href: '/plugins/datatables/datatables.min.css' },
+      { rel: 'stylesheet', href: '/css/animate.min.css' },
+      { rel: 'stylesheet', href: '/css/select2.min.css' },
+      { rel: 'stylesheet', href: '/css/admin.css' },
     ],
     script: [
       {
-        src: 'js/jquery-3.5.0.min.js',
-        src: 'js/popper.min.js',
-        src: 'plugins/bootstrap/js/bootstrap.min.js',
-        src: 'plugins/slimscroll/jquery.slimscroll.min.js',
-        src: 'js/admin.js',
       }
     ],
   },
@@ -49,6 +47,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/Custom.js', ssr:false },
+    { src: '~/plugins/Slim-Scroll.js', ssr:false },
   ],
   /*
   ** Auto import components
@@ -70,5 +70,10 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    /**
+     * add external plugins
+     */
+    plugins: [
+    ],
   }
 }
