@@ -12,6 +12,9 @@ const app = express()
 const PORT = process.env.PORT 
 //process.env.NODE_ENV = 'production'
 
+// For Track IP Address
+app.enable('trust proxy') 
+
 //Compress all routes
 app.use(compression()) 
 //User Helmet
