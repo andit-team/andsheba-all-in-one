@@ -2,14 +2,14 @@
  * Admin Controller------------------------------
  */
 
-const User = require("../../models/user.model") 
+const Admin = require("../../models/admin.model") 
 const bcrypt = require('bcryptjs') 
 const jwt = require('jsonwebtoken') 
 const RESPONDER = require("../../responder/responder") 
 
 exports.createAdmin =  (req, res, next) => {
     const hash = bcrypt.hashSync(req.body.password, 8) 
-    const newUser = new User({
+    const newUser = new Admin({
         mobile: req.body.mobile,
         password: hash,
         name: req.body.name,
@@ -38,7 +38,7 @@ exports.createAdmin =  (req, res, next) => {
 
 exports.adminLogin = (req, res, next) => {
     let fetchAdmin 
-    User.findOne({
+    Admin.findOne({
         mobile: req.body.mobile,
         role: 'admin'
     })
