@@ -56,7 +56,7 @@ exports.updateCategory = (req, res, next) => {
        }
    }
 
-   Category.updateOne({_id: req.query._id}, newCategory).then( result => {
+   Category.updateOne({_id: req.params._id}, newCategory).then( result => {
        
        if(result.n > 0){
            const data = {
@@ -83,9 +83,9 @@ exports.updateCategory = (req, res, next) => {
 
 exports.deleteCategory = (req, res, next) => {
 
-    Category.deleteMany({parent: req.query._id}).then(deleteResult => {
+    Category.deleteMany({parent: req.params._id}).then(deleteResult => {
 
-        Category.deleteOne({_id:req.query._id}).then( result => {
+        Category.deleteOne({_id:req.params._id}).then( result => {
             if(result.n > 0){
                 const data = {
                  error: false,
@@ -201,7 +201,7 @@ exports.getAllCategoryDropDown = (req, res, next) => {
 
 exports.getOneCategory = (req, res, next) => {
 
-   Category.findById(req.query._id).then( result => {
+   Category.findById(req.params._id).then( result => {
        if(result){
            const data = {
             data: result,
