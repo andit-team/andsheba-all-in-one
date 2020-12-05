@@ -38,19 +38,10 @@ const UserSchema = new Schema({
     description:{
         type: String
     },
-    last_visited_at:{
-        type: Date
-    },
-    last_visited_from:{
-        type: String
-    },
     status:{
         type: String
     },
     registration_ip:{
-        type: String
-    },
-    zip_code:{
         type: String
     },
     // Service Pro-------------------------
@@ -91,7 +82,31 @@ const UserSchema = new Schema({
     },
     deleted_at: {
         type: Date
-    }
+    },
+    division: {
+        type: String
+    },
+    district: {
+      type: String
+    },
+    residential_or_municipal: {
+        type: String
+    },
+    municipal: {
+      type: String
+    },
+    ward: {
+      type: String
+    },
+    upazila: {
+      type: String
+    },
+    union: {
+      type: String
+    },
+    village: {
+      type: String
+    },
 },
 {
     timestamps: true
