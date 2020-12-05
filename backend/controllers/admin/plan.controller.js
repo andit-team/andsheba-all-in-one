@@ -9,7 +9,8 @@ exports.addPlan = (req, res, next) => {
         title: req.body.title,
         price: +req.body.price,
         commision: +req.body.commision,
-        duration: req.body.duration
+        duration: req.body.duration,
+        status: 'active'
     })
 
     newPlan.save().then(nPlan => {

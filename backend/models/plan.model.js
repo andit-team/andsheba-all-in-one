@@ -12,6 +12,9 @@ const PlanSchema = new Schema({
     },
     duration: {
         type: String,
+    },
+    status: {
+        type: String
     }
 },
 {
