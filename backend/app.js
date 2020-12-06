@@ -1,12 +1,14 @@
 const dotEnv = require("dotenv")
 dotEnv.config()
-const express = require("express") 
+const express = require('express');
 const mongoose = require("mongoose") 
 const bodyParser = require("body-parser") 
 const cors = require("cors") 
 const path = require("path") 
 const compression = require('compression') 
 const helmet = require('helmet') 
+
+const socket = require('./socket/socket')
 
 const app = express() 
 const PORT = process.env.PORT 
@@ -41,7 +43,8 @@ app.use(
         extended: true,
     })
 ) 
-app.use("/uploads", express.static(path.join("uploads"))) 
+// Set static folder
+app.use("/uploads", express.static(path.join("uploads")))
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")  //* will allow from all cross domain
@@ -60,7 +63,13 @@ const api = require("./routes/api")
 
 app.use("/api", api) 
 
+
+// For Socket.io--------------------------------------------
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+socket(io)
+
 /* Start The Server */
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`) 
-}) 
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+});
