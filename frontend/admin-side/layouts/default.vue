@@ -7,12 +7,12 @@
           <img src="/img/logo-icon.png" alt="Logo" width="30" height="30" />
         </router-link>
       </div>
-      <router-link to="javascript:void(0);" id="toggle_btn">
+      <a href="#" id="toggle_btn">
         <i class="fas fa-align-left"></i>
-      </router-link>
-      <router-link class="mobile_btn" id="mobile_btn" to="javascript:void(0);">
+      </a>
+      <a class="mobile_btn" id="mobile_btn" href="#">
         <i class="fas fa-align-left"></i>
-      </router-link>
+      </a>
 
       <ul class="nav user-menu">
         <!-- Notifications -->
@@ -409,31 +409,10 @@ export default {
         $("html").removeClass("menu-opened");
       });
 
-      // Select 2
-      if ($(".select").length > 0) {
-        console.log(234);
-        $(".select").select2({
-          minimumResultsForSearch: -1,
-          width: "100%",
-        });
-      }
-
       $(document).on("click", "#filter_search", function () {
         $("#filter_inputs").slideToggle("slow");
       });
 
-      // Datetimepicker
-      if ($(".datetimepicker").length > 0) {
-        $(".datetimepicker").datetimepicker({
-          format: "DD-MM-YYYY",
-          icons: {
-            up: "fas fa-angle-up",
-            down: "fas fa-angle-down",
-            next: "fas fa-angle-right",
-            previous: "fas fa-angle-left",
-          },
-        });
-      }
 
       // Tooltip
 
@@ -441,37 +420,6 @@ export default {
         $('[data-toggle="tooltip"]').tooltip();
       }
 
-      // Datatable
-
-      if ($(".datatable").length > 0) {
-        $(".datatable").DataTable({
-          bFilter: false,
-        });
-      }
-
-      // Owl Carousel
-
-      if ($(".images-carousel").length > 0) {
-        $(".images-carousel").owlCarousel({
-          loop: true,
-          center: true,
-          margin: 10,
-          responsiveClass: true,
-          responsive: {
-            0: {
-              items: 1,
-            },
-            600: {
-              items: 1,
-            },
-            1000: {
-              items: 1,
-              loop: false,
-              margin: 20,
-            },
-          },
-        });
-      }
 
       // Sidebar Slimscroll
 
