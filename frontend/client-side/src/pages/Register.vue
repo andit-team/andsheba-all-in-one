@@ -52,21 +52,25 @@
               ]"
             />
 
-            <q-input
-              filled
-              type="text"
-              v-model="location"
-              label="আপনার অবস্থান *"
-            />
+              <div class="q-item q-field--filled" style="background-color: #f2f2f2">
+                  <gmap-autocomplete
+                      class="autocomplete-search q-field__native q-placeholder"
+                      placeholder="আপনার অবস্থান *"
+                      :value="formattedAddress"
+                      @place_changed="setPlace">
+                  </gmap-autocomplete>
+              </div>
 
-              <q-input
-                  ref="autocomplete"
-                  filled
-                  v-model="location"
-                  label="Physical Address"
-                  for="address"
-                  hint="Your permanent address"
-              />
+              <div class="marker"></div>
+              <GmapMap
+                  ref="mapRef"
+                  :center="mapCenter"
+                  :zoom="13"
+                  map-type-id="terrain"
+                  style="width: 97%; height: 300px"
+                  @dragend="handleDragEnd"
+              >
+              </GmapMap>
 
 
               <q-toggle v-model="accept" label="I agree with Terms & Conditions" />
@@ -88,7 +92,6 @@
   </div>
 </template>
 <script>
-import {Loader, LoaderOptions} from 'google-maps';
 
 export default {
     data() {
@@ -97,31 +100,70 @@ export default {
             email: null,
             mobile: null,
             password: null,
-            location: null,
-            accept: false
+            mapCenter: {
+                lat: 22.845641,
+                lng: 89.5403279
+            },
+            address: {
+                address: "",
+                location: {
+                    lat: 22.845641,
+                    lng: 89.5403279
+                }
+            },
+            accept: false,
+            showInfo: false,
         };
     },
 
     computed: {
-
-    },
-
-    mounted() {
-
-
-        this.autocomplete = new google.maps.places.Autocomplete(
-            (this.$refs.autocomplete),
-            (document.getElementById("address")),
-            {types: ['geocode']}
-        );
-        this.autocomplete.addListener('place_changed', () => {
-            let place = this.autocomplete.getPlace();
-            let ac = place.address_components;
-            console.log(ac);
-        })
+        formattedAddress: {
+            get() {
+                return this.address.address
+            },
+            set(value) {
+                this.address.address = value;
+            }
+        }
     },
 
     methods: {
+        async handleDragEnd() {
+            let location = {
+                lat: this.$refs.mapRef.$mapObject.center.lat(),
+                lng: this.$refs.mapRef.$mapObject.center.lng()
+            }
+            this.address.location = location
+            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+            if(response.status == 200) {
+                let address = response.data.results[0].formatted_address
+                this.formattedAddress = address
+            }
+        },
+
+        setPlace(place) {
+            let address = {
+                address: place.formatted_address,
+                location: {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                }
+            }
+            console.log(place);
+            this.address = address
+            this.mapCenter = address.location
+        },
+
+        async mapLocationUpdate(location) {
+            this.address.location.lat = location.latLng.lat()
+            this.address.location.lng = location.latLng.lng()
+            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' +this.address.location.lat + '%2C' + this.address.location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+            if(response.status == 200) {
+                let address = response.data.results[0].formatted_address
+                this.formattedAddress = address
+            }
+        },
+
         onSubmit() {
             if (this.accept !== true) {
                 this.$q.notify({
@@ -148,3 +190,18 @@ export default {
     },
 }
 </script>
+
+
+<style lang="scss" scoped>
+.marker {
+    position:absolute;
+    background:url('/icons/pin.svg') no-repeat;
+    top:50%;left:50%;
+    z-index:9999;
+    margin-left: -14px;
+    margin-top: 108px;
+    height:45px;
+    width:40px;
+    cursor:pointer;
+}
+</style>
