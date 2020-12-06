@@ -47,8 +47,10 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: '~/plugins/Custom.js', ssr:false },
+    { src: '~/plugins/datetimepicker.js', ssr:false },
     { src: '~/plugins/Slim-Scroll.js', ssr:false },
+    { src: '~/plugins/datatable.js', ssr:false },
+    { src: '~/plugins/Select2.js', ssr:false },
   ],
   /*
   ** Auto import components

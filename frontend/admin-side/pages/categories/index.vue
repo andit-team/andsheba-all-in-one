@@ -7,7 +7,7 @@
           <h3 class="page-title">Categories</h3>
         </div>
         <div class="col-auto text-right">
-          <a class="btn btn-white filter-btn" href="javascript:void(0);" id="filter_search">
+          <a class="btn btn-white filter-btn" href="#" id="filter_search">
             <i class="fas fa-filter"></i>
           </a>
           <router-link to="categories/add" class="btn btn-primary add-button ml-3">
