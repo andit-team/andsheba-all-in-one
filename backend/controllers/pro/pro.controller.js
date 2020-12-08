@@ -15,9 +15,10 @@ exports.signUpPro = (req, res, next) => {
        mobile: req.body.mobile,
        password: hash,
        email:req.body.email,
-       status: 0,
+       status: 'active',
        role: 'pro',
-       registration_ip: req.ip
+       registration_ip: req.ip,
+       plan: req.body.plan
     })
 
     newUser.save().then( result => {
