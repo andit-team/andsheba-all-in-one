@@ -116,7 +116,7 @@ exports.verifyPro = (req, res, next) => {
             User.findById(decodedToken._id).then( result => {
                 const data = {
                     msg: "User Verified",
-                    error:true,
+                    error: false,
                     data: result
                 }
                 RESPONDER.response(res, 200, data)
