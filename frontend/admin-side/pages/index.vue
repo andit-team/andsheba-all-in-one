@@ -9,9 +9,6 @@
       </div>
     </div>
     <!-- /Page Header -->
-    <button @click="increment">
-      {{ counter }}
-    </button>
     <div class="row">
       <div class="col-xl-3 col-sm-6 col-12">
         <div class="card">
@@ -382,21 +379,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
-
 export default {
-  // fetch(context) is called by the server-side
-  // and before instantiating the component
-  fetch ({ store }) {
-    store.commit('increment')
-  },
-  computed: mapState([
-    'counter'
-  ]),
-  methods: {
-    increment () {
-      this.$store.commit('increment')
-    }
-  }
+  
 }
 </script>

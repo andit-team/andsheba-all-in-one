@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "datatables.net": "^1.10.22",
     "jquery": "^3.5.1",

@@ -170,11 +170,18 @@
     </div>
   </div>
 </template>
-
 <script>
 import $ from "jquery";
 import jQuery from "jquery";
+import { mapState } from 'vuex'
 export default {
+  fetch({ store }) {
+    store.dispatch('category/fetch')
+  },
+  computed: mapState({
+    categories: state => state.category.categories
+  }),
+  // JQuery Related code (Not Related with vue.js) will be transfered
   mounted() {
       var $wrapper = $(".main-wrapper");
       var $pageWrapper = $(".page-wrapper");
