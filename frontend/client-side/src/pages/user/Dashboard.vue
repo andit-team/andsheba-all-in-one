@@ -19,8 +19,14 @@
 <script>
 import DashboardCards from "components/dashboard/DashboardCards";
 export default {
-name: "Dashboard",
-    components: {DashboardCards}
+    name: "Dashboard",
+    components: {DashboardCards},
+    created() {
+        this.$store.dispatch('pro/fetchToken')
+    },
+    mounted() {
+        console.log(this.$store.getters["pro/getToken"])
+    }
 }
 </script>
 

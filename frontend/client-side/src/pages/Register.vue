@@ -1,6 +1,6 @@
 <template>
   <div
-    class="q-pa-md full-width row wrap justify-center items-center content-center fixed-center" style="background-image: url(https://images.unsplash.com/photo-1503791774117-08c379dd7f7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80);
+    class="q-pa-md full-width row wrap justify-center items-center content-center" style="background-image: url(https://images.unsplash.com/photo-1503791774117-08c379dd7f7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80);
     background-size: cover;    height: -webkit-fill-available;">
     <q-card class="my-card col-md-4 col-sm-8 col-xs-10 q-pa-md q-mt-xl">
      <q-card-section class="column items-center content-center">
@@ -19,7 +19,7 @@
               hint="আপানার সম্পূর্ণ নাম দিন"
               lazy-rules
               :rules="[
-                val => (val && val.length > 0) || 'Please type mobile'
+                val => (val && val.length > 0) || 'Please type Name'
               ]"
             />
 
@@ -27,11 +27,11 @@
               filled
               type="text"
               v-model="mobile"
+              mask="###########"
               label="মোবাইল *"
               lazy-rules
               :rules="[
                 val => (val !== null && val !== '') || 'Please type moblie',
-                val => (val > 0 && val < 100) || 'Please type a strong moblie'
               ]"
             />
             <q-input
@@ -40,6 +40,17 @@
               v-model="email"
               label="ইমেইল"
             />
+
+              <q-select
+                  filled
+                v-model="plan"
+                :options="plans"
+                option-value="_id"
+                option-label="title"
+                label="Select Plan"
+              />
+
+
             <q-input
               filled
               type="text"
@@ -48,7 +59,6 @@
               lazy-rules
               :rules="[
                 val => (val !== null && val !== '') || 'Please type passwords',
-                val => (val > 0 && val < 100) || 'Please type a strong password'
               ]"
             />
 
@@ -69,6 +79,7 @@
                   map-type-id="terrain"
                   style="width: 97%; height: 300px"
                   @dragend="handleDragEnd"
+                  @click="handleMapClick"
               >
               </GmapMap>
 
@@ -92,7 +103,7 @@
   </div>
 </template>
 <script>
-
+import Swal from 'sweetalert2'
 export default {
     data() {
         return {
@@ -100,6 +111,7 @@ export default {
             email: null,
             mobile: null,
             password: null,
+            plan: null,
             mapCenter: {
                 lat: 22.845641,
                 lng: 89.5403279
@@ -116,7 +128,17 @@ export default {
         };
     },
 
+    created() {
+        this.$store.dispatch('pro/fetchPlans')
+    },
+
     computed: {
+        plans: {
+            get() {
+                return this.$store.getters["pro/getAllPlans"]
+            }
+        },
+
         formattedAddress: {
             get() {
                 return this.address.address
@@ -126,6 +148,11 @@ export default {
             }
         }
     },
+
+    mounted() {
+        console.log(this.$store.getters['pro/getToken'])
+    },
+
 
     methods: {
         async handleDragEnd() {
@@ -141,6 +168,20 @@ export default {
             }
         },
 
+        async handleMapClick(click) {
+            let location = {
+                lat: click.latLng.lat(),
+                lng:click.latLng.lng(),
+            }
+            this.address.location = location
+            this.mapCenter = location
+            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+            if(response.status == 200) {
+                let address = response.data.results[0].formatted_address
+                this.formattedAddress = address
+            }
+        },
+
         setPlace(place) {
             let address = {
                 address: place.formatted_address,
@@ -149,36 +190,44 @@ export default {
                     lng: place.geometry.location.lng(),
                 }
             }
-            console.log(place);
             this.address = address
             this.mapCenter = address.location
         },
 
-        async mapLocationUpdate(location) {
-            this.address.location.lat = location.latLng.lat()
-            this.address.location.lng = location.latLng.lng()
-            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' +this.address.location.lat + '%2C' + this.address.location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
-            if(response.status == 200) {
-                let address = response.data.results[0].formatted_address
-                this.formattedAddress = address
-            }
-        },
 
-        onSubmit() {
+
+        async onSubmit() {
             if (this.accept !== true) {
-                this.$q.notify({
-                    color: "red-5",
-                    textColor: "white",
-                    icon: "warning",
-                    message: "You need to accept the license and terms first"
-                });
+                Swal.fire(
+                    'Warning',
+                    'You need to accept the license and terms first',
+                    'warning'
+                )
             } else {
-                this.$q.notify({
-                    color: "green-4",
-                    textColor: "white",
-                    icon: "cloud_done",
-                    message: "Submitted"
-                });
+                let pro = {
+                    name: this.name,
+                    mobile: this.mobile,
+                    password: this.password,
+                    email: this.password,
+                    plan: this.plan._id,
+                    address: this.address
+                }
+                let response = await this.$store.dispatch('pro/registerPro', pro )
+                if(response.error) {
+                    Swal.fire(
+                        'Error',
+                        response.msg,
+                        'error'
+                    )
+                } else {
+                    Swal.fire(
+                        'Success',
+                        response.msg,
+                        'success'
+                    ).then(r => {
+                        this.$router.push('/user')
+                    })
+                }
             }
         },
 
@@ -197,9 +246,9 @@ export default {
     position:absolute;
     background:url('/icons/pin.svg') no-repeat;
     top:50%;left:50%;
-    z-index:9999;
-    margin-left: -14px;
-    margin-top: 108px;
+    z-index: 1;
+    margin-left: -15px;
+    margin-top: 140px;
     height:45px;
     width:40px;
     cursor:pointer;
