@@ -66,6 +66,13 @@ exports.login = (req, res, next) => {
                 }
                 RESPONDER.response(res, 200, data)
             }
+            if(user.status !== 'active'){
+                const data = {
+                    error: true,
+                    msg: "You are not activated"
+                }
+                RESPONDER.response(res, 200, data)
+            }
             fetchPro = user 
             return bcrypt.compare(req.body.password, user.password) 
         })
@@ -94,4 +101,39 @@ exports.login = (req, res, next) => {
             }
             RESPONDER.response(res, 200, data)
         }) 
+}
+
+exports.verifyPro = (req, res, next) => {
+    try{
+
+        const token = req.body.token
+        const decodedToken = jwt.verify(
+            token,
+            process.env.SECRET
+        ) 
+
+        if(decodedToken.role === 'pro'){
+            User.findById(decodedToken._id).then( result => {
+                const data = {
+                    msg: "User Verified",
+                    error:true,
+                    data: result
+                }
+                RESPONDER.response(res, 200, data)
+            })
+        }else{
+            const data = {
+                msg: "You are not authenticated",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }catch (err) {
+        const data = {
+            msg: "You are not authenticated",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    }
 }
