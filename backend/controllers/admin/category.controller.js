@@ -174,8 +174,6 @@ exports.getAllCategoryDropDown = (req, res, next) => {
         }
     }
 
-    console.log(query)
-
    Category.find(query,{name: 1}).then( result => {
        if(result){
            const data = {
