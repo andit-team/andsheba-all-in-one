@@ -7,8 +7,15 @@ export function add ({commit}) {
   commit('add', data)
 }
 
-// Fetch from Database
-export async function fetch ({commit}) {
+// Fetch All from Database
+export async function fetchAll ({commit}) {
   const response = await axios.get(`${API}/admin/categories-dropdown`)
-  commit('fetch', response.data.data)
+  commit('fetchAll', response.data.data)
+}
+
+// Fetch One from Database
+export async function fetchOne ({commit},payload) {
+  const token = this.state.auth.token
+  const response = await axios.get(`${API}/admin/category/`+payload,{headers: {'Authorization': `Authorization ${token}`}})
+  commit('fetchOne', response.data.data)
 }

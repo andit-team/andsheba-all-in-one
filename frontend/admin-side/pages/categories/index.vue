@@ -102,7 +102,8 @@ export default {
     }
   },
   fetch({ store }) {
-    store.dispatch('category/fetch')
+    store.dispatch('auth/login')
+    store.dispatch('category/fetchAll')
   },
   computed: mapState({
     categories: state => state.category.categories

@@ -17,10 +17,10 @@
 							<div class="card-body">
 							
 								<!-- Form -->
-								<form action="https://truelysell-html.dreamguystech.com/template/admin/categories">
+								<form>
 									<div class="form-group">
 										<label>Category Name</label>
-										<input class="form-control" type="text" value="Automobile">
+										<input class="form-control" v-model="category.name" type="text" value="Automobile">
 									</div>
 									<div class="form-group">
 										<label>Category Image</label>
@@ -28,7 +28,7 @@
 									</div>
 									<div class="form-group">
 										<div class="avatar">
-											<img class="avatar-img rounded" alt="" src="/img/category/category-01.jpg">
+											<img class="avatar-img rounded" alt="" :src="category.image">
 										</div>
 									</div>
 									<div class="mt-4">
@@ -46,5 +46,21 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from 'vuex'
+export default {
+  data() {
+    return {
+			category:{}
+    }
+  },
+  fetch({ store,params }) {
+    store.dispatch('category/fetchOne', params.id)
+  },
+  computed: mapState({
+    oneCategory: state => state.category.category
+	}),
+	mounted() {
+		this.category = this.oneCategory
+	},
+};
 </script>
