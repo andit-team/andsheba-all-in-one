@@ -231,7 +231,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDcxNTA2NDYsImV4cCI6MTYwNzE3OTQ0Nn0.YtnMTXuXqgUFrd-jpKGiBO6buJiGilGApLuA4iNC2eM",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc0MDE0ODYsImV4cCI6MTYwNzQzMDI4Nn0.0om_En6hIYE2GG82CC2hyo-p_g9j7mCrtUBX19xTrdI",
 										"type": "text"
 									}
 								],
@@ -729,6 +729,27 @@
 								"api",
 								"pro",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-plans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/plans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"plans"
 							]
 						}
 					},
