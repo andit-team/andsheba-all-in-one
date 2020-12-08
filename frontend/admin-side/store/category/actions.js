@@ -1,3 +1,4 @@
+import axios from 'axios'
 const API = process.env.API
 
 // Add new category
@@ -8,6 +9,6 @@ export function add ({commit}) {
 
 // Fetch from Database
 export async function fetch ({commit}) {
-  const response = await axios.get(`${API}/admin/category-get-all`)
-  commit('fetch', response.data)
+  const response = await axios.get(`${API}/admin/categories-dropdown`)
+  commit('fetch', response.data.data)
 }

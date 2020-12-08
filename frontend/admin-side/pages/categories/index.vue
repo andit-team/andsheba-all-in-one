@@ -28,13 +28,7 @@
                 <label>Category</label>
                 <select class="form-control select">
                   <option>Select category</option>
-                  <option>Automobile</option>
-                  <option>Construction</option>
-                  <option>Interior</option>
-                  <option>Cleaning</option>
-                  <option>Electrical</option>
-                  <option>Carpentry</option>
-                  <option>Computer</option>
+                  <option v-for="{_id,name} in categories" :key="_id">{{ name }}</option>
                 </select>
               </div>
             </div>
@@ -80,85 +74,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="{_id,name,image,updatedAt} in categories" :key="_id">
                     <td>1</td>
                     <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-01.jpg" alt="Category Image">Computer</td>
-                    <td>11 Sep 2020</td>
+                      <img class="rounded service-img mr-1" :src="image" alt="Image">{{ name }}</td>
+                    <td>{{ updatedAt }}</td>
                     <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-02.jpg" alt="Category Image">Interior</td>
-                    <td>10 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-03.jpg" alt="Category Image">Car Wash</td>
-                    <td>9 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-04.jpg" alt="Category Image">Cleaning</td>
-                    <td>8 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-05.jpg" alt="Category Image">Electrical</td>
-                    <td>7 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-06.jpg" alt="Category Image">Construction</td>
-                    <td>6 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-07.jpg" alt="Category Image">Plumbing</td>
-                    <td>5 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-08.jpg" alt="Category Image">Carpentry</td>
-                    <td>4 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td>
-                      <img class="rounded service-img mr-1" src="/img/category/category-09.jpg" alt="Category Image">Appliance</td>
-                    <td>3 Sep 2020</td>
-                    <td class="text-right">
-                      <router-link to="/categories/edit/:id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
+                      <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
                     </td>
                   </tr>
                 </tbody>
@@ -175,6 +97,10 @@ import $ from "jquery";
 import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
+  data() {
+    return {
+    }
+  },
   fetch({ store }) {
     store.dispatch('category/fetch')
   },
