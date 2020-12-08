@@ -122,6 +122,25 @@ exports.getAllPlans = (req, res, next) => {
     })
 }
 
+exports.getAllPlansByUser = (req, res, next) => {
+
+    Plan.find({status: 'active'}).then( plans => {
+        let data = {
+            error: false,
+            msg: "Plan Get Successfully",
+            data: plans
+        }
+        RESPONDER.response(res, 200, data)
+    }).catch(error => {
+        let data = {
+            error: true,
+            msg: "Plan Get UnSuccessful",
+            data: []
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
 exports.getOnePlan = (req, res, next) => {
 
     Plan.findOne({_id: req.params._id}).then( plan => {
