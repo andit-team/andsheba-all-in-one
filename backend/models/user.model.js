@@ -64,6 +64,10 @@ const UserSchema = new Schema({
     rej_desc:{
         type: String
     },
+    plan: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Plans',
+    },
     // Agency-----------------------------
     trade_license_no:{
         type: String
