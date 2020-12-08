@@ -11,9 +11,14 @@ const ServiceSchema = new Schema({
     description: {
         type:String
     },
-    thumb: {
+    thumb_img: {
         type:String
     },
+    gallery_images: [
+        {
+            type: String
+        }
+    ],
     user:{ 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
@@ -30,6 +35,25 @@ const ServiceSchema = new Schema({
         _id: mongoose.Schema.Types.ObjectId,
         name: String
     },
+    sub_category:{
+        _id: mongoose.Schema.Types.ObjectId,
+        name: String
+    },
+    tags: [
+        {
+            type: String
+        }
+    ],
+    faq: [
+        {
+            question: {
+                type: String
+            },
+            answer: {
+                type: String
+            }
+        }
+    ],
     ratings:[
         {
             rate: Number,
