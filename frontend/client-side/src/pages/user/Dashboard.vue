@@ -21,12 +21,21 @@ import DashboardCards from "components/dashboard/DashboardCards";
 export default {
     name: "Dashboard",
     components: {DashboardCards},
-    created() {
-        this.$store.dispatch('pro/fetchToken')
+    data() {
+      return {
+          pro: null
+      }
     },
-    mounted() {
-        console.log(this.$store.getters["pro/getToken"])
-    }
+
+
+    async created() {
+        let response = await this.$store.dispatch('pro/fetchPro')
+        if(response.error === true ) {
+            await this.$router.push('/login')
+        }
+        this.pro = response.data
+    },
+
 }
 </script>
 

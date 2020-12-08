@@ -26,6 +26,7 @@ const routes = [
       { path: '', component: () => import('pages/user/Dashboard.vue') },
       { path: 'dashboard', component: () => import('pages/user/Dashboard.vue') },
       { path: 'services', component: () => import('pages/user/Services.vue') },
+      { path: 'add_services', component: () => import('pages/user/AddService.vue') },
       { path: 'booking_list', component: () => import('pages/user/BookingList.vue') },
       { path: 'profile', component: () => import('pages/user/Profile.vue') },
       { path: 'wallet', component: () => import('pages/user/Wallet.vue') },

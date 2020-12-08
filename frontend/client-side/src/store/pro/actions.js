@@ -30,6 +30,21 @@ export const loginPro = async ({}, pro) => {
     }
 }
 
+export const fetchPro = async ({commit}) => {
+    let token = Cookies.get('token')
+    let response = await axios.post('http://localhost:5000/api/pro/verify', {token} )
+    if(response.data.error === false) {
+        commit('setPro', response.data.data);
+        return {
+            error: false,
+            data: response.data.data
+        }
+    }
+    return {
+        error: true
+    }
+}
+
 
 export const fetchToken = ({commit}) => {
     commit('setToken', Cookies.get('token'))

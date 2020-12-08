@@ -1,6 +1,6 @@
 export default function () {
     return {
-        pro: {},
+        pro: null,
         plans: [],
         token: ''
     }
