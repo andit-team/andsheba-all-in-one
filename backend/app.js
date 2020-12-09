@@ -1,6 +1,6 @@
 const dotEnv = require("dotenv")
 dotEnv.config()
-const express = require('express');
+const express = require('express') 
 const mongoose = require("mongoose") 
 const bodyParser = require("body-parser") 
 const cors = require("cors") 
@@ -86,4 +86,4 @@ socket(io)
 /* Start The Server */
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
-});
+}) 
