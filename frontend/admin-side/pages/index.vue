@@ -379,7 +379,8 @@
   </div>
 </template>
 <script>
+
 export default {
-  
+  middleware: 'authenticate',
 }
 </script>

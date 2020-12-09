@@ -221,8 +221,8 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown">
-          <router-link
-            to="javascript:void(0)"
+          <a
+            href="#"
             class="dropdown-toggle user-link nav-link"
             data-toggle="dropdown"
           >
@@ -234,12 +234,12 @@
                 alt="Admin"
               />
             </span>
-          </router-link>
+          </a>
           <div class="dropdown-menu dropdown-menu-right">
             <router-link class="dropdown-item" to="admin-profile"
               >Profile</router-link
             >
-            <router-link class="dropdown-item" to="login">Logout</router-link>
+            <a class="dropdown-item" href="#" @click.prevent="logout">Logout</a>
           </div>
         </li>
         <!-- /User Menu -->
@@ -353,6 +353,14 @@
 import $ from "jquery";
 import jQuery from "jquery";
 export default {
+  methods: {
+    logout(){
+      this.$store.auth.commit('setStatus', false)
+      this.$router.push({
+        path: '/login'
+      });
+    }
+  },
   mounted() {
     window.addEventListener("load", function (event) {
       var $wrapper = $(".main-wrapper");

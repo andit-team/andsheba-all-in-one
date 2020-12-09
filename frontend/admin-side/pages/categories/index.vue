@@ -97,6 +97,7 @@ import $ from "jquery";
 import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
+  middleware: 'authenticate',
   data() {
     return {
     }
