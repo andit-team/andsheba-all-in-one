@@ -47,6 +47,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/plugin.js', ssr:false },
     { src: '~/plugins/datetimepicker.js', ssr:false },
     { src: '~/plugins/Slim-Scroll.js', ssr:false },
     { src: '~/plugins/datatable.js', ssr:false },
@@ -67,6 +68,7 @@ export default {
   */
   modules: [
     '@nuxtjs/dotenv',
+    'nuxt-vuex-localstorage'
   ],
   /*
   ** Build configuration

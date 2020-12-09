@@ -16,14 +16,14 @@
 							<h3>Login <span>Andsheba</span></h3>
 							<p class="text-muted">Access to our dashboard</p>
 						</div>
-						<form>
+						<form  @submit.prevent="onSubmit">
 							<div class="form-group">
-								<label class="control-label">Username</label>
-								<input class="form-control" type="text" placeholder="Enter your username">
+								<label class="control-label">Mobile</label>
+								<input class="form-control" v-model="sendLoginData.mobile" type="text" placeholder="Enter your mobile">
 							</div>
 							<div class="form-group mb-4">
 								<label class="control-label">Password</label>
-								<input class="form-control" type="password" placeholder="Enter your password">
+								<input class="form-control" v-model="sendLoginData.password" type="password" placeholder="Enter your password">
 							</div>
 							<div class="text-center">
 								<button class="btn btn-primary btn-block account-btn" type="submit">Login</button>
@@ -38,6 +38,28 @@
 
 <script>
 export default {
-  layout: "empty"
+  layout: "empty",
+  data() {
+    return {
+      sendLoginData: {
+        mobile: "+8801780320711",
+        password: "12345678"
+      },
+      errMsg: ''
+    }
+  },
+  methods: {
+    async onSubmit(){
+      const res = await this.$store.dispatch('auth/login', this.sendLoginData)
+      
+      if(res.error){
+        alert(res.msg)
+      }else{
+         this.$router.push({
+            path: '/'
+          })
+      }
+    }
+  },
 };
 </script>

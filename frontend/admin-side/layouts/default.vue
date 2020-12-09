@@ -220,29 +220,18 @@
         <!-- /Notifications -->
 
         <!-- User Menu -->
-        <li class="nav-item dropdown">
-          <a
-            href="#"
-            class="dropdown-toggle user-link nav-link"
-            data-toggle="dropdown"
-          >
-            <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="/img/user.jpg"
-                width="40"
-                alt="Admin"
-              />
-            </span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <router-link class="dropdown-item" to="admin-profile"
-              >Profile</router-link
-            >
-            <a class="dropdown-item" href="#" @click.prevent="logout">Logout</a>
-          </div>
-        </li>
-        <!-- /User Menu -->
+				<li class="nav-item dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
+						<span class="user-img">
+							<img class="rounded-circle" src="/img/user.jpg" width="40" alt="Admin">
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="admin-profile.html">Profile</a>
+						<a class="dropdown-item" href="login.html">Logout</a>
+					</div>
+				</li>
+				<!-- /User Menu -->
       </ul>
     </div>
     <!-- /Header -->

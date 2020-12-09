@@ -5,9 +5,5 @@ export default function ({redirect, app, store}) {
     if(!store.state.auth.token){
       return redirect('/login')
     }
-    
-
-  
-
 }
 
