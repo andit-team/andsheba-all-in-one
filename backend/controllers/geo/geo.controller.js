@@ -110,7 +110,7 @@
 
     try{
 
-        let divisionData = await division.find();
+        let divisionData = await division.find() 
         if(!divisionData){
 
             let data = {
@@ -147,7 +147,7 @@
 
     try{
 
-        let districtData = await district.find({division_id: req.query.division_id});
+        let districtData = await district.find({division_id: req.query.division_id}) 
         if(!districtData){
 
             let data = {
@@ -183,7 +183,7 @@ exports.getUpazillas = async(req, res, next)=> {
 
     try{
 
-        let upazilaData = await upazila.find({district_id: req.query.district_id});
+        let upazilaData = await upazila.find({district_id: req.query.district_id}) 
         if(!upazilaData){
 
             let data = {
@@ -219,7 +219,7 @@ exports.getUnions = async(req, res, next)=> {
 
     try{
 
-        let unionData = await union.find({upazila_id: req.query.upazilla_id});
+        let unionData = await union.find({upazila_id: req.query.upazilla_id}) 
         if(!unionData){
 
             let data = {
@@ -254,7 +254,7 @@ exports.getVillages = async(req, res, next)=> {
 
     try{
 
-        let villageData = await village.find({union_id: req.query.union_id});
+        let villageData = await village.find({union_id: req.query.union_id}) 
         if(!villageData){
 
             let data = {
@@ -289,7 +289,7 @@ exports.getMunicipals = async(req, res, next)=> {
 
     try{
 
-        let municipalData = await municipal.find({district_id: req.query.district_id});
+        let municipalData = await municipal.find({district_id: req.query.district_id}) 
         if(!municipalData){
 
             let data = {
@@ -325,7 +325,7 @@ exports.getWards = async(req, res, next)=> {
 
     try{
 
-        let wardData = await ward.find({municipal_id: req.query.municipal_id});
+        let wardData = await ward.find({municipal_id: req.query.municipal_id}) 
         if(!wardData){
 
             let data = {

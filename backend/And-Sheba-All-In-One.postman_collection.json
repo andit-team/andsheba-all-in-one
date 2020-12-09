@@ -754,6 +754,72 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "verify-pro-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NDE2ODc3LCJleHAiOjE2MDc0NDU2Nzd9.vism_jLb3u77ytZI60_B1KCF0PzicYYylI60y_i-K0o\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "service-add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NDg2MTQwLCJleHAiOjE2MDc1MTQ5NDB9.XREPwJ_6AGaxUNOxrkqck9j0QfFUKJCKFWnZi0pjad0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.2322434,\r\n            \"lng\": 22.323234423\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"service"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

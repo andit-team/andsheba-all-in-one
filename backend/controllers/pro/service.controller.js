@@ -51,37 +51,19 @@ exports.addService = (req, res, next ) => {
         sub_category: req.body.sub_category,
         tags: req.body.tags,
         faq: req.body.faq,
+        questions: questions,
         status: 'pending'
     })
 
     newService.save().then( result => {
 
         if(result){
-
-            Service.updateOne({_id: result._id},{questions: questions}).then( updateResult => {
-                if(updateResult.n > 0){
-                    const data = {
-                        msg: "Service added",
-                        error:false,
-                        data: result
-                    }
-                    RESPONDER.response(res, 200, data)
-                }else{
-
-                    const data = {
-                        msg: "Problem in adding questions",
-                        error:true
-                    }
-                    RESPONDER.response(res, 200, data)
-
-                }
-            }).catch( error => {
-                return res.status(200).json({
-                    msg: error,
-                    error: false
-                });
-            })
-
+            const data = {
+                msg: "Service added",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
         }else{
             const data = {
                 msg: "Problem in adding service",
