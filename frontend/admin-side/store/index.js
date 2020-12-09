@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import auth from './auth'
 import category from './category'
+import subcategory from './subcategory'
 
 Vue.use(Vuex)
 const createStore = () => {
@@ -10,6 +11,7 @@ const createStore = () => {
     modules: {
       auth,
       category,
+      subcategory,
     }
   })
 }

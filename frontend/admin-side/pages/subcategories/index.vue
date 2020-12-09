@@ -4,12 +4,9 @@
     <div class="page-header">
       <div class="row">
         <div class="col">
-          <h3 class="page-title">Categories</h3>
+          <h3 class="page-title">Subcategories</h3>
         </div>
         <div class="col-auto text-right">
-          <a class="btn btn-white filter-btn" href="#" id="filter_search">
-            <i class="fas fa-filter"></i>
-          </a>
           <router-link to="categories/add" class="btn btn-primary add-button ml-3">
             <i class="fas fa-plus"></i>
           </router-link>
@@ -19,38 +16,22 @@
     <!-- /Page Header -->
     
     <!-- Search Filter -->
-    <div class="card filter-card" id="filter_inputs">
+    <div class="card filter-card">
       <div class="card-body pb-0">
         <form action="#" method="post">
           <div class="row filter-row">
             <div class="col-sm-6 col-md-3">
               <div class="form-group">
                 <label>Category</label>
-                <select class="form-control select">
+                <select class="form-control select" v-model="selected">
                   <option>Select category</option>
-                  <option v-for="{_id,name} in categories" :key="_id">{{ name }}</option>
+                  <option v-for="{_id,name} in categories" :key="_id" :value="_id">{{ name }}</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-1">
               <div class="form-group">
-                <label>From Date</label>
-                <div class="cal-icon">
-                  <input class="form-control datetimepicker" type="text">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="form-group">
-                <label>To Date</label>
-                <div class="cal-icon">
-                  <input class="form-control datetimepicker" type="text">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                <button class="btn btn-primary btn-block" type="submit">Search</button>
               </div>
             </div>
           </div>
@@ -97,16 +78,19 @@ import $ from "jquery";
 import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
-  middleware: 'authenticate',
+  // middleware: 'authenticate',
   data() {
     return {
+      selected:''
     }
   },
   fetch({ store }) {
     store.dispatch('category/fetchAll')
+    store.dispatch('subcategory/fetchAll')
   },
   computed: mapState({
-    categories: state => state.category.categories
+    categories: state => state.category.categories,
+    subcategories: state => state.subcategory.subcategories
   }),
   // JQuery Related code (Not Related with vue.js) will be transfered
   mounted() {
