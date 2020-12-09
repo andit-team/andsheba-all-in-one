@@ -73,6 +73,11 @@ const io = require('socket.io')(server, {
     }
 })
 
+app.use(function (req, res, next) {
+    res.io = io
+    next()
+})
+
 io.use((socket, next) => {
     try {
         const token = socket.handshake.query.token
