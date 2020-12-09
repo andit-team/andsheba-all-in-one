@@ -14,6 +14,7 @@
             <q-tab name="description" label="Description and FAQs" />
             <q-tab name="units" label="Units and Pricing" />
             <q-tab name="gallery" label="Gallery" />
+            <q-tab name="location" label="Service Area" />
             <q-tab name="publish" label="Publish" />
         </q-tabs>
 
@@ -69,8 +70,8 @@
                         <hr class="q-mb-lg"/>
                         <p class="inline-block text-weight-light" style="font-size: 16px">Add Question and answers for you Buyer</p>
                         <div v-for="(faq,index) in faqs" :key="index" class="q-mt-lg">
-                            <q-input label="Question"/>
-                            <q-input label="Answer" type="textarea"/>
+                            <q-input v-model="faq.question" label="Question"/>
+                            <q-input v-model="faq.answer" label="Answer" type="textarea"/>
                         </div>
                         <div class="text-right q-mt-md">
                             <q-item class="cursor-pointer inline-block" style="font-size: 16px;color: #389fd9" clickable @click="handleAddFaqs" > + Add FAQS</q-item>
@@ -147,11 +148,52 @@
                             <input type="file"/>
                         </div>
                         <div class="text-right">
+                            <q-btn class="q-btn bg-primary text-white q-mt-lg q-pa-sm text-right" @click="() => handleTabChange('location')">Save & Continue</q-btn>
+                        </div>
+                    </q-card-section>
+                </q-card>
+            </q-tab-panel>
+            <q-tab-panel name="location">
+                <q-card class="my-card q-mx-sm q-my-xl">
+                    <q-card-section class="q-pa-lg">
+                        <h4 class="q-ma-none">Service Area</h4>
+                        <hr class="q-mb-lg"/>
+
+                        <div class="q-item q-field--filled q-mb-lg q-mr-lg" style="background-color: #f2f2f2">
+                            <gmap-autocomplete
+                                class="autocomplete-search q-field__native q-placeholder"
+                                placeholder="আপনার অবস্থান *"
+                                :value="formattedAddress"
+                                @place_changed="setPlace">
+                            </gmap-autocomplete>
+                        </div>
+
+
+                        <GmapMap
+                            ref="mapRef"
+                            :center="mapCenter"
+                            :zoom="13"
+                            map-type-id="terrain"
+                            style="width: 97%; height: 400px"
+                            @dragstart="handleDragStart"
+                            @dragend="handleDragEnd"
+                            @click="handleMapClick"
+                            @drag="handleDrag"
+                        >
+                            <GmapMarker
+                                ref="marker"
+                                :position="markerCenter"
+                            />
+                        </GmapMap>
+
+                        <div class="text-right">
                             <q-btn class="q-btn bg-primary text-white q-mt-lg q-pa-sm text-right" @click="() => handleTabChange('publish')">Save & Continue</q-btn>
                         </div>
                     </q-card-section>
                 </q-card>
             </q-tab-panel>
+
+
             <q-tab-panel name="publish">
                 <q-card class="my-card q-mx-sm q-my-xl">
                     <q-card-section class="q-pa-lg">
@@ -187,7 +229,22 @@ export default {
             tags: null,
             description: null,
             faqs: [],
-            pricing: []
+            pricing: [],
+            mapCenter: {
+                lat: 22.845641,
+                lng: 89.5403279
+            },
+            markerCenter: {
+                lat: 22.845641,
+                lng: 89.5403279
+            },
+            address: {
+                address: "",
+                location: {
+                    lat: 22.845641,
+                    lng: 89.5403279
+                }
+            },
         }
     },
     created() {
@@ -202,6 +259,15 @@ export default {
         sub_categories: {
             get() {
                 return this.$store.getters["service/getSubCategories"]
+            }
+        },
+
+        formattedAddress: {
+            get() {
+                return this.address.address
+            },
+            set(value) {
+                this.address.address = value;
             }
         }
     },
@@ -234,11 +300,64 @@ export default {
                     options: []
                 }
             ]
-        }
+        },
+
+        handleDragStart() {
+            this.$refs.marker.$markerObject.setAnimation(google.maps.Animation.BOUNCE)
+        },
+        handleDrag() {
+            let location = {
+                lat: this.$refs.mapRef.$mapObject.center.lat(),
+                lng: this.$refs.mapRef.$mapObject.center.lng()
+            }
+            this.markerCenter = location
+        },
+
+
+        async handleDragEnd() {
+            this.$refs.marker.$markerObject.setAnimation(null)
+            let location = {
+                lat: this.$refs.mapRef.$mapObject.center.lat(),
+                lng: this.$refs.mapRef.$mapObject.center.lng()
+            }
+            this.address.location = location
+            this.mapCenter =location
+            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+            if(response.status == 200) {
+                let address = response.data.results[0].formatted_address
+                this.formattedAddress = address
+            }
+        },
+
+        async handleMapClick(click) {
+            let location = {
+                lat: click.latLng.lat(),
+                lng:click.latLng.lng(),
+            }
+            this.address.location = location
+            this.mapCenter = location
+            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
+            if(response.status == 200) {
+                let address = response.data.results[0].formatted_address
+                this.formattedAddress = address
+            }
+        },
+
+        setPlace(place) {
+            let address = {
+                address: place.formatted_address,
+                location: {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                }
+            }
+            this.address = address
+            this.mapCenter = address.location
+        },
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
