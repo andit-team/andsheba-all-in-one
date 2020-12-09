@@ -140,12 +140,55 @@
                         <hr class="q-mb-lg"/>
                         <p class="inline-block text-weight-light" style="font-size: 16px">Add your service related images to set yourself apart from competitors</p>
                         <div class="block q-mt-lg  q-mb-md">
-                            <h6 class="q-ma-none">Upload Image to describe your service</h6>
-                            <input type="file"/>
+                            <h6 class="q-ma-none">Upload Thumb Image</h6>
+
+                            <div class="row q-my-lg">
+                                <div class="col-md-6 col-lg-4 q-ma-md">
+                                    <file-selector
+                                        :height="200"
+                                        class="file-selector"
+                                        accept-extensions=".jpg,.svg,.png,.jpeg"
+                                        :multiple="false"
+                                        :max-file-size="5 * 1024 * 1024"
+                                        @changed="handleThumbImageChange"
+                                    >
+                                        <q-icon name="far fa-images" style="font-size: 34px"/>
+                                        <p class="q-mt-sm" style="font-size: 18px">Browse Image</p>
+                                    </file-selector>
+                                </div>
+                                <div class="col-md-6 col-lg-4 q-ma-md">
+                                    <q-img
+                                        :src="thumb_image"
+                                        spinner-color="white"
+                                        style="height: 200px;width: 300px"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div class="block q-mt-lg q-mb-md">
-                            <h6 class="q-ma-none">Upload Video to describe your service</h6>
-                            <input type="file"/>
+                            <h6 class="q-ma-none">Upload Images to describe your service</h6>
+                            <div class="row q-my-lg">
+                                <div class="col-md-6 col-lg-4 q-pa-md" >
+                                    <file-selector
+                                        :height="200"
+                                        class="file-selector"
+                                        accept-extensions=".jpg,.svg,.png,.jpeg"
+                                        :multiple="false"
+                                        :max-file-size="5 * 1024 * 1024"
+                                        @changed="handleServiceImagesChange"
+                                    >
+                                        <q-icon name="far fa-images" style="font-size: 34px"/>
+                                        <p class="q-mt-sm" style="font-size: 18px">Browse Images</p>
+                                    </file-selector>
+                                </div>
+                                <div v-for="url in service_images" class="col-md-6 col-lg-4 q-pa-md">
+                                    <q-img
+                                        :src="url"
+                                        spinner-color="white"
+                                        style="height: 200px;width: 300px"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div class="text-right">
                             <q-btn class="q-btn bg-primary text-white q-mt-lg q-pa-sm text-right" @click="() => handleTabChange('location')">Save & Continue</q-btn>
@@ -230,6 +273,8 @@ export default {
             description: null,
             faqs: [],
             pricing: [],
+            thumb_image: null,
+            service_images: [],
             mapCenter: {
                 lat: 22.845641,
                 lng: 89.5403279
@@ -354,10 +399,101 @@ export default {
             this.address = address
             this.mapCenter = address.location
         },
+
+        async handleThumbImageChange(files) {
+            let url = await this.handleFileUpload(files[0])
+            this.thumb_image = url
+        },
+
+        async handleServiceImagesChange(files) {
+            let length = files.length
+            for(let i=0;i<length;i++) {
+                let url = await this.handleFileUpload(files[i])
+                console.log(url);
+                if(url !== null) {
+                    this.service_images.push(url)
+                }
+            }
+            console.log(this.service_images)
+
+        },
+
+        async handleFileUpload(file) {
+            const data = new FormData()
+            data.append('image', file)
+            let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+            const res = await this.$axios.post(url, data, {})
+            if (res.data.success) {
+                return res.data.data.image.url
+            }
+            return null
+        },
+
+        async handleServiceAdd() {
+            let pro = {
+                title: this.name,
+                category: this.category,
+                sub_category: this.sub_category,
+                tags: [],
+                description: this.description,
+                faq: this.faqs,
+
+
+
+
+                "thumb_img": "https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg",
+                "gallery_images": [
+                    "https://static.kent.ac.uk/nexus/ems/960.jpg",
+                    "https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg"
+                ],
+                "address": {
+                    "address": "32, Choto mirzapur, khulna",
+                    "location": {
+                        "lat": 22.2322434,
+                        "lng": 22.323234423
+                    }
+                },
+
+                "questions": [
+                    {
+                        "title": "What kinds of problem",
+                        "question_type": "radio",
+                        "answers": [
+                            {
+                                "answer_title_or_unit": "Hardware",
+                                "price": 1000
+                            },
+                            {
+                                "answer_title_or_unit": "Software",
+                                "price": 2000
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Laptop Or Desktop",
+                        "question_type": "radio",
+                        "answers": [
+                            {
+                                "answer_title_or_unit": "Laptop",
+                                "price": 1000
+                            },
+                            {
+                                "answer_title_or_unit": "Desktop",
+                                "price": 2000
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
     }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+    .fs-droppable {
+        border: 1px dashed #389fd9;
+        text-align: center;
+    }
 </style>

@@ -20,7 +20,8 @@ module.exports = function (/* ctx */) {
     boot: [
 
       'axios',
-      'google'
+      'google',
+        'file-selector'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
