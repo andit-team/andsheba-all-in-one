@@ -7,7 +7,7 @@ const cors = require("cors")
 const path = require("path") 
 const compression = require('compression') 
 const helmet = require('helmet') 
-
+const jwt = require("jsonwebtoken")
 const socket = require('./socket/socket')
 
 const app = express() 
@@ -65,8 +65,22 @@ app.use("/api", api)
 
 
 // For Socket.io--------------------------------------------
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {
+    cors: {
+      origin: '*',
+      credentials: true
+    }
+})
+
+io.use((socket, next) => {
+    try {
+        const token = socket.handshake.query.token
+        const payload = jwt.verify(token, process.env.SECRET)
+        socket.userId = payload._id
+        next()
+    } catch (err) {}
+})
 socket(io)
 
 /* Start The Server */
