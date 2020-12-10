@@ -98,6 +98,82 @@ import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
   middleware: 'authenticate',
+  // JQuery Related code (Not Related with vue.js) will be transfered
+  // mounted() {
+  //     var $wrapper = $(".main-wrapper");
+  //     var $pageWrapper = $(".page-wrapper");
+  //     var $slimScrolls = $(".slimscroll");
+
+  //     // Sidebar
+  //     var Sidemenu = function () {
+  //       this.$menuItem = $("#sidebar-menu a");
+  //     };
+
+  //     function init() {
+  //       var $this = Sidemenu;
+  //       $("#sidebar-menu a").on("click", function (e) {
+  //         if ($(this).parent().hasClass("submenu")) {
+  //           e.preventDefault();
+  //         }
+  //         if (!$(this).hasClass("subdrop")) {
+  //           $("ul", $(this).parents("ul:first")).slideUp(350);
+  //           $("a", $(this).parents("ul:first")).removeClass("subdrop");
+  //           $(this).next("ul").slideDown(350);
+  //           $(this).addClass("subdrop");
+  //         } else if ($(this).hasClass("subdrop")) {
+  //           $(this).removeClass("subdrop");
+  //           $(this).next("ul").slideUp(350);
+  //         }
+  //       });
+  //       $("#sidebar-menu ul li.submenu a.active")
+  //         .parents("li:last")
+  //         .children("a:first")
+  //         .addClass("active")
+  //         .trigger("click");
+  //     }
+
+  //     // Sidebar Initiate
+  //     init();
+
+  //     // Mobile menu sidebar overlay
+
+  //     $("body").append('<div class="sidebar-overlay"></div>');
+      
+
+  //     // Select 2
+  //     if ($(".select").length > 0) {
+  //       console.log(234);
+  //       $(".select").select2({
+  //         minimumResultsForSearch: -1,
+  //         width: "100%",
+  //       });
+  //     }
+
+  //     // Datetimepicker
+  //     if ($(".datetimepicker").length > 0) {
+  //       $(".datetimepicker").datetimepicker({
+  //         format: "DD-MM-YYYY",
+  //         icons: {
+  //           up: "fas fa-angle-up",
+  //           down: "fas fa-angle-down",
+  //           next: "fas fa-angle-right",
+  //           previous: "fas fa-angle-left",
+  //         },
+  //       });
+  //     }
+
+  //     // Tooltip
+  //     if ($('[data-toggle="tooltip"]').length > 0) {
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //     }
+
+  //     // Datatable
+  //     if ($(".datatable").length > 0) {
+  //       $(".datatable").DataTable({
+  //         bFilter: false,
+  //       });
+  //     }
+  // },
   data() {
     return {
     }
@@ -108,81 +184,5 @@ export default {
   computed: mapState({
     categories: state => state.category.categories
   }),
-  // JQuery Related code (Not Related with vue.js) will be transfered
-  mounted() {
-      var $wrapper = $(".main-wrapper");
-      var $pageWrapper = $(".page-wrapper");
-      var $slimScrolls = $(".slimscroll");
-
-      // Sidebar
-      var Sidemenu = function () {
-        this.$menuItem = $("#sidebar-menu a");
-      };
-
-      function init() {
-        var $this = Sidemenu;
-        $("#sidebar-menu a").on("click", function (e) {
-          if ($(this).parent().hasClass("submenu")) {
-            e.preventDefault();
-          }
-          if (!$(this).hasClass("subdrop")) {
-            $("ul", $(this).parents("ul:first")).slideUp(350);
-            $("a", $(this).parents("ul:first")).removeClass("subdrop");
-            $(this).next("ul").slideDown(350);
-            $(this).addClass("subdrop");
-          } else if ($(this).hasClass("subdrop")) {
-            $(this).removeClass("subdrop");
-            $(this).next("ul").slideUp(350);
-          }
-        });
-        $("#sidebar-menu ul li.submenu a.active")
-          .parents("li:last")
-          .children("a:first")
-          .addClass("active")
-          .trigger("click");
-      }
-
-      // Sidebar Initiate
-      init();
-
-      // Mobile menu sidebar overlay
-
-      $("body").append('<div class="sidebar-overlay"></div>');
-      
-
-      // Select 2
-      if ($(".select").length > 0) {
-        console.log(234);
-        $(".select").select2({
-          minimumResultsForSearch: -1,
-          width: "100%",
-        });
-      }
-
-      // Datetimepicker
-      if ($(".datetimepicker").length > 0) {
-        $(".datetimepicker").datetimepicker({
-          format: "DD-MM-YYYY",
-          icons: {
-            up: "fas fa-angle-up",
-            down: "fas fa-angle-down",
-            next: "fas fa-angle-right",
-            previous: "fas fa-angle-left",
-          },
-        });
-      }
-
-      // Tooltip
-      if ($('[data-toggle="tooltip"]').length > 0) {
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-
-      // Datatable
-      if ($(".datatable").length > 0) {
-        $(".datatable").DataTable({
-          bFilter: false,
-        });
-      }
-  },
 };
 </script>

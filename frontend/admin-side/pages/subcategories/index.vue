@@ -7,7 +7,7 @@
           <h3 class="page-title">Subcategories</h3>
         </div>
         <div class="col-auto text-right">
-          <router-link to="categories/add" class="btn btn-primary add-button ml-3">
+          <router-link to="subcategories/add" class="btn btn-primary add-button ml-3">
             <i class="fas fa-plus"></i>
           </router-link>
         </div>
@@ -24,14 +24,13 @@
               <div class="form-group">
                 <label>Category</label>
                 <select class="form-control select" v-model="selected">
-                  <option>Select category</option>
                   <option v-for="{_id,name} in categories" :key="_id" :value="_id">{{ name }}</option>
                 </select>
               </div>
             </div>
             <div class="col-sm-6 col-md-1">
               <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Search</button>
+                <button class="btn btn-primary btn-block" type="submit" @click.prevent="search">Search</button>
               </div>
             </div>
           </div>
@@ -49,13 +48,13 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Category</th>
+                    <th>Sub_category</th>
                     <th>Date</th>
                     <th class="text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr v-for="{_id,name,image,updatedAt} in categories" :key="_id">
+                <tbody v-if="subcategories.length>0">
+                  <tr v-for="{_id,name,image,updatedAt} in subcategories" :key="_id">
                     <td>1</td>
                     <td>
                       <img class="rounded service-img mr-1" :src="image" alt="Image">{{ name }}</td>
@@ -64,6 +63,9 @@
                       <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
                     </td>
                   </tr>
+                </tbody>
+                <tbody v-else>
+                  <tr><td colspan="4" class="text-center">NO DATA</td></tr>
                 </tbody>
               </table>
             </div>
@@ -74,99 +76,106 @@
   </div>
 </template>
 <script>
-import $ from "jquery";
-import jQuery from "jquery";
+// import $ from "jquery";
+// import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
-  // middleware: 'authenticate',
+  middleware: 'authenticate',
   data() {
     return {
-      selected:''
+      selected:'',
+      categories:[],
+      subcategories:[]
     }
   },
-  fetch({ store }) {
-    store.dispatch('category/fetchAll')
-    store.dispatch('subcategory/fetchAll')
+  async created() {
+    await this.$store.dispatch('category/fetchAll')
+    this.categories = this.$store.state.category.categories
+    this.selected = this.$store.state.category.categories[0]._id
+    await this.$store.dispatch('subcategory/fetchSubCategories',this.selected)
+    this.subcategories = this.$store.state.subcategory.sub_categories
   },
-  computed: mapState({
-    categories: state => state.category.categories,
-    subcategories: state => state.subcategory.subcategories
-  }),
+  methods: {
+    async search(){
+      await this.$store.dispatch('subcategory/fetchSubCategories',this.selected)
+      this.subcategories = this.$store.state.subcategory.sub_categories
+    }
+  },              
   // JQuery Related code (Not Related with vue.js) will be transfered
-  mounted() {
-      var $wrapper = $(".main-wrapper");
-      var $pageWrapper = $(".page-wrapper");
-      var $slimScrolls = $(".slimscroll");
+  // mounted() {
+  //     var $wrapper = $(".main-wrapper");
+  //     var $pageWrapper = $(".page-wrapper");
+  //     var $slimScrolls = $(".slimscroll");
 
-      // Sidebar
-      var Sidemenu = function () {
-        this.$menuItem = $("#sidebar-menu a");
-      };
+  //     // Sidebar
+  //     var Sidemenu = function () {
+  //       this.$menuItem = $("#sidebar-menu a");
+  //     };
 
-      function init() {
-        var $this = Sidemenu;
-        $("#sidebar-menu a").on("click", function (e) {
-          if ($(this).parent().hasClass("submenu")) {
-            e.preventDefault();
-          }
-          if (!$(this).hasClass("subdrop")) {
-            $("ul", $(this).parents("ul:first")).slideUp(350);
-            $("a", $(this).parents("ul:first")).removeClass("subdrop");
-            $(this).next("ul").slideDown(350);
-            $(this).addClass("subdrop");
-          } else if ($(this).hasClass("subdrop")) {
-            $(this).removeClass("subdrop");
-            $(this).next("ul").slideUp(350);
-          }
-        });
-        $("#sidebar-menu ul li.submenu a.active")
-          .parents("li:last")
-          .children("a:first")
-          .addClass("active")
-          .trigger("click");
-      }
+  //     function init() {
+  //       var $this = Sidemenu;
+  //       $("#sidebar-menu a").on("click", function (e) {
+  //         if ($(this).parent().hasClass("submenu")) {
+  //           e.preventDefault();
+  //         }
+  //         if (!$(this).hasClass("subdrop")) {
+  //           $("ul", $(this).parents("ul:first")).slideUp(350);
+  //           $("a", $(this).parents("ul:first")).removeClass("subdrop");
+  //           $(this).next("ul").slideDown(350);
+  //           $(this).addClass("subdrop");
+  //         } else if ($(this).hasClass("subdrop")) {
+  //           $(this).removeClass("subdrop");
+  //           $(this).next("ul").slideUp(350);
+  //         }
+  //       });
+  //       $("#sidebar-menu ul li.submenu a.active")
+  //         .parents("li:last")
+  //         .children("a:first")
+  //         .addClass("active")
+  //         .trigger("click");
+  //     }
 
-      // Sidebar Initiate
-      init();
+  //     // Sidebar Initiate
+  //     init();
 
-      // Mobile menu sidebar overlay
+  //     // Mobile menu sidebar overlay
 
-      $("body").append('<div class="sidebar-overlay"></div>');
+  //     $("body").append('<div class="sidebar-overlay"></div>');
       
 
-      // Select 2
-      if ($(".select").length > 0) {
-        console.log(234);
-        $(".select").select2({
-          minimumResultsForSearch: -1,
-          width: "100%",
-        });
-      }
+  //     // Select 2
+  //     if ($(".select").length > 0) {
+  //       console.log(234);
+  //       $(".select").select2({
+  //         minimumResultsForSearch: -1,
+  //         width: "100%",
+  //       });
+  //     }
 
-      // Datetimepicker
-      if ($(".datetimepicker").length > 0) {
-        $(".datetimepicker").datetimepicker({
-          format: "DD-MM-YYYY",
-          icons: {
-            up: "fas fa-angle-up",
-            down: "fas fa-angle-down",
-            next: "fas fa-angle-right",
-            previous: "fas fa-angle-left",
-          },
-        });
-      }
+  //     // Datetimepicker
+  //     if ($(".datetimepicker").length > 0) {
+  //       $(".datetimepicker").datetimepicker({
+  //         format: "DD-MM-YYYY",
+  //         icons: {
+  //           up: "fas fa-angle-up",
+  //           down: "fas fa-angle-down",
+  //           next: "fas fa-angle-right",
+  //           previous: "fas fa-angle-left",
+  //         },
+  //       });
+  //     }
 
-      // Tooltip
-      if ($('[data-toggle="tooltip"]').length > 0) {
-        $('[data-toggle="tooltip"]').tooltip();
-      }
+  //     // Tooltip
+  //     if ($('[data-toggle="tooltip"]').length > 0) {
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //     }
 
-      // Datatable
-      if ($(".datatable").length > 0) {
-        $(".datatable").DataTable({
-          bFilter: false,
-        });
-      }
-  },
+  //     // Datatable
+  //     if ($(".datatable").length > 0) {
+  //       $(".datatable").DataTable({
+  //         bFilter: false,
+  //       });
+  //     }
+  // },
 };
 </script>

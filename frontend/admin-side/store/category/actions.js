@@ -3,7 +3,7 @@ const API = process.env.API
 
 // Add new category
 export function add ({commit}) {
-  
+  const token = this.state.auth.token
   commit('add', data)
 }
 

@@ -1,6 +1,6 @@
 export default function () {
   return {
-    categories:[],
-    category:[]
+    sub_categories:[],
+    sub_category:[]
   }
 }

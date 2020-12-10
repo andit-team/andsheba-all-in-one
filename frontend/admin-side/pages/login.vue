@@ -55,6 +55,10 @@ export default {
       if(res.error){
         alert(res.msg)
       }else{
+				this.$cookies.set('accessToken', res.token, {
+            path: '/',
+            maxAge: 60 * 60
+          })
          this.$router.push({
             path: '/'
           })

@@ -1,21 +1,20 @@
 import axios from 'axios'
 const API = process.env.API
 
-// Add new category
-export function add ({commit}) {
-  
-  commit('add', data)
-}
-
-// Fetch All from Database
-export async function fetchAll ({commit}) {
-  const response = await axios.get(`${API}/admin/categories-dropdown`)
-  commit('fetchAll', response.data.data)
-}
-
-// Fetch One from Database
-export async function fetchOne ({commit},payload) {
+// Add new sub_category
+export async function addSubCategories ({commit},data) {
   const token = this.state.auth.token
-  const response = await axios.get(`${API}/admin/category/`+payload,{headers: {'Authorization': `Authorization ${token}`}})
-  commit('fetchOne', response.data.data)
+  let response = await axios.post(`${API}/admin/category`,data,{headers: {'Authorization': `Authorization ${token}`}} );
+  if(response.data.error === false){
+      commit('add', data)
+  }
+  
+}
+
+// Fetch sub_category
+export const fetchSubCategories = async ({commit}, parent) => {
+  let response = await axios.get(`${API}/admin/categories-dropdown?parent=` + parent );
+  if(response.data.error === false){
+      commit('setSubCategories',response.data.data);
+  }
 }
