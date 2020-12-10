@@ -104,8 +104,17 @@ export default {
       this.subcategories = this.$store.state.subcategory.sub_categories
     },
     async subcat_delete(id){
-      await this.$store.dispatch('subcategory/deleteSubCategories',id)
-      this.subcategories = this.$store.state.subcategory.sub_categories
+      this.$confirm('Are you sure ?', 'Warning', 'warning').then(res => {
+        this.$store.dispatch('subcategory/deleteSubCategories',id).then(res => {
+          if(res){
+              this.$alert("Category Successfully Deleted", 'Success', 'success')
+              this.subcategories = this.$store.state.subcategory.sub_categories
+            }
+            else{
+              this.$alert("Error Occured!!!", 'Error', 'error');
+              }
+        })
+      })
     }
   },              
   // JQuery Related code (Not Related with vue.js) will be transfered

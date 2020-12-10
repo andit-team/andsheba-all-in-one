@@ -53,7 +53,7 @@ export default {
       const res = await this.$store.dispatch('auth/login', this.sendLoginData)
       
       if(res.error){
-        alert(res.msg)
+        this.$alert("Username or Password is not correct!!", 'Login Failed!!!', 'error')
       }else{
 				this.$cookies.set('accessToken', res.token, {
             path: '/',

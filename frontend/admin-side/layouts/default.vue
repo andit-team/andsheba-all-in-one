@@ -320,6 +320,11 @@
                 ><i class="fas fa-cog"></i> <span> Settings</span></router-link
               >
             </li>
+            <li>
+              <a href="#" @click.prevent="logout"
+                ><i class="fa fa-sign-out-alt"></i> <span> Logout</span></a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -339,155 +344,156 @@
 
 
 <script>
-import $ from "jquery";
-import jQuery from "jquery";
+// import $ from "jquery";
+// import jQuery from "jquery";
 export default {
   methods: {
     logout(){
-      this.$store.auth.commit('setStatus', false)
+      this.$cookies.remove('accessToken');
+      this.$store.commit('auth/setStatus')
       this.$router.push({
         path: '/login'
       });
     }
   },
-  mounted() {
-    window.addEventListener("load", function (event) {
-      var $wrapper = $(".main-wrapper");
-      var $pageWrapper = $(".page-wrapper");
-      var $slimScrolls = $(".slimscroll");
+  // mounted() {
+  //   window.addEventListener("load", function (event) {
+  //     var $wrapper = $(".main-wrapper");
+  //     var $pageWrapper = $(".page-wrapper");
+  //     var $slimScrolls = $(".slimscroll");
 
-      // Sidebar
+  //     // Sidebar
 
-      var Sidemenu = function () {
-        this.$menuItem = $("#sidebar-menu a");
-      };
+  //     var Sidemenu = function () {
+  //       this.$menuItem = $("#sidebar-menu a");
+  //     };
 
-      function init() {
-        var $this = Sidemenu;
-        $("#sidebar-menu a").on("click", function (e) {
-          if ($(this).parent().hasClass("submenu")) {
-            e.preventDefault();
-          }
-          if (!$(this).hasClass("subdrop")) {
-            $("ul", $(this).parents("ul:first")).slideUp(350);
-            $("a", $(this).parents("ul:first")).removeClass("subdrop");
-            $(this).next("ul").slideDown(350);
-            $(this).addClass("subdrop");
-          } else if ($(this).hasClass("subdrop")) {
-            $(this).removeClass("subdrop");
-            $(this).next("ul").slideUp(350);
-          }
-        });
-        $("#sidebar-menu ul li.submenu a.active")
-          .parents("li:last")
-          .children("a:first")
-          .addClass("active")
-          .trigger("click");
-      }
+  //     function init() {
+  //       var $this = Sidemenu;
+  //       $("#sidebar-menu a").on("click", function (e) {
+  //         if ($(this).parent().hasClass("submenu")) {
+  //           e.preventDefault();
+  //         }
+  //         if (!$(this).hasClass("subdrop")) {
+  //           $("ul", $(this).parents("ul:first")).slideUp(350);
+  //           $("a", $(this).parents("ul:first")).removeClass("subdrop");
+  //           $(this).next("ul").slideDown(350);
+  //           $(this).addClass("subdrop");
+  //         } else if ($(this).hasClass("subdrop")) {
+  //           $(this).removeClass("subdrop");
+  //           $(this).next("ul").slideUp(350);
+  //         }
+  //       });
+  //       $("#sidebar-menu ul li.submenu a.active")
+  //         .parents("li:last")
+  //         .children("a:first")
+  //         .addClass("active")
+  //         .trigger("click");
+  //     }
 
-      // Sidebar Initiate
-      init();
+  //     // Sidebar Initiate
+  //     init();
 
-      // Mobile menu sidebar overlay
+  //     // Mobile menu sidebar overlay
 
-      $("body").append('<div class="sidebar-overlay"></div>');
-      $(document).on("click", "#mobile_btn", function () {
-        $wrapper.toggleClass("slide-nav");
-        $(".sidebar-overlay").toggleClass("opened");
-        $("html").addClass("menu-opened");
-        return false;
-      });
+  //     $("body").append('<div class="sidebar-overlay"></div>');
+  //     $(document).on("click", "#mobile_btn", function () {
+  //       $wrapper.toggleClass("slide-nav");
+  //       $(".sidebar-overlay").toggleClass("opened");
+  //       $("html").addClass("menu-opened");
+  //       return false;
+  //     });
 
-      // Sidebar overlay
+  //     // Sidebar overlay
 
-      $(".sidebar-overlay").on("click", function () {
-        $wrapper.removeClass("slide-nav");
-        $(".sidebar-overlay").removeClass("opened");
-        $("html").removeClass("menu-opened");
-      });
+  //     $(".sidebar-overlay").on("click", function () {
+  //       $wrapper.removeClass("slide-nav");
+  //       $(".sidebar-overlay").removeClass("opened");
+  //       $("html").removeClass("menu-opened");
+  //     });
 
-      $(document).on("click", "#filter_search", function () {
-        $("#filter_inputs").slideToggle("slow");
-      });
-
-
-      // Tooltip
-
-      if ($('[data-toggle="tooltip"]').length > 0) {
-        $('[data-toggle="tooltip"]').tooltip();
-      }
+  //     $(document).on("click", "#filter_search", function () {
+  //       $("#filter_inputs").slideToggle("slow");
+  //     });
 
 
-      // Sidebar Slimscroll
+  //     // Tooltip
 
-      if ($slimScrolls.length > 0) {
-        $slimScrolls.slimScroll({
-          height: "auto",
-          width: "100%",
-          position: "right",
-          size: "7px",
-          color: "#ccc",
-          allowPageScroll: false,
-          wheelStep: 10,
-          touchScrollStep: 100,
-        });
-        var wHeight = $(window).height() - 60;
-        $slimScrolls.height(wHeight);
-        $(".sidebar .slimScrollDiv").height(wHeight);
-        $(window).resize(function () {
-          var rHeight = $(window).height() - 60;
-          $slimScrolls.height(rHeight);
-          $(".sidebar .slimScrollDiv").height(rHeight);
-        });
-      }
+  //     if ($('[data-toggle="tooltip"]').length > 0) {
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //     }
 
-      // Small Sidebar
 
-      $(document).on("click", "#toggle_btn", function () {
-        if ($("body").hasClass("mini-sidebar")) {
-          $("body").removeClass("mini-sidebar");
-          $(".subdrop + ul").slideDown();
-        } else {
-          $("body").addClass("mini-sidebar");
-          $(".subdrop + ul").slideUp();
-        }
-        setTimeout(function () {
-          mA.redraw();
-          mL.redraw();
-        }, 300);
-        return false;
-      });
+  //     // Sidebar Slimscroll
 
-      $(document).on("mouseover", function (e) {
-        e.stopPropagation();
-        if (
-          $("body").hasClass("mini-sidebar") &&
-          $("#toggle_btn").is(":visible")
-        ) {
-          var targ = $(e.target).closest(".sidebar").length;
-          if (targ) {
-            $("body").addClass("expand-menu");
-            $(".subdrop + ul").slideDown();
-          } else {
-            $("body").removeClass("expand-menu");
-            $(".subdrop + ul").slideUp();
-          }
-          return false;
-        }
+  //     if ($slimScrolls.length > 0) {
+  //       $slimScrolls.slimScroll({
+  //         height: "auto",
+  //         width: "100%",
+  //         position: "right",
+  //         size: "7px",
+  //         color: "#ccc",
+  //         allowPageScroll: false,
+  //         wheelStep: 10,
+  //         touchScrollStep: 100,
+  //       });
+  //       var wHeight = $(window).height() - 60;
+  //       $slimScrolls.height(wHeight);
+  //       $(".sidebar .slimScrollDiv").height(wHeight);
+  //       $(window).resize(function () {
+  //         var rHeight = $(window).height() - 60;
+  //         $slimScrolls.height(rHeight);
+  //         $(".sidebar .slimScrollDiv").height(rHeight);
+  //       });
+  //     }
 
-        $(window).scroll(function () {
-          if ($(window).scrollTop() >= 30) {
-            $(".header").addClass("fixed-header");
-          } else {
-            $(".header").removeClass("fixed-header");
-          }
-        });
+  //     // Small Sidebar
 
-        $(document).on("click", "#loginSubmit", function () {
-          $("#adminSignIn").submit();
-        });
-      });
-    });
-  },
+  //     $(document).on("click", "#toggle_btn", function () {
+  //       if ($("body").hasClass("mini-sidebar")) {
+  //         $("body").removeClass("mini-sidebar");
+  //         $(".subdrop + ul").slideDown();
+  //       } else {
+  //         $("body").addClass("mini-sidebar");
+  //         $(".subdrop + ul").slideUp();
+  //       }
+  //       setTimeout(function () {
+  //         mA.redraw();
+  //         mL.redraw();
+  //       }, 300);
+  //       return false;
+  //     });
+
+  //     $(document).on("mouseover", function (e) {
+  //       e.stopPropagation();
+  //       if (
+  //         $("body").hasClass("mini-sidebar") &&
+  //         $("#toggle_btn").is(":visible")
+  //       ) {
+  //         var targ = $(e.target).closest(".sidebar").length;
+  //         if (targ) {
+  //           $("body").addClass("expand-menu");
+  //           $(".subdrop + ul").slideDown();
+  //         } else {
+  //           $("body").removeClass("expand-menu");
+  //           $(".subdrop + ul").slideUp();
+  //         }
+  //         return false;
+  //       }
+
+  //       $(window).scroll(function () {
+  //         if ($(window).scrollTop() >= 30) {
+  //           $(".header").addClass("fixed-header");
+  //         } else {
+  //           $(".header").removeClass("fixed-header");
+  //         }
+  //       });
+
+  //       $(document).on("click", "#loginSubmit", function () {
+  //         $("#adminSignIn").submit();
+  //       });
+  //     });
+  //   });
+  // },
 };
 </script>

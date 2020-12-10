@@ -34,7 +34,7 @@
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Add Category</button>
-										<router-link to="/subcategories" class="btn btn-link">Cancel</router-link>
+										<router-link to="/categories" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- Form -->
@@ -55,7 +55,7 @@ export default {
     return {
 			fileName:'',
 			fileObject: null,
-			url: '',
+			url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU',
 			form:{
 				name:'',
 				image:''
@@ -80,10 +80,13 @@ export default {
 		if(this.form.image !== ""){
 			const res = await this.$store.dispatch('category/addCategories',this.form)
 			 if(!res.error){
-				 console.log('Added Cat')
+				 this.$alert("Category Successfully Added", 'Success', 'success')
+				 this.form = {}
+				 this.url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU'
+				 this.fileName = ''
 			 }
 		}else{
-			console.log('Image upload Problem')
+			this.$alert("Category Add Failed", 'Error', 'error')
 		}
 		},
 		onPickFile() {
@@ -108,7 +111,7 @@ export default {
       } else {
         this.fileName = ''
         this.fileObject = null
-        this.url = ''
+        this.url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU'
       }
     },
 	}

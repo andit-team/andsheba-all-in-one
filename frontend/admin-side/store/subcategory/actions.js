@@ -26,6 +26,8 @@ export async function deleteSubCategories({commit}, id){
   const token = this.state.auth.token
   let response = await axios.delete(`${API}/admin/category/` + id,{headers: {'Authorization': `Authorization ${token}`}} );
   if(response.data.error === false){
-      commit('filterSubCategories',id);
+    commit('filterCategories',id);
+    return 1
   }
+  return 0
 }

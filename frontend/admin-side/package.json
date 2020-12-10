@@ -21,6 +21,7 @@
     "vee-validate": "^3.4.5",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
+    "vue-simple-alert": "^1.1.1",
     "webpack": "^5.10.0"
   },
   "devDependencies": {

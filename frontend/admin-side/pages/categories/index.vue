@@ -188,8 +188,17 @@ export default {
     categories: state => state.category.categories
   }),
    methods: {
-    async cat_delete(id){
-      await this.$store.dispatch('category/deleteCategories',id)
+    cat_delete(id){
+      this.$confirm('Are you sure ?', 'Warning', 'warning').then(res => {
+        this.$store.dispatch('category/deleteCategories', id).then(res => {
+          res?this.$alert("Category Successfully Deleted", 'Success', 'success'): this.$alert("Error Occured!!!", 'Error', 'error');;
+        }).catch(err => {
+          this.$alert("Error Occured!!!", 'Error', 'error');
+        })
+      }).catch(err => {
+        this.$alert("Error Occured!!!", 'Error', 'error');
+      })
+      
     }
   },
 };

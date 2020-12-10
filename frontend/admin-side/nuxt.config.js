@@ -48,6 +48,7 @@ export default {
   */
   plugins: [
     { src: '~/plugins/plugin.js', ssr:false },
+    { src: '~/plugins/alert.js', ssr:false },
     { src: '~/plugins/datetimepicker.js', ssr:false },
     { src: '~/plugins/Slim-Scroll.js', ssr:false },
     { src: '~/plugins/datatable.js', ssr:false },
