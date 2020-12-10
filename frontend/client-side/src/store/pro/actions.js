@@ -50,7 +50,7 @@ export const addService = async ({}, service ) => {
     let token = Cookies.get('token')
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'JWT fefege...'
+        'Authorization': `Authorization ${token}`
     }
     let response = await axios.post('http://localhost:5000/api/pro/service', {...service}, { headers } )
     return {

@@ -449,6 +449,7 @@ export default {
                 await Swal.fire('Error', response.msg, 'error')
             } else {
                 await Swal.fire('Success', 'Service added Successfully', 'success')
+                await this.$router.push('/user/services')
             }
         }
 
