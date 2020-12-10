@@ -58,12 +58,6 @@ app.use(function (req, res, next) {
 
 app.use(cors()) 
 
-/* Routes */
-const api = require("./routes/api") 
-
-app.use("/api", api) 
-
-
 // For Socket.io--------------------------------------------
 const server = require('http').createServer(app)
 const io = require('socket.io')(server, {
@@ -74,7 +68,7 @@ const io = require('socket.io')(server, {
 })
 
 app.use(function (req, res, next) {
-    res.io = io
+    req.io = io
     next()
 })
 
@@ -87,6 +81,11 @@ io.use((socket, next) => {
     } catch (err) {}
 })
 socket(io)
+
+/* Routes */
+const api = require("./routes/api") 
+
+app.use("/api", api) 
 
 /* Start The Server */
 server.listen(PORT, () => {
