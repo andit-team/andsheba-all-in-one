@@ -8,3 +8,7 @@ export function add (state, data) {
 export const setSubCategories = (state, sub_categories ) => {
   state.sub_categories = sub_categories
 }
+
+export const filterSubCategories = (state, id ) => {
+  state.sub_categories = state.sub_categories.filter(item => item._id !== id)
+}

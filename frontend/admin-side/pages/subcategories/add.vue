@@ -40,7 +40,7 @@
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Add Category</button>
-										<router-link to="/categories" class="btn btn-link">Cancel</router-link>
+										<router-link to="/subcategories" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- Form -->

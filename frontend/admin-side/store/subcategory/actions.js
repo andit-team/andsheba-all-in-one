@@ -8,13 +8,24 @@ export async function addSubCategories ({commit},data) {
   if(response.data.error === false){
       commit('add', data)
   }
+
+  return response.data
   
 }
 
 // Fetch sub_category
-export const fetchSubCategories = async ({commit}, parent) => {
+export async function fetchSubCategories({commit}, parent){
   let response = await axios.get(`${API}/admin/categories-dropdown?parent=` + parent );
   if(response.data.error === false){
       commit('setSubCategories',response.data.data);
+  }
+}
+
+// Delete sub_category
+export async function deleteSubCategories({commit}, id){
+  const token = this.state.auth.token
+  let response = await axios.delete(`${API}/admin/category/` + id,{headers: {'Authorization': `Authorization ${token}`}} );
+  if(response.data.error === false){
+      commit('filterSubCategories',id);
   }
 }

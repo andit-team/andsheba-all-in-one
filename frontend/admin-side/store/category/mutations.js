@@ -11,3 +11,7 @@ export function fetchOne (state, data) {
 export function add (state, data) {
   state.categories.push(data)
 }
+
+export const filterCategories = (state, id ) => {
+  state.categories = state.categories.filter(item => item._id !== id)
+}

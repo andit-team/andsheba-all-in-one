@@ -59,8 +59,11 @@
                     <td>
                       <img class="rounded service-img mr-1" :src="image" alt="Image">{{ name }}</td>
                     <td>{{ updatedAt }}</td>
-                    <td class="text-right">
+                    <!-- <td class="text-right">
                       <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
+                    </td> -->
+                    <td class="text-right">
+                      <a href="#" @click.prevent="subcat_delete(_id)" class="btn btn-sm bg-danger-light mr-2">	<i class="fa fa-trash mr-1"></i> Delete</a>
                     </td>
                   </tr>
                 </tbody>
@@ -98,6 +101,10 @@ export default {
   methods: {
     async search(){
       await this.$store.dispatch('subcategory/fetchSubCategories',this.selected)
+      this.subcategories = this.$store.state.subcategory.sub_categories
+    },
+    async subcat_delete(id){
+      await this.$store.dispatch('subcategory/deleteSubCategories',id)
       this.subcategories = this.$store.state.subcategory.sub_categories
     }
   },              
