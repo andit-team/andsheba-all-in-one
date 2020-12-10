@@ -53,8 +53,8 @@ export default {
 			category:{}
     }
   },
-  fetch({ store,params }) {
-    store.dispatch('category/fetchOne', params.id)
+  async fetch({ store,params }) {
+    await store.dispatch('category/fetchOne', params.id)
   },
   computed: mapState({
     oneCategory: state => state.category.category

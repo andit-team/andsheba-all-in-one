@@ -178,8 +178,8 @@ export default {
     return {
     }
   },
-  fetch({ store }) {
-    store.dispatch('category/fetchAll')
+  async fetch({ store }) {
+    await store.dispatch('category/fetchAll')
   },
   computed: mapState({
     categories: state => state.category.categories
