@@ -847,6 +847,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get One Service",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/service/5fd04acf756b843214b37952",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"service",
+								"5fd04acf756b843214b37952"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

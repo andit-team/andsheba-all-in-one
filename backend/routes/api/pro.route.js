@@ -16,6 +16,7 @@ router.post('/verify', Pro.verifyPro)
 const Service = require('../../controllers/pro/service.controller')
 router.post('/service', Auth.user, Service.addService)
 router.get('/services', Auth.user, Service.findAllServices)
+router.get('/service/:_id', Auth.user, Service.getOneService)
 
 // Export the Router
 module.exports = router 

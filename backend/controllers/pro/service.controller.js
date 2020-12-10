@@ -134,3 +134,34 @@ exports.findAllServices = (req, res, next ) => {
     
 
 }
+
+exports.getOneService = (req, res, next ) => {
+
+    const userId = req.userData.user_id
+    Service.findOne({_id: req.params._id, user: userId}).then( result => {
+
+        if(result){
+            const data = {
+                msg: "Service Get Successfully",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: "No Service Available",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+       }).catch( error => {
+        
+        const data = {
+            msg: "Problem in getting service",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+       })
+}
