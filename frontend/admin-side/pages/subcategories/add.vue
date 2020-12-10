@@ -27,14 +27,14 @@
 									</div>
 									<div class="form-group">
 										<label>Sub Category Title</label>
-										<input class="form-control" type="text" v-model="form.name">
+										<input class="form-control" placeholder="sub category title" type="text" v-model="form.name">
 									</div>
 									<div class="form-group">
 										<label>Category Image</label>
-										<input class="form-control" type="text"  @click='onPickFile' v-model="fileName">
+										<input class="form-control" type="text" placeholder="upload image"  @click='onPickFile' v-model="fileName">
 										<input type="file" class="img1" style="display: none" ref="fileInput" accept="image/*" @change="onFilePicked">
 									</div>
-									<div class="form-group">
+									<div class="form-group" v-if="url">
 										<div class="avatar">
 											<img class="avatar-img rounded" alt="" :src="url">
 										</div>
@@ -64,7 +64,7 @@ export default {
 			loader:false,
 			fileName:'',
 			fileObject: null,
-			url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU',
+			url: '',
 			form:{
 				parent:'',
 				name:'',
@@ -103,7 +103,7 @@ export default {
 				 this.$alert("Sub Category Successfully Added", 'Success', 'success')
 				 this.form = {}
 				 this.fileName = ''
-				 this.url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU'
+				 this.url = ''
 			 }
 		}else{
 			this.loader = false
@@ -132,7 +132,7 @@ export default {
       } else {
         this.fileName = ''
         this.fileObject = null
-        this.url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU'
+        this.url = ''
       }
     },
 	}
