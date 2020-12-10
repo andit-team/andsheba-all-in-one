@@ -98,3 +98,38 @@ exports.addService = (req, res, next ) => {
     
 
 }
+
+exports.findAllServices = (req, res, next ) => {
+    const userId = req.userData.user_id
+
+    Service.find({user: userId}).populate('user').then( result => {
+
+        if(result.length > 0){
+            const data = {
+                msg: "Service Get Successfully",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: "Problem in getting service",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch( error => {
+
+        const data = {
+            msg: "Problem in getting service",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+
+    })
+
+    
+
+}
