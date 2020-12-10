@@ -892,6 +892,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get One Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/search/5fd04acf756b843214b37952",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"search",
+								"5fd04acf756b843214b37952"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

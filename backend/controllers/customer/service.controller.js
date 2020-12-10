@@ -54,3 +54,33 @@ exports.searchService = (req, res, next ) => {
         RESPONDER.response(res, 200, data)
        })
 }
+
+exports.getOneService = (req, res, next ) => {
+
+    Service.findById(req.params._id).then( result => {
+
+        if(result){
+            const data = {
+                msg: "Service Get Successfully",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: "No Service Available",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+       }).catch( error => {
+        
+        const data = {
+            msg: "Problem in getting service",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+       })
+}
