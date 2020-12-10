@@ -58,3 +58,16 @@ export const addService = async ({}, service ) => {
         msg: response.data.msg
     }
 }
+
+export const fetchServices = async ({commit}) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get('http://localhost:5000/api/pro/services',{ headers })
+    if(response.data.error === false) {
+        commit('setServices', response.data.data)
+    }
+    console.log(response.data.data)
+}

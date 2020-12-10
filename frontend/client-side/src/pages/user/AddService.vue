@@ -328,6 +328,7 @@ export default {
         },
         handleCategorySelect(value) {
             this.$store.dispatch('service/fetchSubCategories', value._id);
+            this.sub_category = null
         },
         handleAddFaqs() {
             this.faqs = [
