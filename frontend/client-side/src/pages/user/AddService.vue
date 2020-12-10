@@ -90,17 +90,17 @@
                         <hr class="q-mb-lg"/>
                         <p class="inline-block text-weight-light" style="font-size: 16px">Ask your requirements from buyer and give him a cost estimation</p>
                         <div v-for="(price,index) in pricing" :key="index" class="q-mt-xl">
-                            <q-input v-model="price.question" label="Question"/>
+                            <q-input v-model="price.title" label="Question"/>
                             <h6 class="text-weight-regular q-my-sm">Select customer answer type</h6>
                             <div>
-                                <q-btn class="q-ma-md q-pa-xs" :class="price.type == 'single' ? 'bg-primary text-white': ''" @click="() => price.type='single'">Choose One</q-btn>
-                                <q-btn class="q-ma-md q-pa-xs" :class="price.type == 'multiple' ? 'bg-primary text-white': ''" @click="() => price.type='multiple'">Choose Multiple</q-btn>
-                                <q-btn class="q-ma-md q-pa-xs" :class="price.type == 'text' ? 'bg-primary text-white': ''" @click="() => price.type='text'">Choose Text</q-btn>
+                                <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'radio' ? 'bg-primary text-white': ''" @click="() => price.question_type='radio'">Choose One</q-btn>
+                                <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'checkbox' ? 'bg-primary text-white': ''" @click="() => price.question_type='checkbox'">Choose Multiple</q-btn>
+                                <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'text' ? 'bg-primary text-white': ''" @click="() => price.question_type='text'">Choose Text</q-btn>
                             </div>
-                            <div v-if="price.type == 'single' || price.type == 'multiple'">
+                            <div v-if="price.question_type == 'radio' || price.question_type == 'checkbox'">
                                 <h6 class="text-weight-regular q-my-sm">Add customer answer Option</h6>
-                                <div v-for="option in price.options">
-                                    <q-input v-model="option.option" class="inline-block q-mr-md" style="max-width: 300px" label="Option"/>
+                                <div v-for="option in price.answers">
+                                    <q-input v-model="option.answer_title_or_unit" class="inline-block q-mr-md" style="max-width: 300px" label="Option"/>
                                     <q-input v-model="option.price" class="inline-block" style="max-width: 300px" label="Price"/>
                                 </div>
                                 <div class="text-right q-mt-md" style="max-width: 390px">
@@ -108,9 +108,9 @@
                                         class="cursor-pointer inline-block"
                                         style="font-size: 16px;color: #389fd9"
                                         clickable @click="() => {
-                                                price.options = [
-                                                    ...price.options,
-                                                    {option: '',price: '' }
+                                                price.answers = [
+                                                    ...price.answers,
+                                                    {answer_title_or_unit: '',price: '' }
                                                 ]
                                             }"
                                     >
@@ -251,7 +251,7 @@
                             Your phone number will be remains private and will not be used for marketing purpose. See more Privacy policy
                         </p>
                         <div class="text-right">
-                            <q-btn class="q-btn bg-primary text-white q-mt-lg q-pa-sm text-right" > Verify Now</q-btn>
+                            <q-btn class="q-btn bg-primary text-white q-mt-lg q-pa-sm text-right" @click="handleServiceAdd"> Verify Now</q-btn>
                         </div>
                     </q-card-section>
                 </q-card>
@@ -261,6 +261,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "AddService",
     data() {
@@ -340,9 +342,9 @@ export default {
             this.pricing = [
                 ...this.pricing,
                 {
-                    question: "",
-                    type: "single",
-                    options: []
+                    title: "",
+                    question_type: "radio",
+                    answers: []
                 }
             ]
         },
@@ -430,60 +432,23 @@ export default {
         },
 
         async handleServiceAdd() {
-            let pro = {
+            let service = {
                 title: this.name,
                 category: this.category,
                 sub_category: this.sub_category,
                 tags: [],
                 description: this.description,
                 faq: this.faqs,
-
-
-
-
-                "thumb_img": "https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg",
-                "gallery_images": [
-                    "https://static.kent.ac.uk/nexus/ems/960.jpg",
-                    "https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg"
-                ],
-                "address": {
-                    "address": "32, Choto mirzapur, khulna",
-                    "location": {
-                        "lat": 22.2322434,
-                        "lng": 22.323234423
-                    }
-                },
-
-                "questions": [
-                    {
-                        "title": "What kinds of problem",
-                        "question_type": "radio",
-                        "answers": [
-                            {
-                                "answer_title_or_unit": "Hardware",
-                                "price": 1000
-                            },
-                            {
-                                "answer_title_or_unit": "Software",
-                                "price": 2000
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Laptop Or Desktop",
-                        "question_type": "radio",
-                        "answers": [
-                            {
-                                "answer_title_or_unit": "Laptop",
-                                "price": 1000
-                            },
-                            {
-                                "answer_title_or_unit": "Desktop",
-                                "price": 2000
-                            }
-                        ]
-                    }
-                ]
+                questions: this.pricing,
+                address: this.address,
+                thumb_img: this.thumb_image,
+                gallery_images: this.service_images
+            }
+            let response = await this.$store.dispatch('pro/addService', service)
+            if(response.error === true) {
+                await Swal.fire('Error', response.msg, 'error')
+            } else {
+                await Swal.fire('Success', 'Service added Successfully', 'success')
             }
         }
 
@@ -495,5 +460,11 @@ export default {
     .fs-droppable {
         border: 1px dashed #389fd9;
         text-align: center;
+        .fs-btn-select {
+            width: 100%;
+            height: 100%;
+            padding-top: 17%;
+            cursor: pointer;
+        }
     }
 </style>
