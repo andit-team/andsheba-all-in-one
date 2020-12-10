@@ -67,9 +67,10 @@ exports.addService = (req, res, next ) => {
             Admin.findOne({
                 role: 'admin'
             }).then( admin => {
-                res.io.to(admin._id).emit('service_added', data) // For admin realtime notification------------------------------------
+                req.io.to(admin._id).emit('service_added', data) // For admin realtime notification------------------------------------
                 RESPONDER.response(res, 200, data)
             }).catch(error => {
+                console.log(error)
                 const data = {
                     msg: "Admin Not found",
                     error:true
