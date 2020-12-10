@@ -18,13 +18,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDcxNTA2NDYsImV4cCI6MTYwNzE3OTQ0Nn0.YtnMTXuXqgUFrd-jpKGiBO6buJiGilGApLuA4iNC2eM",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc1NzQ0NjUsImV4cCI6MTYwNzYwMzI2NX0.O_8LBJyvPx5ROA1yG3YEhhab_H-D8lMnKNYGN58mhaE",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Telecommunication\",\r\n    \"image\": \"https://cdn.mos.cms.futurecdn.net/PES6US4DGQsJVRQmnqkzCZ.jpg\"\r\n}",
+									"raw": "{\r\n    \"name\": \"New Sub Category 1\",\r\n    \"image\": \"https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg\",\r\n    \"parent\": \"5fc89edc8557760c18f2dc5e\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -792,7 +792,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NDg2MTQwLCJleHAiOjE2MDc1MTQ5NDB9.XREPwJ_6AGaxUNOxrkqck9j0QfFUKJCKFWnZi0pjad0",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
 								"type": "text"
 							}
 						],
