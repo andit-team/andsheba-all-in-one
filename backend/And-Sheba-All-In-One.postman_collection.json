@@ -850,6 +850,51 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Search Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/search?longitude=22.323234423&latitude=22.2322434&category=Computer&sub_category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"search"
+							],
+							"query": [
+								{
+									"key": "longitude",
+									"value": "22.323234423"
+								},
+								{
+									"key": "latitude",
+									"value": "22.2322434"
+								},
+								{
+									"key": "category",
+									"value": "Computer"
+								},
+								{
+									"key": "sub_category",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
