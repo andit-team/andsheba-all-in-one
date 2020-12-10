@@ -14,8 +14,8 @@
 						<!-- /Page Header -->
 						
 						<div class="card">
+							<loader v-if="loader"/>
 							<div class="card-body">
-							
 								<!-- Form -->
 								<form @submit.prevent="add">
 									<div class="form-group">
@@ -53,6 +53,7 @@ export default {
   middleware: 'authenticate',
   data() {
     return {
+			loader:false,
 			fileName:'',
 			fileObject: null,
 			url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU',
@@ -64,7 +65,7 @@ export default {
   },
   methods: {
     async add(){
-
+			this.loader = true
 			if (this.url) {
         let file = document.querySelector('.img1').files[0]
         const data = new FormData()
@@ -80,12 +81,14 @@ export default {
 		if(this.form.image !== ""){
 			const res = await this.$store.dispatch('category/addCategories',this.form)
 			 if(!res.error){
+				 this.loader = false
 				 this.$alert("Category Successfully Added", 'Success', 'success')
 				 this.form = {}
 				 this.url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYRrsL9BbTEcox6kvGCc_cZXHT-PH6suq6xQ&usqp=CAU'
 				 this.fileName = ''
 			 }
 		}else{
+			this.loader = false
 			this.$alert("Category Add Failed", 'Error', 'error')
 		}
 		},

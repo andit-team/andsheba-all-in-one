@@ -42,6 +42,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
+          <loader v-if="loader"/>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-hover table-center mb-0 datatable">
@@ -86,12 +87,14 @@ export default {
   middleware: 'authenticate',
   data() {
     return {
+      loader:false,
       selected:'',
       categories:[],
       subcategories:[]
     }
   },
   async created() {
+    this.loader = true
     await this.$store.dispatch('category/fetchAll')
     this.categories = this.$store.state.category.categories
     this.selected = this.$store.state.category.categories[0]._id
@@ -100,8 +103,10 @@ export default {
   },
   methods: {
     async search(){
+      this.loader = true
       await this.$store.dispatch('subcategory/fetchSubCategories',this.selected)
       this.subcategories = this.$store.state.subcategory.sub_categories
+      this.loader = false
     },
     async subcat_delete(id){
       this.$confirm('Are you sure ?', 'Warning', 'warning').then(res => {
@@ -116,7 +121,10 @@ export default {
         })
       })
     }
-  },              
+  },
+  mounted() {
+    this.loader = false
+  },             
   // JQuery Related code (Not Related with vue.js) will be transfered
   // mounted() {
   //     var $wrapper = $(".main-wrapper");

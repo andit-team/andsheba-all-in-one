@@ -62,6 +62,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
+          <loader v-if="loader"/>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-hover table-center mb-0 datatable">
@@ -179,7 +180,11 @@ export default {
   // },
   data() {
     return {
+      loader:false
     }
+  },
+  created() {
+    this.loader = true
   },
   async fetch({ store }) {
     await store.dispatch('category/fetchAll')
@@ -200,6 +205,9 @@ export default {
       })
       
     }
+  },
+  mounted() {
+    this.loader = false
   },
 };
 </script>
