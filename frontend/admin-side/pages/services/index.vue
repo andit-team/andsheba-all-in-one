@@ -6,11 +6,6 @@
         <div class="col">
           <h3 class="page-title">Services</h3>
         </div>
-        <div class="col-auto text-right">
-          <router-link to="subcategories/add" class="btn btn-primary add-button ml-3">
-            <i class="fas fa-plus"></i>
-          </router-link>
-        </div>
       </div>
     </div>
     <!-- /Page Header -->
@@ -25,24 +20,23 @@
                   <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Desc</th>
+                    <th>Description</th>
                     <th>Thumb</th>
                     <th>Address</th>
                     <th>Category</th>
                     <th>Date</th>
-                    <th class="text-right">Action</th>
+                    <th class="text-right">Status</th>
                   </tr>
                 </thead>
                 <tbody v-if="services.length>0">
-                  <tr v-for="{_id,title,description,thumb_img,address,category,updatedAt} in services" :key="_id">
-                    <td>1</td>
+                  <tr v-for="({_id,title,description,thumb_img,address,category,updatedAt},index) in services" :key="_id">
+                    <td>{{index+1}}</td>
                     <td>{{title}}</td>
-                    <td>{{description}}</td>
+                    <td>{{description?description.substr(0, 20):"-"}}</td>
                     <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
-                    <td>{{address}}</td>
-                    <td>{{category}}</td>
+                    <td>{{address.address}}</td>
+                    <td>{{category.name}}</td>
                     <td>{{updatedAt}}</td>
-                    
                     <td>
                       <div class="status-toggle">
                         <input id="service_1" class="check" type="checkbox" @change="status">
@@ -105,6 +99,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.services)
     this.loader = false
   },             
   // JQuery Related code (Not Related with vue.js) will be transfered
