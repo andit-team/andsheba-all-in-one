@@ -135,10 +135,43 @@ exports.findAllServices = (req, res, next ) => {
 
 }
 
+exports.findAllServicesByAdmin = (req, res, next ) => {
+
+    Service.find().populate('user').then( result => {
+
+        if(result.length > 0){
+            const data = {
+                msg: "Service Get Successfully",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: "Problem in getting service",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch( error => {
+
+        const data = {
+            msg: "Problem in getting service",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+
+    })
+
+    
+
+}
+
 exports.getOneService = (req, res, next ) => {
 
-    const userId = req.userData.user_id
-    Service.findOne({_id: req.params._id, user: userId}).then( result => {
+    Service.findOne({_id: req.params._id}).then( result => {
 
         if(result){
             const data = {

@@ -24,5 +24,9 @@ router.delete('/plan/:_id', Auth.admin, Plan.deletePlan)
 router.put('/plan/:_id', Auth.admin, Plan.updatePlan)
 router.get('/plans', Plan.getAllPlans)
 
+// Service Related Controller--------------------------
+const Service = require('../../controllers/pro/service.controller')
+router.get('/services', Service.findAllServicesByAdmin)
+
 // Export the Router
 module.exports = router 
