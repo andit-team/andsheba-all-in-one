@@ -346,15 +346,50 @@
 <script>
 // import $ from "jquery";
 // import jQuery from "jquery";
+import io from "socket.io-client"
+import { mapState } from 'vuex'
 export default {
   methods: {
-    logout(){
+    setupSocket (){
+    const token = this.$cookies.get('accessToken')
+    if (token && !this.socket) {
+      const newSocket = io("http://localhost:5000", {
+        query: {
+          token: this.$cookies.get('accessToken'),
+        },
+      });
+
+      newSocket.on("disconnect", () => {
+        this.$store.commit('auth/setSocket',null)
+        setTimeout(setupSocket, 3000);
+        console.log("Socket Connection Failed")
+      });
+
+      newSocket.on("connect", () => {
+        console.log("Socket Connected")
+      });
+
+      newSocket.on("service_added", (data) => {
+        console.log(234)
+        console.log(data)
+      });
+
+      this.$store.commit('auth/setSocket',newSocket)
+    }
+  },
+  logout(){
       this.$cookies.remove('accessToken');
       this.$store.commit('auth/setStatus')
       this.$router.push({
         path: '/login'
       });
-    }
+    },
+  },
+  computed: mapState({
+    socket: state => state.auth.socket
+  }),
+  mounted() {
+    this.setupSocket()
   },
   // mounted() {
   //   window.addEventListener("load", function (event) {

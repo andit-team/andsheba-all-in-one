@@ -6,3 +6,7 @@ export function setStatus (state) {
   state.token = ''
   state.user = []
 }
+
+export function setSocket (state,data) {
+  state.socket = data
+}
