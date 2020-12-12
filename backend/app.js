@@ -67,11 +67,6 @@ const io = require('socket.io')(server, {
     }
 })
 
-app.use(function (req, res, next) {
-    req.io = io
-    next()
-})
-
 io.use((socket, next) => {
     try {
         const token = socket.handshake.query.token
@@ -80,6 +75,12 @@ io.use((socket, next) => {
         next()
     } catch (err) {}
 })
+
+app.use(function (req, res, next) {
+    req.io = io
+    next()
+})
+
 socket(io)
 
 /* Routes */

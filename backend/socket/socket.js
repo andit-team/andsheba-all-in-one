@@ -1,7 +1,7 @@
 // All Socket Functionality Will do here----------------------------
 function socket( io ){
     io.on('connection', socket => { 
-        let userId = socket.userId
+        let userId = socket.userId.toString()
             socket.join(userId)
             console.log("Connected: " + userId)
 
