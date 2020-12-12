@@ -792,7 +792,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NzUxNTgyLCJleHAiOjE2MDc3ODAzODJ9.K4QEy2MLMYgnyyorpNFPEk1r09XizaPAsG6RzKASt3g",
 								"type": "text"
 							}
 						],
@@ -998,6 +998,36 @@
 								"api",
 								"customer",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQxYjhlMjZmMzZkMzFjZWM2ZjFiNWMiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDc3NjI2MjEsImV4cCI6MTYwNzc5MTQyMX0.fMPZ0-8O0qjhBQMLHAIKN0pFMoNWzn79DkCczbdJhRg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"verify"
 							]
 						}
 					},
