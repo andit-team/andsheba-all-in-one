@@ -102,3 +102,38 @@ exports.login = (req, res, next) => {
             RESPONDER.response(res, 200, data)
         }) 
 }
+
+exports.verifyCustomer = (req, res, next) => {
+    try{
+
+        const token = req.body.token
+        const decodedToken = jwt.verify(
+            token,
+            process.env.SECRET
+        ) 
+
+        if(decodedToken.role === 'customer'){
+            User.findById(decodedToken._id).then( result => {
+                const data = {
+                    msg: "User Verified",
+                    error: false,
+                    data: result
+                }
+                RESPONDER.response(res, 200, data)
+            })
+        }else{
+            const data = {
+                msg: "You are not authenticated",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }catch (err) {
+        const data = {
+            msg: "You are not authenticated",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    }
+}
