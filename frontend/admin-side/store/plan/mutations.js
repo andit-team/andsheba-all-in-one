@@ -5,7 +5,7 @@ export function add (state, data) {
   state.plans.push(data)
 }
 
-export const setPlans = (state, sub_categories ) => {
+export const setPlans = (state, plans ) => {
   state.plans = plans
 }
 

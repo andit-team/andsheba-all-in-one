@@ -33,7 +33,7 @@
 									</div>
 									<div class="form-group">
 										<label>Duration</label>
-										<input class="form-control" placeholder="Duration" type="number" v-model="form.duration">
+										<input class="form-control" placeholder="Duration" type="text" v-model="form.duration">
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Add Plan</button>

@@ -294,7 +294,7 @@
               >
             </li>
             <li>
-              <router-link to="/subscriptions"
+              <router-link to="/plans"
                 ><i class="far fa-calendar-alt"></i>
                 <span>Subscriptions</span></router-link
               >
