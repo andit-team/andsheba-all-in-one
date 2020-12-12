@@ -23,3 +23,15 @@ export const loginCustomer = async ({}, customer) => {
         msg: response.data.msg
     }
 }
+
+export const fetchCustomer = async ({commit}) => {
+    let token = Cookies.get('token')
+    let response = await axios.post(`${process.env.API_URL}/customer/verify`, {token} )
+    console.log(response )
+    if(response.data.error === false) {
+        commit('setCustomer', {
+            isVerified: true,
+            ...response.data.data
+        });
+    }
+}

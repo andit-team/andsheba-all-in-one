@@ -111,6 +111,7 @@ export default {
                         'success'
                     ).then(r => {
                         this.$router.push('/')
+                        this.$store.dispatch('customer/fetchCustomer');
                     })
                 }
             }

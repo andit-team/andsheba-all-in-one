@@ -101,6 +101,7 @@ export default {
                 return this.$store.getters["service/getSubCategories"]
             }
         },
+
     },
     methods: {
         handleCategorySelect(value) {
