@@ -41,7 +41,7 @@
                             </q-input>
 
 
-                            <q-btn color="teal" to="/service">
+                            <q-btn color="teal" :to="'/service?longitude=' + longitude + '&latitude=' + latitude + '&category=' + category.name + '&sub_category=' + sub_category.name ">
                                 <q-icon left size="2em" name="search"/>
                                 <div v-if="$q.screen.gt.sm">খুঁজুন</div>
                             </q-btn>
@@ -58,23 +58,33 @@
         <nearest-top/>
         <!-- App Slider -->
         <app-slider/>
+
+        <ProCta/>
     </q-page>
 </template>
 
 <script>
 import NearestTop from 'components/sliders/NearestTop'
 import AppSlider from 'src/components/sliders/AppSlider.vue';
+import ProCta from "components/homepage/ProCta";
 
 export default {
     name: "PageIndex",
     components: {
+        ProCta,
         NearestTop,
         AppSlider,
     },
     data() {
         return {
-            category: null,
-            sub_category: null,
+            category: {
+                name: ''
+            },
+            sub_category: {
+                name: ''
+            },
+            longitude: '',
+            latitude: ''
         }
     },
     created() {
@@ -94,11 +104,14 @@ export default {
     },
     methods: {
         handleCategorySelect(value) {
-            this.$store.dispatch('service/fetchSubCategories', value._id);
-            this.sub_category = null
+            this.$store.dispatch('service/fetchSubCategories', value._id)
+            this.sub_category = {
+                name: ''
+            }
         },
         setPlace(value) {
-            console.log(value)
+            this.latitude = value.geometry.location.lat();
+            this.longitude = value.geometry.location.lng();
         }
     }
 };
