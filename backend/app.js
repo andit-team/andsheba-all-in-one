@@ -1,13 +1,13 @@
 const dotEnv = require("dotenv")
 dotEnv.config()
-const express = require('express');
+const express = require('express') 
 const mongoose = require("mongoose") 
 const bodyParser = require("body-parser") 
 const cors = require("cors") 
 const path = require("path") 
 const compression = require('compression') 
 const helmet = require('helmet') 
-
+const jwt = require("jsonwebtoken")
 const socket = require('./socket/socket')
 
 const app = express() 
@@ -58,18 +58,36 @@ app.use(function (req, res, next) {
 
 app.use(cors()) 
 
+// For Socket.io--------------------------------------------
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, {
+    cors: {
+      origin: '*',
+      credentials: true
+    }
+})
+
+app.use(function (req, res, next) {
+    req.io = io
+    next()
+})
+
+io.use((socket, next) => {
+    try {
+        const token = socket.handshake.query.token
+        const payload = jwt.verify(token, process.env.SECRET)
+        socket.userId = payload._id
+        next()
+    } catch (err) {}
+})
+socket(io)
+
 /* Routes */
 const api = require("./routes/api") 
 
 app.use("/api", api) 
 
-
-// For Socket.io--------------------------------------------
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-socket(io)
-
 /* Start The Server */
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
-});
+}) 

@@ -220,7 +220,7 @@
               class="column justify-center items-center q-pt-none"
             >
               <div class="text-h6">
-                Shariful Islam
+                {{profile.name}}
               </div>
               <div class="text-subtitle1">
                 750K Follower | 10 Following
@@ -356,6 +356,7 @@ export default {
   name: "MyLayout",
   data() {
     return {
+        profile: null,
       leftDrawerOpen: false,
       search: "",
       active: true,
@@ -391,9 +392,15 @@ export default {
       ]
     };
   },
-  created() {
-    this.fabYoutube = fabYoutube;
-  }
+
+    async created() {
+        this.fabYoutube = fabYoutube;
+        let response = await this.$store.dispatch('pro/fetchPro')
+        if(response.error === true ) {
+            await this.$router.push('/login')
+        }
+        this.profile = response.data
+    }
 };
 </script>
 

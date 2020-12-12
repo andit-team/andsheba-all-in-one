@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card q-ma-md">
         <q-img
-            src="https://cdn.quasar.dev/img/parallax2.jpg"
+            :src="thumb"
             basic
         >
             <div class="absolute-bottom text-h6 bg-transparent">
@@ -33,7 +33,7 @@
 <script>
 export default {
     name: "ServiceCard",
-    props: ['title', 'price', 'category', 'rating']
+    props: ['title', 'price', 'category', 'rating', 'thumb']
 }
 </script>
 

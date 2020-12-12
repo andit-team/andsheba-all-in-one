@@ -13,5 +13,9 @@ router.use('/geo', geo)
 let Pro = require('./api/pro.route') 
 router.use('/pro', Pro) 
 
+// Customer Routes------------------
+let Customer = require('./api/customer.route') 
+router.use('/customer', Customer) 
+
 
 module.exports = router 

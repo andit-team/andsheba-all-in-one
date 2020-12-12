@@ -18,13 +18,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDcxNTA2NDYsImV4cCI6MTYwNzE3OTQ0Nn0.YtnMTXuXqgUFrd-jpKGiBO6buJiGilGApLuA4iNC2eM",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc1NzQ0NjUsImV4cCI6MTYwNzYwMzI2NX0.O_8LBJyvPx5ROA1yG3YEhhab_H-D8lMnKNYGN58mhaE",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Telecommunication\",\r\n    \"image\": \"https://cdn.mos.cms.futurecdn.net/PES6US4DGQsJVRQmnqkzCZ.jpg\"\r\n}",
+									"raw": "{\r\n    \"name\": \"New Sub Category 1\",\r\n    \"image\": \"https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg\",\r\n    \"parent\": \"5fc89edc8557760c18f2dc5e\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -231,7 +231,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDcxNTA2NDYsImV4cCI6MTYwNzE3OTQ0Nn0.YtnMTXuXqgUFrd-jpKGiBO6buJiGilGApLuA4iNC2eM",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc0MDE0ODYsImV4cCI6MTYwNzQzMDI4Nn0.0om_En6hIYE2GG82CC2hyo-p_g9j7mCrtUBX19xTrdI",
 										"type": "text"
 									}
 								],
@@ -728,6 +728,275 @@
 							"path": [
 								"api",
 								"pro",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-plans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/plans",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"plans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-pro-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NDE2ODc3LCJleHAiOjE2MDc0NDU2Nzd9.vism_jLb3u77ytZI60_B1KCF0PzicYYylI60y_i-K0o\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "service-add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.2322434,\r\n            \"lng\": 22.323234423\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all services",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Service",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/service/5fd04acf756b843214b37952",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"service",
+								"5fd04acf756b843214b37952"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Search Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/search?longitude=22.323234423&latitude=22.2322434&category=Computer&sub_category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"search"
+							],
+							"query": [
+								{
+									"key": "longitude",
+									"value": "22.323234423"
+								},
+								{
+									"key": "latitude",
+									"value": "22.2322434"
+								},
+								{
+									"key": "category",
+									"value": "Computer"
+								},
+								{
+									"key": "sub_category",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/search/5fd04acf756b843214b37952",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"search",
+								"5fd04acf756b843214b37952"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"first Customer\",\r\n    \"mobile\": \"+8801780320743\",\r\n    \"password\": \"12345678\",\r\n    \"email\":\"customer@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"first Customer\",\r\n    \"mobile\": \"+8801780320743\",\r\n    \"password\": \"12345678\",\r\n    \"email\":\"customer@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
 								"login"
 							]
 						}

@@ -1,7 +1,7 @@
 /**
  * Category Crud Controller By Admin -----------------------------
  */
-const RESPONDER = require("../../responder/responder") 
+const RESPONDER = require("../../responder/responder")
 const Category = require('../../models/category.model')
 exports.createCategory = (req, res, next) => {
 
@@ -57,7 +57,7 @@ exports.updateCategory = (req, res, next) => {
    }
 
    Category.updateOne({_id: req.params._id}, newCategory).then( result => {
-       
+
        if(result.n > 0){
            const data = {
             error: false,
@@ -78,7 +78,7 @@ exports.updateCategory = (req, res, next) => {
         }
         RESPONDER.response(res, 200, data)
    })
-           
+
 }
 
 exports.deleteCategory = (req, res, next) => {
@@ -113,7 +113,7 @@ exports.deleteCategory = (req, res, next) => {
             msg: 'Category Not Deleted'
         }
         RESPONDER.response(res, 200, data)
-    })       
+    })
 }
 
 exports.getAllCategory = (req, res, next) => {
@@ -159,7 +159,7 @@ exports.getAllCategory = (req, res, next) => {
     }
     RESPONDER.response(res, 200, data)
    })
-           
+
 }
 
 exports.getAllCategoryDropDown = (req, res, next) => {
@@ -196,7 +196,7 @@ exports.getAllCategoryDropDown = (req, res, next) => {
     }
     RESPONDER.response(res, 200, data)
    })
-           
+
 }
 
 exports.getOneCategory = (req, res, next) => {
@@ -223,5 +223,5 @@ exports.getOneCategory = (req, res, next) => {
     }
     RESPONDER.response(res, 200, data)
    })
-           
+
 }

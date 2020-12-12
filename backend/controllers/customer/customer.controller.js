@@ -1,13 +1,14 @@
 /**
- *  Pro Controller------------------------------------------
+ * Customer Controller-----------------
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
  */
-
-const User = require("../../models/user.model")
+const User = require('../../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const RESPONDER = require("../../responder/responder") 
-
-exports.signUpPro = (req, res, next) => {
+exports.signUp = (req, res, next ) => {
 
     const hash = bcrypt.hashSync(req.body.password, 8)
     const newUser = new User({
@@ -16,9 +17,8 @@ exports.signUpPro = (req, res, next) => {
        password: hash,
        email:req.body.email,
        status: 'active',
-       role: 'pro',
-       registration_ip: req.ip,
-       plan: req.body.plan
+       role: 'customer',
+       registration_ip: req.ip
     })
 
     newUser.save().then( result => {
@@ -53,16 +53,16 @@ exports.signUpPro = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-    let fetchPro 
+    let fetchUser 
     User.findOne({
         mobile: req.body.mobile,
-        role: 'pro'
+        role: 'customer'
     })
         .then(user => {
             if(!user){
                 const data = {
                     error: true,
-                    msg: "Pro Not Found"
+                    msg: "Customer Not Found"
                 }
                 RESPONDER.response(res, 200, data)
             }
@@ -73,7 +73,7 @@ exports.login = (req, res, next) => {
                 }
                 RESPONDER.response(res, 200, data)
             }
-            fetchPro = user 
+            fetchUser = user 
             return bcrypt.compare(req.body.password, user.password) 
         })
         .then(result => {
@@ -84,12 +84,12 @@ exports.login = (req, res, next) => {
                 }
                 RESPONDER.response(res, 200, data)
             }
-            const token = jwt.sign({_id: fetchPro._id, role: fetchPro.role}, process.env.SECRET, {
+            const token = jwt.sign({_id: fetchUser._id, role: fetchUser.role}, process.env.SECRET, {
                 expiresIn: "8h"
             }) 
             const data = {
                 token: token,
-                msg: "Successfully Log in Pro",
+                msg: "Successfully Log in Customer",
                 error:false
             }
             RESPONDER.response(res, 200, data)
@@ -97,43 +97,8 @@ exports.login = (req, res, next) => {
         .catch((err) => {
             const data = {
                 error: true,
-                msg: "Pro Log in Unsuccessful"
+                msg: "Customer Log in Unsuccessful"
             }
             RESPONDER.response(res, 200, data)
         }) 
-}
-
-exports.verifyPro = (req, res, next) => {
-    try{
-
-        const token = req.body.token
-        const decodedToken = jwt.verify(
-            token,
-            process.env.SECRET
-        ) 
-
-        if(decodedToken.role === 'pro'){
-            User.findById(decodedToken._id).then( result => {
-                const data = {
-                    msg: "User Verified",
-                    error: false,
-                    data: result
-                }
-                RESPONDER.response(res, 200, data)
-            })
-        }else{
-            const data = {
-                msg: "You are not authenticated",
-                error:true
-            }
-            RESPONDER.response(res, 200, data)
-        }
-
-    }catch (err) {
-        const data = {
-            msg: "You are not authenticated",
-            error:true
-        }
-        RESPONDER.response(res, 200, data)
-    }
 }
