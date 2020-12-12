@@ -66,7 +66,7 @@ export default {
 
   methods: {
     async onSubmit() {
-        let response = await this.$store.dispatch('pro/loginPro', {mobile: this.mobile, password: this.password} )
+        let response = await this.$store.dispatch('customer/loginCustomer', {mobile: this.mobile, password: this.password} )
         if(response.error) {
             Swal.fire(
                 'Error',
@@ -79,7 +79,7 @@ export default {
                 response.msg,
                 'success'
             ).then(r => {
-                this.$router.push('/user')
+                this.$router.push('/')
             })
         }
     },

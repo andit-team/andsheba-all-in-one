@@ -1,7 +1,7 @@
 <template>
   <div
-    class="q-pa-md full-width row wrap justify-center items-center content-center" style="background-image: url(https://images.unsplash.com/photo-1503791774117-08c379dd7f7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80);
-    background-size: cover;    height: -webkit-fill-available;">
+    class="q-pa-md full-width row wrap justify-center items-center" style="background-image: url(https://images.unsplash.com/photo-1503791774117-08c379dd7f7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1336&q=80);
+    background-size: cover;    min-height: 92vh;">
     <q-card class="my-card col-md-4 col-sm-8 col-xs-10 q-pa-md q-mt-xl">
      <q-card-section class="column items-center content-center">
         <div class="text-h5">আপনার অ্যাকাউন্ট খুলুন</div>
@@ -40,17 +40,6 @@
               v-model="email"
               label="ইমেইল"
             />
-
-              <q-select
-                  filled
-                v-model="plan"
-                :options="plans"
-                option-value="_id"
-                option-label="title"
-                label="Select Plan"
-              />
-
-
             <q-input
               filled
               type="text"
@@ -61,28 +50,6 @@
                 val => (val !== null && val !== '') || 'Please type passwords',
               ]"
             />
-
-              <div class="q-item q-field--filled" style="background-color: #f2f2f2">
-                  <gmap-autocomplete
-                      class="autocomplete-search q-field__native q-placeholder"
-                      placeholder="আপনার অবস্থান *"
-                      :value="formattedAddress"
-                      @place_changed="setPlace">
-                  </gmap-autocomplete>
-              </div>
-
-              <div class="marker"></div>
-              <GmapMap
-                  ref="mapRef"
-                  :center="mapCenter"
-                  :zoom="13"
-                  map-type-id="terrain"
-                  style="width: 97%; height: 300px"
-                  @dragend="handleDragEnd"
-                  @click="handleMapClick"
-              >
-              </GmapMap>
-
 
               <q-toggle v-model="accept" label="I agree with Terms & Conditions" />
 
@@ -111,91 +78,11 @@ export default {
             email: null,
             mobile: null,
             password: null,
-            plan: null,
-            mapCenter: {
-                lat: 22.845641,
-                lng: 89.5403279
-            },
-            address: {
-                address: "",
-                location: {
-                    lat: 22.845641,
-                    lng: 89.5403279
-                }
-            },
             accept: false,
-            showInfo: false,
         };
     },
 
-    created() {
-        this.$store.dispatch('pro/fetchPlans')
-    },
-
-    computed: {
-        plans: {
-            get() {
-                return this.$store.getters["pro/getAllPlans"]
-            }
-        },
-
-        formattedAddress: {
-            get() {
-                return this.address.address
-            },
-            set(value) {
-                this.address.address = value;
-            }
-        }
-    },
-
-    mounted() {
-        console.log(this.$store.getters['pro/getToken'])
-    },
-
-
     methods: {
-        async handleDragEnd() {
-            let location = {
-                lat: this.$refs.mapRef.$mapObject.center.lat(),
-                lng: this.$refs.mapRef.$mapObject.center.lng()
-            }
-            this.address.location = location
-            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
-            if(response.status == 200) {
-                let address = response.data.results[0].formatted_address
-                this.formattedAddress = address
-            }
-        },
-
-        async handleMapClick(click) {
-            let location = {
-                lat: click.latLng.lat(),
-                lng:click.latLng.lng(),
-            }
-            this.address.location = location
-            this.mapCenter = location
-            let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
-            if(response.status == 200) {
-                let address = response.data.results[0].formatted_address
-                this.formattedAddress = address
-            }
-        },
-
-        setPlace(place) {
-            let address = {
-                address: place.formatted_address,
-                location: {
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng(),
-                }
-            }
-            this.address = address
-            this.mapCenter = address.location
-        },
-
-
-
         async onSubmit() {
             if (this.accept !== true) {
                 Swal.fire(
@@ -204,15 +91,13 @@ export default {
                     'warning'
                 )
             } else {
-                let pro = {
+                let customer = {
                     name: this.name,
                     mobile: this.mobile,
                     password: this.password,
-                    email: this.password,
-                    plan: this.plan._id,
-                    address: this.address
+                    email: this.email,
                 }
-                let response = await this.$store.dispatch('pro/registerPro', pro )
+                let response = await this.$store.dispatch('customer/registerCustomer', customer )
                 if(response.error) {
                     Swal.fire(
                         'Error',
@@ -225,7 +110,7 @@ export default {
                         response.msg,
                         'success'
                     ).then(r => {
-                        this.$router.push('/user')
+                        this.$router.push('/')
                     })
                 }
             }
@@ -233,7 +118,7 @@ export default {
 
         onReset() {
             this.user = null;
-            this.pass = null;
+            this.password = null;
             this.accept = false;
         }
     },

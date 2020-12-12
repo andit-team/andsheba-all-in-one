@@ -209,7 +209,7 @@ export default {
                     name: this.name,
                     mobile: this.mobile,
                     password: this.password,
-                    email: this.password,
+                    email: this.email,
                     plan: this.plan._id,
                     address: this.address
                 }
