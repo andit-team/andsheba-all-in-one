@@ -198,3 +198,33 @@ exports.getOneService = (req, res, next ) => {
         RESPONDER.response(res, 200, data)
        })
 }
+
+exports.updateServiceStatus = (req, res, next ) => {
+
+    Service.updateOne({_id: req.params._id},{status: req.body.status}).then( result => {
+
+        if(result.n > 0){
+            const data = {
+                msg: "Service Updated Successfully",
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: "Service Update Failed",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+       }).catch( error => {
+        
+        const data = {
+            msg: "Service Update Failed",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+       })
+}
