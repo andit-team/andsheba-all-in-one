@@ -48,13 +48,14 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+	middleware: 'authenticate',
   data() {
     return {
 			category:{}
     }
   },
-  async fetch({ store,params }) {
-    await store.dispatch('category/fetchOne', params.id)
+  fetch({ store,params }) {
+    store.dispatch('category/fetchOne', params.id)
   },
   computed: mapState({
     oneCategory: state => state.category.category

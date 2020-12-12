@@ -220,29 +220,18 @@
         <!-- /Notifications -->
 
         <!-- User Menu -->
-        <li class="nav-item dropdown">
-          <router-link
-            to="javascript:void(0)"
-            class="dropdown-toggle user-link nav-link"
-            data-toggle="dropdown"
-          >
-            <span class="user-img">
-              <img
-                class="rounded-circle"
-                src="/img/user.jpg"
-                width="40"
-                alt="Admin"
-              />
-            </span>
-          </router-link>
-          <div class="dropdown-menu dropdown-menu-right">
-            <router-link class="dropdown-item" to="admin-profile"
-              >Profile</router-link
-            >
-            <router-link class="dropdown-item" to="login">Logout</router-link>
-          </div>
-        </li>
-        <!-- /User Menu -->
+				<li class="nav-item dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-toggle="dropdown">
+						<span class="user-img">
+							<img class="rounded-circle" src="/img/user.jpg" width="40" alt="Admin">
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="admin-profile.html">Profile</a>
+						<a class="dropdown-item" href="login.html">Logout</a>
+					</div>
+				</li>
+				<!-- /User Menu -->
       </ul>
     </div>
     <!-- /Header -->
@@ -305,7 +294,7 @@
               >
             </li>
             <li>
-              <router-link to="/subscriptions"
+              <router-link to="/plans"
                 ><i class="far fa-calendar-alt"></i>
                 <span>Subscriptions</span></router-link
               >
@@ -331,6 +320,11 @@
                 ><i class="fas fa-cog"></i> <span> Settings</span></router-link
               >
             </li>
+            <li>
+              <a href="#" @click.prevent="logout"
+                ><i class="fa fa-sign-out-alt"></i> <span> Logout</span></a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -350,147 +344,191 @@
 
 
 <script>
-import $ from "jquery";
-import jQuery from "jquery";
+// import $ from "jquery";
+// import jQuery from "jquery";
+import io from "socket.io-client"
+import { mapState } from 'vuex'
 export default {
-  mounted() {
-    window.addEventListener("load", function (event) {
-      var $wrapper = $(".main-wrapper");
-      var $pageWrapper = $(".page-wrapper");
-      var $slimScrolls = $(".slimscroll");
-
-      // Sidebar
-
-      var Sidemenu = function () {
-        this.$menuItem = $("#sidebar-menu a");
-      };
-
-      function init() {
-        var $this = Sidemenu;
-        $("#sidebar-menu a").on("click", function (e) {
-          if ($(this).parent().hasClass("submenu")) {
-            e.preventDefault();
-          }
-          if (!$(this).hasClass("subdrop")) {
-            $("ul", $(this).parents("ul:first")).slideUp(350);
-            $("a", $(this).parents("ul:first")).removeClass("subdrop");
-            $(this).next("ul").slideDown(350);
-            $(this).addClass("subdrop");
-          } else if ($(this).hasClass("subdrop")) {
-            $(this).removeClass("subdrop");
-            $(this).next("ul").slideUp(350);
-          }
-        });
-        $("#sidebar-menu ul li.submenu a.active")
-          .parents("li:last")
-          .children("a:first")
-          .addClass("active")
-          .trigger("click");
-      }
-
-      // Sidebar Initiate
-      init();
-
-      // Mobile menu sidebar overlay
-
-      $("body").append('<div class="sidebar-overlay"></div>');
-      $(document).on("click", "#mobile_btn", function () {
-        $wrapper.toggleClass("slide-nav");
-        $(".sidebar-overlay").toggleClass("opened");
-        $("html").addClass("menu-opened");
-        return false;
+  methods: {
+    setupSocket (){
+    const token = this.$cookies.get('accessToken')
+    if (token && !this.socket) {
+      const newSocket = io("http://localhost:5000", {
+        query: {
+          token: this.$cookies.get('accessToken'),
+        },
       });
 
-      // Sidebar overlay
-
-      $(".sidebar-overlay").on("click", function () {
-        $wrapper.removeClass("slide-nav");
-        $(".sidebar-overlay").removeClass("opened");
-        $("html").removeClass("menu-opened");
+      newSocket.on("disconnect", () => {
+        this.$store.commit('auth/setSocket',null)
+        setTimeout(setupSocket, 3000);
+        console.log("Socket Connection Failed")
       });
 
-      $(document).on("click", "#filter_search", function () {
-        $("#filter_inputs").slideToggle("slow");
+      newSocket.on("connect", () => {
+        console.log("Socket Connected")
       });
 
-
-      // Tooltip
-
-      if ($('[data-toggle="tooltip"]').length > 0) {
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-
-
-      // Sidebar Slimscroll
-
-      if ($slimScrolls.length > 0) {
-        $slimScrolls.slimScroll({
-          height: "auto",
-          width: "100%",
-          position: "right",
-          size: "7px",
-          color: "#ccc",
-          allowPageScroll: false,
-          wheelStep: 10,
-          touchScrollStep: 100,
-        });
-        var wHeight = $(window).height() - 60;
-        $slimScrolls.height(wHeight);
-        $(".sidebar .slimScrollDiv").height(wHeight);
-        $(window).resize(function () {
-          var rHeight = $(window).height() - 60;
-          $slimScrolls.height(rHeight);
-          $(".sidebar .slimScrollDiv").height(rHeight);
-        });
-      }
-
-      // Small Sidebar
-
-      $(document).on("click", "#toggle_btn", function () {
-        if ($("body").hasClass("mini-sidebar")) {
-          $("body").removeClass("mini-sidebar");
-          $(".subdrop + ul").slideDown();
-        } else {
-          $("body").addClass("mini-sidebar");
-          $(".subdrop + ul").slideUp();
-        }
-        setTimeout(function () {
-          mA.redraw();
-          mL.redraw();
-        }, 300);
-        return false;
+      newSocket.on("service_added", (data) => {
+        console.log(234)
+        console.log(data)
       });
 
-      $(document).on("mouseover", function (e) {
-        e.stopPropagation();
-        if (
-          $("body").hasClass("mini-sidebar") &&
-          $("#toggle_btn").is(":visible")
-        ) {
-          var targ = $(e.target).closest(".sidebar").length;
-          if (targ) {
-            $("body").addClass("expand-menu");
-            $(".subdrop + ul").slideDown();
-          } else {
-            $("body").removeClass("expand-menu");
-            $(".subdrop + ul").slideUp();
-          }
-          return false;
-        }
-
-        $(window).scroll(function () {
-          if ($(window).scrollTop() >= 30) {
-            $(".header").addClass("fixed-header");
-          } else {
-            $(".header").removeClass("fixed-header");
-          }
-        });
-
-        $(document).on("click", "#loginSubmit", function () {
-          $("#adminSignIn").submit();
-        });
-      });
-    });
+      this.$store.commit('auth/setSocket',newSocket)
+    }
   },
+  logout(){
+      this.$cookies.remove('accessToken');
+      this.$store.commit('auth/setStatus')
+      this.$router.push({
+        path: '/login'
+      });
+    },
+  },
+  computed: mapState({
+    socket: state => state.auth.socket
+  }),
+  mounted() {
+    this.setupSocket()
+  },
+  // mounted() {
+  //   window.addEventListener("load", function (event) {
+  //     var $wrapper = $(".main-wrapper");
+  //     var $pageWrapper = $(".page-wrapper");
+  //     var $slimScrolls = $(".slimscroll");
+
+  //     // Sidebar
+
+  //     var Sidemenu = function () {
+  //       this.$menuItem = $("#sidebar-menu a");
+  //     };
+
+  //     function init() {
+  //       var $this = Sidemenu;
+  //       $("#sidebar-menu a").on("click", function (e) {
+  //         if ($(this).parent().hasClass("submenu")) {
+  //           e.preventDefault();
+  //         }
+  //         if (!$(this).hasClass("subdrop")) {
+  //           $("ul", $(this).parents("ul:first")).slideUp(350);
+  //           $("a", $(this).parents("ul:first")).removeClass("subdrop");
+  //           $(this).next("ul").slideDown(350);
+  //           $(this).addClass("subdrop");
+  //         } else if ($(this).hasClass("subdrop")) {
+  //           $(this).removeClass("subdrop");
+  //           $(this).next("ul").slideUp(350);
+  //         }
+  //       });
+  //       $("#sidebar-menu ul li.submenu a.active")
+  //         .parents("li:last")
+  //         .children("a:first")
+  //         .addClass("active")
+  //         .trigger("click");
+  //     }
+
+  //     // Sidebar Initiate
+  //     init();
+
+  //     // Mobile menu sidebar overlay
+
+  //     $("body").append('<div class="sidebar-overlay"></div>');
+  //     $(document).on("click", "#mobile_btn", function () {
+  //       $wrapper.toggleClass("slide-nav");
+  //       $(".sidebar-overlay").toggleClass("opened");
+  //       $("html").addClass("menu-opened");
+  //       return false;
+  //     });
+
+  //     // Sidebar overlay
+
+  //     $(".sidebar-overlay").on("click", function () {
+  //       $wrapper.removeClass("slide-nav");
+  //       $(".sidebar-overlay").removeClass("opened");
+  //       $("html").removeClass("menu-opened");
+  //     });
+
+  //     $(document).on("click", "#filter_search", function () {
+  //       $("#filter_inputs").slideToggle("slow");
+  //     });
+
+
+  //     // Tooltip
+
+  //     if ($('[data-toggle="tooltip"]').length > 0) {
+  //       $('[data-toggle="tooltip"]').tooltip();
+  //     }
+
+
+  //     // Sidebar Slimscroll
+
+  //     if ($slimScrolls.length > 0) {
+  //       $slimScrolls.slimScroll({
+  //         height: "auto",
+  //         width: "100%",
+  //         position: "right",
+  //         size: "7px",
+  //         color: "#ccc",
+  //         allowPageScroll: false,
+  //         wheelStep: 10,
+  //         touchScrollStep: 100,
+  //       });
+  //       var wHeight = $(window).height() - 60;
+  //       $slimScrolls.height(wHeight);
+  //       $(".sidebar .slimScrollDiv").height(wHeight);
+  //       $(window).resize(function () {
+  //         var rHeight = $(window).height() - 60;
+  //         $slimScrolls.height(rHeight);
+  //         $(".sidebar .slimScrollDiv").height(rHeight);
+  //       });
+  //     }
+
+  //     // Small Sidebar
+
+  //     $(document).on("click", "#toggle_btn", function () {
+  //       if ($("body").hasClass("mini-sidebar")) {
+  //         $("body").removeClass("mini-sidebar");
+  //         $(".subdrop + ul").slideDown();
+  //       } else {
+  //         $("body").addClass("mini-sidebar");
+  //         $(".subdrop + ul").slideUp();
+  //       }
+  //       setTimeout(function () {
+  //         mA.redraw();
+  //         mL.redraw();
+  //       }, 300);
+  //       return false;
+  //     });
+
+  //     $(document).on("mouseover", function (e) {
+  //       e.stopPropagation();
+  //       if (
+  //         $("body").hasClass("mini-sidebar") &&
+  //         $("#toggle_btn").is(":visible")
+  //       ) {
+  //         var targ = $(e.target).closest(".sidebar").length;
+  //         if (targ) {
+  //           $("body").addClass("expand-menu");
+  //           $(".subdrop + ul").slideDown();
+  //         } else {
+  //           $("body").removeClass("expand-menu");
+  //           $(".subdrop + ul").slideUp();
+  //         }
+  //         return false;
+  //       }
+
+  //       $(window).scroll(function () {
+  //         if ($(window).scrollTop() >= 30) {
+  //           $(".header").addClass("fixed-header");
+  //         } else {
+  //           $(".header").removeClass("fixed-header");
+  //         }
+  //       });
+
+  //       $(document).on("click", "#loginSubmit", function () {
+  //         $("#adminSignIn").submit();
+  //       });
+  //     });
+  //   });
+  // },
 };
 </script>

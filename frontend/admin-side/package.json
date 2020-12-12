@@ -10,11 +10,19 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "datatables.net": "^1.10.22",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
+    "nuxt-vuex-localstorage": "^1.2.7",
     "popper.js": "^1.16.1",
+    "socket.io-client": "^3.0.4",
+    "vee-validate": "^3.4.5",
+    "vue": "^2.6.12",
+    "vue-cookies": "^1.7.4",
+    "vue-simple-alert": "^1.1.1",
     "webpack": "^5.10.0"
   },
   "devDependencies": {
