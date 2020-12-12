@@ -27,7 +27,7 @@ exports.searchService = (req, res, next ) => {
             }
         ]
         
-       }).then( result => {
+       }).populate('user').then( result => {
 
         if(result.length > 0){
             const data = {
@@ -57,7 +57,7 @@ exports.searchService = (req, res, next ) => {
 
 exports.getOneService = (req, res, next ) => {
 
-    Service.findById(req.params._id).then( result => {
+    Service.findById(req.params._id).populate('user').then( result => {
 
         if(result){
             const data = {
