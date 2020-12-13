@@ -24,20 +24,43 @@
             </div>
             <div class="card-action">
                 <a class="edit"><q-icon name="far fa-edit"/><span>Edit</span></a>
-                <a class="delete" v-if="service.status == 'active' || service.status == 'accepted'"><q-icon name="far fa-trash-alt"/><span>Inactive</span></a>
-                <a class="delete text-primary" v-if="service.status == 'inactive'"><q-icon name="far fa-trash-alt"/><span>Active</span></a>
+                <a class="delete" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon style="font-size: 16px;font-weight: 600;" name="clear"/><span>Inactive</span></a>
+                <a class="delete text-green" v-if="service.status == 'inactive'" @click="Active"><q-icon style="font-size: 16px;font-weight: 600;" name="check"/><span>Active</span></a>
             </div>
         </q-card-section>
     </q-card>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "ServiceCard",
     props: ['service'],
     data() {
         return {
             rating: 4
+        }
+    },
+
+    methods: {
+        async Active() {
+            let response = await this.$store.dispatch('pro/updateStatus', {id: this.service._id, status: 'active'})
+            if(response.error) {
+                await Swal.fire('Error', response.msg, 'error')
+            } else {
+                await Swal.fire('Success', response.msg, 'success')
+                await this.$store.dispatch('pro/fetchServices')
+            }
+        },
+        async Inactive() {
+            let response = await this.$store.dispatch('pro/updateStatus', {id: this.service._id, status: 'inactive'})
+            if(response.error) {
+                await Swal.fire('Error', response.msg, 'error')
+            } else {
+                await Swal.fire('Success', response.msg, 'success')
+                await this.$store.dispatch('pro/fetchServices')
+            }
         }
     }
 
