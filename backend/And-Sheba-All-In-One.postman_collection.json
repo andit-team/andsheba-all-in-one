@@ -556,6 +556,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Verify Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc4MzIzOTksImV4cCI6MTYwNzg2MTE5OX0.X5wv6SM_ktCnxzkd1GD2sgdOLbBAHHRkowFlJUMNXCw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/admin/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"admin",
+								"verify"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

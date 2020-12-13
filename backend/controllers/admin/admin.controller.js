@@ -79,3 +79,38 @@ exports.adminLogin = (req, res, next) => {
             RESPONDER.response(res, 200, data)
         }) 
 }
+
+exports.verifyAdmin = (req, res, next) => {
+    try{
+
+        const token = req.body.token
+        const decodedToken = jwt.verify(
+            token,
+            process.env.SECRET
+        ) 
+
+        if(decodedToken.role === 'admin'){
+            Admin.findById(decodedToken._id).then( result => {
+                const data = {
+                    msg: "Admin Verified",
+                    error: false,
+                    data: result
+                }
+                RESPONDER.response(res, 200, data)
+            })
+        }else{
+            const data = {
+                msg: "You are not authenticated",
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }catch (err) {
+        const data = {
+            msg: "You are not authenticated",
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    }
+}

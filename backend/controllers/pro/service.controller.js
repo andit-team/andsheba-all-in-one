@@ -103,7 +103,7 @@ exports.addService = (req, res, next ) => {
 exports.findAllServices = (req, res, next ) => {
     const userId = req.userData.user_id
 
-    Service.find({user: userId}).populate('user').then( result => {
+    Service.find({user: userId}).sort({createdAt: -1}).populate('user').then( result => {
 
         if(result.length > 0){
             const data = {

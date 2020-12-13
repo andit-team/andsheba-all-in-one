@@ -5,7 +5,8 @@ const Auth = require("../../auth/auth")
 // Admin Controller--------------------------
 const Admin = require('../../controllers/admin/admin.controller') 
 router.post('/create', Admin.createAdmin) 
-router.post('/login', Admin.adminLogin) 
+router.post('/login', Admin.adminLogin)
+router.post('/verify', Admin.verifyAdmin)  
 
 // Category Crud--------------------------
 const Category = require('../../controllers/admin/category.controller')
