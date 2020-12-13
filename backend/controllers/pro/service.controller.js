@@ -137,7 +137,7 @@ exports.findAllServices = (req, res, next ) => {
 
 exports.findAllServicesByAdmin = (req, res, next ) => {
 
-    Service.find().populate('user').then( result => {
+    Service.find().sort({createdAt: -1}).populate('user').then( result => {
 
         if(result.length > 0){
             const data = {
