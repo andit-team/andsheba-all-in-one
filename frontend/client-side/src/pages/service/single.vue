@@ -20,7 +20,7 @@
                     <q-carousel swipeable animated v-model="slide" thumbnails infinite>
                         <q-carousel-slide
                             v-for="(image,index) in service.gallery_images"
-                            :name="index"
+                            :name="index+1"
                             :img-src="image"
                         />
 
@@ -50,16 +50,19 @@
                                 style="right: 0px;transform: translateY(-50%);width: 12px;height: 12px;bottom: -8px;border-radius: inherit;"
                             ></div>
                             <img
-                                src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                                :src="service.thumb_img"
                             />
                         </q-avatar>
+
+
+
                     </q-item-section>
 
                     <q-item-section>
-                        <q-item-label>Shariful Islam</q-item-label>
+                        <q-item-label>{{service.user.name}}</q-item-label>
 
                         <q-item-label caption>
-                            Professional Cleaner
+
                         </q-item-label>
                     </q-item-section>
 
@@ -69,11 +72,26 @@
                     <q-btn flat round color="primary" icon="share"/>
                 </q-item>
                 <q-separator v-if="$q.screen.gt.sm"/>
+
+                <div class="text-h4 q-my-lg">FAQS</div>
+
+                <q-expansion-item
+                    v-for="faq in service.faq"
+                    expand-separator
+                    :label="faq.question"
+                >
+                    <q-card>
+                        <q-card-section>
+                            {{faq.answer}}
+                        </q-card-section>
+                    </q-card>
+                </q-expansion-item>
+                <div class="q-pa-lg"/>
             </div>
             <div class="col-md-2 col-sm-6 col-xs-12">
                 <q-card class="my-card">
                     <q-img v-if="$q.screen.gt.sm"
-                           src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                           :src="service.thumb_img"
                     />
 
                     <q-card-section>
@@ -87,7 +105,7 @@
 
                         <div class="row no-wrap items-right">
                             <div class="col text-h6 ellipsis">
-                                Shariful Islam
+                                {{service.user.name}}
                             </div>
                             <div
                                 class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"
@@ -102,7 +120,7 @@
 
                     <q-card-section class="q-pt-none">
                         <div class="text-subtitle1">
-                            Professional Freelancer
+
                         </div>
                         <div class="text-caption text-grey">
                             Small plates, salads & sandwiches in an intimate setting.

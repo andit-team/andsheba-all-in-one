@@ -124,24 +124,58 @@
                     </div>
                 </div>
             </q-btn-dropdown>
-            <q-input
-                square
-                dense
-                outlined
-                label="Select service type"
-                class="col-xs-4 col-sm-3"
-            />
-            <q-input
-                square
-                dense
-                outlined
-                label="Enter a location"
-                class="col-xs-4 col-sm-3"
-            />
-            <q-btn color="teal" class="col-xs-2 col-sm-2">
-                <q-icon left name="search"/>
-                <div v-if="$q.screen.gt.sm">খুঁজুন</div>
-            </q-btn>
+            <q-form @submit="onSubmit" class="col-12" style="max-width: 1280px; height: 60px">
+                <div class="row">
+                    <q-select
+                        square dense outlined
+                        v-model="category"
+                        :options="categories"
+                        option-value="_id"
+                        option-label="name"
+                        label="Select Category"
+                        @input="handleCategorySelect"
+                        class="absolute"
+                        style="width: 220px"
+                        lazy-rules
+                        :rules="[
+                                        val => (val.name !== '') || 'Please Select a category',
+                                    ]"
+                    />
+
+                    <q-select
+                        square dense outlined
+                        v-model="sub_category"
+                        :options="sub_categories"
+                        option-value="_id"
+                        option-label="name"
+                        label="Select Sub Category"
+                        class="absolute"
+                        style="width: 220px;margin-left: 220px"
+                    />
+                    <q-input
+                        square dense outlined
+                        v-model="location"
+                        class="hp-places-autocomplete2 absolute"
+                        :rules="[
+                            val =>(val !== null) || 'Please Select Location',
+                        ]"
+                        style="margin-left: 440px;width: 220px">
+                        <template v-slot:default>
+                            <gmap-autocomplete
+                                class="autocomplete-search"
+                                placeholder="আপনার অবস্থান *"
+                                @place_changed="setPlace">
+                            </gmap-autocomplete>
+                        </template>
+                    </q-input>
+
+
+                    <q-btn class="absolute" color="teal" type="submit" style="margin-left: 660px;padding: 2px">
+                        <q-icon left size="2em" name="search"/>
+                        <div v-if="$q.screen.gt.sm">খুঁজুন</div>
+                    </q-btn>
+                </div>
+            </q-form>
         </div>
         <div class="row justify-center">
             <q-separator vertical v-if="$q.screen.gt.sm"/>
@@ -247,7 +281,7 @@
                             <q-card-section>
                                 <q-img
                                     class="col-4"
-                                    src="https://cdn.citymapia.com/assets/business/5204/portfolio/21116/5204_637165610990158685.jpg?rendered=true"
+                                   :src="service.thumb_img"
                                 >
                                     <div class="absolute-bottom text-left">
                                         <div class="text-h6 q-mb-xs">{{service.title}}</div>
@@ -318,7 +352,7 @@
                                                 style="right: 0px;transform: translateY(-50%);width: 12px;height: 12px;bottom: -8px;border-radius: inherit;"
                                             ></div>
                                             <img
-                                                src="https://i.pinimg.com/564x/59/e6/9d/59e69d382e60e5dc39905a774fa7284a.jpg"
+                                                :src="service.thumb_img"
                                             />
                                         </q-avatar>
                                     </q-item-section>
@@ -327,7 +361,7 @@
                                         <q-item-label>{{service.user.name}}</q-item-label>
 
                                         <q-item-label caption>
-                                            Professional Artist
+
                                         </q-item-label>
                                     </q-item-section>
                                 </q-item>
@@ -368,10 +402,20 @@ export default {
                 max: 35
             },
             brightness: 3,
-            mic: 8
+            mic: 8,
+            category: {
+                name: ''
+            },
+            sub_category: {
+                name: ''
+            },
+            longitude: '',
+            latitude: '',
+            location: null,
         };
     },
     created() {
+        this.$store.dispatch('service/fetchCategories');
         this.$store.dispatch('service/fetchServices', this.$route.query )
     },
     computed: {
@@ -379,7 +423,50 @@ export default {
             get() {
                 return this.$store.getters["service/getServices"]
             }
+        },
+        categories: {
+            get() {
+                return this.$store.getters["service/getCategories"]
+            }
+        },
+        sub_categories: {
+            get() {
+                return this.$store.getters["service/getSubCategories"]
+            }
+        },
+    },
+    methods: {
+        handleCategorySelect(value) {
+            this.$store.dispatch('service/fetchSubCategories', value._id)
+            this.sub_category = {
+                name: ''
+            }
+        },
+        setPlace(value) {
+            this.latitude = value.geometry.location.lat();
+            this.longitude = value.geometry.location.lng();
+            this.location = value
+        },
+        onSubmit() {
+
+            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&category=' + this.category.name + '&sub_category=' + this.sub_category.name )
+            this.$store.dispatch('service/fetchServices', this.$route.query)
         }
     }
 }
 </script>
+
+<style lang="scss">
+.hp-places-autocomplete2 {
+    input {
+        display: none;
+        &.autocomplete-search {
+            display: block;
+            border: none;
+            outline: none;
+            height: 35px;
+            margin-top: 3px;
+        }
+    }
+}
+</style>

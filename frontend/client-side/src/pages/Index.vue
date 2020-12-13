@@ -9,43 +9,59 @@
                         :class="[$q.screen.gt.sm ? '' : 'q-mt-xl q-mb-xl', 'flex column col-md-7 col-sm-12 justify-center' ]">
                         <p :class="[$q.screen.gt.sm ? 'text-h5' : 'text-h6 text-center']">আপনার স্থানীয় পেশাদারদের
                             খুঁজুন</p>
-                        <div class="row">
-                            <q-select
-                                square outlined
-                                v-model="category"
-                                :options="categories"
-                                option-value="_id"
-                                option-label="name"
-                                label="Category"
-                                @input="handleCategorySelect"
-                                style="width: 170px"
-                            />
+                        <q-form @submit="onSubmit">
+                            <div class="row">
+                                <q-select
+                                    square outlined
+                                    v-model="category"
+                                    :options="categories"
+                                    option-value="_id"
+                                    option-label="name"
+                                    label="Category"
+                                    @input="handleCategorySelect"
+                                    class="absolute"
+                                    style="width: 190px"
+                                    lazy-rules
+                                    :rules="[
+                                        val => (val.name !== '') || 'Please Select a category',
+                                    ]"
+                                />
 
-                            <q-select
-                                square outlined
-                                v-model="sub_category"
-                                :options="sub_categories"
-                                option-value="_id"
-                                option-label="name"
-                                label="Sub Category"
-                                style="width: 170px"
-                            />
-                            <q-input square outlined class="hp-places-autocomplete">
-                                <template v-slot:default>
-                                    <gmap-autocomplete
-                                        class="autocomplete-search"
-                                        placeholder="আপনার অবস্থান *"
-                                        @place_changed="setPlace">
-                                    </gmap-autocomplete>
-                                </template>
-                            </q-input>
+                                <q-select
+                                    square outlined
+                                    v-model="sub_category"
+                                    :options="sub_categories"
+                                    option-value="_id"
+                                    option-label="name"
+                                    label="Sub Category"
+                                    class="absolute"
+                                    style="width: 190px;margin-left: 190px"
+                                />
+                                <q-input
+                                    square outlined
+                                    v-model="location"
+                                    class="hp-places-autocomplete absolute"
+                                    :rules="[
+                                        val =>(val !== null) || 'Please Select Location',
+                                    ]"
+
+                                    style="margin-left: 380px;width: 190px">
+                                    <template v-slot:default>
+                                        <gmap-autocomplete
+                                            class="autocomplete-search"
+                                            placeholder="আপনার অবস্থান *"
+                                            @place_changed="setPlace">
+                                        </gmap-autocomplete>
+                                    </template>
+                                </q-input>
 
 
-                            <q-btn color="teal" :to="'/service?longitude=' + longitude + '&latitude=' + latitude + '&category=' + category.name + '&sub_category=' + sub_category.name ">
-                                <q-icon left size="2em" name="search"/>
-                                <div v-if="$q.screen.gt.sm">খুঁজুন</div>
-                            </q-btn>
-                        </div>
+                                <q-btn class="absolute" color="teal" type="submit" style="margin-left: 570px;padding: 10px">
+                                    <q-icon left size="2em" name="search"/>
+                                    <div v-if="$q.screen.gt.sm">খুঁজুন</div>
+                                </q-btn>
+                            </div>
+                        </q-form>
                     </div>
                     <!-- Banner Right Image -->
                     <div class="col-md-5 col-sm-12" v-if="$q.screen.gt.sm">
@@ -84,7 +100,8 @@ export default {
                 name: ''
             },
             longitude: '',
-            latitude: ''
+            latitude: '',
+            location: null,
         }
     },
     created() {
@@ -101,6 +118,11 @@ export default {
                 return this.$store.getters["service/getSubCategories"]
             }
         },
+        isLocationSelected: {
+            get() {
+                return this.latitude !== ''
+            }
+        }
 
     },
     methods: {
@@ -113,6 +135,10 @@ export default {
         setPlace(value) {
             this.latitude = value.geometry.location.lat();
             this.longitude = value.geometry.location.lng();
+            this.location = value
+        },
+        onSubmit() {
+            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&category=' + this.category.name + '&sub_category=' + this.sub_category.name )
         }
     }
 };

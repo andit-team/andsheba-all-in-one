@@ -3,7 +3,8 @@
         <div class="column justify-center content-center items-center q-mt-xl">
             <q-img v-if="$q.screen.gt.sm"
                    width="10%"
-                   src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                   :src="service.thumb_img"
+
             />
             <div :class="[$q.screen.gt.sm?'text-h4':'text-h5 text-center']">
                 Tell us about your project for more accurate cost estimation
@@ -28,6 +29,38 @@
                         <q-input v-model="answers[index]" class="full-width" outlined type="textarea"/>
                     </q-card-section>
                 </q-card>
+
+                <q-card class="my-card q-mx-sm q-my-xl">
+                    <q-card-section class="q-pa-lg">
+                        <div class="block q-mt-lg q-mb-md">
+                            <h6 class="q-ma-none">Upload Images to describe your service</h6>
+                            <div class="row q-my-lg">
+                                <div class="col-md-6 col-lg-4 q-pa-md" >
+                                    <file-selector
+                                        :height="200"
+                                        class="file-selector"
+                                        accept-extensions=".jpg,.svg,.png,.jpeg"
+                                        :multiple="false"
+                                        :max-file-size="5 * 1024 * 1024"
+                                        @changed="handleServiceImagesChange"
+                                    >
+                                        <q-icon name="far fa-images" style="font-size: 34px"/>
+                                        <p class="q-mt-sm" style="font-size: 18px">Browse Images</p>
+                                    </file-selector>
+                                </div>
+                                <div v-for="url in service_images" class="col-md-6 col-lg-4 q-pa-md">
+                                    <q-img
+                                        :src="url"
+                                        spinner-color="white"
+                                        style="height: 200px;width: 300px"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </q-card-section>
+                </q-card>
+
+
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <q-card class="my-card">
@@ -69,6 +102,7 @@ export default {
             living: false,
             pool: true,
             questions: null,
+            service_images: [],
         };
     },
     created() {
@@ -137,6 +171,44 @@ export default {
                 }
             }
         }
+    },
+    methods: {
+        async handleServiceImagesChange(files) {
+            let length = files.length
+            for(let i=0;i<length;i++) {
+                let url = await this.handleFileUpload(files[i])
+                console.log(url);
+                if(url !== null) {
+                    this.service_images.push(url)
+                }
+            }
+            console.log(this.service_images)
+
+        },
+
+        async handleFileUpload(file) {
+            const data = new FormData()
+            data.append('image', file)
+            let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+            const res = await this.$axios.post(url, data, {})
+            if (res.data.success) {
+                return res.data.data.image.url
+            }
+            return null
+        },
     }
 };
 </script>
+
+<style lang="scss">
+.fs-droppable {
+    border: 1px dashed #389fd9;
+    text-align: center;
+    .fs-btn-select {
+        width: 100%;
+        height: 100%;
+        padding-top: 17%;
+        cursor: pointer;
+    }
+}
+</style>

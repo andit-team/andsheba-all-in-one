@@ -18,6 +18,8 @@ export const fetchServices = async ({commit}, params) => {
     let response = await axios.get(`${process.env.API_URL}/customer/search` , {params: params } );
     if(response.data.error === false){
         commit('setServices',response.data.data);
+    } else {
+        commit('setServices',[]);
     }
 }
 

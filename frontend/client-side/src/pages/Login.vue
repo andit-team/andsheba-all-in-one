@@ -16,7 +16,7 @@
                             filled
                             type="text"
                             v-model="mobile"
-                            mask="###########"
+                            mask="##########"
                             label="Mobile *"
                             lazy-rules
                             :rules="[
@@ -45,6 +45,7 @@
                                 color="primary"
                                 flat
                                 class="q-ml-sm"
+                                to="/register"
                             />
                         </div>
                     </q-form>

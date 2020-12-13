@@ -18,11 +18,11 @@
 
                 <q-space v-if="!$q.screen.gt.sm"/>
 
-                <div :class="['YL__toolbar-input-container row', $q.screen.gt.sm ? 'q-ml-lg' : 'q-ml-xs fit' ]">
-                    <q-input dense outlined square v-model="search" placeholder="Search services..."
-                             class="bg-white col"/>
-                    <q-btn class="YL__toolbar-input-btn" color="grey-3" text-color="grey-8" icon="search" unelevated/>
-                </div>
+<!--                <div :class="['YL__toolbar-input-container row', $q.screen.gt.sm ? 'q-ml-lg' : 'q-ml-xs fit' ]">-->
+<!--                    <q-input dense outlined square v-model="search" placeholder="Search services..."-->
+<!--                             class="bg-white col"/>-->
+<!--                    <q-btn class="YL__toolbar-input-btn" color="grey-3" text-color="grey-8" icon="search" unelevated/>-->
+<!--                </div>-->
                 <q-space v-if="$q.screen.gt.sm"/>
 
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">

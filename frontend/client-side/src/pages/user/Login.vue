@@ -16,7 +16,7 @@
                   filled
                   type="text"
                   v-model="mobile"
-                  mask="###########"
+                  mask="##########"
                   label="Mobile *"
                   lazy-rules
                   :rules="[
