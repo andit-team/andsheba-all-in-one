@@ -76,111 +76,35 @@
         <!-- Recent Bookings -->
         <div class="card card-table flex-fill">
           <div class="card-header">
-            <h4 class="card-title">Recent Bookings</h4>
+            <h4 class="card-title">Recent Services</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-center">
+              <table class="table table-hover table-center mb-0 datatable">
                 <thead>
                   <tr>
-                    <th>Customer</th>
-                    <th>Date</th>
-                    <th>Service</th>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Thumb</th>
+                    <th>Category</th>
                     <th>Status</th>
-                    <th>Price</th>
+                    <th class="text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-nowrap">
-                      <img
-                        class="avatar-xs rounded-circle"
-                        src="/img/customer/user-05.jpg"
-                        alt="User Image"
-                      />
-                      Annette Silva
-                    </td>
-                    <td class="text-nowrap">9 Sep 2020</td>
-                    <td>Car Repair Services</td>
-                    <td>
-                      <span class="badge bg-danger inv-badge">Pending</span>
-                    </td>
-                    <td>
-                      <div class="font-weight-600">$50</div>
+                <tbody v-if="services.length>0">
+                  <tr v-for="({_id,title,thumb_img,category,status},index) in services" :key="_id">
+                    <td>{{index+1}}</td>
+                    <td>{{title}}</td>
+                    <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
+                    <td>{{category.name}}</td>
+                    <td><span :class="['badge badge-pill', status == 'pending'?'badge-warning':'badge-success']">{{status}}</span></td>
+                    <td class="text-right">
+                      <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="text-nowrap">
-                      <img
-                        class="avatar-xs rounded-circle"
-                        src="/img/customer/user-06.jpg"
-                        alt="User Image"
-                      />
-                      Stephen Wilson
-                    </td>
-                    <td class="text-nowrap">8 Sep 2020</td>
-                    <td>Steam Car Wash</td>
-                    <td>
-                      <span class="badge bg-danger inv-badge">Pending</span>
-                    </td>
-                    <td>
-                      <div class="font-weight-600">$14</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap">
-                      <img
-                        class="avatar-xs rounded-circle"
-                        src="/img/customer/user-07.jpg"
-                        alt="User Image"
-                      />
-                      Ryan Rodriguez
-                    </td>
-                    <td class="text-nowrap">7 Sep 2020</td>
-                    <td>House Cleaning Services</td>
-                    <td>
-                      <span class="badge bg-danger inv-badge">Pending</span>
-                    </td>
-                    <td>
-                      <div class="font-weight-600">$100</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap">
-                      <img
-                        class="avatar-xs rounded-circle"
-                        src="/img/customer/user-08.jpg"
-                        alt="User Image"
-                      />
-                      Lucile Devera
-                    </td>
-                    <td class="text-nowrap">6 Sep 2020</td>
-                    <td>Interior Designing</td>
-                    <td>
-                      <span class="badge bg-danger inv-badge">Pending</span>
-                    </td>
-                    <td>
-                      <div class="font-weight-600">$5</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap">
-                      <img
-                        class="avatar-xs rounded-circle"
-                        src="/img/customer/user-09.jpg"
-                        alt="User Image"
-                      />
-                      Roland Storey
-                    </td>
-                    <td class="text-nowrap">5 Sep 2020</td>
-                    <td>Plumbing Services</td>
-                    <td>
-                      <span class="badge bg-danger inv-badge">Pending</span>
-                    </td>
-                    <td>
-                      <div class="font-weight-600">$150</div>
-                    </td>
-                  </tr>
+                </tbody>
+                <tbody v-else>
+                  <tr><td colspan="8" class="text-center">NO DATA</td></tr>
                 </tbody>
               </table>
             </div>
@@ -379,8 +303,25 @@
   </div>
 </template>
 <script>
-
+import { mapState } from 'vuex'
 export default {
   middleware: 'authenticate',
-}
+  data() {
+    return {
+      loader:false,
+    }
+  },
+  async created() {
+    this.loader = true
+    await this.$store.dispatch('service/fetchAll')
+  },
+  computed: mapState({
+    services: state => state.service.services
+  }),
+  methods: {
+  },
+  mounted() {
+    this.loader = false
+  }
+};
 </script>

@@ -23,6 +23,7 @@
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
     "vue-simple-alert": "^1.1.1",
+    "vue-toast-notification": "^0.6.0",
     "webpack": "^5.10.0"
   },
   "devDependencies": {

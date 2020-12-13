@@ -1,5 +1,6 @@
 <template>
   <div class="main-wrapper">
+    <audio id="audio" src="/alert.mp3" autoplay style="" />
     <!-- Header -->
     <div class="header">
       <div class="header-left">
@@ -370,8 +371,20 @@ export default {
       });
 
       newSocket.on("service_added", (data) => {
-        console.log(234)
-        console.log(data)
+        document.getElementById('audio').play();
+        this.$toast.open({
+          message: 'New Service Request!',
+          type: 'success',
+          position:'top-right',
+          dismissible:true,
+          duration: 5000,
+          onClick: function(){
+            
+          },
+          onDismiss: function(){
+            document.getElementById('audio').pause();
+          }
+        });
       });
 
       this.$store.commit('auth/setSocket',newSocket)

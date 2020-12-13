@@ -26,7 +26,7 @@ router.get('/plans', Plan.getAllPlans)
 
 // Service Related Controller--------------------------
 const Service = require('../../controllers/pro/service.controller')
-router.get('/services', Service.findAllServicesByAdmin)
+router.get('/services', Auth.admin, Service.findAllServicesByAdmin)
 
 // Export the Router
 module.exports = router 
