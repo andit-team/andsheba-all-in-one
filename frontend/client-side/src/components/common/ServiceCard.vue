@@ -1,19 +1,19 @@
 <template>
     <q-card class="my-card q-ma-md">
         <q-img
-            :src="thumb"
+            :src="service.thumb_img"
             basic
         >
             <div class="absolute-bottom text-h6 bg-transparent">
-                ${{price}}
+                $25
             </div>
             <div class="absolute-bottom bg-transparent text-right">
-                <span class="category-tag">{{category}}</span>
+                <span class="category-tag">{{service.category.name}}</span>
             </div>
         </q-img>
 
         <q-card-section>
-            <div class="text-h6">{{title}}</div>
+            <div class="text-h6">{{service.title}}</div>
             <div class="text-subtitle2">
                 <q-rating
                     v-model="rating"
@@ -24,16 +24,46 @@
             </div>
             <div class="card-action">
                 <a class="edit"><q-icon name="far fa-edit"/><span>Edit</span></a>
-                <a class="delete"><q-icon name="far fa-trash-alt"/><span>Inactive</span></a>
+                <a class="delete" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon style="font-size: 16px;font-weight: 600;" name="clear"/><span>Inactive</span></a>
+                <a class="delete text-green" v-if="service.status == 'inactive'" @click="Active"><q-icon style="font-size: 16px;font-weight: 600;" name="check"/><span>Active</span></a>
             </div>
         </q-card-section>
     </q-card>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "ServiceCard",
-    props: ['title', 'price', 'category', 'rating', 'thumb']
+    props: ['service'],
+    data() {
+        return {
+            rating: 4
+        }
+    },
+
+    methods: {
+        async Active() {
+            let response = await this.$store.dispatch('pro/updateStatus', {id: this.service._id, status: 'active'})
+            if(response.error) {
+                await Swal.fire('Error', response.msg, 'error')
+            } else {
+                await Swal.fire('Success', response.msg, 'success')
+                await this.$store.dispatch('pro/fetchServices')
+            }
+        },
+        async Inactive() {
+            let response = await this.$store.dispatch('pro/updateStatus', {id: this.service._id, status: 'inactive'})
+            if(response.error) {
+                await Swal.fire('Error', response.msg, 'error')
+            } else {
+                await Swal.fire('Success', response.msg, 'success')
+                await this.$store.dispatch('pro/fetchServices')
+            }
+        }
+    }
+
 }
 </script>
 

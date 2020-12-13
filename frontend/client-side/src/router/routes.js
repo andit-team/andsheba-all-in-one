@@ -19,6 +19,8 @@ const routes = [
       { path: 'quote', component: () => import('pages/service/cost_calc.vue') },
     ]
   },
+  { path: '/user/login', component: () => import('pages/user/Login.vue') },
+  { path: '/user/register', component: () => import('pages/user/Register.vue') },
   {
     path: '/user',
     component: () => import('layouts/UserDash.vue'),

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // import example from './module-example'
 import pro from './pro'
 import service from './service'
+import customer from './customer'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       pro,
-      service
+      service,
+      customer
     },
 
     // enable strict mode (adds overhead!)

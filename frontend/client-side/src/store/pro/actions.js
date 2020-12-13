@@ -69,5 +69,14 @@ export const fetchServices = async ({commit}) => {
     if(response.data.error === false) {
         commit('setServices', response.data.data)
     }
-    console.log(response.data.data)
+}
+
+export const updateStatus = async ({}, service) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.put(`${process.env.API_URL}/pro/service-status/${service.id}` , {status: service.status}, {headers})
+    return response.data
 }
