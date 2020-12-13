@@ -5,7 +5,8 @@ const Auth = require("../../auth/auth")
 // Admin Controller--------------------------
 const Admin = require('../../controllers/admin/admin.controller') 
 router.post('/create', Admin.createAdmin) 
-router.post('/login', Admin.adminLogin) 
+router.post('/login', Admin.adminLogin)
+router.post('/verify', Admin.verifyAdmin)  
 
 // Category Crud--------------------------
 const Category = require('../../controllers/admin/category.controller')
@@ -27,6 +28,8 @@ router.get('/plans', Plan.getAllPlans)
 // Service Related Controller--------------------------
 const Service = require('../../controllers/pro/service.controller')
 router.get('/services', Auth.admin, Service.findAllServicesByAdmin)
+router.get('/service/:_id', Auth.admin, Service.getOneService)
+router.put('/service-status/:_id', Auth.admin, Service.updateServiceStatus)
 
 // Export the Router
 module.exports = router 
