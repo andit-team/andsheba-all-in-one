@@ -7,7 +7,7 @@
 						<div class="page-header">
 							<div class="row">
 								<div class="col">
-									<h3 class="page-title">Edit Category</h3>
+									<h3 class="page-title">Update Service</h3>
 								</div>
 							</div>
 						</div>
@@ -17,23 +17,21 @@
 							<div class="card-body">
 							
 								<!-- Form -->
-								<form>
+								<form @submit.prevent="update">
 									<div class="form-group">
-										<label>Category Name</label>
-										<input class="form-control" v-model="category.name" type="text" value="Automobile">
+										<label>Service Name</label>
+										<input class="form-control" v-model="service.title" type="text" readonly>
 									</div>
 									<div class="form-group">
-										<label>Category Image</label>
-										<input class="form-control" type="file">
-									</div>
-									<div class="form-group">
-										<div class="avatar">
-											<img class="avatar-img rounded" alt="" :src="category.image">
-										</div>
+										<label>Service Status</label>
+										<select class="form-control select" v-model="service.status">
+                  	<option value="pending">Pending</option>
+                  	<option value="active">Active</option>
+                </select>
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Save Changes</button>
-										<router-link to="/categories" class="btn btn-link">Cancel</router-link>
+										<router-link to="/services" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- /Form -->
@@ -51,17 +49,29 @@ export default {
 	middleware: 'authenticate',
   data() {
     return {
-			category:{}
+			service:{}
     }
   },
-  fetch({ store,params }) {
-    store.dispatch('category/fetchOne', params.id)
+  async fetch({ store,params }) {
+    await store.dispatch('service/fetchOne', params.id)
   },
   computed: mapState({
-    oneCategory: state => state.category.category
+    oneService: state => state.service.service
 	}),
 	mounted() {
-		this.category = this.oneCategory
+		this.service = this.oneService
+	},
+	methods: {
+		async update(){
+			let res = await this.$store.dispatch('service/updateStatus',{id:this.$route.params.id,status:this.service.status})
+			if(res){
+				 this.$alert("Service status Successfully Updated", 'Success', 'success')
+				 console.log(this)
+				 this.$router.push('/')
+			}else{
+				this.$alert("Service status Failed to Update", 'Error', 'error')
+			}
+		}
 	},
 };
 </script>

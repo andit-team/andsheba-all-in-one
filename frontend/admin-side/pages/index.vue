@@ -99,7 +99,7 @@
                     <td>{{category.name}}</td>
                     <td><span :class="['badge badge-pill', status == 'pending'?'badge-warning':'badge-success']">{{status}}</span></td>
                     <td class="text-right">
-                      <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
+                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
                   </tr>
                 </tbody>
@@ -311,7 +311,7 @@ export default {
       loader:false,
     }
   },
-  async created() {
+  async fetch() {
     this.loader = true
     await this.$store.dispatch('service/fetchAll')
   },
