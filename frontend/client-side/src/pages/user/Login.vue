@@ -20,8 +20,9 @@
                   label="Mobile *"
                   lazy-rules
                   :rules="[
-                val => (val !== null && val !== '') || 'Please type moblie',
-              ]"
+                        val => (val.length == 10) || 'Please type valid mobile',
+                  ]"
+                  prefix="+880"
               />
 
             <q-input
@@ -67,7 +68,7 @@ export default {
 
   methods: {
     async onSubmit() {
-        let response = await this.$store.dispatch('pro/loginPro', {mobile: this.mobile, password: this.password} )
+        let response = await this.$store.dispatch('pro/loginPro', {mobile: "+880" + this.mobile, password: this.password} )
         if(response.error) {
             Swal.fire(
                 'Error',

@@ -27,12 +27,13 @@
               filled
               type="text"
               v-model="mobile"
-              mask="###########"
+              mask="##########"
               label="মোবাইল *"
               lazy-rules
               :rules="[
-                val => (val !== null && val !== '') || 'Please type moblie',
+                val => (val.length == 10) || 'Please type valid mobile',
               ]"
+              prefix="+880"
             />
             <q-input
               filled
@@ -58,7 +59,7 @@
               label="পাসওয়ার্ড *"
               lazy-rules
               :rules="[
-                val => (val !== null && val !== '') || 'Please type passwords',
+                val => (val.length > 7) || 'Password should contain minimum 8 character',
               ]"
             />
 
@@ -207,7 +208,7 @@ export default {
             } else {
                 let pro = {
                     name: this.name,
-                    mobile: this.mobile,
+                    mobile: '+880' + this.mobile,
                     password: this.password,
                     email: this.email,
                     plan: this.plan._id,
