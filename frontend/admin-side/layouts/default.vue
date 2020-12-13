@@ -1,6 +1,5 @@
 <template>
   <div class="main-wrapper">
-    <audio id="audio" src="/alert.mp3" autoplay style="" />
     <!-- Header -->
     <div class="header">
       <div class="header-left">
@@ -272,6 +271,12 @@
               >
             </li>
             <li>
+              <router-link to="/plans"
+                ><i class="far fa-calendar-alt"></i>
+                <span>Plans</span></router-link
+              >
+            </li>
+            <li>
               <router-link to="/total-report"
                 ><i class="far fa-calendar-check"></i>
                 <span> Booking List</span></router-link
@@ -292,12 +297,6 @@
             <li>
               <router-link to="/review-reports"
                 ><i class="fas fa-star"></i> <span>Ratings</span></router-link
-              >
-            </li>
-            <li>
-              <router-link to="/plans"
-                ><i class="far fa-calendar-alt"></i>
-                <span>Subscriptions</span></router-link
               >
             </li>
             <li>
@@ -349,6 +348,7 @@
 // import jQuery from "jquery";
 import io from "socket.io-client"
 import { mapState } from 'vuex'
+var data = { soundurl : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
 export default {
   methods: {
     setupSocket (){
@@ -371,19 +371,19 @@ export default {
       });
 
       newSocket.on("service_added", (data) => {
-        document.getElementById('audio').play();
+        let id = data.data._id
+        let self = this
+        this.$store.commit('service/pushServices',data)
+        this.playSound()
         this.$toast.open({
           message: 'New Service Request!',
           type: 'success',
           position:'top-right',
           dismissible:true,
-          duration: 5000,
+          duration: 10000,
           onClick: function(){
-            
+            self.$router.push('services/edit/'+id)
           },
-          onDismiss: function(){
-            document.getElementById('audio').pause();
-          }
         });
       });
 
@@ -397,6 +397,10 @@ export default {
         path: '/login'
       });
     },
+    playSound () {
+      var audio = new Audio(data.soundurl);
+      audio.play();
+    }
   },
   computed: mapState({
     socket: state => state.auth.socket
