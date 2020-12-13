@@ -399,6 +399,62 @@
 					"_postman_isSubFolder": true
 				},
 				{
+					"name": "Service",
+					"item": [
+						{
+							"name": "get all service",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc3NjM3NzksImV4cCI6MTYwNzc5MjU3OX0.weFwiWZhw1A9HQXNtsSO5s_D2TnfwUjntuF59RhnF2o",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one service",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/pro/service/5fd04acf756b843214b37952",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"pro",
+										"service",
+										"5fd04acf756b843214b37952"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Admin Create",
 					"request": {
 						"method": "POST",

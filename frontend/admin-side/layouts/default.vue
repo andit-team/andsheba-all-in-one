@@ -265,7 +265,7 @@
               >
             </li>
             <li>
-              <router-link to="/service-list"
+              <router-link to="/services"
                 ><i class="fas fa-bullhorn"></i>
                 <span> Services</span></router-link
               >

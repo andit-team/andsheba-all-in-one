@@ -1,6 +1,7 @@
 <template>
   <div class="main-wrapper">
 	
+		<loader v-if="loading" />
 		<div class="login-page">
 			<div class="login-body container">
 				<div class="loginbox">
@@ -41,6 +42,7 @@ export default {
   layout: "empty",
   data() {
     return {
+			loading:false,
       sendLoginData: {
         mobile: "+8801780320711",
         password: "12345678"
@@ -50,19 +52,28 @@ export default {
   },
   methods: {
     async onSubmit(){
-      const res = await this.$store.dispatch('auth/login', this.sendLoginData)
+			this.loading = true
+			try{
+				const res = await this.$store.dispatch('auth/login', this.sendLoginData)
       
-      if(res.error){
-        this.$alert("Username or Password is not correct!!", 'Login Failed!!!', 'error')
-      }else{
-				this.$cookies.set('accessToken', res.token, {
-            path: '/',
-            maxAge: 60 * 60
-          })
-         this.$router.push({
-            path: '/'
-          })
-      }
+				if(res.error){
+					this.loading = fasle
+					this.$alert("Username or Password is not correct!!", 'Login Failed!!!', 'error')
+				}else{
+					this.loading = false
+					this.$cookies.set('accessToken', res.token, {
+							path: '/',
+							maxAge: 60 * 60
+						})
+					this.$router.push({
+							path: '/'
+						})
+				}
+			}catch{
+				this.loading = false
+				this.$alert("Server Connection Problem!!", 'Login Failed!!!', 'error')
+			}
+      
     }
   },
 };
