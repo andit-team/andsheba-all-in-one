@@ -29,23 +29,17 @@
                   </tr>
                 </thead>
                 <tbody v-if="services.length>0">
-                  <tr v-for="({_id,title,description,thumb_img,address,category,updatedAt},index) in services" :key="_id">
+                  <tr v-for="({_id,title,description,thumb_img,address,category,status},index) in services" :key="_id">
                     <td>{{index+1}}</td>
                     <td>{{title}}</td>
                     <td>{{description?description.substr(0, 20):"-"}}</td>
                     <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
                     <td>{{address.address}}</td>
                     <td>{{category.name}}</td>
-                    <td>{{updatedAt}}</td>
-                    <td>
-                      <div class="status-toggle">
-                        <input id="service_1" class="check" type="checkbox" @change="status">
-                        <label for="service_1" class="checktoggle">Status</label>
-                      </div>
+                    <td>{{status}}</td>
+                    <td class="text-right">
+                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
-                    <!-- <td class="text-right">
-                      <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td> -->
                     <!-- <td class="text-right">
                       <a href="#" @click.prevent="subcat_delete(_id)" class="btn btn-sm bg-danger-light mr-2">	<i class="fa fa-trash mr-1"></i> Delete</a>
                     </td> -->

@@ -76,7 +76,7 @@
         <!-- Recent Bookings -->
         <div class="card card-table flex-fill">
           <div class="card-header">
-            <h4 class="card-title">Recent Services</h4>
+            <h4 class="card-title">Inactive Services</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -92,7 +92,7 @@
                   </tr>
                 </thead>
                 <tbody v-if="services.length>0">
-                  <tr v-for="({_id,title,thumb_img,category,status},index) in services" :key="_id">
+                  <tr v-for="({_id,title,thumb_img,category,status},index) in services.filter(item => item.status !== 'active')" :key="_id">
                     <td>{{index+1}}</td>
                     <td>{{title}}</td>
                     <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
@@ -113,191 +113,44 @@
         <!-- /Recent Bookings -->
       </div>
       <div class="col-md-6 d-flex">
-        <!-- Payments -->
+        <!-- Recent Bookings -->
         <div class="card card-table flex-fill">
           <div class="card-header">
-            <h4 class="card-title">Payments</h4>
+            <h4 class="card-title">Active Services</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-center">
+              <table class="table table-hover table-center mb-0 datatable">
                 <thead>
                   <tr>
-                    <th>Date</th>
-                    <th>User</th>
-                    <th>Provider</th>
-                    <th>Service</th>
-                    <th>Amount</th>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Thumb</th>
+                    <th>Category</th>
                     <th>Status</th>
+                    <th class="text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>15 Sep 2020</td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/customer/user-02.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Nancy Olson</a>
-                      </span>
-                    </td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/provider/provider-02.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Matthew Garcia</a>
-                      </span>
-                    </td>
-                    <td>Car Repair Services</td>
-                    <td>$50</td>
-                    <td>
-                      <span class="badge badge-dark">Pending</span>
+                <tbody v-if="services.length>0">
+                  <tr v-for="({_id,title,thumb_img,category,status},index) in services.filter(item => item.status === 'active')" :key="_id">
+                    <td>{{index+1}}</td>
+                    <td>{{title}}</td>
+                    <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
+                    <td>{{category.name}}</td>
+                    <td><span :class="['badge badge-pill', status == 'pending'?'badge-warning':'badge-success']">{{status}}</span></td>
+                    <td class="text-right">
+                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
                   </tr>
-                  <tr>
-                    <td>14 Sep 2020</td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/customer/user-03.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Ramona Kingsley</a>
-                      </span>
-                    </td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/provider/provider-03.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Yolanda Potter</a>
-                      </span>
-                    </td>
-                    <td>Electric Panel Repairing Service</td>
-                    <td>$45</td>
-                    <td>
-                      <span class="badge badge-dark">Pending</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>13 Sep 2020</td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/customer/user-04.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Ricardo Lung</a>
-                      </span>
-                    </td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/provider/provider-04.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Ricardo Flemings</a>
-                      </span>
-                    </td>
-                    <td>Steam Car Wash</td>
-                    <td>$14</td>
-                    <td>
-                      <span class="badge badge-dark">Pending</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>12 Sep 2020</td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/customer/user-05.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Annette Silva</a>
-                      </span>
-                    </td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/provider/provider-05.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Maritza Wasson</a>
-                      </span>
-                    </td>
-                    <td>House Cleaning Services</td>
-                    <td>$100</td>
-                    <td>
-                      <span class="badge badge-dark">Pending</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>11 Sep 2020</td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/customer/user-06.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Stephen Wilson</a>
-                      </span>
-                    </td>
-                    <td>
-                      <span class="table-avatar">
-                        <a href="#" class="avatar avatar-xs mr-2">
-                          <img
-                            class="avatar-img rounded-circle"
-                            alt=""
-                            src="/img/provider/provider-06.jpg"
-                          />
-                        </a>
-                        <a href="javascript:void(0);">Marya Ruiz</a>
-                      </span>
-                    </td>
-                    <td>Computer & Server AMC Service</td>
-                    <td>$80</td>
-                    <td>
-                      <span class="badge badge-info">Inprogress</span>
-                    </td>
-                  </tr>
+                </tbody>
+                <tbody v-else>
+                  <tr><td colspan="8" class="text-center">NO DATA</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <!-- Payments -->
+        <!-- /Recent Bookings -->
       </div>
     </div>
   </div>
