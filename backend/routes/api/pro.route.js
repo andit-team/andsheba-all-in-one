@@ -1,6 +1,6 @@
 const express = require('express') 
 const router = express.Router() 
-const Auth = require("../../auth/auth") 
+const Auth = require('../../auth/auth') 
 
 // Get All Plan---------------------------
 const Plan = require('../../controllers/admin/plan.controller')

@@ -1,13 +1,13 @@
-const dotEnv = require("dotenv")
+const dotEnv = require('dotenv')
 dotEnv.config()
 const express = require('express') 
-const mongoose = require("mongoose") 
-const bodyParser = require("body-parser") 
-const cors = require("cors") 
-const path = require("path") 
+const mongoose = require('mongoose') 
+const bodyParser = require('body-parser') 
+const cors = require('cors') 
+const path = require('path') 
 const compression = require('compression') 
 const helmet = require('helmet') 
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 const socket = require('./socket/socket')
 
 const app = express() 
@@ -29,10 +29,10 @@ mongoose
         useUnifiedTopology: true,
     })
     .then((response) => {
-        console.log("MongoDB Connected Successfully.") 
+        console.log('MongoDB Connected Successfully.') 
     })
     .catch((err) => {
-        console.log("Database connection failed.") 
+        console.log('Database connection failed.') 
     }) 
 
 
@@ -44,15 +44,15 @@ app.use(
     })
 ) 
 // Set static folder
-app.use("/uploads", express.static(path.join("uploads")))
+app.use('/uploads', express.static(path.join('uploads')))
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")  //* will allow from all cross domain
+    res.header('Access-Control-Allow-Origin', '*')  //* will allow from all cross domain
     res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
     ) 
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS") 
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS') 
     next() 
 }) 
 
@@ -84,9 +84,9 @@ app.use(function (req, res, next) {
 socket(io)
 
 /* Routes */
-const api = require("./routes/api") 
+const api = require('./routes/api') 
 
-app.use("/api", api) 
+app.use('/api', api) 
 
 /* Start The Server */
 server.listen(PORT, () => {

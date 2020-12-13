@@ -2,7 +2,7 @@
  * Plan Crud Controller By Admin -----------------------------
  */
 const Plan = require('../../models/plan.model')
-const RESPONDER = require("../../responder/responder") 
+const RESPONDER = require('../../responder/responder') 
 exports.addPlan = (req, res, next) => {
 
     let newPlan = new Plan({
@@ -16,14 +16,14 @@ exports.addPlan = (req, res, next) => {
     newPlan.save().then(nPlan => {
         let data = {
             error: false,
-            msg: "Plan Created Successfully",
+            msg: 'Plan Created Successfully',
             data: nPlan
         }
         RESPONDER.response(res, 200, data)
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Creation UnSuccessful",
+            msg: 'Plan Creation UnSuccessful',
             data: {}
         }
         RESPONDER.response(res, 200, data)
@@ -43,7 +43,7 @@ exports.deletePlan = (req, res, next) => {
 
             let data = {
                 error: false,
-                msg: "Plan Deleted Successfully"
+                msg: 'Plan Deleted Successfully'
             }
             RESPONDER.response(res, 200, data)
 
@@ -51,14 +51,14 @@ exports.deletePlan = (req, res, next) => {
 
             let data = {
                 error: true,
-                msg: "Plan Deletion UnSuccessful"
+                msg: 'Plan Deletion UnSuccessful'
             }
             RESPONDER.response(res, 200, data)
         }
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Deletion UnSuccessful",
+            msg: 'Plan Deletion UnSuccessful',
         }
         RESPONDER.response(res, 200, data)
     })
@@ -80,7 +80,7 @@ exports.updatePlan = (req, res, next) => {
 
             let data = {
                 error: false,
-                msg: "Plan Updated Successfully"
+                msg: 'Plan Updated Successfully'
             }
             RESPONDER.response(res, 200, data)
 
@@ -88,14 +88,14 @@ exports.updatePlan = (req, res, next) => {
 
             let data = {
                 error: true,
-                msg: "Plan Updation UnSuccessful"
+                msg: 'Plan Updation UnSuccessful'
             }
             RESPONDER.response(res, 200, data)
         }
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Updation UnSuccessful",
+            msg: 'Plan Updation UnSuccessful',
         }
         RESPONDER.response(res, 200, data)
     })
@@ -108,14 +108,14 @@ exports.getAllPlans = (req, res, next) => {
     Plan.find({}).then( plans => {
         let data = {
             error: false,
-            msg: "Plan Get Successfully",
+            msg: 'Plan Get Successfully',
             data: plans
         }
         RESPONDER.response(res, 200, data)
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Get UnSuccessful",
+            msg: 'Plan Get UnSuccessful',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -127,14 +127,14 @@ exports.getAllPlansByUser = (req, res, next) => {
     Plan.find({status: 'active'}).then( plans => {
         let data = {
             error: false,
-            msg: "Plan Get Successfully",
+            msg: 'Plan Get Successfully',
             data: plans
         }
         RESPONDER.response(res, 200, data)
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Get UnSuccessful",
+            msg: 'Plan Get UnSuccessful',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -146,14 +146,14 @@ exports.getOnePlan = (req, res, next) => {
     Plan.findOne({_id: req.params._id}).then( plan => {
         let data = {
             error: false,
-            msg: "Plan Get Successfully",
+            msg: 'Plan Get Successfully',
             data: plan
         }
         RESPONDER.response(res, 200, data)
     }).catch(error => {
         let data = {
             error: true,
-            msg: "Plan Get UnSuccessful",
+            msg: 'Plan Get UnSuccessful',
             data: []
         }
         RESPONDER.response(res, 200, data)
