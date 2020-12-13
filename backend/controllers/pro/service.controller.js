@@ -2,12 +2,12 @@
  * Service Controller---------------------------------
  */
 
-const Service = require("../../models/service.model")
-const User = require("../../models/user.model")
-const Admin = require("../../models/admin.model")
+const Service = require('../../models/service.model')
+const User = require('../../models/user.model')
+const Admin = require('../../models/admin.model')
 const mongo = require('mongodb')
 const ObjectID = mongo.ObjectID
-const RESPONDER = require("../../responder/responder") 
+const RESPONDER = require('../../responder/responder') 
 
 exports.addService = (req, res, next ) => {
 
@@ -45,7 +45,7 @@ exports.addService = (req, res, next ) => {
         user: req.userData.user_id,
         address: req.body.address,
         location: {
-            type: "Point",
+            type: 'Point',
             coordinates: [req.body.address.location.lng,req.body.address.location.lat]
         },
         category: req.body.category,
@@ -60,7 +60,7 @@ exports.addService = (req, res, next ) => {
 
         if(result){
             const data = {
-                msg: "Service added",
+                msg: 'Service added',
                 error: false,
                 data: result
             }
@@ -72,7 +72,7 @@ exports.addService = (req, res, next ) => {
             }).catch(error => {
                 console.log(error)
                 const data = {
-                    msg: "Admin Not found",
+                    msg: 'Admin Not found',
                     error:true
                 }
                 RESPONDER.response(res, 200, data)
@@ -80,7 +80,7 @@ exports.addService = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "Problem in adding service",
+                msg: 'Problem in adding service',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -89,7 +89,7 @@ exports.addService = (req, res, next ) => {
     }).catch( error => {
 
         const data = {
-            msg: "Problem in adding service",
+            msg: 'Problem in adding service',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -107,7 +107,7 @@ exports.findAllServices = (req, res, next ) => {
 
         if(result.length > 0){
             const data = {
-                msg: "Service Get Successfully",
+                msg: 'Service Get Successfully',
                 error: false,
                 data: result
             }
@@ -115,7 +115,7 @@ exports.findAllServices = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "Problem in getting service",
+                msg: 'Problem in getting service',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -124,7 +124,7 @@ exports.findAllServices = (req, res, next ) => {
     }).catch( error => {
 
         const data = {
-            msg: "Problem in getting service",
+            msg: 'Problem in getting service',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -141,7 +141,7 @@ exports.findAllServicesByAdmin = (req, res, next ) => {
 
         if(result.length > 0){
             const data = {
-                msg: "Service Get Successfully",
+                msg: 'Service Get Successfully',
                 error: false,
                 data: result
             }
@@ -149,7 +149,7 @@ exports.findAllServicesByAdmin = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "Problem in getting service",
+                msg: 'Problem in getting service',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -158,7 +158,7 @@ exports.findAllServicesByAdmin = (req, res, next ) => {
     }).catch( error => {
 
         const data = {
-            msg: "Problem in getting service",
+            msg: 'Problem in getting service',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -175,7 +175,7 @@ exports.getOneService = (req, res, next ) => {
 
         if(result){
             const data = {
-                msg: "Service Get Successfully",
+                msg: 'Service Get Successfully',
                 error: false,
                 data: result
             }
@@ -183,7 +183,7 @@ exports.getOneService = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "No Service Available",
+                msg: 'No Service Available',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -192,7 +192,7 @@ exports.getOneService = (req, res, next ) => {
        }).catch( error => {
         
         const data = {
-            msg: "Problem in getting service",
+            msg: 'Problem in getting service',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -205,7 +205,7 @@ exports.updateServiceStatus = (req, res, next ) => {
 
         if(result.n > 0){
             const data = {
-                msg: "Service Updated Successfully",
+                msg: 'Service Updated Successfully',
                 error: false,
                 data: result
             }
@@ -213,7 +213,7 @@ exports.updateServiceStatus = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "Service Update Failed",
+                msg: 'Service Update Failed',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -222,7 +222,7 @@ exports.updateServiceStatus = (req, res, next ) => {
        }).catch( error => {
         
         const data = {
-            msg: "Service Update Failed",
+            msg: 'Service Update Failed',
             error:true
         }
         RESPONDER.response(res, 200, data)

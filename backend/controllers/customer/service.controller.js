@@ -2,8 +2,8 @@
  * Service Controller---------------------------------
  */
 
-const Service = require("../../models/service.model")
-const RESPONDER = require("../../responder/responder") 
+const Service = require('../../models/service.model')
+const RESPONDER = require('../../responder/responder') 
 
 exports.searchService = (req, res, next ) => {
 
@@ -13,7 +13,7 @@ exports.searchService = (req, res, next ) => {
          $near: {
           $maxDistance: 20000,
           $geometry: {
-           type: "Point",
+           type: 'Point',
            coordinates: [req.query.longitude, req.query.latitude]
           }
          }
@@ -31,7 +31,7 @@ exports.searchService = (req, res, next ) => {
 
         if(result.length > 0){
             const data = {
-                msg: "Service Get Successfully",
+                msg: 'Service Get Successfully',
                 error: false,
                 data: result
             }
@@ -39,7 +39,7 @@ exports.searchService = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "No Service Available",
+                msg: 'No Service Available',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -48,7 +48,7 @@ exports.searchService = (req, res, next ) => {
        }).catch( error => {
         
         const data = {
-            msg: "Problem in getting service",
+            msg: 'Problem in getting service',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -61,7 +61,7 @@ exports.getOneService = (req, res, next ) => {
 
         if(result){
             const data = {
-                msg: "Service Get Successfully",
+                msg: 'Service Get Successfully',
                 error: false,
                 data: result
             }
@@ -69,7 +69,7 @@ exports.getOneService = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: "No Service Available",
+                msg: 'No Service Available',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -78,7 +78,7 @@ exports.getOneService = (req, res, next ) => {
        }).catch( error => {
         
         const data = {
-            msg: "Problem in getting service",
+            msg: 'Problem in getting service',
             error:true
         }
         RESPONDER.response(res, 200, data)

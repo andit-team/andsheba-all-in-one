@@ -1,12 +1,12 @@
 /**
  * Auth-----------------------
  */
-const jwt = require("jsonwebtoken") 
-const RESPONDER = require("../responder/responder") 
+const jwt = require('jsonwebtoken') 
+const RESPONDER = require('../responder/responder') 
 module.exports.admin = (req, res, next) => {
     try{
 
-        const token = req.headers.authorization.split(" ")[1] 
+        const token = req.headers.authorization.split(' ')[1] 
         const decodedToken = jwt.verify(
             token,
             process.env.SECRET
@@ -19,7 +19,7 @@ module.exports.admin = (req, res, next) => {
             next()
         }else{
             const data = {
-                msg: "You are not authenticated",
+                msg: 'You are not authenticated',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -27,7 +27,7 @@ module.exports.admin = (req, res, next) => {
 
     }catch (err) {
         const data = {
-            msg: "You are not authenticated",
+            msg: 'You are not authenticated',
             error:true
         }
         RESPONDER.response(res, 200, data)
@@ -37,7 +37,7 @@ module.exports.admin = (req, res, next) => {
 module.exports.user = (req, res, next) => {
     try{
 
-        const token = req.headers.authorization.split(" ")[1] 
+        const token = req.headers.authorization.split(' ')[1] 
         const decodedToken = jwt.verify(
             token,
             process.env.SECRET
@@ -50,7 +50,7 @@ module.exports.user = (req, res, next) => {
             next()
         }else{
             const data = {
-                msg: "You are not authenticated",
+                msg: 'You are not authenticated',
                 error:true
             }
             RESPONDER.response(res, 200, data)
@@ -58,7 +58,7 @@ module.exports.user = (req, res, next) => {
 
     }catch (err) {
         const data = {
-            msg: "You are not authenticated",
+            msg: 'You are not authenticated',
             error:true
         }
         RESPONDER.response(res, 200, data)

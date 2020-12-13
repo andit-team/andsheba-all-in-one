@@ -1,7 +1,7 @@
 /**
  * Category Crud Controller By Admin -----------------------------
  */
-const RESPONDER = require("../../responder/responder")
+const RESPONDER = require('../../responder/responder')
 const Category = require('../../models/category.model')
 exports.createCategory = (req, res, next) => {
 

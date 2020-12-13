@@ -88,6 +88,6 @@ const ServiceSchema = new Schema({
     timestamps: true
 })
 
-ServiceSchema.index({ location: "2dsphere" })
+ServiceSchema.index({ location: '2dsphere' })
 const Services = mongoose.model('services', ServiceSchema)
 module.exports = Services

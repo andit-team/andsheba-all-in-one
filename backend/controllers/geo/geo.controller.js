@@ -2,23 +2,23 @@
  * All Geo Collections------------------------------------------
  */
 
- const division = require("../../models/division.model")
- const district = require("../../models/districts.model")
- const municipal = require("../../models/municipals.model")
- const upazila = require("../../models/upazila.model")
- const union = require("../../models/union.model")
- const village = require("../../models/village.model")
- const ward = require("../../models/ward.model")
+ const division = require('../../models/division.model')
+ const district = require('../../models/districts.model')
+ const municipal = require('../../models/municipals.model')
+ const upazila = require('../../models/upazila.model')
+ const union = require('../../models/union.model')
+ const village = require('../../models/village.model')
+ const ward = require('../../models/ward.model')
 
- const division_json = require("../../geo_json/divisions.json")
- const district_json = require("../../geo_json/districts.json")
- const municipal_json = require("../../geo_json/municipals.json")
- const upazila_json = require("../../geo_json/upazilas.json")
- const union_json = require("../../geo_json/unions.json")
- const village_json = require("../../geo_json/villages.json")
- const ward_json = require("../../geo_json/wards.json")
+ const division_json = require('../../geo_json/divisions.json')
+ const district_json = require('../../geo_json/districts.json')
+ const municipal_json = require('../../geo_json/municipals.json')
+ const upazila_json = require('../../geo_json/upazilas.json')
+ const union_json = require('../../geo_json/unions.json')
+ const village_json = require('../../geo_json/villages.json')
+ const ward_json = require('../../geo_json/wards.json')
 
- const RESPONDER = require("../../responder/responder") 
+ const RESPONDER = require('../../responder/responder') 
 
  exports.generateAllGeo = async(req, res, next)=> {
 
@@ -29,7 +29,7 @@
         if(!divisionResult){
             const data = {
                 error: true,
-                msg: "Division Data Adding Failed"
+                msg: 'Division Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -37,7 +37,7 @@
         if(!districtResult){
             const data = {
                 error: true,
-                msg: "District Data Adding Failed"
+                msg: 'District Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -45,7 +45,7 @@
         if(!municipialResult){
             const data = {
                 error: true,
-                msg: "Municipal Data Adding Failed"
+                msg: 'Municipal Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -53,7 +53,7 @@
         if(!upazilaResult){
             const data = {
                 error: true,
-                msg: "Upazilla Data Adding Failed"
+                msg: 'Upazilla Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -61,7 +61,7 @@
         if(!unionResult){
             const data = {
                 error: true,
-                msg: "Union Data Adding Failed"
+                msg: 'Union Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -69,7 +69,7 @@
         if(!villageResult){
             const data = {
                 error: true,
-                msg: "Village Data Adding Failed"
+                msg: 'Village Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
@@ -77,14 +77,14 @@
         if(!wardResult){
             const data = {
                 error: true,
-                msg: "Ward Data Adding Failed"
+                msg: 'Ward Data Adding Failed'
             }
             RESPONDER.response(res, 200, data)
         }
 
         const data = {
             error: false,
-            msg: "Geo Data added successfully"
+            msg: 'Geo Data added successfully'
         }
 
         RESPONDER.response(res, 200, data)
@@ -95,7 +95,7 @@
 
         const data = {
             error: true,
-            msg: "Data Adding Failed"
+            msg: 'Data Adding Failed'
         }
 
         RESPONDER.response(res, 200, data)
@@ -115,7 +115,7 @@
 
             let data = {
                 error: true,
-                msg: "Problem in finding Division",
+                msg: 'Problem in finding Division',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -124,7 +124,7 @@
 
         let data = {
             error: false,
-            msg: "Division Data Get Successfully",
+            msg: 'Division Data Get Successfully',
             data: divisionData
         }
         RESPONDER.response(res, 200, data)
@@ -132,7 +132,7 @@
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding Division",
+            msg: 'Problem in finding Division',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -152,7 +152,7 @@
 
             let data = {
                 error: true,
-                msg: "Problem in finding district",
+                msg: 'Problem in finding district',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -161,7 +161,7 @@
 
         let data = {
             error: false,
-            msg: "district Data Get Successfully",
+            msg: 'district Data Get Successfully',
             data: districtData
         }
         RESPONDER.response(res, 200, data)
@@ -169,7 +169,7 @@
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding district",
+            msg: 'Problem in finding district',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -188,7 +188,7 @@ exports.getUpazillas = async(req, res, next)=> {
 
             let data = {
                 error: true,
-                msg: "Problem in finding upazila",
+                msg: 'Problem in finding upazila',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -197,7 +197,7 @@ exports.getUpazillas = async(req, res, next)=> {
 
         let data = {
             error: false,
-            msg: "upazila Data Get Successfully",
+            msg: 'upazila Data Get Successfully',
             data: upazilaData
         }
         RESPONDER.response(res, 200, data)
@@ -205,7 +205,7 @@ exports.getUpazillas = async(req, res, next)=> {
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding upazila",
+            msg: 'Problem in finding upazila',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -224,7 +224,7 @@ exports.getUnions = async(req, res, next)=> {
 
             let data = {
                 error: true,
-                msg: "Problem in finding union",
+                msg: 'Problem in finding union',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -233,7 +233,7 @@ exports.getUnions = async(req, res, next)=> {
 
         let data = {
             error: false,
-            msg: "union Data Get Successfully",
+            msg: 'union Data Get Successfully',
             data: unionData
         }
         RESPONDER.response(res, 200, data)
@@ -241,7 +241,7 @@ exports.getUnions = async(req, res, next)=> {
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding union",
+            msg: 'Problem in finding union',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -259,7 +259,7 @@ exports.getVillages = async(req, res, next)=> {
 
             let data = {
                 error: true,
-                msg: "Problem in finding village",
+                msg: 'Problem in finding village',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -268,7 +268,7 @@ exports.getVillages = async(req, res, next)=> {
 
         let data = {
             error: false,
-            msg: "village Data Get Successfully",
+            msg: 'village Data Get Successfully',
             data: villageData
         }
         RESPONDER.response(res, 200, data)
@@ -276,7 +276,7 @@ exports.getVillages = async(req, res, next)=> {
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding village",
+            msg: 'Problem in finding village',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -294,7 +294,7 @@ exports.getMunicipals = async(req, res, next)=> {
 
             let data = {
                 error: true,
-                msg: "Problem in finding municipal",
+                msg: 'Problem in finding municipal',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -303,7 +303,7 @@ exports.getMunicipals = async(req, res, next)=> {
 
         let data = {
             error: false,
-            msg: "municipal Data Get Successfully",
+            msg: 'municipal Data Get Successfully',
             data: municipalData
         }
         RESPONDER.response(res, 200, data)
@@ -311,7 +311,7 @@ exports.getMunicipals = async(req, res, next)=> {
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding municipal",
+            msg: 'Problem in finding municipal',
             data: []
         }
         RESPONDER.response(res, 200, data)
@@ -330,7 +330,7 @@ exports.getWards = async(req, res, next)=> {
 
             let data = {
                 error: true,
-                msg: "Problem in finding ward",
+                msg: 'Problem in finding ward',
                 data: []
             }
             RESPONDER.response(res, 200, data)
@@ -339,7 +339,7 @@ exports.getWards = async(req, res, next)=> {
 
         let data = {
             error: false,
-            msg: "ward Data Get Successfully",
+            msg: 'ward Data Get Successfully',
             data: wardData
         }
         RESPONDER.response(res, 200, data)
@@ -347,7 +347,7 @@ exports.getWards = async(req, res, next)=> {
     }catch(error){
         let data = {
             error: true,
-            msg: "Problem in finding ward",
+            msg: 'Problem in finding ward',
             data: []
         }
         RESPONDER.response(res, 200, data)
