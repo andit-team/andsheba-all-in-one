@@ -8,7 +8,7 @@ const RESPONDER = require('../../responder/responder')
 exports.searchService = (req, res, next ) => {
 
     Service.find({
-        status: 'approved',
+        status: 'active',
         location: {
          $near: {
           $maxDistance: 20000,
