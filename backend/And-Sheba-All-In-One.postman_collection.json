@@ -408,7 +408,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc3NjM3NzksImV4cCI6MTYwNzc5MjU3OX0.weFwiWZhw1A9HQXNtsSO5s_D2TnfwUjntuF59RhnF2o",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc4MzEwMDEsImV4cCI6MTYwNzg1OTgwMX0.lzi98BOfbqZEqnxLm48KciLC0p7Z9E0UsJkp-ybUDUI",
 										"type": "text"
 									}
 								],
@@ -432,9 +432,15 @@
 							"name": "get one service",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc4MzIzOTksImV4cCI6MTYwNzg2MTE5OX0.X5wv6SM_ktCnxzkd1GD2sgdOLbBAHHRkowFlJUMNXCw",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "http://localhost:5000/api/pro/service/5fd04acf756b843214b37952",
+									"raw": "http://localhost:5000/api/admin/service/5fd04acf756b843214b37952",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -442,8 +448,45 @@
 									"port": "5000",
 									"path": [
 										"api",
-										"pro",
+										"admin",
 										"service",
+										"5fd04acf756b843214b37952"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Service status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDc4MzIzOTksImV4cCI6MTYwNzg2MTE5OX0.X5wv6SM_ktCnxzkd1GD2sgdOLbBAHHRkowFlJUMNXCw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"active\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/service-status/5fd04acf756b843214b37952",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"service-status",
 										"5fd04acf756b843214b37952"
 									]
 								}
@@ -911,7 +954,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NTczNTMyLCJleHAiOjE2MDc2MDIzMzJ9.kugKKProeJK4-I5VKxPgnYGRNZBiTCh2iQjyL5jejes",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3ODMyNDkyLCJleHAiOjE2MDc4NjEyOTJ9.0DnLOhHlTPT3zy70C5XHhd0gzg0wS4c4QN9YaE98b-I",
 								"type": "text"
 							}
 						],
@@ -926,6 +969,43 @@
 								"api",
 								"pro",
 								"service",
+								"5fd04acf756b843214b37952"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Service status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3ODMyNDkyLCJleHAiOjE2MDc4NjEyOTJ9.0DnLOhHlTPT3zy70C5XHhd0gzg0wS4c4QN9YaE98b-I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/service-status/5fd04acf756b843214b37952",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"service-status",
 								"5fd04acf756b843214b37952"
 							]
 						}
