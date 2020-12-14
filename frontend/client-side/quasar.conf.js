@@ -47,7 +47,7 @@ module.exports = function (/* ctx */) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       env: {
-        API_URL: 'http://localhost:5000/api'
+        API_URL: 'https://backend.andsheba.com/api'
       },
 
       // transpile: false,
