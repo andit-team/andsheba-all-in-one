@@ -359,7 +359,7 @@ export default {
     setupSocket (){
     const token = this.$cookies.get('accessToken')
     if (token && !this.socket) {
-      const newSocket = io("http://localhost:5000", {
+      const newSocket = io(process.env.SOCKET_URL, {
         query: {
           token: this.$cookies.get('accessToken'),
         },
