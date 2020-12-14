@@ -89,19 +89,20 @@
                         <h4 class="q-ma-none">Tell Your buyer what you need to get started</h4>
                         <hr class="q-mb-lg"/>
                         <p class="inline-block text-weight-light" style="font-size: 16px">Ask your requirements from buyer and give him a cost estimation</p>
-                        <div v-for="(price,index) in pricing" :key="index" class="q-mt-xl">
+                        <div v-for="(price,index) in pricing" :key="index" style="margin-bottom: 40px">
                             <q-input v-model="price.title" label="Question"/>
                             <h6 class="text-weight-regular q-my-sm">Select customer answer type</h6>
                             <div>
                                 <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'radio' ? 'bg-primary text-white': ''" @click="() => price.question_type='radio'">Choose One</q-btn>
                                 <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'checkbox' ? 'bg-primary text-white': ''" @click="() => price.question_type='checkbox'">Choose Multiple</q-btn>
+                                <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'unit' ? 'bg-primary text-white': ''" @click="() => price.question_type='unit'">Unit Input</q-btn>
                                 <q-btn class="q-ma-md q-pa-xs" :class="price.question_type == 'text' ? 'bg-primary text-white': ''" @click="() => price.question_type='text'">Choose Text</q-btn>
                             </div>
                             <div v-if="price.question_type == 'radio' || price.question_type == 'checkbox'">
                                 <h6 class="text-weight-regular q-my-sm">Add customer answer Option</h6>
                                 <div v-for="option in price.answers">
                                     <q-input v-model="option.answer_title_or_unit" class="inline-block q-mr-md" style="max-width: 300px" label="Option"/>
-                                    <q-input v-model="option.price" class="inline-block" style="max-width: 300px" label="Price"/>
+                                    <q-input v-model="option.price" class="inline-block" mask="#######" style="max-width: 300px" label="Price"/>
                                 </div>
                                 <div class="text-right q-mt-md" style="max-width: 390px">
                                     <q-item
@@ -118,7 +119,13 @@
                                     </q-item>
                                 </div>
                             </div>
-                            <div v-else>
+                            <div v-if="price.question_type == 'unit'">
+                                <h6 class="text-weight-regular q-my-sm">Select Your Unit & Price</h6>
+                                <q-input v-model="price.answers[0].answer_title_or_unit" class="inline-block q-mr-md" style="max-width: 300px" label="Unit"/>
+                                <q-input v-model="price.answers[0].price" mask="#######" class="inline-block" style="max-width: 300px" label="Price"/>
+                            </div>
+
+                            <div v-if="price.question_type == 'text'">
                                 <q-input type="text-area" disable="disable" label="Answer"/>
                             </div>
 
@@ -273,8 +280,21 @@ export default {
             sub_category: null,
             tags: null,
             description: null,
-            faqs: [],
-            pricing: [],
+            faqs: [
+                {
+                    question: "",
+                    answer: ""
+                }
+            ],
+            pricing: [
+                {
+                    title: "",
+                    question_type: "radio",
+                    answers: [
+                        {answer_title_or_unit: '',price: ''}
+                    ],
+                }
+            ],
             thumb_image: null,
             service_images: [],
             mapCenter: {
@@ -345,7 +365,9 @@ export default {
                 {
                     title: "",
                     question_type: "radio",
-                    answers: []
+                    answers: [
+                        {answer_title_or_unit: '',price: ''}
+                    ],
                 }
             ]
         },
@@ -433,18 +455,22 @@ export default {
         },
 
         async handleServiceAdd() {
+            this.pricing.forEach(question => {
+                question.answers = question.answers.filter(answer => answer.answer_title_or_unit != "" && answer.price != "")
+            })
             let service = {
                 title: this.name,
                 category: this.category,
                 sub_category: this.sub_category,
                 tags: [],
                 description: this.description,
-                faq: this.faqs,
-                questions: this.pricing,
+                faq: this.faqs.filter(faq => faq.question != ''),
+                questions: this.pricing.filter(question => question.title != ""),
                 address: this.address,
                 thumb_img: this.thumb_image,
                 gallery_images: this.service_images
             }
+
             let response = await this.$store.dispatch('pro/addService', service)
             if(response.error === true) {
                 await Swal.fire('Error', response.msg, 'error')

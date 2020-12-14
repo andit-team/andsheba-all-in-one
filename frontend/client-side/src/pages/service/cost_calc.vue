@@ -17,7 +17,11 @@
             <div class="col-md-7 col-sm-6 col-xs-12">
                 <q-card v-for="(question, index) in service.questions" :key="index" flat bordered class="q-mb-md">
                     <q-card-section>
-                        <div class="text-h6">{{index+1}}. {{question.title}}</div>
+                        <div class="text-h6">
+                            {{index+1}}. {{question.title}}
+                            <q-input class="inline-block q-ml-md" input-class="text-right" square dense outlined mask="#######" v-if="question.question_type == 'unit' && question.answers.length > 0" v-model="answers[index].unit" style="width: 80px; height: 40px"/>
+                            <p class="inline-block q-ml-md" v-if="question.question_type == 'unit' && question.answers.length > 0">{{answers[index].unit_type}}</p>
+                        </div>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'checkbox'" class="q-gutter-sm row">
                         <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index][index1]" :label="option.answer_title_or_unit"/>
@@ -137,19 +141,31 @@ export default {
                     let total = 0
                     this.questions.forEach((question, i) => {
                         if(typeof question === 'object') {
-                            question.forEach((option, j) => {
-                                if(option === true) {
+                            if(this.service.questions[i].question_type == 'unit') {
+                                if(question.unit.length > 0) {
+                                    let unit = +question.unit
+                                    let price = unit *  this.service.questions[i].answers[0].price
+
                                     list.push({
-                                        _id: this.service.questions[i].answers[j]._id,
-                                        title: this.service.questions[i].answers[j].answer_title_or_unit,
-                                        price: this.service.questions[i].answers[j].price
+                                        _id: this.service.questions[i].answers[0]._id,
+                                        title: question.unit_type + " x " + unit,
+                                        price: price
                                     })
-                                    console.log(this.service.questions[i].answers[j])
-                                    total = total + this.service.questions[i].answers[j].price
+                                    total = total + price
                                 }
-                            })
+                            } else {
+                                question.forEach((option, j) => {
+                                    if(option === true) {
+                                        list.push({
+                                            _id: this.service.questions[i].answers[j]._id,
+                                            title: this.service.questions[i].answers[j].answer_title_or_unit,
+                                            price: this.service.questions[i].answers[j].price
+                                        })
+                                        total = total + this.service.questions[i].answers[j].price
+                                    }
+                                })
+                            }
                         } else {
-                            console.log(question)
                             this.service.questions[i].answers.forEach(option => {
                                 if(question === option.answer_title_or_unit) {
                                     list.push({
@@ -163,7 +179,6 @@ export default {
 
                         }
                     })
-                    console.log(list)
                     return {
                         list: list,
                         total: total
