@@ -1,5 +1,8 @@
 
-export default function ({redirect, app, store}) {
+import axios from 'axios'
+const API = process.env.API
+
+export default async function ({redirect, app, store}) {
   // check status
   const token = $cookies.get('accessToken')
   
@@ -9,11 +12,9 @@ export default function ({redirect, app, store}) {
     if (token == undefined) {
       return redirect('/login')
     }else{
-      store.state.auth.token = token
-      return 
-      //token verify
-      if(verified){
-        //ok
+      let res = await axios.post(`${API}/admin/verify`,{token})
+      if(!res.data.error){
+        store.state.auth.token = token
       }else{
         //token delete
         return redirect('/login')
