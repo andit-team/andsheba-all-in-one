@@ -2,14 +2,14 @@ import axios from 'axios'
 import { Cookies } from 'quasar'
 
 export const fetchPlans = async ({commit}) => {
-    let response = await axios.get('http://localhost:5000/api/pro/plans' );
+    let response = await axios.get(`${process.env.API_URL}/pro/plans` );
     if(response.data.error === false){
         commit('setPlans',response.data.data);
     }
 }
 
 export const registerPro = async ({}, pro) => {
-    let response = await axios.post('http://localhost:5000/api/pro/signup', pro );
+    let response = await axios.post(`${process.env.API_URL}/pro/signup`, pro );
     if(response.data.error === false) {
         Cookies.set('token', response.data.token)
     }
@@ -20,7 +20,7 @@ export const registerPro = async ({}, pro) => {
 }
 
 export const loginPro = async ({}, pro) => {
-    let response = await axios.post('http://localhost:5000/api/pro/login', pro );
+    let response = await axios.post(`${process.env.API_URL}/pro/login`, pro );
     if(response.data.error === false) {
         Cookies.set('token', response.data.token)
     }
@@ -32,7 +32,7 @@ export const loginPro = async ({}, pro) => {
 
 export const fetchPro = async ({commit}) => {
     let token = Cookies.get('token')
-    let response = await axios.post('http://localhost:5000/api/pro/verify', {token} )
+    let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
     if(response.data.error === false) {
         commit('setPro', response.data.data);
         return {
@@ -52,7 +52,7 @@ export const addService = async ({}, service ) => {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    let response = await axios.post('http://localhost:5000/api/pro/service', {...service}, { headers } )
+    let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
     return {
         error: response.data.error,
         msg: response.data.msg
@@ -65,7 +65,7 @@ export const fetchServices = async ({commit}) => {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    let response = await axios.get('http://localhost:5000/api/pro/services',{ headers })
+    let response = await axios.get(`${process.env.API_URL}/pro/services`,{ headers })
     if(response.data.error === false) {
         commit('setServices', response.data.data)
     }
