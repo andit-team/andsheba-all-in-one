@@ -280,7 +280,8 @@ import $ from "jquery";
 import jQuery from "jquery";
 import io from "socket.io-client"
 import { mapState } from 'vuex'
-var data = { soundurl : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
+// var data = { soundurl : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
+var data = { soundurl : '/messenger.mp3'}
 export default {
   data(){
     return {
