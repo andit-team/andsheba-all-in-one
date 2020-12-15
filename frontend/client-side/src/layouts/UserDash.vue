@@ -19,7 +19,7 @@
                     v-if="!$q.screen.gt.sm"
                 />
 
-                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/">
+                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/user/dashboard">
                     <img src="https://andsheba.com/_nuxt/img/logo.0f218c1.png"/>
                 </q-btn>
 
@@ -69,7 +69,7 @@
             :width="240"
         >
             <q-scroll-area class="fit">
-                <q-list padding>
+                <q-list>
                     <q-img
                         src="https://img.freepik.com/free-vector/abstract-technology-background-science-connecting-technology_42705-96.jpg?size=626&ext=jpg"
                         style="height: 150px"
@@ -78,82 +78,60 @@
                             <q-avatar size="56px" class="q-mb-sm">
                                 <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
                             </q-avatar>
-                            <div class="text-weight-bold">Shariful Islam</div>
-                            <div>@sharifulinfo</div>
+                            <div class="text-weight-bold">{{ profile.name }}</div>
                         </div>
                     </q-img>
-                    <q-item
-                        v-for="link in withLogin"
-                        :key="link.text"
-                        :to="link.route"
-                        v-ripple
-                        clickable
-                    >
+
+                    <q-item clickable v-ripple to="/user/dashboard">
                         <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
+                            <q-icon name="dashboard"/>
                         </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
+                        <q-item-section>Dashboard</q-item-section>
                     </q-item>
 
-                    <q-separator class="q-my-md"/>
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        Customer
-                    </q-item-label>
-                    <q-item
-                        v-for="link in customer"
-                        :key="link.text"
-                        :to="link.route"
-                        v-ripple
-                        clickable
-                    >
+                    <q-item clickable v-ripple to="/user/services" >
                         <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
+                            <q-icon name="design_services"/>
                         </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
+                        <q-item-section>My Services</q-item-section>
                     </q-item>
 
-                    <q-separator class="q-mt-md q-mb-xs"/>
-
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        Profesionals
-                    </q-item-label>
-
-                    <q-item
-                        v-for="link in pro"
-                        :key="link.text"
-                        :to="link.route"
-                        v-ripple
-                        clickable
-                    >
+                    <q-item clickable v-ripple to="/user/booking_list">
                         <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
+                            <q-icon name="far fa-calendar-check"/>
                         </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
+                        <q-item-section>Booking List</q-item-section>
                     </q-item>
 
-                    <q-separator class="q-my-md"/>
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        General
-                    </q-item-label>
+
+                    <q-item clickable v-ripple to="/user/profile" >
+                        <q-item-section avatar>
+                            <q-icon name="person"/>
+                        </q-item-section>
+                        <q-item-section>Profile</q-item-section>
+                    </q-item>
+
+                    <q-item clickable v-ripple to="/user/wallet">
+                        <q-item-section avatar>
+                            <q-icon name="fas fa-file-invoice-dollar"/>
+                        </q-item-section>
+                        <q-item-section>Wallet</q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple to="/user/subscription">
+                        <q-item-section avatar>
+                            <q-icon name="far fa-calendar-alt"/>
+                        </q-item-section>
+                        <q-item-section>Subscription</q-item-section>
+                    </q-item>
                     <q-item
-                        v-for="link in withOutLogin"
-                        :key="link.text"
-                        :to="link.route"
-                        v-ripple
                         clickable
+                        v-ripple
+                        @click="handleLogout"
                     >
                         <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
+                            <q-icon name="login"/>
                         </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
+                        <q-item-section>Logout</q-item-section>
                     </q-item>
                 </q-list>
             </q-scroll-area>
@@ -165,13 +143,9 @@
                     <q-breadcrumbs>
                         <q-breadcrumbs-el icon="home" to="/"/>
                         <q-breadcrumbs-el
-                            label="User"
+                            label="Pro"
                             icon="person"
-                            to="/"
-                        />
-                        <q-breadcrumbs-el
-                            label="Orders"
-                            icon="shopping_cart"
+                            to="/user"
                         />
                     </q-breadcrumbs>
                 </q-toolbar>
@@ -249,64 +223,11 @@
                                     </q-item-section>
                                     <q-item-section>Subscription</q-item-section>
                                 </q-item>
-
-
-                                <q-item clickable v-ripple :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="notification_important"/>
-                                    </q-item-section>
-                                    <q-item-section>Notification</q-item-section>
-                                </q-item>
-                                <q-item clickable v-ripple :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="mail"/>
-                                    </q-item-section>
-                                    <q-item-section>Inbox</q-item-section>
-                                </q-item>
-
-
-                                <q-item clickable v-ripple :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="add_shopping_cart"/>
-                                    </q-item-section>
-                                    <q-item-section>My Orders</q-item-section>
-                                </q-item>
-                                <q-item clickable v-ripple :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="add_task"/>
-                                    </q-item-section>
-                                    <q-item-section>New Service</q-item-section>
-                                </q-item>
-
-
                                 <q-item
                                     clickable
                                     v-ripple
                                     :active="active"
-                                    active-class="bg-teal-1"
-                                >
-                                    <q-item-section avatar>
-                                        <q-icon name="favorite"/>
-                                    </q-item-section>
-                                    <q-item-section>Favorites</q-item-section>
-                                </q-item>
-                                <q-item
-                                    clickable
-                                    v-ripple
-                                    :active="active"
-                                    active-class="bg-teal-1"
-                                >
-                                    <q-item-section avatar>
-                                        <q-icon name="account_balance_wallet"/>
-                                    </q-item-section>
-                                    <q-item-section>Wallet</q-item-section>
-                                </q-item>
-
-                                <q-item
-                                    clickable
-                                    v-ripple
-                                    :active="active"
-                                    active-class="bg-teal-1"
+                                    @click="handleLogout"
                                 >
                                     <q-item-section avatar>
                                         <q-icon name="login"/>
@@ -337,30 +258,6 @@ export default {
             leftDrawerOpen: false,
             search: "",
             active: true,
-            withLogin: [
-                {icon: "dashboard", text: "Dashboard", route: "/"},
-                {icon: "person", text: "Profile", route: "/profile"},
-                {icon: "mail", text: "Inbox", route: "/inbox"},
-                {icon: "alarm", text: "Notification", route: "/notification"}
-            ],
-            withOutLogin: [
-                {icon: "search", text: "Search", route: "/service"},
-                {icon: "add", text: "Registration", route: "/register"},
-                {icon: "lock", text: "Login", route: "/login"},
-                {icon: "web", text: "Language", route: "/"}
-            ],
-            customer: [
-                {icon: "book", text: "My Orders", route: "/"},
-                {icon: "star", text: "My Favorites", route: "/"},
-                {icon: "videogame_asset", text: "Payments", route: "/"},
-                {icon: "settings", text: "Settings", route: "/"}
-            ],
-            pro: [
-                {icon: "add", text: "Add Service", route: "/"},
-                {icon: "flag", text: "Order history", route: "/"},
-                {icon: "help", text: "Payments", route: "/"},
-                {icon: "money", text: "Accounts", route: "/"}
-            ],
         };
     },
 
@@ -372,6 +269,10 @@ export default {
         }
         this.profile = response.data
     },
+    mounted() {
+        console.log(this.$route.path)
+    },
+
     methods: {
         handleLogout() {
             Cookies.remove('token');

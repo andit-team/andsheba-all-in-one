@@ -150,7 +150,7 @@
                             <h6 class="q-ma-none">Upload Thumb Image</h6>
 
                             <div class="row q-my-lg">
-                                <div class="col-md-6 col-lg-4 q-ma-md">
+                                <div class="col-xs-11 col-sm-11 col-md-6 col-lg-4 q-ma-md">
                                     <file-selector
                                         :height="200"
                                         class="file-selector"
@@ -163,7 +163,7 @@
                                         <p class="q-mt-sm" style="font-size: 18px">Browse Image</p>
                                     </file-selector>
                                 </div>
-                                <div class="col-md-6 col-lg-4 q-ma-md">
+                                <div class="col-xs-11 col-sm-11 col-md-6 col-lg-4 q-ma-md" v-if="thumb_image">
                                     <q-img
                                         :src="thumb_image"
                                         spinner-color="white"
@@ -175,7 +175,7 @@
                         <div class="block q-mt-lg q-mb-md">
                             <h6 class="q-ma-none">Upload Images to describe your service</h6>
                             <div class="row q-my-lg">
-                                <div class="col-md-6 col-lg-4 q-pa-md" >
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >
                                     <file-selector
                                         :height="200"
                                         class="file-selector"
@@ -188,7 +188,7 @@
                                         <p class="q-mt-sm" style="font-size: 18px">Browse Images</p>
                                     </file-selector>
                                 </div>
-                                <div v-for="url in service_images" class="col-md-6 col-lg-4 q-pa-md">
+                                <div v-for="url in service_images" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md">
                                     <q-img
                                         :src="url"
                                         spinner-color="white"
