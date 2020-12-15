@@ -66,66 +66,53 @@
         >
             <q-scroll-area class="fit">
                 <q-list padding>
-                    <q-img
-                        src="https://thumbs.dreamstime.com/b/sanitizing-surfaces-cleaning-home-kitchen-table-disinfectant-spray-bottle-washing-surface-towel-gloves-covid-prevention-182806135.jpg"
-                        style="height: 150px">
-                        <div class="absolute-bottom bg-transparent">
-                            <q-avatar size="56px" class="q-mb-sm">
+                    <q-item to="/service" v-ripple clickable>
+                        <q-item-section avatar>
+                            <q-icon color="grey" name="search"/>
+                        </q-item-section>
+                        <q-item-section>
+                            <q-item-label> সেবা খুজুন </q-item-label>
+                        </q-item-section>
+                    </q-item>
+
+                    <q-item v-if="!customer.isVerified" to="/register" v-ripple clickable>
+                        <q-item-section avatar>
+                            <q-icon color="grey" name="add"/>
+                        </q-item-section>
+                        <q-item-section>
+                            <q-item-label> রেজিস্ট্রেশন </q-item-label>
+                        </q-item-section>
+                    </q-item>
+
+                    <q-item v-if="!customer.isVerified" to="/login" v-ripple clickable>
+                        <q-item-section avatar>
+                            <q-icon color="grey" name="person"/>
+                        </q-item-section>
+                        <q-item-section>
+                            <q-item-label> লগ ইন </q-item-label>
+                        </q-item-section>
+                    </q-item>
+
+                    <q-item v-if="customer.isVerified" v-ripple clickable>
+                        <q-item-section avatar>
+                            <q-avatar size="26px">
                                 <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4">
                             </q-avatar>
-                            <div class="text-weight-bold">Shariful Islam</div>
-                            <div>@sharifulinfo</div>
-                        </div>
-                    </q-img>
-                    <q-item v-for="link in withLogin" :key="link.text" :to="link.route" v-ripple clickable>
-                        <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
                         </q-item-section>
                         <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
+                            <q-item-label>Account</q-item-label>
                         </q-item-section>
                     </q-item>
 
-                    <q-separator class="q-my-md"/>
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        Customer
-                    </q-item-label>
-                    <q-item v-for="link in customer" :key="link.text" :to="link.route" v-ripple clickable>
+                    <q-item v-if="customer.isVerified" @click="handleLogout" v-ripple clickable>
                         <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
+                            <q-icon color="grey" name="exit_to_app"/>
                         </q-item-section>
                         <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
+                            <q-item-label> &nbsp;লগ আউট </q-item-label>
                         </q-item-section>
                     </q-item>
 
-                    <q-separator class="q-mt-md q-mb-xs"/>
-
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        Profesionals
-                    </q-item-label>
-
-                    <q-item v-for="link in pro" :key="link.text" :to="link.route" v-ripple clickable>
-                        <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
-                        </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
-                    </q-item>
-
-                    <q-separator class="q-my-md"/>
-                    <q-item-label header class="text-weight-bold text-uppercase">
-                        General
-                    </q-item-label>
-                    <q-item v-for="link in withOutLogin" :key="link.text" :to="link.route" v-ripple clickable>
-                        <q-item-section avatar>
-                            <q-icon color="grey" :name="link.icon"/>
-                        </q-item-section>
-                        <q-item-section>
-                            <q-item-label>{{ link.text }}</q-item-label>
-                        </q-item-section>
-                    </q-item>
                 </q-list>
             </q-scroll-area>
         </q-drawer>

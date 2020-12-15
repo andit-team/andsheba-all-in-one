@@ -7,174 +7,169 @@
         'row justify-center q-mb-md'
       ]"
         >
-            <q-btn-dropdown
-                class="glossy col-xs-2 col-sm-2"
-                color="primary"
-                icon="filter_alt"
-                v-if="!$q.screen.gt.sm"
-            >
-                <div class="row justify-center q-pa-xs">
-                    <div class="column fit">
-                        <q-list>
-                            <q-item-label header class="bg-grey-3">কাজের ধরন</q-item-label>
+<!--            <q-btn-dropdown-->
+<!--                class="glossy col-xs-2 col-sm-2"-->
+<!--                color="primary"-->
+<!--                icon="filter_alt"-->
+<!--                v-if="!$q.screen.gt.sm"-->
+<!--            >-->
+<!--                <div class="row justify-center q-pa-xs">-->
+<!--                    <div class="column fit">-->
+<!--                        <q-list>-->
+<!--                            <q-item-label header class="bg-grey-3">কাজের ধরন</q-item-label>-->
 
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-radio v-model="color" val="cyan" color="cyan"/>
-                                </q-item-section>
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-radio v-model="color" val="cyan" color="cyan"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>মেরামত</q-item-label>
-                                </q-item-section>
-                            </q-item>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>মেরামত</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
 
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-radio v-model="color" val="red" color="red"/>
-                                </q-item-section>
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-radio v-model="color" val="red" color="red"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>স্থাপন</q-item-label>
-                                </q-item-section>
-                            </q-item>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>স্থাপন</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
 
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-radio v-model="color" val="green" color="green"/>
-                                </q-item-section>
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-radio v-model="color" val="green" color="green"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>রক্ষণাবেক্ষণ</q-item-label>
-                                </q-item-section>
-                            </q-item>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>রক্ষণাবেক্ষণ</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
 
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-radio v-model="color2" val="green" color="green"/>
-                                </q-item-section>
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-radio v-model="color2" val="green" color="green"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>সমাবেশ</q-item-label>
-                                </q-item-section>
-                            </q-item>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>সমাবেশ</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
 
-                            <q-separator spaced/>
+<!--                            <q-separator spaced/>-->
 
-                            <q-item-label header class="bg-grey-3">ফ্রিকয়েন্সি</q-item-label>
+<!--                            <q-item-label header class="bg-grey-3">ফ্রিকয়েন্সি</q-item-label>-->
 
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-checkbox v-model="check2"/>
-                                </q-item-section>
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-checkbox v-model="check2"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>সপ্তাহে ১ বার</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-checkbox v-model="check3"/>
-                                </q-item-section>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>সপ্তাহে ১ বার</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-checkbox v-model="check3"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>সপ্তাহে ৫ বার</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                            <q-item tag="label" v-ripple>
-                                <q-item-section side top>
-                                    <q-checkbox v-model="check1"/>
-                                </q-item-section>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>সপ্তাহে ৫ বার</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
+<!--                            <q-item tag="label" v-ripple>-->
+<!--                                <q-item-section side top>-->
+<!--                                    <q-checkbox v-model="check1"/>-->
+<!--                                </q-item-section>-->
 
-                                <q-item-section>
-                                    <q-item-label>সপ্তাহে ৭ বার</q-item-label>
-                                </q-item-section>
-                            </q-item>
+<!--                                <q-item-section>-->
+<!--                                    <q-item-label>সপ্তাহে ৭ বার</q-item-label>-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
 
-                            <q-separator spaced/>
-                            <q-item-label header class="bg-grey-3"
-                            >মূল্য নির্ধারণ
-                            </q-item-label
-                            >
+<!--                            <q-separator spaced/>-->
+<!--                            <q-item-label header class="bg-grey-3"-->
+<!--                            >মূল্য নির্ধারণ-->
+<!--                            </q-item-label-->
+<!--                            >-->
 
-                            <q-item>
-                                <q-item-section side>
-                                    <q-icon color="teal" name="request_quote"/>
-                                </q-item-section>
-                                <q-item-section>
-                                    <q-range
-                                        v-model="rateRange"
-                                        :min="5"
-                                        :max="100"
-                                        label
-                                        color="teal"
-                                    />
-                                </q-item-section>
-                            </q-item>
-                        </q-list>
-                    </div>
+<!--                            <q-item>-->
+<!--                                <q-item-section side>-->
+<!--                                    <q-icon color="teal" name="request_quote"/>-->
+<!--                                </q-item-section>-->
+<!--                                <q-item-section>-->
+<!--                                    <q-range-->
+<!--                                        v-model="rateRange"-->
+<!--                                        :min="5"-->
+<!--                                        :max="100"-->
+<!--                                        label-->
+<!--                                        color="teal"-->
+<!--                                    />-->
+<!--                                </q-item-section>-->
+<!--                            </q-item>-->
+<!--                        </q-list>-->
+<!--                    </div>-->
 
-                    <div class="column q-pa-sm">
-                        <q-btn
-                            color="secondary"
-                            label="Apply Filter"
-                            push
-                            size="md"
-                            v-close-popup
-                        />
-                    </div>
-                </div>
-            </q-btn-dropdown>
-            <q-form @submit="onSubmit" class="col-12" style="max-width: 1280px; height: 60px">
-                <div class="row">
-                    <q-select
-                        square dense outlined
-                        v-model="category"
-                        :options="categories"
-                        option-value="_id"
-                        option-label="name"
-                        label="Select Category"
-                        @input="handleCategorySelect"
-                        class="absolute"
-                        style="width: 220px"
-                        lazy-rules
-                        :rules="[
-                                        val => (val.name !== '') || 'Please Select a category',
-                                    ]"
-                    />
+<!--                    <div class="column q-pa-sm">-->
+<!--                        <q-btn-->
+<!--                            color="secondary"-->
+<!--                            label="Apply Filter"-->
+<!--                            push-->
+<!--                            size="md"-->
+<!--                            v-close-popup-->
+<!--                        />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </q-btn-dropdown>-->
+            <q-form  @submit="onSubmit" class="row col-8 q-pr-md q-mb-lg">
+                <q-select
+                    square
+                    dense
+                    outlined
+                    v-model="category"
+                    :options="categories"
+                    option-value="_id"
+                    option-label="name"
+                    label="Select Category"
+                    @input="handleCategorySelect"
+                    class="col-xs-12 col-sm-12 col-md-3 q-mb-xs"
+                    :rules="[ val => (val.name !== '') || 'Please Select a category']"
+                />
+                <q-select
+                    square dense outlined
+                    v-model="sub_category"
+                    :options="sub_categories"
+                    option-value="_id"
+                    option-label="name"
+                    label="Select Sub Category"
+                    class="col-xs-12 col-sm-12 col-md-3 q-mb-lg"
+                />
 
-                    <q-select
-                        square dense outlined
-                        v-model="sub_category"
-                        :options="sub_categories"
-                        option-value="_id"
-                        option-label="name"
-                        label="Select Sub Category"
-                        class="absolute"
-                        style="width: 220px;margin-left: 220px"
-                    />
-                    <q-input
-                        square dense outlined
-                        v-model="location"
-                        class="hp-places-autocomplete2 absolute"
-                        :rules="[
+
+
+                <q-input
+                    square dense outlined
+                    v-model="location"
+                    class="hp-places-autocomplete2 col-xs-12 col-sm-12 col-md-3 q-mb-lg"
+                    :rules="[
                             val =>(val !== null) || 'Please Select Location',
                         ]"
-                        style="margin-left: 440px;width: 220px">
-                        <template v-slot:default>
-                            <gmap-autocomplete
-                                class="autocomplete-search"
-                                placeholder="আপনার অবস্থান *"
-                                @place_changed="setPlace">
-                            </gmap-autocomplete>
-                        </template>
-                    </q-input>
-
-
-                    <q-btn class="absolute" color="teal" type="submit" style="margin-left: 660px;padding: 2px">
-                        <q-icon left size="2em" name="search"/>
-                        <div v-if="$q.screen.gt.sm">খুঁজুন</div>
-                    </q-btn>
-                </div>
+                    >
+                    <template v-slot:default>
+                        <gmap-autocomplete
+                            class="autocomplete-search"
+                            placeholder="আপনার অবস্থান *"
+                            @place_changed="setPlace">
+                        </gmap-autocomplete>
+                    </template>
+                </q-input>
+                <q-btn type="submit"  color="teal" class="col-md-3 col-xs-12 col-sm-12 q-mb-lg">
+                    <q-icon left name="search"/>
+                    <div>খুঁজুন</div>
+                </q-btn>
             </q-form>
         </div>
         <div class="row justify-center">
@@ -458,6 +453,7 @@ export default {
 
 <style lang="scss">
 .hp-places-autocomplete2 {
+    padding-bottom: 0;
     input {
         display: none;
         &.autocomplete-search {

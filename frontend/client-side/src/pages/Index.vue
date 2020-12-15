@@ -6,60 +6,62 @@
                 <div id="parent" class="full-width row">
                     <!-- `Banner Left Search -->
                     <div
-                        :class="[$q.screen.gt.sm ? '' : 'q-mt-xl q-mb-xl', 'flex column col-md-7 col-sm-12 justify-center' ]">
+                        :class="[$q.screen.gt.sm ? 'q-px-md' : 'q-mt-xl q-mb-xl q-mx-lg', 'flex column col-md-7 col-sm-12 justify-center' ]">
                         <p :class="[$q.screen.gt.sm ? 'text-h5' : 'text-h6 text-center']">আপনার স্থানীয় পেশাদারদের
                             খুঁজুন</p>
                         <q-form @submit="onSubmit">
                             <div class="row">
-                                <q-select
-                                    square outlined
-                                    v-model="category"
-                                    :options="categories"
-                                    option-value="_id"
-                                    option-label="name"
-                                    label="Category"
-                                    @input="handleCategorySelect"
-                                    class="absolute"
-                                    style="width: 190px"
-                                    lazy-rules
-                                    :rules="[
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <q-select
+                                        square outlined
+                                        v-model="category"
+                                        :options="categories"
+                                        option-value="_id"
+                                        option-label="name"
+                                        label="Category"
+                                        @input="handleCategorySelect"
+                                        lazy-rules
+                                        :rules="[
                                         val => (val.name !== '') || 'Please Select a category',
                                     ]"
-                                />
+                                    />
+                                </div>
 
-                                <q-select
-                                    square outlined
-                                    v-model="sub_category"
-                                    :options="sub_categories"
-                                    option-value="_id"
-                                    option-label="name"
-                                    label="Sub Category"
-                                    class="absolute"
-                                    style="width: 190px;margin-left: 190px"
-                                />
-                                <q-input
-                                    square outlined
-                                    v-model="location"
-                                    class="hp-places-autocomplete absolute"
-                                    :rules="[
+                                <div class="col-xs-12 col-sm-12 col-md-3 q-mb-md">
+                                    <q-select
+                                        square outlined
+                                        v-model="sub_category"
+                                        :options="sub_categories"
+                                        option-value="_id"
+                                        option-label="name"
+                                        label="Sub Category"
+                                    />
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <q-input
+                                        square outlined
+                                        v-model="location"
+                                        class="hp-places-autocomplete"
+                                        :rules="[
                                         val =>(val !== null) || 'Please Select Location',
-                                    ]"
+                                    ]">
+                                        <template v-slot:default>
+                                            <gmap-autocomplete
+                                                class="autocomplete-search"
+                                                placeholder="আপনার অবস্থান *"
+                                                @place_changed="setPlace">
+                                            </gmap-autocomplete>
+                                        </template>
+                                    </q-input>
+                                </div>
 
-                                    style="margin-left: 380px;width: 190px">
-                                    <template v-slot:default>
-                                        <gmap-autocomplete
-                                            class="autocomplete-search"
-                                            placeholder="আপনার অবস্থান *"
-                                            @place_changed="setPlace">
-                                        </gmap-autocomplete>
-                                    </template>
-                                </q-input>
-
-
-                                <q-btn class="absolute" color="teal" type="submit" style="margin-left: 570px;padding: 10px">
-                                    <q-icon left size="2em" name="search"/>
-                                    <div v-if="$q.screen.gt.sm">খুঁজুন</div>
-                                </q-btn>
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <q-btn color="teal"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 10px">
+                                        <q-icon left size="2em" name="search"/>
+                                        <div>খুঁজুন</div>
+                                    </q-btn>
+                                </div>
                             </div>
                         </q-form>
                     </div>

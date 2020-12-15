@@ -18,7 +18,7 @@
         <q-tab-panels v-model="tab" animated>
             <q-tab-panel name="active">
                <div class="row q-ma-sm">
-                   <div v-for="(service,index) in services" :key="index" v-if="(service.status === 'active') || (service.status === 'accepted')" class="col-sm-12 col-md-6 col-lg-4">
+                   <div v-for="(service,index) in services" :key="index" v-if="(service.status === 'active') || (service.status === 'accepted')" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                        <ServiceCard :service="service"/>
                    </div>
                </div>
@@ -27,7 +27,7 @@
             <q-tab-panel name="inactive">
                 <q-tab-panel name="active">
                     <div class="row q-ma-sm">
-                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'inactive'" class="col-sm-12 col-md-6 col-lg-4">
+                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'inactive'" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                             <ServiceCard :service="service"/>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
             <q-tab-panel name="pending">
                 <q-tab-panel name="active">
                     <div class="row q-ma-sm">
-                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'pending'" class="col-sm-12 col-md-6 col-lg-4">
+                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'pending'" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                             <ServiceCard :service="service"/>
                         </div>
                     </div>
