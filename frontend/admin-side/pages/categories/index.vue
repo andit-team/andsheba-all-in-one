@@ -80,9 +80,9 @@
                     <td>
                       <img class="rounded service-img mr-1" :src="image">{{ name }}</td>
                     <td>{{ updatedAt }}</td>
-                    <!-- <td class="text-right">
+                    <td class="text-right">
                       <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td> -->
+                    </td>
                     <td class="text-right">
                       <a href="#" @click.prevent="cat_delete(_id)" class="btn btn-sm bg-danger-light mr-2">	<i class="fa fa-trash mr-1"></i> Delete</a>
                     </td>
