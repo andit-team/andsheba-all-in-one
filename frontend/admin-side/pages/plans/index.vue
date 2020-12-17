@@ -42,10 +42,10 @@
                     <td>{{commision}}</td>
                     <td>{{duration}}</td>
                     <td>{{ updatedAt }}</td>
-                    <!-- <td class="text-right">
-                      <router-link :to="'categories/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
-                    </td> -->
                     <td class="text-right">
+                      <router-link :to="'plans/edit/'+_id" class="btn btn-sm bg-success-light mr-2">	<i class="far fa-edit mr-1"></i> Edit</router-link>
+                    </td>
+                    <td>
                       <a href="#" @click.prevent="plan_delete(_id)" class="btn btn-sm bg-danger-light mr-2">	<i class="fa fa-trash mr-1"></i> Delete</a>
                     </td>
                   </tr>
