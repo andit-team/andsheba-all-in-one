@@ -25,7 +25,7 @@
 
                         <q-input
                             filled
-                            type="text"
+                            type="number"
                             v-model="mobile"
                             mask="##########"
                             label="মোবাইল *"

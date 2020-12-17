@@ -6,6 +6,7 @@ node_modules
 .quasar
 /dist
 .idea
+src-cordova
 yarn.lock
 
 # Cordova related directories and files

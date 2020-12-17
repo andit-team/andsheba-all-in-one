@@ -59,7 +59,6 @@
         <q-drawer
             v-model="leftDrawerOpen"
             v-if="leftDrawerOpen"
-            show-if-above
             bordered
             content-class="bg-grey-2"
             :width="240"

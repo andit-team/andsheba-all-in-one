@@ -24,7 +24,7 @@
                             <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
                                 <q-input
                                     filled
-                                    type="text"
+                                    type="number"
                                     v-model="mobile"
                                     mask="##########"
                                     label="Mobile *"
