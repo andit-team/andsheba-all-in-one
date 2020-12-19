@@ -80,6 +80,7 @@
         <ProCta/>
 
 
+        <Questions/>
         <Footer/>
     </q-page>
 </template>
@@ -89,10 +90,12 @@ import NearestTop from 'components/sliders/NearestTop'
 import AppSlider from 'src/components/sliders/AppSlider.vue';
 import ProCta from "components/homepage/ProCta";
 import Footer from "components/footer/Footer";
+import Questions from "components/homepage/Questions";
 
 export default {
     name: "PageIndex",
     components: {
+        Questions,
         Footer,
         ProCta,
         NearestTop,

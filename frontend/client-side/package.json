@@ -16,6 +16,7 @@
     "quasar": "^1.0.0",
     "sweetalert2": "^10.12.3",
     "vue-file-selector": "^0.6.0",
+    "vue-slick-carousel": "^1.0.6",
     "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {

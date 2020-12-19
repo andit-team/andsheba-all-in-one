@@ -108,11 +108,6 @@ export default {
     border-top: 1px solid #e8ecec;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .footer-title {
     color: #171717;
     font-size: 22px;
