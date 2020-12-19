@@ -5,7 +5,6 @@
             basic
         >
             <div class="absolute-bottom text-h6 bg-transparent">
-                $25
             </div>
             <div class="absolute-bottom bg-transparent text-right">
                 <span class="category-tag">{{service.category.name}}</span>

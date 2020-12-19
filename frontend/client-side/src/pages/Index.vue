@@ -77,9 +77,10 @@
         <!-- App Slider -->
         <app-slider/>
 
+
+
+        <MostPopular/>
         <ProCta/>
-
-
         <Questions/>
         <Footer/>
     </q-page>
@@ -91,10 +92,12 @@ import AppSlider from 'src/components/sliders/AppSlider.vue';
 import ProCta from "components/homepage/ProCta";
 import Footer from "components/footer/Footer";
 import Questions from "components/homepage/Questions";
+import MostPopular from "components/homepage/MostPopular";
 
 export default {
     name: "PageIndex",
     components: {
+        MostPopular,
         Questions,
         Footer,
         ProCta,
