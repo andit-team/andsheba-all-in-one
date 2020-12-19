@@ -1,67 +1,75 @@
 <template>
-    <div class="full-width inline column justify-center items-center content-center q-pa-xl bg-grey-2">
-      <p class="text-h5 q-mb-xl">আপনার এলাকার জনপ্রিয় সেবা সমুহ</p>
-      <div class="row justify-center items-center q-gutter-md">
-      <q-card class="col-md-2 col-sm-3 col-xs-5 my-card">
-        <img src="https://andsheba.com/_nuxt/img/3.47d4a83.jpg">
-
-        <q-card-section>
-          <div class="text-h6">কুকুর প্রশিক্ষণ</div>
-          <div class="text-subtitle2">by Shovon Das</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none" v-if="$q.screen.gt.sm">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolor, neque quibusdam impedit
-        </q-card-section>
-      </q-card>
-
-      <q-card class="col-md-2 col-sm-3 col-xs-5 my-card">
-          <img src="https://andsheba.com/_nuxt/img/4.4bfd504.jpg">
-
-          <q-card-section>
-            <div class="text-h6">ঘর পরিস্কার</div>
-            <div class="text-subtitle2">by Kajer Bua</div>
-          </q-card-section>
-
-          <q-card-section class="q-pt-none" v-if="$q.screen.gt.sm">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolor, neque quibusdam impedit
-          </q-card-section>
-        </q-card>
-        <q-card class="col-md-2 col-sm-3 col-xs-5 my-card">
-          <img src="https://andsheba.com/_nuxt/img/5.f9cb0c7.jpg">
-
-          <q-card-section>
-            <div class="text-h6">রাজ মিস্ত্রি</div>
-            <div class="text-subtitle2">by Shariful Islam</div>
-          </q-card-section>
-
-          <q-card-section class="q-pt-none" v-if="$q.screen.gt.sm">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolor, neque quibusdam impedit
-          </q-card-section>
-        </q-card>
-        <q-card class="col-md-2 col-sm-3 col-xs-5 my-card">
-          <img src="https://andsheba.com/_nuxt/img/6.c99fae2.jpg">
-
-          <q-card-section>
-            <div class="text-h6">সোলার মেরামত</div>
-            <div class="text-subtitle2">by Shahajalal</div>
-          </q-card-section>
-
-          <q-card-section class="q-pt-none" v-if="$q.screen.gt.sm">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolor, neque quibusdam impedit
-          </q-card-section>
-        </q-card>
-      </div>
+    <div class="question_area">
+        <div class="container">
+            <div class="title q-pa-md"> আপনার এলাকার জনপ্রিয় সেবা সমুহ  </div>
+            <VueSlickCarousel v-bind="slideSetting" class="question-carousel">
+                <div>
+                    <div class="block q-ma-md">
+                        <img class="full-width" src="https://andsheba.com/_nuxt/img/3.47d4a83.jpg">
+                    </div>
+                </div>
+                <div>
+                    <div class="block q-ma-md">
+                        <img class="full-width" src="https://andsheba.com/_nuxt/img/4.4bfd504.jpg">
+                    </div>
+                </div>
+                <div>
+                    <div class="block q-ma-md">
+                        <img class="full-width" src="https://andsheba.com/_nuxt/img/5.f9cb0c7.jpg">
+                    </div>
+                </div>
+                <div>
+                    <div class="block q-ma-md">
+                        <img class="full-width" src="https://andsheba.com/_nuxt/img/6.c99fae2.jpg">
+                    </div>
+                </div>
+            </VueSlickCarousel>
+        </div>
     </div>
 
-  
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
+
 export default {
-  name: "NearestTop"
-};
+    name: "Questions",
+    components: { VueSlickCarousel },
+    data() {
+        return {
+            slide: 1,
+            slideSetting : {
+                "dots": false,
+                "arrows": true,
+                "focusOnSelect": true,
+                "infinite": true,
+                "slidesToShow": 3,
+                "slidesToScroll": 3,
+                "touchThreshold": 5
+            }
+        }
+    }
+}
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss">
+.question_area {
+    background: #f5f5f5;
+    padding-top: 70px;
+    padding-bottom: 130px;
+    .title {
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .question-carousel {
+        padding-top: 20px;
+        img {
+            border-radius: 5px;
+        }
+    }
+}
 </style>
