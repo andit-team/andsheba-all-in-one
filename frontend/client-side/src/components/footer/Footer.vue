@@ -1,77 +1,96 @@
 <template>
-    <div class="footer">
-        <div class="container q-py-lg q-mx-md">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <!-- Footer Widget -->
-                    <div class="footer-widget footer-menu">
-                        <div class="text-h2 footer-title">Quick Links  </div>
-                        <q-list>
-                            <div class="footer-link">About Us</div>
-                            <div class="footer-link">Contact Us</div>
-                            <div class="footer-link">Faq</div>
-                            <div class="footer-link">Help</div>
-                        </q-list>
+    <div>
+        <div class="footer">
+            <div class="container q-py-lg q-mx-md">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 cl-xs-12 q-pa-md">
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-menu">
+                            <div class="text-h2 footer-title">Quick Links</div>
+                            <q-list>
+                                <div class="footer-link">About Us</div>
+                                <div class="footer-link">Contact Us</div>
+                                <div class="footer-link">Faq</div>
+                                <div class="footer-link">Help</div>
+                            </q-list>
+                        </div>
+                        <!-- /Footer Widget -->
                     </div>
-                    <!-- /Footer Widget -->
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Footer Widget -->
-                    <div class="footer-widget footer-menu">
-                        <div class="text-h2 footer-title">Categories</div>
-                        <q-list>
-                            <div class="footer-link">Computer</div>
-                            <div class="footer-link">Interior</div>
-                            <div class="footer-link">Car Wash</div>
-                            <div class="footer-link">Cleaning</div>
-                        </q-list>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pa-md">
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-menu">
+                            <div class="text-h2 footer-title">Categories</div>
+                            <q-list>
+                                <div class="footer-link">Computer</div>
+                                <div class="footer-link">Interior</div>
+                                <div class="footer-link">Car Wash</div>
+                                <div class="footer-link">Cleaning</div>
+                            </q-list>
+                        </div>
+                        <!-- /Footer Widget -->
                     </div>
-                    <!-- /Footer Widget -->
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Footer Widget -->
-                    <div class="footer-widget footer-contact">
-                        <div class="text-h2 footer-title">Contact Us</div>
-                        <div class="footer-contact-info">
-                            <div class="footer-address">
-                                <span><i class="far fa-building"></i></span>
-                                <p>367 Hillcrest Lane, Irvine, California, United States</p>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pa-md">
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-contact">
+                            <div class="text-h2 footer-title">Contact Us</div>
+                            <div class="footer-contact-info">
+                                <div class="footer-address">
+                                    <i class="far fa-building"></i>
+                                    <span>367 Hillcrest Lane, Irvine, California, United States</span>
+                                </div>
+                                <p><i class="fas fa-headphones"></i> 321 546 8764</p>
+                                <p class="mb-0"><i class="fas fa-envelope"></i> truelysell@example.com</p>
                             </div>
-                            <p><i class="fas fa-headphones"></i> 321 546 8764</p>
-                            <p class="mb-0"><i class="fas fa-envelope"></i> truelysell@example.com</p>
                         </div>
+                        <!-- /Footer Widget -->
                     </div>
-                    <!-- /Footer Widget -->
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <!-- Footer Widget -->
-                    <div class="footer-widget">
-                        <div class="text-h2 footer-title">Follow Us</div>
-                        <div class="social-icon">
-                            <ul>
-                                <li>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 q-pa-md">
+                        <!-- Footer Widget -->
+                        <div class="footer-widget">
+                            <div class="text-h2 footer-title">Follow Us</div>
+                            <div class="social-icon q-mb-md">
+                                <q-list>
                                     <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-                                </li>
-                                <li>
                                     <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-                                </li>
-                                <li>
                                     <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                                </li>
-                                <li>
                                     <a href="#" target="_blank"><i class="fab fa-google"></i></a>
-                                </li>
-                            </ul>
+                                </q-list>
+                            </div>
+                            <div class="subscribe-form">
+                                <input type="email" class="form-control" placeholder="Enter your email">
+                                <button type="submit" class="btn footer-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="subscribe-form">
-                            <input type="email" class="form-control" placeholder="Enter your email">
-                            <button type="submit" class="btn footer-btn">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
+                        <!-- /Footer Widget -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <!-- Copyright -->
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 q-pa-md">
+                            <div class="copyright-text">
+                                <p class="mb-0">© 2020 <a href="index.html">AndSheba</a>. All rights reserved.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 q-pa-md">
+                            <!-- Copyright Menu -->
+                            <div class="copyright-menu">
+                                <q-list class="policy-menu">
+                                    <a href="term-condition.html">Terms and Conditions</a>
+                                    <a href="privacy-policy.html">Privacy</a>
+                                </q-list>
+                            </div>
+                            <!-- /Copyright Menu -->
                         </div>
                     </div>
-                    <!-- /Footer Widget -->
                 </div>
+                <!-- /Copyright -->
             </div>
         </div>
     </div>
@@ -88,16 +107,19 @@ export default {
     background-color: #fff;
     border-top: 1px solid #e8ecec;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .footer-title {
     color: #171717;
     font-size: 22px;
     font-weight: 700;
     text-transform: capitalize;
 }
+
 .footer-link {
     padding: 0;
     color: #000;
@@ -106,8 +128,128 @@ export default {
     transition: all 0.4s ease 0s;
     margin-bottom: 10px;
     cursor: pointer;
+
     &:hover {
         text-decoration: underline;
     }
 }
+
+.footer-contact-info {
+    i {
+        color: #2b76d2;
+        font-size: 18px;
+    }
+
+    & > p > i {
+        margin-right: 12px;
+    }
+
+    .footer-address {
+        margin-bottom: 30px;
+
+        span {
+            display: inline-block;
+            max-width: 200px;
+            position: absolute;
+            margin-left: 18px;
+        }
+    }
+}
+
+.social-icon {
+    a {
+        color: #B0B0B0;
+        display: inline-flex;
+        font-size: 20px;
+        transition: all 0.4s ease 0s;
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        margin-right: 12px;
+        text-decoration: none;
+        &:hover {
+            color: #2b76d2;
+        }
+    }
+}
+
+.subscribe-form {
+    position: relative;
+    .form-control {
+        outline: none;
+        height: 45px;
+        border: 1px solid #8d8d8d;
+        border-radius: 50px;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08);
+        padding-left: 20px;
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .footer-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 50%;
+        color: #fff;
+        background-color: #2b76d2;
+        border: none;
+        outline: none;
+        -webkit-transition: 0.5s all ease;
+        transition: 0.5s all ease;
+        position: absolute;
+        top: 5px;
+        right: 6px;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
+.copyright {
+    border-top: 1px solid #e8ecec;
+    padding-top: 10px;
+
+    .copyright-text {
+        p {
+            color: #000;
+            font-size: 15px;
+            font-weight: bold;
+            a {
+                color: #2b76d2;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .copyright-menu {
+        text-align: right;
+        .policy-menu {
+            font-size: 14px;
+            a {
+                display: inline-block;
+                margin-right: 15px;
+                color: #8d8d8d;
+                text-decoration: none;
+                &:hover {
+                    color: #2b76d2;
+                }
+
+                &:first-child {
+                    &:after {
+                        color: #8d8d8d;
+                        content: "|";
+                        font-weight: 300;
+                        position: relative;
+                        left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 </style>
