@@ -50,7 +50,9 @@
         <!-- Slider Top Services -->
         <nearest-top/>
         <!-- App Slider -->
+
         <app-slider/>
+        <featured/>
 
         <ProCta/>
 
@@ -62,6 +64,7 @@
 
 <script>
 import NearestTop from 'components/sliders/NearestTop'
+import Featured from 'components/sliders/Featured'
 import AppSlider from 'src/components/sliders/AppSlider.vue';
 import ProCta from "components/homepage/ProCta";
 import Footer from "components/footer/Footer";
@@ -72,6 +75,7 @@ export default {
     components: {
         Questions,
         Footer,
+        Featured,
         ProCta,
         NearestTop,
         AppSlider,
