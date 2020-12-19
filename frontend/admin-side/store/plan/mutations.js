@@ -9,6 +9,10 @@ export const setPlans = (state, plans ) => {
   state.plans = plans
 }
 
+export const setPlan = (state, plan ) => {
+  state.plan = plan
+}
+
 export const filterPlans = (state, id ) => {
   state.plans = state.plans.filter(item => item._id !== id)
 }

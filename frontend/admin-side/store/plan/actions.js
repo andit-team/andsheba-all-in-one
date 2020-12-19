@@ -13,11 +13,32 @@ export async function addPlan ({commit},data) {
   
 }
 
+// Update plan
+export async function updatePlan ({commit},data) {
+  const token = this.state.auth.token
+  let response = await axios.put(`${API}/admin/plan/`+data.id,data.data,{headers: {'Authorization': `Authorization ${token}`}} );
+  if(response.data.error === false){
+      commit('add', data)
+  }
+
+  return response.data
+  
+}
+
 // Fetch plans
 export async function fetchPlans({commit}){
   let response = await axios.get(`${API}/admin/plans` );
   if(response.data.error === false){
       commit('setPlans',response.data.data);
+  }
+}
+
+// Fetch plan by ID
+export async function fetchOne({commit},id){
+  const token = this.state.auth.token
+  let response = await axios.get(`${API}/admin/plan/` + id,{headers: {'Authorization': `Authorization ${token}`}} )
+  if(response.data.error === false){
+      commit('setPlan',response.data.data)
   }
 }
 

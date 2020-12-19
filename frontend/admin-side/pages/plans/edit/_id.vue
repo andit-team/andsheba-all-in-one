@@ -7,33 +7,37 @@
 						<div class="page-header">
 							<div class="row">
 								<div class="col">
-									<h3 class="page-title">Edit Category</h3>
+									<h3 class="page-title">Edit Plan</h3>
 								</div>
 							</div>
 						</div>
 						<!-- /Page Header -->
 						
 						<div class="card">
+							<loader v-if="loader"/>
 							<div class="card-body">
 							
 								<!-- Form -->
-								<form>
+								<form @submit.prevent="add()">
 									<div class="form-group">
-										<label>Category Name</label>
-										<input class="form-control" v-model="category.name" type="text" value="Automobile">
+										<label>Plan Title</label>
+										<input class="form-control" v-model="plan.title" type="text" value="Automobile">
 									</div>
 									<div class="form-group">
-										<label>Category Image</label>
-										<input class="form-control" type="file">
+										<label>Plan Price</label>
+										<input class="form-control" v-model="plan.price" type="text" value="Automobile">
 									</div>
 									<div class="form-group">
-										<div class="avatar">
-											<img class="avatar-img rounded" alt="" :src="category.image">
-										</div>
+										<label>Plan Commision</label>
+										<input class="form-control" v-model="plan.commision" type="text" value="Automobile">
+									</div>
+									<div class="form-group">
+										<label>Plan Duration</label>
+										<input class="form-control" v-model="plan.duration" type="text" value="Automobile">
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Save Changes</button>
-										<router-link to="/categories" class="btn btn-link">Cancel</router-link>
+										<router-link to="/plans" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- /Form -->
@@ -51,17 +55,37 @@ export default {
 	middleware: 'authenticate',
   data() {
     return {
-			category:{}
+			loader:false,
+			plan:{
+				title:'',
+				price:'',
+				commision:'',
+				duaration:'',
+			}
     }
   },
-  fetch({ store,params }) {
-    store.dispatch('category/fetchOne', params.id)
+  async fetch({ store,params }) {
+    await store.dispatch('plan/fetchOne', params.id)
   },
   computed: mapState({
-    oneCategory: state => state.category.category
+    onePlan: state => state.plan.plan
 	}),
 	mounted() {
-		this.category = this.oneCategory
+		this.plan = this.onePlan
 	},
+	methods: {
+    async add(){
+			this.loader = true
+			const res = await this.$store.dispatch('plan/updatePlan',{id:this.$route.params.id,data:this.plan})
+			 if(!res.error){
+				 this.loader = false
+				 this.$alert("Plan Update Successfull", 'Success', 'success')
+				 this.plan = {}
+			 }else{
+				 this.loader = false
+				 this.$alert("Plan Update Failed", 'Error', 'error')
+			 }
+		},
+	}
 };
 </script>
