@@ -542,12 +542,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/admin/login",
-							"protocol": "http",
+							"raw": "https://backend.andsheba.com/api/admin/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"backend",
+								"andsheba",
+								"com"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"admin",
@@ -1054,7 +1055,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/customer/search?longitude=22.323234423&latitude=22.2322434&category=Computer&sub_category",
+							"raw": "http://localhost:5000/api/customer/search?longitude=22.323234423&latitude=22.2322434&key=Computer",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1075,12 +1076,13 @@
 									"value": "22.2322434"
 								},
 								{
-									"key": "category",
+									"key": "key",
 									"value": "Computer"
 								},
 								{
 									"key": "sub_category",
-									"value": null
+									"value": null,
+									"disabled": true
 								}
 							]
 						}
