@@ -3,8 +3,7 @@
         <!-- Banner -->
         <div class="banner_section">
             <div class="container">
-                <div :class="[$q.screen.gt.sm ? 'text-h5 q-mb-md' : 'text-h6 text-center q-mb-md']">আপনার স্থানীয় পেশাদারদের
-                    খুঁজুন</div>
+                <div :class="[$q.screen.gt.sm ? 'text-h4 q-mb-md' : 'text-h5 text-center q-mb-md']">Search your nearest Professionals</div>
                 <q-form @submit="onSubmit" style="max-width: 700px">
 
                     <div class="row search-box" v-if="$q.screen.gt.sm">
