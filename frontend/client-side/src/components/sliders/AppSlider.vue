@@ -51,7 +51,7 @@
               </div>
               <!-- Banner Right Image -->
               <div class="col-md-5 col-sm-12" v-if="$q.screen.gt.sm">
-                <img src="https://andsheba.com/_nuxt/img/1.cf1a14a.png" style="width:100%;max-width:400px" />
+                <img src="/img/girl.png" style="width:100%;max-width:400px" />
               </div>
             </div>
           </div>
