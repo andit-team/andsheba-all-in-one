@@ -1,6 +1,6 @@
 <template>
     <q-layout view="hHh lpR fFf">
-        <q-header :class="[$q.screen.gt.sm ? 'q-pa-md' : 'q-pa-sm',  'bg-white', 'text-grey-8']" height-hint="58">
+        <q-header :class="[$q.screen.gt.sm ? 'q-pa-md' : 'q-pa-sm', 'text-grey-8']" height-hint="58" style="background: #f7f8f9">
             <q-toolbar>
                 <q-btn
                     flat

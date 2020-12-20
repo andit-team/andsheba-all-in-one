@@ -45,6 +45,7 @@ export default {
                 "arrows": false,
                 "focusOnSelect": true,
                 autoplay: true,
+                autoplaySpeed: 2000,
                 "infinite": true,
                 "slidesToShow": 3,
                 "slidesToScroll": 3,
@@ -114,7 +115,7 @@ export default {
 
 <style lang="scss">
 .most_popular_section {
-    background: #f5f5f5;
+    background: #fff;
     padding: 40px 0;
     .container {
         position: relative;
@@ -124,18 +125,19 @@ export default {
                 height: 140px;
                 position: absolute;
                 opacity: .4;
+                margin-left: -30px;
             }
             .title {
                 font-size: 30px;
                 color: #2c3038;
                 font-weight: bold;
-                padding: 30px 0 10px 30px;
+                padding: 30px 0 10px 14px;
                 opacity: 1;
             }
             span {
                 font-size: 18px;
                 color: #858585;
-                padding-left: 30px;
+                padding-left: 14px;
             }
         }
         .view-all {

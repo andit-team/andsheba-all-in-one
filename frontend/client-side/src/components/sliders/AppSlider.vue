@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pt-xl q-pb-xl row flex-center justify-center content-center">
+  <div class="q-pt-xl q-pb-xl row flex-center justify-center content-center" style="background: #f7f8f9">
     <div class="col-7">
       <q-carousel
         v-model="slide"
@@ -12,9 +12,9 @@
         next-icon="arrow_right"
         navigation-icon="radio_button_unchecked"
         navigation
-        style="height:100%"
+        style="height:100%; background: #f7f8f9"
       >
-        <q-carousel-slide name="style" class="flex flex-center">
+        <q-carousel-slide name="style" class="flex flex-center" >
           <div class="row">
             <div id="parent" class="full-width row" >
               <!-- `Banner Left Search -->
@@ -28,8 +28,8 @@
                 </div>
               </div>
               <!-- Banner Right Image -->
-              <div class="col-md-5 col-sm-12" v-if="$q.screen.gt.sm">
-                <img src="https://andsheba.com/_nuxt/img/2.5d1171b.png" style="width:100%;max-width:400px" />
+              <div class="col-md-5 col-sm-12" v-if="$q.screen.gt.sm" style="">
+                <img src="https://andsheba.com/_nuxt/img/2.5d1171b.png" style="width:100%;max-width:400px;background: #f7f8f9" />
               </div>
             </div>
           </div>

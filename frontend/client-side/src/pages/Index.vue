@@ -1,61 +1,79 @@
 <template>
     <q-page>
         <!-- Banner -->
-        <div class="flex flex-center">
-            <div class="row">
-                <div id="parent" class="full-width row">
-                    <!-- `Banner Left Search -->
-                    <div
-                        :class="[$q.screen.gt.sm ? 'q-px-md' : 'q-mt-xl q-mb-xl q-mx-lg', 'flex column col-md-8 col-sm-12 justify-center' ]">
-                        <p :class="[$q.screen.gt.sm ? 'text-h5' : 'text-h6 text-center']">আপনার স্থানীয় পেশাদারদের
-                            খুঁজুন</p>
-                        <q-form @submit="onSubmit">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-5">
-                                    <q-input filled v-model="category" label="What are you looking for?"  >
-                                        <template v-slot:prepend>
-                                        <q-icon name="search" />
-                                        </template>
-                                    </q-input>
-                                </div>
+        <div class="banner_section">
+            <div class="container">
+                <div :class="[$q.screen.gt.sm ? 'text-h5 q-mb-md' : 'text-h6 text-center q-mb-md']">আপনার স্থানীয় পেশাদারদের
+                    খুঁজুন</div>
+                <q-form @submit="onSubmit" style="max-width: 700px">
 
-                                <div class="col-xs-12 col-sm-12 col-md-5">
-                                   <div class="col-xs-12 col-sm-12 col-md-3">
-                                    <q-input filled v-model="location"  label="Your location">
-                                        <template v-slot:append>
-                                        <q-icon name="gps_fixed" />
-                                        </template>
-                                        <template v-slot:prepend>
-                                        <q-icon name="near_me" />
-                                        </template>
-                                    </q-input>
-                                </div>
-                                </div>
+                    <div class="row search-box" v-if="$q.screen.gt.sm">
+                        <div class="col-xs-12 col-sm-5 border-right">
+                            <q-icon name="search"/>
+                            <input v-model="key" class="search-text form-control full-height" placeholder="What are you looking for?">
+                        </div>
+                        <div class="col-xs-12 col-sm-5">
+                            <q-icon name="near_me" />
+                            <gmap-autocomplete
+                                class="autocomplete-search q-field__native q-placeholder"
+                                placeholder="Your Location"
+                                :value="location"
+                                @place_changed="setPlace">
+                            </gmap-autocomplete>
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <button  :class="$q.screen.gt.sm ? 'full-width submit-btn' : 'full-width text-center'" type="submit" style="font-size: 16px">
+                                <div>Search</div>
+                            </button>
+                        </div>
+                    </div>
 
-                                <div class="col-xs-12 col-sm-12 col-md-2">
-                                    <q-btn color="teal"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 10px">
-                                        <div>খুঁজুন</div>
-                                    </q-btn>
-                                </div>
-                            </div>
-                        </q-form>
+
+
+                    <div class="row" v-if="!$q.screen.gt.sm">
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <q-input outlined v-model="key" label="What are you looking for?"  >
+                                <template v-slot:prepend>
+                                    <q-icon name="search" />
+                                </template>
+                            </q-input>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-md-5">
+                            <q-input outlined v-model="location" label="Your location" class="hp-places-autocomplete">
+                                <template v-slot:append>
+                                    <q-icon name="gps_fixed" style="cursor: pointer"/>
+                                </template>
+                                <template v-slot:prepend>
+                                    <q-icon name="near_me" />
+                                </template>
+                                <template v-slot:default>
+                                    <gmap-autocomplete
+                                        class="autocomplete-search q-field__native q-placeholder"
+                                        placeholder=""
+                                        :value="location"
+                                        @place_changed="setPlace">
+                                    </gmap-autocomplete>
+                                </template>
+                            </q-input>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                            <q-btn color="teal"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 0px 25px; font-size: 22px">
+                                <div>খুঁজুন</div>
+                            </q-btn>
+                        </div>
                     </div>
-                    <!-- Banner Right Image -->
-                    <div class="col-md-4 col-sm-12" v-if="$q.screen.gt.sm">
-                        <img src="https://andsheba.com/_nuxt/img/2.5d1171b.png" alt=""/>
-                    </div>
-                </div>
+                </q-form>
             </div>
         </div>
+
         <!-- Slider Top Services -->
-        <nearest-top/>
         <!-- App Slider -->
 
+        <TopAreaServices/>
+        <FeaturedCategories/>
         <app-slider/>
-        <featured/>
-
-
-
         <MostPopular/>
         <ProCta/>
         <Questions/>
@@ -71,10 +89,14 @@ import ProCta from "components/homepage/ProCta";
 import Footer from "components/footer/Footer";
 import Questions from "components/homepage/Questions";
 import MostPopular from "components/homepage/MostPopular";
+import TopAreaServices from "components/homepage/TopAreaServices";
+import FeaturedCategories from "components/homepage/FeaturedCategories";
 
 export default {
     name: "PageIndex",
     components: {
+        FeaturedCategories,
+        TopAreaServices,
         MostPopular,
         Questions,
         Footer,
@@ -85,10 +107,7 @@ export default {
     },
     data() {
         return {
-            category: '',
-            sub_category: {
-                name: ''
-            },
+            key: '',
             longitude: '',
             latitude: '',
             location: '',
@@ -96,45 +115,95 @@ export default {
     },
     created() {
         this.$store.dispatch('service/fetchCategories');
+        this.$axios.get('https://ipapi.co/json/').then(result => {
+            this.latitude = result.data.latitude
+            this.longitude = result.data.longitude
+            this.location = result.data.city + ", " + result.data.country_name
+        })
     },
-    computed: {
-        categories: {
-            get() {
-                return this.$store.getters["service/getCategories"]
-            }
-        },
-        sub_categories: {
-            get() {
-                return this.$store.getters["service/getSubCategories"]
-            }
-        },
-        isLocationSelected: {
-            get() {
-                return this.latitude !== ''
-            }
-        }
 
-    },
     methods: {
-        handleCategorySelect(value) {
-            this.$store.dispatch('service/fetchSubCategories', value._id)
-            this.sub_category = {
-                name: ''
-            }
-        },
         setPlace(value) {
+            this.location = value.formatted_address
             this.latitude = value.geometry.location.lat();
             this.longitude = value.geometry.location.lng();
-            this.location = value
         },
         onSubmit() {
-            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&category=' + this.category.name + '&sub_category=' + this.sub_category.name )
+            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&key=' + this.key )
         }
     }
 };
 </script>
 
 <style lang="scss">
+.banner_section {
+    background-image: url("/img/banner.png");
+    background-repeat: no-repeat;
+    background-position: 84% 27%;
+    .container {
+        max-width: 1600px;
+        padding: 250px 10px;
+        .border-right {
+            &:after {
+                content: "";
+                height: 42px;
+                width: 2px;
+                position: absolute;
+                border-right: 1px solid #757575;
+                margin-top: 5px;
+            }
+        }
+
+        .search-box {
+            border: 1px solid #757575;
+            border-right: 0;
+            border-radius: 5px;
+            .search-text {
+                border: none;
+                outline: none;
+                width: calc(100% - 60px)
+            }
+            i {
+                font-size: 24px;
+                color: #757575;
+                padding: 0 10px;
+            }
+        }
+
+        .autocomplete-search {
+            width: calc(100% - 60px);
+            height: 100%;
+        }
+
+        .submit-btn {
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            height: 100%;
+            background: #2b76d2;
+            color: #fff;
+            padding: 14px;
+            border-right: 1px solid #757575;
+            border-radius: 5px;
+        }
+
+
+    }
+
+
+    @media screen and (max-width: 1256px) {
+        background: #fff;
+        .container {
+            padding: 20% 10%;
+        }
+
+    }
+
+}
+
+
+
+
 .hp-places-autocomplete {
     input {
         display: none;
@@ -144,6 +213,7 @@ export default {
             outline: none;
             height: 50px;
             margin-top: 3px;
+            width: 100%;
         }
     }
 }
