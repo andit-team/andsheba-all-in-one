@@ -1,22 +1,15 @@
 <template>
     <div>
-        <div :class="[$q.screen.gt.sm?'q-mt-xl':'q-pa-md','row justify-center q-gutter-md ']">
+        <div :class="[$q.screen.gt.sm?'q-mt-xl':'q-pa-md','row justify-center q-gutter-xl']">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="text-h6 q-mb-xs">{{service.title}}</div>
+                <div class="text-h3 q-mb-xs">{{service.title}}</div>
                 <div class="row no-wrap items-center q-pb-md">
-                    <q-rating size="28px" :max="5" color="red"/>
+                    <q-avatar size="35px" class="q-mr-md"><img :src="service.thumb_img"/></q-avatar>
+                    <q-rating size="28px" :max="5" color="orange"/>
                     <span class="text-caption text-grey q-ml-sm">4.2 (551)</span>
                     <span class="text-caption text-red q-ml-sm">6 Orders in Queue</span>
                 </div>
-                <div class="text-caption text-grey">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-                    eligendi tempore voluptatibus quae ipsam rerum eum Facilis eligendi
-                    tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-                    voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-                    voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-                    voluptatibus quae ipsam rerum eum magni illo
-                </div>
-                <div class="q-pt-md q-pb-md">
+                <div class="q-pb-md">
                     <q-carousel swipeable animated v-model="slide" thumbnails infinite>
                         <q-carousel-slide
                             v-for="(image,index) in service.gallery_images"
@@ -42,53 +35,81 @@
                         />
                     </q-carousel>
                 </div>
-                <q-item class="col-6">
-                    <q-item-section avatar>
-                        <q-avatar>
-                            <div
-                                class="absolute bg-green"
-                                style="right: 0px;transform: translateY(-50%);width: 12px;height: 12px;bottom: -8px;border-radius: inherit;"
-                            ></div>
-                            <img
-                                :src="service.thumb_img"
-                            />
-                        </q-avatar>
-
-
-
-                    </q-item-section>
-
-                    <q-item-section>
-                        <q-item-label>{{service.user.name}}</q-item-label>
-
-                        <q-item-label caption>
-
-                        </q-item-label>
-                    </q-item-section>
-
-                    <q-btn flat round color="balck" icon="mail"/>
-                    <q-btn flat round color="red" icon="favorite"/>
-                    <q-btn flat round color="accent" icon="bookmark"/>
-                    <q-btn flat round color="primary" icon="share"/>
-                </q-item>
-                <q-separator v-if="$q.screen.gt.sm"/>
-
-                <div class="text-h4 q-my-lg">FAQS</div>
-
-                <q-expansion-item
-                    v-for="faq in service.faq"
-                    expand-separator
-                    :label="faq.question"
-                >
-                    <q-card>
+                <div class="text-h5 q-my-sm">Service Overview</div>
+                
+                <div class="text-caption text-grey">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+                    eligendi tempore voluptatibus quae ipsam rerum eum Facilis eligendi
+                    tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+                    voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+                    voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+                    voluptatibus quae ipsam rerum eum magni illo
+                </div>
+                <div class="text-h5 q-my-sm">FAQ</div>
+                <div class="q-py-md">
+                    <q-list class="faq">
+                    <q-expansion-item
+                        expand-separator
+                        label="What a nice question ?"
+                    >
+                        <q-card>
                         <q-card-section>
-                            {{faq.answer}}
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                            eveniet doloribus ullam aliquid.
                         </q-card-section>
-                    </q-card>
-                </q-expansion-item>
-                <div class="q-pa-lg"/>
+                        </q-card>
+                    </q-expansion-item>
+                    <q-separator/>
+                    <q-expansion-item
+                        expand-separator
+                        label="How is you life going ?"
+                    >
+                        <q-card>
+                        <q-card-section>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
+                            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
+                            eveniet doloribus ullam aliquid.
+                        </q-card-section>
+                        </q-card>
+                    </q-expansion-item>
+                    </q-list>
+                </div>
+                <!-- Faq Bottom -->
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="text-h5 q-mr-md">45 Reviews</span>
+                    <q-rating size="28px" :max="5" color="orange"/>
+                </div>
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="col-1 text-h6 text-primary">5 Stars</span>
+                    <q-linear-progress rounded size="12px" value="0.7" color="orange"/>
+                    <span class="col-1 text-h6 text-center text-primary q-ml-md">(44)</span>
+                </div>
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="col-1 text-h6 text-primary">4 Stars</span>
+                    <q-linear-progress rounded size="12px" value="0.1" color="orange"/>
+                    <span class="col-1 text-h6 text-center text-primary q-ml-md">(1)</span>
+                </div>
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="col-1 text-h6 text-primary">3 Stars</span>
+                    <q-linear-progress rounded size="12px" value="0.0" color="orange"/>
+                    <span class="col-1 text-h6 text-center text-primary q-ml-md">(0)</span>
+                </div>
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="col-1 text-h6 text-primary">2 Stars</span>
+                    <q-linear-progress rounded size="12px" value="0.0" color="orange"/>
+                    <span class="col-1 text-h6 text-center text-primary q-ml-md">(0)</span>
+                </div>
+                <div class="row no-wrap items-center q-my-lg">
+                    <span class="col-1 text-h6 text-primary">1 Stars</span>
+                    <q-linear-progress rounded size="12px" value="0.0" color="orange"/>
+                    <span class="col-1 text-h6 text-center text-primary q-ml-md">(0)</span>
+                </div>
+                <q-separator/>
+                <!-- comment -->
+                <!-- related section -->
             </div>
-            <div class="col-md-2 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <q-card class="my-card">
                     <q-img v-if="$q.screen.gt.sm"
                            :src="service.thumb_img"
@@ -160,3 +181,13 @@ export default {
 
 };
 </script>
+
+<style>
+    .faq  .q-item{
+        padding: 8px 0px!important;
+    }
+    
+    .faq  .q-item__label{
+        font-size: 20px;
+    }
+</style>
