@@ -2,16 +2,18 @@
   <div>
     <div :class="[$q.screen.gt.sm ? 'q-mt-xl q-gutter-xl' : 'q-pa-xl', 'row justify-center']">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <div :class="[$q.screen.gt.sm ? 'text-h3' : 'text-h4', 'q-mb-xs']">{{ service.title }}</div>
-        <div class="row no-wrap items-center q-pb-md">
-          <q-avatar size="35px" class="q-mr-md"
+        
+        <div :class="[$q.screen.gt.sm ? 'text-h4' : 'text-h5', 'q-mb-md text-weight-bold']">Officiis modi facere maiores officiis modi facere maiores architecto suscipit iste eveniet</div>
+        <div :class="[$q.screen.gt.sm ?'q-py-md':'','row no-wrap items-center']">
+          <q-avatar :size="[$q.screen.gt.sm ?'38px':'25px']" class="q-mr-md"
             ><img :src="service.thumb_img"
           /></q-avatar>
-          <q-rating size="28px" :max="5" color="orange" />
-          <span class="text-caption text-grey q-ml-sm">4.2 (551)</span>
-          <span class="text-caption text-red q-ml-sm">6 Orders in Queue</span>
+          <q-rating :size="[$q.screen.gt.sm ?'35px':'20px']" :max="5" color="orange" />
+          <span :class="[$q.screen.gt.sm ?'text-h5':'text-subtitle2', 'text-grey q-ml-sm text-weight-bold']">4.2 (551)</span>
+          <span :class="[$q.screen.gt.sm ?'text-subtitel2':'text-caption','text-red q-ml-sm text-weight-bold']">6 Orders in Queue</span>
         </div>
-        <div class="q-pb-md">
+
+        <div class="q-py-md">
           <q-carousel swipeable animated v-model="slide" thumbnails infinite>
             <q-carousel-slide
               v-for="(image, index) in service.gallery_images"
@@ -37,9 +39,9 @@
             />
           </q-carousel>
         </div>
-        <div class="text-h5 q-my-sm">Service Overview</div>
+        <div class="text-h5 q-my-sm text-weight-bold q-mt-md">Service Overview</div>
 
-        <div class="text-subtitle1 text-grey">
+        <div class="text-h6 text-grey q-mt-md">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
           tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
           quae ipsam rerum eum Facilis eligendi tempore voluptatibus tempore voluptatibus
@@ -52,7 +54,7 @@
           tempore voluptatibus quae ipsam rerum eum Facilis eligendi Facilis eligendi
           tempore voluptatibus quae ipsam rerum eum Facilis eligendi
         </div>
-        <div class="text-h5 q-mt-md">FAQ</div>
+        <div class="text-h5 q-my-sm text-weight-bold q-mt-lg">FAQ</div>
         <div>
           <q-list class="faq">
             <q-expansion-item expand-separator label="What a nice question ?">
@@ -90,9 +92,9 @@
           </q-list>
         </div>
         <!-- Faq Bottom -->
-        <div class="row no-wrap items-center q-my-md">
-          <span class="text-h5 q-mr-md">45 Reviews</span>
-          <q-rating size="28px" :max="5" color="orange" />
+        <div class="row no-wrap items-center q-my-lg">
+          <span class="text-h5 q-mr-md text-weight-bold">45 Reviews</span>
+          <q-rating size="35px" :max="5" color="orange" />
         </div>
         <div class="row items-start q-my-md">
           <div class="col-md-9 col-sm-12 col-xs-12">
@@ -152,15 +154,9 @@
               <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
             </div>
           </div>
-          <div class="col-sm-12 col-xs-12 row no-wrap justify-end">
-            <div class="text-h5 q-mr-md">Sort by</div>
-            <select name="" id="">
-              <option value="5">5 Stars</option>
-              <option value="4">4 Stars</option>
-              <option value="3">3 Stars</option>
-              <option value="2">2 Stars</option>
-              <option value="1">1 Star</option>
-            </select>
+          <div class="col-sm-12 col-xs-12 row no-wrap justify-end items-center q-my-xl">
+            <div class="text-h6 text-weight-bold q-mr-md">Sort by</div>
+            <q-select outlined dense class="col-3" v-model="sortBy" :options="sortOptions"/>
           </div>
         </div>
 
@@ -170,9 +166,9 @@
           <q-avatar size="28px" class="q-mr-md"
             ><img :src="service.thumb_img"
           /></q-avatar>
-          <div class="text-h6">gngsnap32</div>
+          <div class="text-h6 text-weight-bold">gngsnap32</div>
           <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange">5</div>
+          <div class="text-h6 text-orange text-weight-bold">5</div>
         </div>
         <div class="row">
           <div class="text-subtitle1 text-grey">
@@ -187,9 +183,9 @@
           <q-avatar size="28px" class="q-mr-md"
             ><img :src="service.thumb_img"
           /></q-avatar>
-          <div class="text-h6">ugandau420</div>
+          <div class="text-h6 text-weight-bold">ugandau420</div>
           <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange">3</div>
+          <div class="text-h6 text-orange text-weight-bold">3</div>
         </div>
         <div class="row">
           <div class="text-subtitle1 text-grey">
@@ -204,9 +200,9 @@
           <q-avatar size="28px" class="q-mr-md"
             ><img :src="service.thumb_img"
           /></q-avatar>
-          <div class="text-h6">ugandau420</div>
+          <div class="text-h6 text-weight-bold">Shariful402</div>
           <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange">4</div>
+          <div class="text-h6 text-orange text-weight-bold">4</div>
         </div>
         <div class="row">
           <div class="text-subtitle1 text-grey">
@@ -221,9 +217,9 @@
           <q-avatar size="28px" class="q-mr-md"
             ><img :src="service.thumb_img"
           /></q-avatar>
-          <div class="text-h6">ugandau420</div>
+          <div class="text-h6 text-weight-bold">ugandau420</div>
           <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange">1</div>
+          <div class="text-h6 text-orange text-weight-bold">1</div>
         </div>
         <div class="row">
           <div class="text-subtitle1 text-grey">
@@ -237,7 +233,7 @@
       </div>
       <!-- right side -->
       <div class="col-md-3 col-sm-12 col-xs-12">
-        <q-card class="my-card">
+        <q-card :class="[$q.screen.gt.sm?'':'q-mt-xl','my-card']">
           <q-img  :src="service.thumb_img" />
 
           <q-card-section>
@@ -250,24 +246,25 @@
             />
 
             <div class="row no-wrap items-right">
-              <div class="col text-h6 ellipsis">
+              <div class="col text-h6 ellipsis text-weight-bold">
                 {{ service.user.name }}
               </div>
               <div
-                class="col-auto text-grey text-caption q-pt-md row no-wrap items-center"
+                class="col-auto text-grey text-subtitle1 q-pt-md row no-wrap items-center text-weight-bold"
               >
                 <q-icon name="place" />
                 Khulna
               </div>
             </div>
 
-            <q-rating color="red" :max="5" size="32px" />
+            <q-rating color="red" :max="5" size="35px" />
           </q-card-section>
 
           <q-card-section class="q-pt-none">
-            <div class="text-subtitle1"></div>
-            <div class="text-caption text-grey">
+            <div class="text-subtitle1 text-grey">
               Small plates, salads & sandwiches in an intimate setting.
+              Small plates, salads & sandwiches in an intimate setting.
+              Small plates, salad
             </div>
           </q-card-section>
 
@@ -275,7 +272,7 @@
 
           <q-card-actions>
             <q-btn flat round icon="event" />
-            <q-btn flat color="primary" :to="'/service/quote?id=' + service._id">
+            <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold">
               Request for Quote
             </q-btn>
           </q-card-actions>
@@ -297,6 +294,10 @@ components:{
   data() {
     return {
       slide: 1,
+      sortBy: null,
+      sortOptions: [
+        '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
+      ]
     };
   },
   created() {
@@ -319,5 +320,11 @@ components:{
 
 .faq .q-item__label {
   font-size: 20px;
+}
+.text-subtitle1 {
+    font-size: 1.1rem;
+}
+.q-rating i{
+    color: #c8102f!important;
 }
 </style>
