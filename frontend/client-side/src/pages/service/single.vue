@@ -3,7 +3,7 @@
     <div :class="[$q.screen.gt.sm ? 'q-mt-xl q-gutter-xl' : 'q-pa-xl', 'row justify-center']">
       <div class="col-md-6 col-sm-12 col-xs-12">
         
-        <div :class="[$q.screen.gt.sm ? 'text-h4' : 'text-h5', 'q-mb-md text-weight-bold']">Officiis modi facere maiores officiis modi facere maiores architecto suscipit iste eveniet</div>
+        <div :class="[$q.screen.gt.sm ? 'text-h4' : 'text-h5', 'q-mb-md text-weight-bold']">{{service.title}}</div>
         <div :class="[$q.screen.gt.sm ?'q-py-md':'','row no-wrap items-center']">
           <q-avatar :size="[$q.screen.gt.sm ?'38px':'25px']" class="q-mr-md"
             ><img :src="service.thumb_img"
@@ -156,7 +156,7 @@
           </div>
           <div class="col-sm-12 col-xs-12 row no-wrap justify-end items-center q-my-xl">
             <div class="text-h6 text-weight-bold q-mr-md">Sort by</div>
-            <q-select outlined dense class="col-3" v-model="sortBy" :options="sortOptions"/>
+            <q-select outlined dense class="col-3" v-model="sortBy" :options="sortOptions" label="select"/>
           </div>
         </div>
 
@@ -279,16 +279,16 @@
         </q-card>
       </div>
     </div>
-    <SimilerService class="q-mt-lg"/>
+    <TopAreaServices class="q-mt-lg"/>
     <Footer/>
   </div>
 </template>
 <script>
 import Footer from "components/footer/Footer";
-import SimilerService from "components/sliders/SimilerService";
+import TopAreaServices from "components/services/TopAreaServices";
 export default {
 components:{
-    SimilerService,
+    TopAreaServices,
     Footer
 },
   data() {
