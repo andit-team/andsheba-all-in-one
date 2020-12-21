@@ -20,10 +20,13 @@ exports.searchService = (req, res, next ) => {
         },
         $or: [
             {
-                'category.name': {$regex: req.query.category, $options: 'i'}
+                'title': {$regex: req.query.key, $options: 'i'}
             },
             {
-                'sub_category.name': {$regex: req.query.sub_category, $options: 'i'}
+                'category.name': {$regex: req.query.key, $options: 'i'}
+            },
+            {
+                'sub_category.name': {$regex: req.query.key, $options: 'i'}
             }
         ]
         

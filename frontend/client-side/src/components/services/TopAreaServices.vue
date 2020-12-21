@@ -1,37 +1,42 @@
 <template>
     <div class="question_area">
         <div class="container q-px-lg">
-            <div class="title q-pa-md"> কিছু প্রশ্ন সমূহঃ</div>
+            <div class="title q-px-md"> আপনার এলাকার জনপ্রিয় সেবা সমূহ</div>
             <VueSlickCarousel v-bind="slideSetting" class="question-carousel">
                 <div>
                     <div class="block q-ma-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/3.47d4a83.jpg">
-                        <div class="question-title">একটি জানালা প্রতিষ্ঠাপনের খরচ কত?</div>
+                        <div class="question-title">পোষা প্রাণী প্রশিক্ষণ</div>
+                        <div class="location"><q-icon name="fas fa-map-marker-alt"/>আপনার নিকটবর্তী সেবা প্রদানকারীদের দেখুন </div>
                     </div>
                 </div>
                 <div>
                     <div class="block q-ma-md">
-                        <img class="full-width" src="https://andsheba.com/_nuxt/img/4.4bfd504.jpg">
-                        <div class="question-title">একজন স্বাস্থ্য কর্মীর সেবা প্রতি খরচ কত? </div>
+                        <img class="full-width" src="https://images.jdmagicbox.com/comp/bangalore/p6/080pxx80.xx80.190315103220.k7p6/catalogue/pick-the-best-homemaid-service-jp-nagar-8th-phase-bangalore-maid-service-agencies-for-new-born-baby-care-8qxe2kzm2s.jpg">
+                        <div class="question-title">আধুনিক কাজের বুয়া</div>
+                        <div class="location"><q-icon name="fas fa-map-marker-alt"/>আপনার নিকটবর্তী সেবা প্রদানকারীদের দেখুন </div>
                     </div>
                 </div>
                 <div>
                     <div class="block q-ma-md">
-                        <img class="full-width" src="https://andsheba.com/_nuxt/img/5.f9cb0c7.jpg">
-                        <div class="question-title">বডি ম্যাসাজের উপকারিতা কি?</div>
+                        <img class="full-width fixed-height" src="https://i1.wp.com/movingtips.wpengine.com/wp-content/uploads/2018/06/couple-looking-home-interior.jpg?fit=1024%2C684&ssl=1">
+                        <div class="question-title">বাসা বাড়ি পরিবর্তন</div>
+                        <div class="location"><q-icon name="fas fa-map-marker-alt"/>আপনার নিকটবর্তী সেবা প্রদানকারীদের দেখুন </div>
                     </div>
                 </div>
                 <div>
                     <div class="block q-ma-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/6.c99fae2.jpg">
-                        <div class="question-title">একটি জানালা প্রতিষ্ঠাপনের খরচ কত?</div>
+                        <div class="question-title">দরজা জানালা প্রতিষ্ঠাপন</div>
+                        <div class="location"><q-icon name="fas fa-map-marker-alt"/>আপনার নিকটবর্তী সেবা প্রদানকারীদের দেখুন </div>
                     </div>
                 </div>
                 <template #prevArrow="arrowOption">
                     <div class="custom-arrow">
                         <div class="arrow-bg"/>
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="50px"  style="background: #4b4e53"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="50px"
+                             style="background: #4b4e53"
                              viewBox="0 0 512 512" xml:space="preserve">
                             <g fill="#fff">
                                 <g>
@@ -48,7 +53,8 @@
                     <div class="custom-arrow right">
                         <div class="arrow-bg"/>
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="50px"  style="background: #4b4e53"
+                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" height="50px"
+                             style="background: #4b4e53"
                              viewBox="0 0 512 512" xml:space="preserve">
                             <g fill="#fff">
                                 <g>
@@ -64,7 +70,6 @@
             </VueSlickCarousel>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -73,20 +78,21 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
-
 export default {
-    name: "Questions",
+    name: "TopAreaServices",
     components: {VueSlickCarousel},
     data() {
         return {
             slide: 1,
             slideSetting: {
                 "dots": false,
+                autoplay: true,
+                autoplaySpeed: 2000,
                 "arrows": true,
                 "focusOnSelect": true,
                 "infinite": true,
                 "slidesToShow": 3,
-                "slidesToScroll": 3,
+                "slidesToScroll": 1,
                 "touchThreshold": 5,
                 responsive: [
                     {
@@ -110,7 +116,7 @@ export default {
 
 <style lang="scss">
 .question_area {
-    background: #f5f5f5;
+    background: #f7f8f9;
     padding-top: 70px;
     padding-bottom: 130px;
 
@@ -129,18 +135,21 @@ export default {
         .custom-arrow {
             z-index: 999999;
             margin-left: 16px;
+
             &.right {
                 svg {
                     margin-left: -45px;
                 }
             }
-             svg {
-                 fill: #fff;
-                 font-size: 31px;
-                 margin-top: -32px;
-                 border-radius: 45px;
-                 box-shadow: 0 0 2px #888888;
-             }
+
+            svg {
+                fill: #fff;
+                font-size: 31px;
+                margin-top: -32px;
+                border-radius: 45px;
+                box-shadow: 0 0 2px #888888;
+            }
+
             .arrow-bg {
 
             }
@@ -149,10 +158,19 @@ export default {
                 display: none;
             }
         }
+
         .question-title {
             font-size: 24px;
             margin-top: 15px;
             font-weight: 500;
+        }
+        .location {
+            font-size: 18px;
+            i {
+                color: #2b76d2;
+                margin-top: -6px;
+                margin-right: 6px;
+            }
         }
     }
 }
