@@ -9,7 +9,7 @@
                     <div class="title">Featured Categories</div>
                     <span>What do you need to find?</span>
                 </div>
-                <div class="q-pa-md col-md-6 col-sm-12 col-xs-12 relative-position">
+                <div class="col-md-6 col-sm-12 col-xs-12 relative-position" v-bind:class="{'q-pa-md': $q.screen.gt.sm}">
                     <div class="view-all">
                         <div class="text-h2 text-right">
                             <a href="#!">View All <i class="fas fa-angle-right"></i></a>
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="row justify-around">
+            <div class="row justify-around" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
                 <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
@@ -170,6 +170,9 @@ export default {
                 position: absolute;
                 opacity: .4;
                 margin-left: -50px;
+                @media (max-width: 885px) {
+                    margin-left: -15px;
+                }
             }
             .title {
                 font-size: 34px;
@@ -177,11 +180,20 @@ export default {
                 font-weight: bold;
                 padding: 30px 0 10px 0;
                 opacity: 1;
+                @media (max-width: 885px) {
+                    font-size: 28px;
+                    margin-left: 15px;
+                }
             }
             span {
                 font-size: 18px;
                 color: #858585;
                 padding: 0;
+                @media (max-width: 885px) {
+                    font-size: 16px;
+                    margin-left: 15px;
+                    display: block;
+                }
             }
         }
         .view-all {
@@ -190,14 +202,24 @@ export default {
                 color: #171717;
                 text-decoration: none;
             }
+
             span {
-                color: rgba(44,48,57, .15);
+                color: rgba(44, 48, 57, .15);
                 font-size: 40px;
                 font-weight: 400;
                 display: block;
                 text-align: right;
+                @media (max-width: 885px) {
+                    display: none !important;
+                }
             }
 
+            @media (max-width: 885px) {
+                .text-right {
+                    text-align: left !important;
+                    margin-left: 30px;
+                }
+            }
         }
     }
 }

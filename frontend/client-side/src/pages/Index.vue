@@ -157,7 +157,10 @@ export default {
             border: 1px solid #757575;
             border-right: 0;
             border-radius: 5px;
+            background: #f7f8f9;
+
             .search-text {
+                background: #f7f8f9;
                 border: none;
                 outline: none;
                 width: calc(100% - 60px)
@@ -172,6 +175,10 @@ export default {
         .autocomplete-search {
             width: calc(100% - 60px);
             height: 100%;
+            background: #f7f8f9;
+            @media (max-width: 885px) {
+                height: 88%;
+            }
         }
 
         .submit-btn {
@@ -182,8 +189,8 @@ export default {
             background: #2b76d2;
             color: #fff;
             padding: 14px;
-            border-right: 1px solid #757575;
-            border-radius: 5px;
+            border: 1px solid #2b76d2;
+            border-radius: 0 5px 5px 0;
         }
 
 

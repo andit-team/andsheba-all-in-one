@@ -22,21 +22,13 @@
                 <q-rating
                     v-model="rating"
                     size="1.5em"
-                    color="yellow"
+                    style="color: #c8102f"
                     readonly
                 /> ({{rating}})
             </div>
             <div class="user-info">
-                <div class="row">
-                    <span class="col-6 ser-contact">
-                        <q-icon name="fas fa-phone mr-1"></q-icon>
-                        <span style="padding-left: 5px">xxxxxxxx49</span>
-                    </span>
-                    <span class="col-6 ser-location text-right">
-                        <span style="padding-right: 5px">Wayne, New Jersey</span>
-                        <q-icon name="fas fa-map-marker-alt ml-1"></q-icon>
-                    </span>
-                </div>
+                <q-icon name="fas fa-map-marker-alt mr-1" style="margin-top: -3px"></q-icon>
+                <span style="padding-left: 5px">Wayne, New Jersey</span>
             </div>
         </q-card-section>
     </q-card>
@@ -69,10 +61,11 @@ export default {
 
 
 .category-tag {
-    background: #d9c504;
+    background: #2b76d2;
     color: #fff;
-    padding: 5px;
-    border-radius: 13px;
+    padding: 5px 12px;
+    text-align: center;
+    border-radius: 4px;
 }
 
 .user-info {
