@@ -59,7 +59,8 @@
                     <div class="service-area block q-pt-lg">
                         <ServiceCard v-for="service in services" :key="service._id" :service="service"/>
                     </div>
-                    <div class="see-more-btn"><a href="#" class="btn">See More</a></div>
+                    <div class="see-more-btn" v-if="services.length > 0"><a href="#" class="btn">See More</a></div>
+                    <div v-if="services.length === 0" class="text-h4 text-center q-mt-lg">No Service Found</div>
                 </div>
             </div>
         </div>
@@ -150,9 +151,9 @@ export default {
 
 .service-search-result {
     position: relative;
+    border-bottom: .5px solid rgba(97, 97, 97, .4);
     .container {
         max-width: 1400px;
-        border-bottom: .5px solid rgba(97, 97, 97, .4);
     }
     .filter-area {
         width: 200px;
@@ -218,6 +219,7 @@ export default {
         width: calc(100% - 200px);
         margin-top: 80px;
         margin-left: 200px;
+        min-height: 500px;
         position: relative;
         @media (max-width: 1060px) {
             margin-left: 0;

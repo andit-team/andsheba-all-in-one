@@ -8,7 +8,7 @@
             </div>
             <div class="row q-mx-lg">
                 <!-- Box Start -->
-                <div class="col-12 col-sm-12 col-md-4 q-px-lg">
+                <div class="col-12 col-sm-12 col-md-4 q-px-lg q-mb-lg">
                     <div class="why-hire-box">
                         <i class="fab fa-tumblr"></i>
                         <h6>বিনা মুলে ব্যবহার করুন</h6>
@@ -19,7 +19,7 @@
                 <!-- Box End -->
 
                 <!-- Box Start -->
-                <div class="col-12 col-sm-12 col-md-4 q-pa-lg">
+                <div class="col-12 col-sm-12 col-md-4 q-px-lg q-mb-lg">
                     <div class="why-hire-box">
                         <i class="fas fa-users"></i>
                         <h6>বিভাগ থেকে বিভাগে দামের তুলনা</h6>
@@ -30,7 +30,7 @@
                 <!-- Box End -->
 
                 <!-- Box Start -->
-                <div class="col-12 col-sm-12 col-md-4 q-px-lg">
+                <div class="col-12 col-sm-12 col-md-4 q-px-lg q-mb-lg">
                     <div class="why-hire-box">
                         <i class="fas fa-check"></i>
                         <h6>বিশ্বাসের সাথে সেবা নিন</h6>

@@ -9,7 +9,7 @@
                     <div class="title">Recently Added Services</div>
                     <span>Explore the greates our services. You won’t be disappointed</span>
                 </div>
-                <div class="q-pa-md col-md-6 col-sm-12 col-xs-12 relative-position">
+                <div class="col-md-6 col-sm-12 col-xs-12 relative-position" v-bind:class="{'q-pa-md': $q.screen.gt.sm}">
                     <div class="view-all">
                         <div class="text-h2 text-right">
                             <a href="#!">View All <i class="fas fa-angle-right"></i></a>
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <VueSlickCarousel v-bind="slideSetting" class="q-mb-lg q-pa-md">
+            <VueSlickCarousel v-bind="slideSetting" class="q-mb-lg" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
                 <div v-for="(service, index) in services" :key="index">
                     <ServiceCard :service="service"/>
                 </div>
@@ -41,11 +41,11 @@ export default {
     data () {
         return {
             slideSetting: {
-                "dots": true,
+                "dots": false,
                 "arrows": false,
                 "focusOnSelect": true,
                 autoplay: true,
-                autoplaySpeed: 2000,
+                autoplaySpeed: 3000,
                 "infinite": true,
                 "slidesToShow": 3,
                 "slidesToScroll": 3,
@@ -115,7 +115,7 @@ export default {
 
 <style lang="scss">
 .most_popular_section {
-    background: #fff;
+    background: #f7f8f9;
     padding: 40px 0;
     .container {
         position: relative;
@@ -125,19 +125,31 @@ export default {
                 height: 140px;
                 position: absolute;
                 opacity: .4;
-                margin-left: -30px;
+                margin-left: -50px;
+                @media (max-width: 885px) {
+                    margin-left: -15px;
+                }
             }
             .title {
                 font-size: 34px;
                 color: #2c3038;
                 font-weight: bold;
-                padding: 30px 0 10px 14px;
+                padding: 30px 0 10px 0;
                 opacity: 1;
+                @media (max-width: 885px) {
+                    font-size: 28px;
+                    margin-left: 15px;
+                }
             }
             span {
                 font-size: 18px;
                 color: #858585;
-                padding-left: 14px;
+                padding: 0;
+                @media (max-width: 885px) {
+                    font-size: 16px;
+                    margin-left: 15px;
+                    display: block;
+                }
             }
         }
         .view-all {
@@ -146,14 +158,24 @@ export default {
                 color: #171717;
                 text-decoration: none;
             }
+
             span {
-                color: rgba(44,48,57, .15);
+                color: rgba(44, 48, 57, .15);
                 font-size: 40px;
                 font-weight: 400;
                 display: block;
                 text-align: right;
+                @media (max-width: 885px) {
+                    display: none !important;
+                }
             }
 
+            @media (max-width: 885px) {
+                .text-right {
+                    text-align: left !important;
+                    margin-left: 30px;
+                }
+            }
         }
     }
 }

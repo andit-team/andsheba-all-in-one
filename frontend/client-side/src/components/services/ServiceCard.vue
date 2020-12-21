@@ -94,7 +94,7 @@ export default {
             i {
                 margin-right: 0;
                 padding-left: 5px;
-                color: #d9c504;
+                color: #c8102f;
             }
             margin-right: 10px;
         }
