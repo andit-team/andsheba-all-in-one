@@ -1,7 +1,7 @@
 <template>
-    <div :class="[$q.screen.gt.sm ? 'q-py-lg' : 'q-pa-sm', 'question_area']">
-        <div  :class="[$q.screen.gt.sm ? 'q-py-lg' : 'q-py-sm', 'container']">
-            <div class="title q-px-md"> Related Services</div>
+    <div class="question_area">
+        <div class="container q-px-lg">
+            <div class="title q-px-md"> আপনার এলাকার জনপ্রিয় সেবা সমূহ</div>
             <VueSlickCarousel v-bind="slideSetting" class="question-carousel">
                 <div>
                     <div class="block q-ma-md">
@@ -79,7 +79,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
-    name: "TopAreaServices",
+    name: "SimilerService",
     components: {VueSlickCarousel},
     data() {
         return {
@@ -91,9 +91,23 @@ export default {
                 "arrows": true,
                 "focusOnSelect": true,
                 "infinite": true,
-                "slidesToShow": 4,
+                "slidesToShow": 3,
                 "slidesToScroll": 1,
-                "touchThreshold": 5
+                "touchThreshold": 5,
+                responsive: [
+                    {
+                        breakpoint: 1300,
+                        settings: {
+                            "slidesToShow": 2,
+                        }
+                    },
+                    {
+                        breakpoint: 825,
+                        settings: {
+                            "slidesToShow": 1,
+                        }
+                    }
+                ]
             }
         }
     }
@@ -103,6 +117,8 @@ export default {
 <style lang="scss">
 .question_area {
     background: #f7f8f9;
+    padding-top: 70px;
+    padding-bottom: 130px;
 
     .title {
         font-size: 30px;
