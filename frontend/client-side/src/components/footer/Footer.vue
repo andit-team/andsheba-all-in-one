@@ -104,6 +104,7 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+    font-family: 'Poppins', sans-serif;
     background-color: #fff;
     border-top: 1px solid #e8ecec;
 }
@@ -111,18 +112,19 @@ export default {
 .footer-title {
     color: #171717;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
 .footer-link {
     padding: 0;
     color: #000;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 15px;
     transition: all 0.4s ease 0s;
     margin-bottom: 10px;
     cursor: pointer;
+
 
     &:hover {
         text-decoration: underline;
@@ -204,6 +206,7 @@ export default {
 }
 
 .copyright {
+    font-family: 'Poppins', sans-serif;
     border-top: 1px solid #e8ecec;
     padding-top: 10px;
 
@@ -211,7 +214,7 @@ export default {
         p {
             color: #000;
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 600;
             a {
                 color: #2b76d2;
                 text-decoration: none;

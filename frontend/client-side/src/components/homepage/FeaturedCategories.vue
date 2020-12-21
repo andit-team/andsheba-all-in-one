@@ -20,7 +20,7 @@
             </div>
 
             <div class="row justify-around">
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -41,7 +41,7 @@
                         />
                     </q-card>
                 </div>
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -62,7 +62,7 @@
                         />
                     </q-card>
                 </div>
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -83,7 +83,7 @@
                         />
                     </q-card>
                 </div>
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -104,7 +104,7 @@
                         />
                     </q-card>
                 </div>
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -125,7 +125,7 @@
                         />
                     </q-card>
                 </div>
-                <div class="col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md">
                     <q-card class="my-card">
                         <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
                         <q-btn
@@ -172,7 +172,7 @@ export default {
                 margin-left: -50px;
             }
             .title {
-                font-size: 30px;
+                font-size: 34px;
                 color: #2c3038;
                 font-weight: bold;
                 padding: 30px 0 10px 0;
@@ -191,7 +191,7 @@ export default {
                 text-decoration: none;
             }
             span {
-                color: #bbbbbb;
+                color: rgba(44,48,57, .15);
                 font-size: 40px;
                 font-weight: 400;
                 display: block;

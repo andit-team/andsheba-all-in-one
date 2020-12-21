@@ -30,7 +30,7 @@
 
 
                     <div class="row" v-if="!$q.screen.gt.sm">
-                        <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class="col-xs-12 col-sm-5 col-md-5 q-mb-lg">
                             <q-input outlined v-model="key" label="What are you looking for?"  >
                                 <template v-slot:prepend>
                                     <q-icon name="search" />
@@ -38,7 +38,7 @@
                             </q-input>
                         </div>
 
-                        <div class="col-xs-12 col-sm-5 col-md-5">
+                        <div class="col-xs-12 col-sm-5 col-md-5 q-mb-lg">
                             <q-input outlined v-model="location" label="Your location" class="hp-places-autocomplete">
                                 <template v-slot:append>
                                     <q-icon name="gps_fixed" style="cursor: pointer"/>
@@ -58,8 +58,8 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-2 col-md-2">
-                            <q-btn color="teal"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 0px 25px; font-size: 22px">
-                                <div>খুঁজুন</div>
+                            <q-btn color="primary"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 0px 25px; font-size: 22px">
+                                <div>Search</div>
                             </q-btn>
                         </div>
                     </div>
