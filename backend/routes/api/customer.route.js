@@ -13,5 +13,9 @@ const Service = require('../../controllers/customer/service.controller')
 router.get('/search', Service.searchService)
 router.get('/search/:_id', Service.getOneService)
 
+// Render Data to Home Page ------------------------
+const HomePageData = require('../../controllers/customer/homepage.controller')
+router.get('/homepage', HomePageData.sendHomePageData)
+
 // Export the Router
 module.exports = router 
