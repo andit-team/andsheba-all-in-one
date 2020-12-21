@@ -36,10 +36,10 @@
                             <div class="footer-contact-info">
                                 <div class="footer-address">
                                     <i class="far fa-building"></i>
-                                    <span>367 Hillcrest Lane, Irvine, California, United States</span>
+                                    <span>Ahsan Ahmed Road, 32 Choto Mirzapur, Peace Palace, Khulna, 9100</span>
                                 </div>
-                                <p><i class="fas fa-headphones"></i> 321 546 8764</p>
-                                <p class="mb-0"><i class="fas fa-envelope"></i> truelysell@example.com</p>
+                                <a href="tel:+8801882-453444"><i class="fas fa-headphones"></i> 01882-453444</a>
+                                <a href="mailto:andsheba444@gmail.com"><i class="fas fa-envelope"></i> andsheba444@gmail.com</a>
                             </div>
                         </div>
                         <!-- /Footer Widget -->
@@ -132,6 +132,7 @@ export default {
 }
 
 .footer-contact-info {
+    color: #000;
     i {
         color: #2b76d2;
         font-size: 18px;
@@ -140,9 +141,21 @@ export default {
     & > p > i {
         margin-right: 12px;
     }
+    & > a  {
+        display: block;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: #000;
+        & > i {
+            margin-right: 12px;
+        }
+        &:hover {
+            color: #2b76d2;
+        }
+    }
 
     .footer-address {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
 
         span {
             display: inline-block;
