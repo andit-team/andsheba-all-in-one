@@ -26,7 +26,7 @@
                 <q-space v-if="$q.screen.gt.sm"/>
 
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">
-                    <q-btn flat color="grey-8" icon="search" to="service"> সেবা খুজুন</q-btn>
+
 
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="register"> রেজিস্ট্রেশন</q-btn>
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="login"> লগ ইন</q-btn>
@@ -65,14 +65,6 @@
         >
             <q-scroll-area class="fit">
                 <q-list padding>
-                    <q-item to="/service" v-ripple clickable>
-                        <q-item-section avatar>
-                            <q-icon color="grey" name="search"/>
-                        </q-item-section>
-                        <q-item-section>
-                            <q-item-label> সেবা খুজুন </q-item-label>
-                        </q-item-section>
-                    </q-item>
 
                     <q-item v-if="!customer.isVerified" to="/register" v-ripple clickable>
                         <q-item-section avatar>
