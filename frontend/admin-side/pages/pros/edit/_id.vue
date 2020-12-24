@@ -7,7 +7,7 @@
 						<div class="page-header">
 							<div class="row">
 								<div class="col">
-									<h3 class="page-title">Update Customer</h3>
+									<h3 class="page-title">Update Pro</h3>
 								</div>
 							</div>
 						</div>
@@ -19,19 +19,19 @@
 								<!-- Form -->
 								<form @submit.prevent="update">
 									<div class="form-group">
-										<label>Customer Name</label>
-										<input class="form-control" v-model="customer.title" type="text" readonly>
+										<label>Pro Name</label>
+										<input class="form-control" v-model="pro.name" type="text" readonly>
 									</div>
 									<div class="form-group">
-										<label>Customer Status</label>
-										<select class="form-control select" v-model="customer.status">
-                  	<option value="pending">Pending</option>
-                  	<option value="active">Active</option>
+										<label>Pro Status</label>
+										<select class="form-control select" v-model="pro.status">
+                  	<option value="active"><span class="badge badge-pill badge-success">Active</span></option>
+                  	<option value="block"><span class="badge badge-pill badge-danger">Block</span></option>
                 </select>
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Save Changes</button>
-										<router-link to="/customers" class="btn btn-link">Cancel</router-link>
+										<router-link to="/pros" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- /Form -->
@@ -49,27 +49,27 @@ export default {
 	middleware: 'authenticate',
   data() {
     return {
-			customer:{}
+			pro:{}
     }
   },
   async fetch({ store,params }) {
-    await store.dispatch('customer/fetchOne', params.id)
+    await store.dispatch('pro/fetchOne', params.id)
   },
   computed: mapState({
-    oneCustomer: state => state.customer.customer
+    onePro: state => state.pro.pro
 	}),
 	mounted() {
-		this.customer = this.oneCustomer
+		this.pro = this.onePro
 	},
 	methods: {
 		async update(){
-			let res = await this.$store.dispatch('customer/updateStatus',{id:this.$route.params.id,status:this.customer.status})
+			let res = await this.$store.dispatch('pro/updateStatus',{id:this.$route.params.id,status:this.pro.status})
 			if(res){
-				 this.$alert("Customer status Successfully Updated", 'Success', 'success')
+				 this.$alert("Pro status Successfully Updated", 'Success', 'success')
 				 console.log(this)
-				 this.$router.push('/')
+				 this.$router.push('/pros')
 			}else{
-				this.$alert("Customer status Failed to Update", 'Error', 'error')
+				this.$alert("Pro status Failed to Update", 'Error', 'error')
 			}
 		}
 	},

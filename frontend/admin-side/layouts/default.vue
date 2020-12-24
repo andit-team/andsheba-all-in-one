@@ -338,16 +338,6 @@ export default {
           route:'/payments'
         },
         {
-          title:'Rating Type',
-          icon:'fas fa-star-half-alt',
-          route:'/ratingstype'
-        },
-        {
-          title:'Ratings',
-          icon:'fas fa-star',
-          route:'/review-reports'
-        },
-        {
           title:'Wallet',
           icon:'fas fa-wallet',
           route:'/wallet'
