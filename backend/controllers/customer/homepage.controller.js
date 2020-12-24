@@ -21,6 +21,7 @@ exports.sendHomePageData = (req, res, next ) => {
        }).sort({createdAt: -1}).limit(10).populate('user').then( result => {
 
         // if(result.length > 0){
+            
         Category.find().limit(6).then(cat => {
 
             const nData = {

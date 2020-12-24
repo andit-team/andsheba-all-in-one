@@ -217,9 +217,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Plan",
@@ -394,9 +392,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Service",
@@ -493,9 +489,164 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
+				},
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "Get All Customer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/customers?status=block",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "block"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Customer Status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"block\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/customer-status/5fd59a7032b8843414453044",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"customer-status",
+										"5fd59a7032b8843414453044"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Pro",
+					"item": [
+						{
+							"name": "Get All Pro",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/pros?status=block",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"pros"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "block"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Pro Status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"block\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/pro-status/5fcefd245d35291a74bb4942",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"pro-status",
+										"5fcefd245d35291a74bb4942"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Admin Create",
@@ -588,8 +739,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "GEO",
@@ -798,8 +948,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Pro",
@@ -1043,8 +1192,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Customer",
@@ -1055,12 +1203,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/customer/search?longitude=22.323234423&latitude=22.2322434&key=Computer",
-							"protocol": "http",
+							"raw": "https://backend.andsheba.com/api/customer/search?longitude=22.323234423&latitude=22.2322434&key=Computer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"backend",
+								"andsheba",
+								"com"
 							],
-							"port": "5000",
 							"path": [
 								"api",
 								"customer",
@@ -1200,10 +1349,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Render home page data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/homepage?longitude=22.323234423&latitude=22.2322434",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"homepage"
+							],
+							"query": [
+								{
+									"key": "longitude",
+									"value": "22.323234423"
+								},
+								{
+									"key": "latitude",
+									"value": "22.2322434"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
