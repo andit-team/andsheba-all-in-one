@@ -14,7 +14,7 @@ export async function fetchAll({commit}, parent){
 // Fetch one
 export async function fetchOne({commit}, id){
   const token = this.state.auth.token
-  let response = await axios.get(`${API}/admin/customer/`+id,{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.get(`${API}/admin/customer?_id=`+id,{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
       commit('setCustomer',response.data.data);
   }

@@ -67,7 +67,7 @@ export default {
 			if(res){
 				 this.$alert("Customer status Successfully Updated", 'Success', 'success')
 				 console.log(this)
-				 this.$router.push('/')
+				 this.$router.push('/customers')
 			}else{
 				this.$alert("Customer status Failed to Update", 'Error', 'error')
 			}
