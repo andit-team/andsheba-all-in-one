@@ -7,7 +7,7 @@
 						<div class="page-header">
 							<div class="row">
 								<div class="col">
-									<h3 class="page-title">Update Agent</h3>
+									<h3 class="page-title">Update Customer</h3>
 								</div>
 							</div>
 						</div>
@@ -19,19 +19,19 @@
 								<!-- Form -->
 								<form @submit.prevent="update">
 									<div class="form-group">
-										<label>Agent Name</label>
-										<input class="form-control" v-model="service.title" type="text" readonly>
+										<label>Customer Name</label>
+										<input class="form-control" v-model="customer.name" type="text" readonly>
 									</div>
 									<div class="form-group">
-										<label>Agent Status</label>
-										<select class="form-control select" v-model="service.status">
-                  	<option value="pending">Pending</option>
-                  	<option value="active">Active</option>
+										<label>Customer Status</label>
+										<select class="form-control select" v-model="customer.status">
+                  	<option value="active"><span class="badge badge-pill badge-success">Active</span></option>
+                  	<option value="block"><span class="badge badge-pill badge-danger">Block</span></option>
                 </select>
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Save Changes</button>
-										<router-link to="/agents" class="btn btn-link">Cancel</router-link>
+										<router-link to="/customers" class="btn btn-link">Cancel</router-link>
 									</div>
 								</form>
 								<!-- /Form -->
@@ -49,27 +49,27 @@ export default {
 	middleware: 'authenticate',
   data() {
     return {
-			service:{}
+			customer:{}
     }
   },
   async fetch({ store,params }) {
-    await store.dispatch('service/fetchOne', params.id)
+    await store.dispatch('customer/fetchOne', params.id)
   },
   computed: mapState({
-    oneAgent: state => state.service.service
+    oneCustomer: state => state.customer.customer
 	}),
 	mounted() {
-		this.service = this.oneAgent
+		this.customer = this.oneCustomer
 	},
 	methods: {
 		async update(){
-			let res = await this.$store.dispatch('service/updateStatus',{id:this.$route.params.id,status:this.service.status})
+			let res = await this.$store.dispatch('customer/updateStatus',{id:this.$route.params.id,status:this.customer.status})
 			if(res){
-				 this.$alert("Agent status Successfully Updated", 'Success', 'success')
+				 this.$alert("Customer status Successfully Updated", 'Success', 'success')
 				 console.log(this)
 				 this.$router.push('/')
 			}else{
-				this.$alert("Agent status Failed to Update", 'Error', 'error')
+				this.$alert("Customer status Failed to Update", 'Error', 'error')
 			}
 		}
 	},

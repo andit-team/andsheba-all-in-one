@@ -5,9 +5,9 @@ const API = process.env.API
 // Fetch all
 export async function fetchAll({commit}, parent){
   const token = this.state.auth.token
-  let response = await axios.get(`${API}/admin/customers`,{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.get(`${API}/admin/customers?status=`,{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
-      commit('setServices',response.data.data);
+      commit('setCustomers',response.data.data);
   }
 }
 
@@ -16,7 +16,7 @@ export async function fetchOne({commit}, id){
   const token = this.state.auth.token
   let response = await axios.get(`${API}/admin/customer/`+id,{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
-      commit('setService',response.data.data);
+      commit('setCustomer',response.data.data);
   }
 }
 

@@ -313,7 +313,22 @@ export default {
           route:'/plans'
         },
         {
-          title:'Booking List',
+          title:'Pros',
+          icon:'fas fa-user-tie',
+          route:'/pros'
+        },
+        {
+          title:'Customers',
+          icon:'fas fa-user',
+          route:'/customers'
+        },
+        {
+          title:'Agents',
+          icon:'fas fa-users',
+          route:'/agents'
+        },
+        {
+          title:'Order List',
           icon:'fas fa-calendar-check',
           route:'/total-report'
         },
@@ -336,16 +351,6 @@ export default {
           title:'Wallet',
           icon:'fas fa-wallet',
           route:'/wallet'
-        },
-        {
-          title:'Service Providers',
-          icon:'fas fa-user-tie',
-          route:'/service-providers'
-        },
-        {
-          title:'Users',
-          icon:'fas fa-user',
-          route:'/users'
         },
         {
           title:'Settings',

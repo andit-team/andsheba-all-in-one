@@ -19,30 +19,24 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Thumb</th>
-                    <th>Address</th>
-                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
                     <th>Date</th>
                     <th class="text-right">Status</th>
                   </tr>
                 </thead>
                 <tbody v-if="customers.length>0">
-                  <tr v-for="({_id,title,description,thumb_img,address,category,status},index) in customers" :key="_id">
+                  <tr v-for="({_id,name,mobile,email,status,createdAt},index) in customers" :key="_id">
                     <td>{{index+1}}</td>
-                    <td>{{title}}</td>
-                    <td>{{description?description.substr(0, 20):"-"}}</td>
-                    <td><img class="rounded customer-img mr-1" :src="thumb_img"></td>
-                    <td>{{address.address}}</td>
-                    <td>{{category.name}}</td>
-                    <td>{{status}}</td>
+                    <td>{{name}}</td>
+                    <td>{{mobile}}</td>
+                    <td>{{email}}</td>
+                    <td>{{createdAt}}</td>
+                    <td><span :class="['badge badge-pill', status == 'block'?'badge-danger':'badge-success']">{{status}}</span></td>
                     <td class="text-right">
                       <router-link :to="'customers/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
-                    <!-- <td class="text-right">
-                      <a href="#" @click.prevent="subcat_delete(_id)" class="btn btn-sm bg-danger-light mr-2">	<i class="fa fa-trash mr-1"></i> Delete</a>
-                    </td> -->
                   </tr>
                 </tbody>
                 <tbody v-else>
@@ -57,8 +51,6 @@
   </div>
 </template>
 <script>
-// import $ from "jquery";
-// import jQuery from "jquery";
 import { mapState } from 'vuex'
 export default {
   middleware: 'authenticate',
@@ -76,24 +68,8 @@ export default {
     customers: state => state.customer.customers
   }),
   methods: {
-    async status(id){
-      console.log(id)
-      return
-      this.$confirm('Are you sure ?', 'Warning', 'warning').then(res => {
-        this.$store.dispatch('subcategory/deleteSubCategories',id).then(res => {
-          if(res){
-              this.$alert("Category Successfully Deleted", 'Success', 'success')
-              this.subcategories = this.$store.state.subcategory.sub_categories
-            }
-            else{
-              this.$alert("Error Occured!!!", 'Error', 'error');
-              }
-        })
-      })
-    }
   },
   mounted() {
-    console.log(this.customers)
     this.loader = false
   },
 };

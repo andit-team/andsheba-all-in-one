@@ -6,6 +6,8 @@ import category from './category'
 import subcategory from './subcategory'
 import plan from './plan'
 import service from './service'
+import customer from './customer'
+import pro from './pro'
 
 Vue.use(Vuex)
 const createStore = () => {
@@ -16,6 +18,8 @@ const createStore = () => {
       subcategory,
       plan,
       service,
+      customer,
+      pro,
     }
   })
 }
