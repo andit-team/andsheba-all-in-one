@@ -570,6 +570,39 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get One Customer",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/customer?_id=5fd59a7032b8843414453044",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"customer"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5fd59a7032b8843414453044"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -588,7 +621,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:5000/api/admin/pros?status=block",
+									"raw": "http://localhost:5000/api/admin/pros?status=",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -602,7 +635,7 @@
 									"query": [
 										{
 											"key": "status",
-											"value": "block"
+											"value": ""
 										}
 									]
 								}
@@ -641,6 +674,39 @@
 										"admin",
 										"pro-status",
 										"5fcefd245d35291a74bb4942"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Pro",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg3OTM3MDksImV4cCI6MTYwODgyMjUwOX0.yhrth8qBsjLjf6JhYGuJNJkWYuil2t2BB8zZe5yuKeg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/pro?_id=5fd59a7032b8843414453044",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"pro"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5fd59a7032b8843414453044"
+										}
 									]
 								}
 							},

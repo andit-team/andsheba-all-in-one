@@ -139,6 +139,34 @@ exports.getAllProByAdmin = (req, res, next) => {
     })
 }
 
+exports.getOneProByAdmin = (req, res, next) => {
+
+    User.findById(req.query._id).then(result => {
+
+        if(result){
+            const data = {
+                error:false,
+                msg: 'Successfully Get Pro Data',
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'No Pro Available'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Problem in getting Pro Data'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
 exports.updateProStatusByAdmin = (req, res, next) => {
     
     let updateData = {

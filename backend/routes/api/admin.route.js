@@ -34,11 +34,13 @@ router.put('/service-status/:_id', Auth.admin, Service.updateServiceStatus)
 // Customer Controller-----------------------------------------
 const Customer = require('../../controllers/customer/customer.controller')
 router.get('/customers', Auth.admin, Customer.getAllCustomerByAdmin)
+router.get('/customer', Auth.admin, Customer.getOneCustomerByAdmin)
 router.put('/customer-status/:_id', Auth.admin, Customer.updateCustomerStatusByAdmin)
 
 // Pro Controller-----------------------------------------
 const Pro = require('../../controllers/pro/pro.controller')
 router.get('/pros', Auth.admin, Pro.getAllProByAdmin)
+router.get('/pro', Auth.admin, Pro.getOneProByAdmin)
 router.put('/pro-status/:_id', Auth.admin, Pro.updateProStatusByAdmin)
 
 // Export the Router

@@ -139,6 +139,34 @@ exports.getAllCustomerByAdmin = (req, res, next) => {
     })
 }
 
+exports.getOneCustomerByAdmin = (req, res, next) => {
+
+    User.findById(req.query._id).then(result => {
+
+        if(result){
+            const data = {
+                error:false,
+                msg: 'Successfully Get Customer Data',
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'No Customer Available'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Problem in getting Customer Data'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
 exports.updateCustomerStatusByAdmin = (req, res, next) => {
     
     let updateData = {
