@@ -103,6 +103,75 @@ exports.login = (req, res, next) => {
         }) 
 }
 
+exports.getAllCustomerByAdmin = (req, res, next) => {
+
+    let query = {
+        role: 'customer'
+    }
+
+    if(req.query.status !== ""){
+        query.status = req.query.status
+    }
+
+    User.find(query).then(result => {
+
+        if(result.length > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Get Customer Data',
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'No Customer Available'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Problem in getting Customer Data'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.updateCustomerStatusByAdmin = (req, res, next) => {
+    
+    let updateData = {
+        status: req.body.status
+    }
+    let query = {
+        _id: req.params._id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Customer Status'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Customer Status Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Customer Status Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
 exports.verifyCustomer = (req, res, next) => {
     try{
 

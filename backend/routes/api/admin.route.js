@@ -31,5 +31,10 @@ router.get('/services', Auth.admin, Service.findAllServicesByAdmin)
 router.get('/service/:_id', Auth.admin, Service.getOneService)
 router.put('/service-status/:_id', Auth.admin, Service.updateServiceStatus)
 
+// Customer Controller-----------------------------------------
+const Customer = require('../../controllers/customer/customer.controller')
+router.get('/customers', Auth.admin, Customer.getAllCustomerByAdmin)
+router.put('/customer-status/:_id', Auth.admin, Customer.updateCustomerStatusByAdmin)
+
 // Export the Router
 module.exports = router 
