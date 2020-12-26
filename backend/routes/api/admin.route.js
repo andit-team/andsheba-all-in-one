@@ -47,7 +47,7 @@ router.put('/pro-status/:_id', Auth.admin, Pro.updateProStatusByAdmin)
 const Agent = require('../../controllers/agent/agent.controller')
 router.get('/agents', Auth.admin, Agent.getAllAgentByAdmin)
 router.get('/agent', Auth.admin, Agent.getOneAgent)
-router.put('/agent', Auth.admin, Agent.updateAgentByAdmin)
+router.put('/agent/:_id', Auth.admin, Agent.updateAgentByAdmin)
 
 // Export the Router
 module.exports = router 
