@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import pro from './pro'
 import service from './service'
 import customer from './customer'
+import location from './location'
 
 Vue.use(Vuex)
 
@@ -22,7 +23,8 @@ export default function (/* { ssrContext } */) {
     modules: {
       pro,
       service,
-      customer
+      customer,
+      location
     },
 
     // enable strict mode (adds overhead!)

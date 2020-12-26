@@ -35,6 +35,10 @@ const routes = [
       { path: 'subscription', component: () => import('pages/user/Subscription.vue') },
     ]
   },
+  { path: '/agent/login', component: () => import('pages/agent/Login') },
+  { path: '/agent/register', component: () => import('pages/agent/Register') },
+
+
   // Always leave this as last one,
   // but you can also remove it
   {
