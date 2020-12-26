@@ -715,6 +715,114 @@
 					]
 				},
 				{
+					"name": "Agent",
+					"item": [
+						{
+							"name": "Update Agent",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg5NjM3MzMsImV4cCI6MTYwODk5MjUzM30.SmOLl9OVFu3bEeAmQKOa9u73RJUtLdJjXBme3TUVxEA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Test Agent One\",\r\n    \"mobile\": \"+8801878091234\",\r\n    \"email\":\"\",\r\n    \"label_address\": \"Gollamari, Khulna\",\r\n    \"password\": \"\",\r\n    \"nid_no\": \"121234344534534\",\r\n    \"status\": \"approved\",\r\n    \"message\": \"accepted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/admin/agent/5fe6d63445a3103704c84b31",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"agent",
+										"5fe6d63445a3103704c84b31"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Agent",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg5NjM3MzMsImV4cCI6MTYwODk5MjUzM30.SmOLl9OVFu3bEeAmQKOa9u73RJUtLdJjXBme3TUVxEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/agents?status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"agents"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Agent",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDg5NjM3MzMsImV4cCI6MTYwODk5MjUzM30.SmOLl9OVFu3bEeAmQKOa9u73RJUtLdJjXBme3TUVxEA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/agent?_id=5fe6d63445a3103704c84b31",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"agent"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5fe6d63445a3103704c84b31"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Admin Create",
 					"request": {
 						"method": "POST",
@@ -1442,6 +1550,101 @@
 									"key": "latitude",
 									"value": "22.2322434"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agent",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Test Agent One\",\r\n    \"mobile\": \"+8801878091234\",\r\n    \"email\":\"\",\r\n    \"label_address\": \"Gollamari, Khulna\",\r\n    \"password\": \"12345678\",\r\n    \"nid_no\": \"121234344534534\",\r\n    \"agent_level\": \"village\",\r\n    \"division\":\"3\",\r\n    \"district\": \"21\",\r\n    \"upazila\": \"181\",\r\n    \"union\": \"1629\",\r\n    \"village\": \"2167\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/agent/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mobile\": \"+8801878091234\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/agent/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU2ZDYzNDQ1YTMxMDM3MDRjODRiMzEiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDg5NjQyMzksImV4cCI6MTYwODk5MzAzOX0.kGMdRlf8BOW0NfIdusBVJzIcQz-WWsgezLvwJ8AXOUA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/agent/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"verify"
 							]
 						}
 					},
