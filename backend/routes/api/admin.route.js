@@ -43,5 +43,11 @@ router.get('/pros', Auth.admin, Pro.getAllProByAdmin)
 router.get('/pro', Auth.admin, Pro.getOneProByAdmin)
 router.put('/pro-status/:_id', Auth.admin, Pro.updateProStatusByAdmin)
 
+// Agent Controller---------------------------------------
+const Agent = require('../../controllers/agent/agent.controller')
+router.get('/agents', Auth.admin, Agent.getAllAgentByAdmin)
+router.get('/agent', Auth.admin, Agent.getOneAgent)
+router.put('/agent', Auth.admin, Agent.updateAgentByAdmin)
+
 // Export the Router
 module.exports = router 

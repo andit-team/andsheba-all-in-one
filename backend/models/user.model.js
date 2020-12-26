@@ -58,10 +58,13 @@ const UserSchema = new Schema({
     address: {
         type: Object
     },
+    label_address: {
+        type: String
+    },
     business_goal:{
         type: String
     },
-    rej_desc:{
+    message:{
         type: String
     },
     plan: {
@@ -111,6 +114,9 @@ const UserSchema = new Schema({
     village: {
       type: String
     },
+    agent_level: {
+        type: String
+    }
 },
 {
     timestamps: true
