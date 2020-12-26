@@ -74,13 +74,12 @@ export default {
         return {
             mobile: null,
             password: null,
-
         };
     },
 
     methods: {
         async onSubmit() {
-            let response = await this.$store.dispatch('pro/loginPro', {
+            let response = await this.$store.dispatch('agent/loginAgent', {
                 mobile: "+880" + this.mobile,
                 password: this.password
             })
@@ -96,7 +95,7 @@ export default {
                     response.msg,
                     'success'
                 ).then(r => {
-                    this.$router.push('/user/dashboard')
+                    this.$router.push('/agent/dashboard')
                 })
             }
         },

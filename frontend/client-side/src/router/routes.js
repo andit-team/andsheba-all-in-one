@@ -37,6 +37,14 @@ const routes = [
   },
   { path: '/agent/login', component: () => import('pages/agent/Login') },
   { path: '/agent/register', component: () => import('pages/agent/Register') },
+  {
+    path: '/agent',
+    component: () => import('layouts/AgentLayout'),
+    children: [
+      { path: '', component: () => import('pages/agent/Dashboard.vue') },
+      { path: 'dashboard', component: () => import('pages/agent/Dashboard.vue') },
+    ]
+  },
 
 
   // Always leave this as last one,

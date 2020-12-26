@@ -30,8 +30,8 @@
                                     hint="আপানার সম্পূর্ণ নাম দিন"
                                     lazy-rules
                                     :rules="[
-                val => (val && val.length > 0) || 'Please type Name'
-              ]"
+                                        val => (val && val.length > 0) || 'Please type Name'
+                                    ]"
                                 />
 
                                 <q-input
@@ -42,8 +42,8 @@
                                     label="মোবাইল *"
                                     lazy-rules
                                     :rules="[
-                val => (val.length == 10) || 'Please type valid mobile',
-              ]"
+                                        val => (val.length == 10) || 'Please type valid mobile',
+                                    ]"
                                     prefix="+880"
                                 />
                                 <q-input
@@ -53,6 +53,17 @@
                                     label="ইমেইল"
                                 />
 
+                                <q-input
+                                    filled
+                                    type="text"
+                                    v-model="address"
+                                    label="Address"
+                                    lazy-rules
+                                    :rules="[
+                                        val => (val && val.length > 0) || 'Please type Address'
+                                    ]"
+                                />
+
                                 <q-select
                                     filled
                                     v-model="work_area"
@@ -60,6 +71,7 @@
                                     option-value="value"
                                     option-label="name"
                                     label="Select Work Area"
+                                    lazy-rules
                                 />
 
                                 <div class="row">
@@ -71,7 +83,12 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="divisions"
-                                            @input="handleDivisionSelect"/>
+                                            @input="handleDivisionSelect"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Division'
+                                            ]"
+                                        />
                                     </div>
                                     <div class="col-12 col-md-6 q-pl-sm">
                                         <q-select
@@ -82,7 +99,12 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="districts"
-                                            @input="handleDistrictSelect"/>
+                                            @input="handleDistrictSelect"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A District'
+                                            ]"
+                                        />
                                     </div>
                                 </div>
 
@@ -96,7 +118,12 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="municipals"
-                                            @input="handleMunicipalSelect"/>
+                                            @input="handleMunicipalSelect"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Municipal'
+                                            ]"
+                                        />
                                     </div>
                                     <div class="col-12 col-md-6 q-pl-sm" v-if="work_area.value === 'ward'">
                                         <q-select
@@ -106,7 +133,11 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="wards"
-                                            @input="handleDistrictSelect"/>
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Ward'
+                                            ]"
+                                        />
                                     </div>
                                 </div>
 
@@ -119,7 +150,12 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="upazilas"
-                                            @input="handleUpazilaSelect"/>
+                                            @input="handleUpazilaSelect"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Upazila'
+                                            ]"
+                                        />
                                     </div>
                                     <div class="col-12 col-md-4 q-pr-sm" v-if="work_area.value === 'union' || work_area.value === 'village'">
                                         <q-select
@@ -129,7 +165,12 @@
                                             option-value="id"
                                             option-label="bn_name"
                                             :options="unions"
-                                            @input="handleUnionSelect"/>
+                                            @input="handleUnionSelect"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Union'
+                                            ]"
+                                        />
                                     </div>
                                     <div class="col-12 col-md-4 q-pr-sm" v-if="work_area.value === 'village'">
                                         <q-select
@@ -138,11 +179,25 @@
                                             v-model="village"
                                             option-value="id"
                                             option-label="bn_name"
-                                            :options="villages"/>
+                                            :options="villages"
+                                            lazy-rules
+                                            :rules="[
+                                                val => !!val || 'Please Select A Village'
+                                            ]"
+                                        />
                                     </div>
                                 </div>
 
-
+                                <q-input
+                                    filled
+                                    type="text"
+                                    v-model="nid_no"
+                                    label="NID No."
+                                    lazy-rules
+                                    :rules="[
+                                        val => (val && val.length > 0) || 'Please provide NID'
+                                    ]"
+                                />
 
                                 <q-input
                                     filled
@@ -151,11 +206,9 @@
                                     label="পাসওয়ার্ড *"
                                     lazy-rules
                                     :rules="[
-                val => (val.length > 7) || 'Password should contain minimum 8 character',
-              ]"
+                                        val => (val.length > 7) || 'Password should contain minimum 8 character',
+                                    ]"
                                 />
-
-
 
 
 
@@ -190,6 +243,7 @@ export default {
             email: null,
             mobile: null,
             password: null,
+            address: null,
             division: null,
             district: null,
             municipal: null,
@@ -197,6 +251,7 @@ export default {
             upazila: null,
             union : null,
             village: null,
+            nid_no: null,
             work_area:{name: 'Division', value: 'division'},
             work_areas: [
                 {name: 'Division', value: 'division'},
@@ -292,16 +347,28 @@ export default {
 
         handleDivisionSelect(value) {
             this.district = null
+            this.municipal = null
+            this.ward = null
+            this.upazila = null
+            this.union = null
+            this.village = null
             this.$store.dispatch('location/fetchDistricts', value.id)
         },
         handleDistrictSelect(value) {
+            this.municipal = null
+            this.ward = null
+            this.upazila = null
+            this.union = null
+            this.village = null
             this.$store.dispatch('location/fetchMunicipals', value.id)
             this.$store.dispatch('location/fetchUpazilas', value.id)
         },
         handleMunicipalSelect(value) {
+            this.ward = null
             this.$store.dispatch('location/fetchWards', value.id)
         },
         handleUpazilaSelect(value) {
+            this.village = null
             this.$store.dispatch('location/fetchUnion', value.id)
         },
         handleUnionSelect(value) {
@@ -316,15 +383,24 @@ export default {
                     'warning'
                 )
             } else {
-                let pro = {
+                let agent = {
                     name: this.name,
                     mobile: '+880' + this.mobile,
                     password: this.password,
                     email: this.email,
-                    plan: this.plan._id,
-                    address: this.address
+                    role: 'agent',
+                    label_address: this.address,
+                    nid_no: this.nid_no,
+                    agent_level: this.work_area.value,
+                    division: this.division.id,
+                    district: this.district ? this.district.id : null,
+                    municipal: this.municipal ? this.municipal.id : null,
+                    ward: this.ward ? this.ward.id : null,
+                    upazila: this.upazila ? this.upazila.id : null,
+                    union: this.union ? this.union.id : null,
+                    village: this.village ? this.village.id : null
                 }
-                let response = await this.$store.dispatch('pro/registerPro', pro)
+                let response = await this.$store.dispatch('agent/registerAgent', agent)
                 if (response.error) {
                     Swal.fire(
                         'Error',
@@ -337,7 +413,7 @@ export default {
                         response.msg,
                         'success'
                     ).then(r => {
-                        this.$router.push('/user/dashboard')
+                        //this.$router.push('/user/dashboard')
                     })
                 }
             }
