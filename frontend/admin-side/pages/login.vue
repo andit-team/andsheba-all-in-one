@@ -1,7 +1,7 @@
 <template>
-  <div class="main-wrapper">
-	
+  <div>
 		<loader v-if="loading" />
+		<div class="main-wrapper">
 		<div class="login-page">
 			<div class="login-body container">
 				<div class="loginbox">
@@ -34,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </template>
 
