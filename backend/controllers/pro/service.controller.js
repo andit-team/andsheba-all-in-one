@@ -9,7 +9,7 @@ const mongo = require('mongodb')
 const ObjectID = mongo.ObjectID
 const RESPONDER = require('../../responder/responder') 
 
-exports.addService = (req, res, next ) => {
+exports.addService = async(req, res, next ) => {
 
     let questions = []
 
@@ -36,8 +36,7 @@ exports.addService = (req, res, next ) => {
 
     })
 
-
-    const newService = new Service({
+    let resData = {
         title: req.body.title,
         description: req.body.description,
         thumb_img: req.body.thumb_img,
@@ -53,9 +52,169 @@ exports.addService = (req, res, next ) => {
         tags: req.body.tags,
         faq: req.body.faq,
         questions: questions,
-        status: 'pending'
-    })
+        status: 'pending',
+        message: 'Your Request is in Pending Mode',
+        residential_or_municipal: req.body.residential_or_municipal
+    }
 
+    let agent
+    if(req.body.residential_or_municipal === 'residential'){
+        
+        agent = await User.findOne({
+            role: 'agent',
+            status: 'approved',
+            agent_level: 'village',
+            division: req.body.division,
+            district: req.body.district,
+            upazila: req.body.upazila,
+            union: req.body.union,
+            village: req.body.village
+        },{
+            _id: 1
+        })
+
+        if(!agent){
+
+            agent = await User.findOne({
+                role: 'agent',
+                status: 'approved',
+                agent_level: 'union',
+                division: req.body.division,
+                district: req.body.district,
+                upazila: req.body.upazila,
+                union: req.body.union
+            },{
+                _id: 1
+            })
+
+            if(!agent){
+
+                agent = await User.findOne({
+                    role: 'agent',
+                    status: 'approved',
+                    agent_level: 'upazila',
+                    division: req.body.division,
+                    district: req.body.district,
+                    upazila: req.body.upazila
+                },{
+                    _id: 1
+                })
+
+                if(!agent){
+
+                    agent = await User.findOne({
+                        role: 'agent',
+                        status: 'approved',
+                        agent_level: 'district',
+                        division: req.body.division,
+                        district: req.body.district
+                    },{
+                        _id: 1
+                    })
+                    if(!agent){
+
+                        agent = await User.findOne({
+                            role: 'agent',
+                            status: 'approved',
+                            agent_level: 'division',
+                            division: req.body.division,
+                        },{
+                            _id: 1
+                        })
+
+                        if(!agent){
+                            const data = {
+                                msg: 'No Agent In Your Area',
+                                error:true
+                            }
+                            RESPONDER.response(res, 200, data)
+                        }
+                    }
+                }
+
+            }
+        }
+
+        resData = {
+            ...resData,
+            division: req.body.division,
+            district: req.body.district,
+            upazila: req.body.upazila,
+            union: req.body.union,
+            village: req.body.village,
+            agent: agent._id
+        }
+
+    } else {
+        
+        agent = await User.findOne({
+            role: 'agent',
+            status: 'approved',
+            agent_level: 'ward',
+            division: req.body.division,
+            district: req.body.district,
+            municipal: req.body.municipal,
+            ward: req.body.ward
+        },{
+            _id: 1
+        })
+
+        if(!agent){
+
+            agent = await User.findOne({
+                role: 'agent',
+                status: 'approved',
+                agent_level: 'municipal',
+                division: req.body.division,
+                district: req.body.district,
+                municipal: req.body.municipal
+            },{
+                _id: 1
+            })
+                if(!agent){
+
+                    agent = await User.findOne({
+                        role: 'agent',
+                        status: 'approved',
+                        agent_level: 'district',
+                        division: req.body.division,
+                        district: req.body.district
+                    },{
+                        _id: 1
+                    })
+                    if(!agent){
+
+                        agent = await User.findOne({
+                            role: 'agent',
+                            status: 'approved',
+                            agent_level: 'division',
+                            division: req.body.division,
+                        },{
+                            _id: 1
+                        })
+
+                        if(!agent){
+
+                            const data = {
+                                msg: 'No Agent In Your Area',
+                                error:true
+                            }
+                            RESPONDER.response(res, 200, data)
+                        }
+                    }
+            }
+        }
+
+        resData = {
+            ...resData,
+            division: req.body.division,
+            district: req.body.district,
+            municipal: req.body.municipal,
+            ward: req.body.ward,
+            agent: agent._id
+        }
+    }
+    const newService = new Service(resData)
     newService.save().then( result => {
 
         if(result){
@@ -95,9 +254,6 @@ exports.addService = (req, res, next ) => {
         RESPONDER.response(res, 200, data)
 
     })
-
-    
-
 }
 
 exports.findAllServices = (req, res, next ) => {

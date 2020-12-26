@@ -81,7 +81,38 @@ const ServiceSchema = new Schema({
     ],
     status: {
         type: String
-    }
+    },
+    message: {
+        type: String
+    },
+    division: {
+        type: String
+    },
+    district: {
+      type: String
+    },
+    residential_or_municipal: {
+        type: String
+    },
+    municipal: {
+      type: String
+    },
+    ward: {
+      type: String
+    },
+    upazila: {
+      type: String
+    },
+    union: {
+      type: String
+    },
+    village: {
+      type: String
+    },
+    agent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+    },
     
 },
 {
