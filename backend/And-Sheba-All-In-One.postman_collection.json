@@ -738,7 +738,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/admin/agent/5fe6d63445a3103704c84b31",
+									"raw": "http://localhost:5000/api/admin/agent/5fe7027e41a38f2ed88b6f26",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -748,7 +748,7 @@
 										"api",
 										"admin",
 										"agent",
-										"5fe6d63445a3103704c84b31"
+										"5fe7027e41a38f2ed88b6f26"
 									]
 								}
 							},
@@ -1245,13 +1245,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3NzUxNTgyLCJleHAiOjE2MDc3ODAzODJ9.K4QEy2MLMYgnyyorpNFPEk1r09XizaPAsG6RzKASt3g",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA4OTc0NTU1LCJleHAiOjE2MDkwMDMzNTV9.T1FeKk3M5mMFhDp6-V7Hp1HSuK39RDJOs-WE9v753L8",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.2322434,\r\n            \"lng\": 22.323234423\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.2322434,\r\n            \"lng\": 22.323234423\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"division\":\"3\",\r\n    \"district\": \"21\",\r\n    \"upazila\": \"181\",\r\n    \"union\": \"1629\",\r\n    \"village\": \"2167\",\r\n    \"residential_or_municipal\": \"residential\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
