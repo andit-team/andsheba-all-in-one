@@ -371,6 +371,7 @@ export default {
       });
 
       newSocket.on("service_added", (data) => {
+        console.log(234)
         let id = data.data._id
         let self = this
         this.$store.commit('service/pushServices',data)
@@ -386,6 +387,23 @@ export default {
           },
         });
       });
+      
+      // newSocket.on("agent_added", (data) => {
+      //   let id = data.data._id
+      //   let self = this
+      //   this.$store.commit('agent/pushAgent',data)
+      //   this.playSound()
+      //   this.$toast.open({
+      //     message: 'New Agent Request!',
+      //     type: 'success',
+      //     position:'top-right',
+      //     dismissible:true,
+      //     duration: 10000,
+      //     onClick: function(){
+      //       self.$router.push('agents/edit/'+id)
+      //     },
+      //   });
+      // });
 
       this.$store.commit('auth/setSocket',newSocket)
     }

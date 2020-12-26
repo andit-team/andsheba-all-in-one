@@ -20,14 +20,26 @@
 								<form @submit.prevent="update">
 									<div class="form-group">
 										<label>Agent Name</label>
-										<input class="form-control" v-model="service.title" type="text" readonly>
+										<input class="form-control" v-model="agent.name" type="text" readonly>
+									</div>
+									<div class="form-group">
+										<label>Mobile</label>
+										<input class="form-control" v-model="agent.mobile" type="text">
+									</div>
+									<div class="form-group">
+										<label>Email</label>
+										<input class="form-control" v-model="agent.email" type="text">
+									</div>
+									<div class="form-group">
+										<label>NID</label>
+										<input class="form-control" v-model="agent.nid_no" type="text">
 									</div>
 									<div class="form-group">
 										<label>Agent Status</label>
-										<select class="form-control select" v-model="service.status">
-                  	<option value="pending">Pending</option>
-                  	<option value="active">Active</option>
-                </select>
+										<select class="form-control select" v-model="agent.status">
+												<option value="pending">Pending</option>
+												<option value="approved">Approved</option>
+										</select>
 									</div>
 									<div class="mt-4">
 										<button class="btn btn-primary" type="submit">Save Changes</button>
@@ -49,25 +61,25 @@ export default {
 	middleware: 'authenticate',
   data() {
     return {
-			service:{}
+			agent:{}
     }
   },
   async fetch({ store,params }) {
-    await store.dispatch('service/fetchOne', params.id)
+    await store.dispatch('agent/fetchOne', params.id)
   },
   computed: mapState({
-    oneAgent: state => state.service.service
+    oneAgent: state => state.agent.agent
 	}),
 	mounted() {
-		this.service = this.oneAgent
+		this.agent = this.oneAgent
+		console.log(this.agent)
 	},
 	methods: {
 		async update(){
-			let res = await this.$store.dispatch('service/updateStatus',{id:this.$route.params.id,status:this.service.status})
+			let res = await this.$store.dispatch('agent/updateStatus',{id:this.$route.params.id,status:this.agent})
 			if(res){
 				 this.$alert("Agent status Successfully Updated", 'Success', 'success')
-				 console.log(this)
-				 this.$router.push('/')
+				 this.$router.push('/agents')
 			}else{
 				this.$alert("Agent status Failed to Update", 'Error', 'error')
 			}

@@ -3,27 +3,28 @@ const API = process.env.API
 
 
 // Fetch all
-export async function fetchAll({commit}, parent){
+export async function fetchAll({commit}, data){
   const token = this.state.auth.token
-  let response = await axios.get(`${API}/admin/agents`,{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.get(`${API}/admin/agents?status=${data}`,{headers: {'Authorization': `Authorization ${token}`}});
+  console.log(response)
   if(response.data.error === false){
-      commit('setServices',response.data.data);
+      commit('setAgents',response.data.data);
   }
 }
 
 // Fetch one
 export async function fetchOne({commit}, id){
   const token = this.state.auth.token
-  let response = await axios.get(`${API}/admin/agent/`+id,{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.get(`${API}/admin/agent?_id=`+id,{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
-      commit('setService',response.data.data);
+      commit('setAgent',response.data.data);
   }
 }
 
 // Status update
-export async function updateStatus({commit,dispatch}, {id, status}){
+export async function updateStatus({commit,dispatch}, {id, data}){
   const token = this.state.auth.token
-  let response = await axios.put(`${API}/admin/agent-status/`+id,{status},{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.put(`${API}/admin/agent/`+id,{data},{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
     dispatch('fetchAll');
     return 1

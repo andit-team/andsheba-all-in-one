@@ -76,7 +76,7 @@
         <!-- Recent Bookings -->
         <div class="card card-table flex-fill">
           <div class="card-header">
-            <h4 class="card-title">Inactive Services</h4>
+            <h4 class="card-title">Pending Services</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -99,7 +99,9 @@
                     <td>{{category.name}}</td>
                     <td><span :class="['badge badge-pill', status == 'pending'?'badge-warning':'badge-success']">{{status}}</span></td>
                     <td class="text-right">
-                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
+                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	
+                        <i class="far fa-eye mr-1"></i>
+                      </router-link>
                     </td>
                   </tr>
                 </tbody>
@@ -116,7 +118,7 @@
         <!-- Recent Bookings -->
         <div class="card card-table flex-fill">
           <div class="card-header">
-            <h4 class="card-title">Active Services</h4>
+            <h4 class="card-title">Pending Agent Requests</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -124,22 +126,22 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Title</th>
-                    <th>Thumb</th>
-                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
                     <th>Status</th>
                     <th class="text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody v-if="services.length>0">
-                  <tr v-for="({_id,title,thumb_img,category,status},index) in services.filter(item => item.status === 'active')" :key="_id">
+                <tbody v-if="agents.length>0">
+                  <tr v-for="({_id,name,email,mobile,status},index) in agents" :key="_id">
                     <td>{{index+1}}</td>
-                    <td>{{title}}</td>
-                    <td><img class="rounded service-img mr-1" :src="thumb_img"></td>
-                    <td>{{category.name}}</td>
+                    <td>{{name}}</td>
+                    <td>{{mobile}}</td>
+                    <td>{{email}}</td>
                     <td><span :class="['badge badge-pill', status == 'pending'?'badge-warning':'badge-success']">{{status}}</span></td>
                     <td class="text-right">
-                      <router-link :to="'services/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
+                      <router-link :to="'agents/edit/'+_id" class="btn btn-sm bg-info-light mr-2">	<i class="far fa-eye mr-1"></i></router-link>
                     </td>
                   </tr>
                 </tbody>
@@ -167,9 +169,11 @@ export default {
   async fetch() {
     this.loader = true
     await this.$store.dispatch('service/fetchAll')
+    await this.$store.dispatch('agent/fetchAll','pending')
   },
   computed: mapState({
-    services: state => state.service.services
+    services: state => state.service.services,
+    agents: state => state.agent.agents
   }),
   methods: {
   },

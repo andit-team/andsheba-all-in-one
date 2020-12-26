@@ -8,6 +8,7 @@ import plan from './plan'
 import service from './service'
 import customer from './customer'
 import pro from './pro'
+import agent from './agent'
 
 Vue.use(Vuex)
 const createStore = () => {
@@ -20,6 +21,7 @@ const createStore = () => {
       service,
       customer,
       pro,
+      agent,
     }
   })
 }

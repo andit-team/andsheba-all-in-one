@@ -11,12 +11,6 @@ export function setAgent (state, data) {
 }
 
 // Add
-export function pushAgents (state, data) {
+export function pushAgent (state, data) {
   state.agents.splice(0, 0, data.data)
 }
-
-
-export const setStatus = (state, status ) => {
-  // state.agents = status
-}
-
