@@ -31,5 +31,23 @@ router.get('/services', Auth.admin, Service.findAllServicesByAdmin)
 router.get('/service/:_id', Auth.admin, Service.getOneService)
 router.put('/service-status/:_id', Auth.admin, Service.updateServiceStatus)
 
+// Customer Controller-----------------------------------------
+const Customer = require('../../controllers/customer/customer.controller')
+router.get('/customers', Auth.admin, Customer.getAllCustomerByAdmin)
+router.get('/customer', Auth.admin, Customer.getOneCustomerByAdmin)
+router.put('/customer-status/:_id', Auth.admin, Customer.updateCustomerStatusByAdmin)
+
+// Pro Controller-----------------------------------------
+const Pro = require('../../controllers/pro/pro.controller')
+router.get('/pros', Auth.admin, Pro.getAllProByAdmin)
+router.get('/pro', Auth.admin, Pro.getOneProByAdmin)
+router.put('/pro-status/:_id', Auth.admin, Pro.updateProStatusByAdmin)
+
+// Agent Controller---------------------------------------
+const Agent = require('../../controllers/agent/agent.controller')
+router.get('/agents', Auth.admin, Agent.getAllAgentByAdmin)
+router.get('/agent', Auth.admin, Agent.getOneAgent)
+router.put('/agent', Auth.admin, Agent.updateAgentByAdmin)
+
 // Export the Router
 module.exports = router 

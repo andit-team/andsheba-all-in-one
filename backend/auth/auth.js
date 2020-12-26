@@ -48,6 +48,16 @@ module.exports.user = (req, res, next) => {
                 user_id: decodedToken._id
             }
             next()
+        }else if(decodedToken.role === 'agent'){
+            req.userData = {
+                user_id: decodedToken._id
+            }
+            next()
+        }else if(decodedToken.role === 'customer'){
+            req.userData = {
+                user_id: decodedToken._id
+            }
+            next()
         }else{
             const data = {
                 msg: 'You are not authenticated',

@@ -103,6 +103,103 @@ exports.login = (req, res, next) => {
         }) 
 }
 
+exports.getAllProByAdmin = (req, res, next) => {
+
+    let query = {
+        role: 'pro'
+    }
+
+    if(req.query.status !== ""){
+        query.status = req.query.status
+    }
+
+    User.find(query).then(result => {
+
+        if(result.length > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Get Pro Data',
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'No Pro Available'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Problem in getting Pro Data'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.getOneProByAdmin = (req, res, next) => {
+
+    User.findById(req.query._id).then(result => {
+
+        if(result){
+            const data = {
+                error:false,
+                msg: 'Successfully Get Pro Data',
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'No Pro Available'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Problem in getting Pro Data'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.updateProStatusByAdmin = (req, res, next) => {
+    
+    let updateData = {
+        status: req.body.status
+    }
+    let query = {
+        _id: req.params._id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Pro Status'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Pro Status Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Pro Status Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
 exports.verifyPro = (req, res, next) => {
     try{
 

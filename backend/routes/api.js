@@ -15,7 +15,11 @@ router.use('/pro', Pro)
 
 // Customer Routes------------------
 let Customer = require('./api/customer.route') 
-router.use('/customer', Customer) 
+router.use('/customer', Customer)
+
+// Customer Routes------------------
+let Agent = require('./api/agent.route') 
+router.use('/agent', Agent) 
 
 
 module.exports = router 
