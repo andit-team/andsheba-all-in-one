@@ -15,3 +15,10 @@ export const setToken = (state, token) => {
 }
 
 
+export const setService = (state, service ) => {
+    state.service = {
+        ...state.service,
+        ...service
+    }
+}
+
