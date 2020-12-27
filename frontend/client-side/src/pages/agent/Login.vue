@@ -72,8 +72,8 @@ import Swal from "sweetalert2";
 export default {
     data() {
         return {
-            mobile: null,
-            password: null,
+            mobile: '7878787878',
+            password: '12345678',
         };
     },
 
