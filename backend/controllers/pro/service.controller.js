@@ -320,9 +320,69 @@ exports.findAllServicesByAdmin = (req, res, next ) => {
         RESPONDER.response(res, 200, data)
 
     })
+}
 
-    
+exports.findAllServicesByAgent = (req, res, next ) => {
 
+    const userId = req.userData.user_id
+    Service.find({agent: userId}).sort({createdAt: -1}).populate('user').then( result => {
+
+        if(result.length > 0){
+            const data = {
+                msg: 'Service Get Successfully',
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: 'Problem in getting service',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch( error => {
+
+        const data = {
+            msg: 'Problem in getting service',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+
+    })
+}
+
+exports.updateServiceMessageByAgent = (req, res, next ) => {
+
+    const userId = req.userData.user_id
+    Service.updateOne({_id: req.params._id}, {message: req.body.message}).then( result => {
+
+        if(result.n > 0){
+            const data = {
+                msg: 'Service Message Updated',
+                error: false
+            }
+            RESPONDER.response(res, 200, data)
+            
+        }else{
+            const data = {
+                msg: 'Problem in Updatting service Message',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch( error => {
+
+        const data = {
+            msg: 'Problem in Updatting service Message',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+
+    })
 }
 
 exports.getOneService = (req, res, next ) => {
