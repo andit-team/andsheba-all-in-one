@@ -72,11 +72,23 @@ export default {
 	}),
 	mounted() {
 		this.agent = this.oneAgent
-		console.log(this.agent)
 	},
 	methods: {
 		async update(){
-			let res = await this.$store.dispatch('agent/updateStatus',{id:this.$route.params.id,status:this.agent})
+			let res = await this.$store.dispatch('agent/updateStatus',{
+				id:this.$route.params.id,
+				data:{
+					"name":this.agent.name,
+					"mobile": this.agent.mobile,
+					"email":this.agent.email,
+					"label_address": this.agent.label_address,
+					"password": this.agent.password,
+					"nid_no": this.agent.nid_no,
+					"status": this.agent.status,
+					"message": this.agent.message,
+					}
+					
+				})
 			if(res){
 				 this.$alert("Agent status Successfully Updated", 'Success', 'success')
 				 this.$router.push('/agents')

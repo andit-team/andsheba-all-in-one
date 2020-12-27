@@ -24,7 +24,7 @@ export async function fetchOne({commit}, id){
 // Status update
 export async function updateStatus({commit,dispatch}, {id, data}){
   const token = this.state.auth.token
-  let response = await axios.put(`${API}/admin/agent/`+id,{data},{headers: {'Authorization': `Authorization ${token}`}});
+  let response = await axios.put(`${API}/admin/agent/${id}`,data,{headers: {'Authorization': `Authorization ${token}`}});
   if(response.data.error === false){
     dispatch('fetchAll');
     return 1
