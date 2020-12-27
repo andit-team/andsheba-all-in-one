@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Cookies } from 'quasar'
+import { SessionStorage } from 'quasar'
 
 export const fetchPlans = async ({commit}) => {
     let response = await axios.get(`${process.env.API_URL}/pro/plans` );
@@ -79,4 +80,13 @@ export const updateStatus = async ({}, service) => {
     }
     let response = await axios.put(`${process.env.API_URL}/pro/service-status/${service.id}` , {status: service.status}, {headers})
     return response.data
+}
+
+
+export const updateServiceLocal = async ({}, service) => {
+    SessionStorage.set('service', service)
+}
+
+export const fetchServiceLocal = async ({commit}) => {
+    commit('setService', SessionStorage.getItem('service'))
 }

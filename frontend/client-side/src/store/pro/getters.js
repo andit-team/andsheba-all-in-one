@@ -14,3 +14,7 @@ export const getServices = state => {
 export const getToken = state => {
     return state.token
 }
+
+export const getService = state => {
+    return state.service
+}
