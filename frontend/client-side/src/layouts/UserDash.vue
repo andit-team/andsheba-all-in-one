@@ -265,7 +265,7 @@ export default {
         this.fabYoutube = fabYoutube;
         let response = await this.$store.dispatch('pro/fetchPro')
         if (response.error === true) {
-            await this.$router.push('/login')
+            await this.$router.push('/user/login')
         }
         this.profile = response.data
     },

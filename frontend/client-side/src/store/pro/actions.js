@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Cookies } from 'quasar'
-import { SessionStorage } from 'quasar'
+import { LocalStorage } from 'quasar'
 
 export const fetchPlans = async ({commit}) => {
     let response = await axios.get(`${process.env.API_URL}/pro/plans` );
@@ -47,17 +47,20 @@ export const fetchPro = async ({commit}) => {
 }
 
 
-export const addService = async ({}, service ) => {
+export const addService = async ({state} ) => {
     let token = Cookies.get('token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
-    return {
-        error: response.data.error,
-        msg: response.data.msg
-    }
+    console.log(state.service)
+
+
+    // let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
+    // return {
+    //     error: response.data.error,
+    //     msg: response.data.msg
+    // }
 }
 
 export const fetchServices = async ({commit}) => {
@@ -84,9 +87,42 @@ export const updateStatus = async ({}, service) => {
 
 
 export const updateServiceLocal = async ({}, service) => {
-    SessionStorage.set('service', service)
+    LocalStorage.set('service', service)
 }
 
 export const fetchServiceLocal = async ({commit}) => {
-    commit('setService', SessionStorage.getItem('service'))
+    if(LocalStorage.has('service') ) {
+        commit('setService', LocalStorage.getItem('service'))
+    } else {
+        let result = await axios.get('https://ipapi.co/json/')
+        let address = {
+            address: result.data.city + ", " + result.data.country_name,
+            location: {
+                lat: result.data.latitude,
+                lng: result.data.longitude
+            }
+        }
+        commit('setService', {address})
+    }
+}
+
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+    let byteCharacters = atob(b64Data);
+    let byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        let slice = byteCharacters.slice(offset, offset + sliceSize);
+        let byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        let byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+    let blob = new Blob(byteArrays, {type: contentType});
+    return blob;
 }

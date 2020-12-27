@@ -27,26 +27,8 @@ export default function () {
             ],
             thumb_image: null,
             service_images: [],
-            mapCenter: {
-                lat: 22.845641,
-                lng: 89.5403279
-            },
-            markerCenter: {
-                lat: 22.845641,
-                lng: 89.5403279
-            },
-            address: {
-                address: "",
-                location: {
-                    lat: 22.845641,
-                    lng: 89.5403279
-                }
-            },
+            address: null,
             area_type: null,
-            area_types: [
-                {name: "পৌরসভা", value: 'municipal'},
-                {name: "উপজেলা", value: 'upazila'},
-            ],
             division: null,
             district: null,
             municipal: null,

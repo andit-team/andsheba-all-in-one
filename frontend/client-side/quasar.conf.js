@@ -100,7 +100,6 @@ module.exports = function (/* ctx */) {
       plugins: [
         'Cookies',
         'LocalStorage',
-        'SessionStorage'
       ]
     },
 
