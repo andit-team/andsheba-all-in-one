@@ -22,9 +22,9 @@
                 /> ({{rating}})
             </div>
             <div class="card-action">
-                <a class="edit"><q-icon name="far fa-edit"/><span>Edit</span></a>
-                <a class="delete" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon style="font-size: 16px;font-weight: 600;" name="clear"/><span>Inactive</span></a>
-                <a class="delete text-green" v-if="service.status == 'inactive'" @click="Active"><q-icon style="font-size: 16px;font-weight: 600;" name="check"/><span>Active</span></a>
+                <div class="row justify-end q-px-xs">
+                    <a class="text-warning"><q-icon name="far fa-eye"/><span> Details</span></a>
+                </div>
             </div>
         </q-card-section>
     </q-card>
