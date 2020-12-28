@@ -112,12 +112,14 @@ export default {
             location: '',
         }
     },
-    created() {
-        this.$store.dispatch('service/fetchCategories');
-        this.$axios.get('https://ipapi.co/json/').then(result => {
-            this.latitude = result.data.latitude
-            this.longitude = result.data.longitude
-            this.location = result.data.city + ", " + result.data.country_name
+    async created() {
+        await this.$store.dispatch('service/fetchCategories');
+        let result = await this.$axios.get('https://ipapi.co/json/')
+        this.latitude = result.data.latitude
+        this.longitude = result.data.longitude
+        this.location = result.data.city + ", " + result.data.country_name
+        let hp_data = this.$axios.get(`${process.env.API_URL}/customer/homepage`, {
+            params: { longitude: this.longitude, latitude: this.latitude }
         })
     },
 

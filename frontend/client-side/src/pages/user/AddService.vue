@@ -25,6 +25,7 @@
                             <q-input
                                 v-model="service.name"
                                 label="Service Name"
+                                lazy-rules
                                 :rules="[
                                      val => (val && val.length > 0) || 'Please type Name'
                                 ]"
@@ -36,6 +37,7 @@
                                 option-label="name"
                                 label="Category"
                                 @input="handleCategorySelect"
+                                lazy-rules
                                 :rules="[
                                     val => !!val || 'Please Select A Category'
                                 ]"
@@ -469,7 +471,9 @@ export default {
     data() {
         return {
             tab: "overview",
-            service: null,
+            service: {
+                address: {}
+            },
             mapCenter: null,
             area_types: [
                 {name: "পৌরসভা", value: 'municipal'},

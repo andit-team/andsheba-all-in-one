@@ -83,16 +83,21 @@
                                     </gmap-autocomplete>
                                 </div>
 
-                                <div class="marker"></div>
                                 <GmapMap
                                     ref="mapRef"
                                     :center="mapCenter"
                                     :zoom="13"
                                     map-type-id="terrain"
-                                    style="width: 97%; height: 300px"
+                                    style="width: 97%; height: 400px"
+                                    @dragstart="handleDragStart"
                                     @dragend="handleDragEnd"
                                     @click="handleMapClick"
+                                    @drag="handleDrag"
                                 >
+                                    <GmapMarker
+                                        ref="marker"
+                                        :position="markerCenter"
+                                    />
                                 </GmapMap>
 
 
@@ -154,13 +159,20 @@ export default {
                 return this.$store.getters["pro/getAllPlans"]
             }
         },
-
         formattedAddress: {
             get() {
                 return this.address.address
             },
             set(value) {
                 this.address.address = value;
+            }
+        },
+        markerCenter: {
+            get() {
+                return this.address.location
+            },
+            set(value) {
+                this.address.location = value
             }
         }
     },
@@ -171,12 +183,24 @@ export default {
 
 
     methods: {
-        async handleDragEnd() {
+        handleDragStart() {
+            this.$refs.marker.$markerObject.setAnimation(google.maps.Animation.BOUNCE)
+        },
+        handleDrag() {
             let location = {
                 lat: this.$refs.mapRef.$mapObject.center.lat(),
                 lng: this.$refs.mapRef.$mapObject.center.lng()
             }
-            this.address.location = location
+            this.markerCenter = location
+        },
+
+        async handleDragEnd() {
+            this.$refs.marker.$markerObject.setAnimation(null)
+            let location = {
+                lat: this.$refs.mapRef.$mapObject.center.lat(),
+                lng: this.$refs.mapRef.$mapObject.center.lng()
+            }
+            this.mapCenter = location
             let response = await this.$axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + location.lat + '%2C' + location.lng + '&language=en&key=AIzaSyDtygZ5JPTLgwFLA8nU6bb4d_6SSLlTPGw');
             if (response.status == 200) {
                 let address = response.data.results[0].formatted_address
@@ -199,15 +223,13 @@ export default {
         },
 
         setPlace(place) {
-            let address = {
-                address: place.formatted_address,
-                location: {
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng(),
-                }
+            this.formattedAddress = place.formatted_address
+            let location = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng(),
             }
-            this.address = address
-            this.mapCenter = address.location
+            this.mapCenter = location
+            this.markerCenter = location
         },
 
 
@@ -257,16 +279,5 @@ export default {
 
 
 <style lang="scss" scoped>
-.marker {
-    position: absolute;
-    background: url('/icons/pin.svg') no-repeat;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    margin-left: -15px;
-    margin-top: 140px;
-    height: 45px;
-    width: 40px;
-    cursor: pointer;
-}
+
 </style>

@@ -38,21 +38,6 @@ export const fetchAgent = async ({commit}) => {
     }
 }
 
-
-
-
-export const fetchServices = async ({commit}) => {
-    let token = Cookies.get('token')
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Authorization ${token}`
-    }
-    let response = await axios.get(`${process.env.API_URL}/pro/services`,{ headers })
-    if(response.data.error === false) {
-        commit('setServices', response.data.data)
-    }
-}
-
 export const updateStatus = async ({}, service) => {
     let token = Cookies.get('token')
     const headers = {
