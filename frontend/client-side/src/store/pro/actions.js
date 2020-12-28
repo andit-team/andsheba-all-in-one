@@ -53,14 +53,46 @@ export const addService = async ({state} ) => {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    console.log(state.service)
+    let pricing = JSON.parse ( JSON.stringify ( state.service.pricing.filter(question => question.title != "") ) )
+    let faqs = state.service.faqs.filter(faq => faq.question != '')
+    pricing.forEach(question => {
+        question.answers = question.answers.filter(answer => answer.answer_title_or_unit != "" && answer.price != "")
+    })
 
+    let thumbImage = state.service.thumb_image && await uploadSingleImage(state.service.thumb_image)
+    let galleryImages = []
+    await state.service.service_images.map(async image => {
+        let url = await uploadSingleImage(image)
+        galleryImages.push(url)
+    })
 
-    // let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
-    // return {
-    //     error: response.data.error,
-    //     msg: response.data.msg
-    // }
+    let service = {
+        title: state.service.name,
+        category: state.service.category,
+        sub_category: state.service.sub_category,
+        tags: state.service.tags,
+
+        description: state.service.description || '',
+        faq: faqs,
+        questions: pricing,
+
+        thumb_img: thumbImage,
+        gallery_images: galleryImages,
+        address: state.service.address,
+        division:  state.service.division.id,
+        district: state.service.district.id,
+        municipal: state.service.municipal ? state.service.municipal.id : '',
+        ward: state.service.ward ? state.service.ward.id : '',
+        upazila: state.service.upazila ? state.service.upazila.id : '',
+        union:  state.service.union ? state.service.union.id : '',
+        village: state.service.village ? state.service.village.id : '',
+        residential_or_municipal: state.service.area_type.value
+    }
+    let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
+    return {
+        error: response.data.error,
+        msg: response.data.msg
+    }
 }
 
 export const fetchServices = async ({commit}) => {
@@ -86,8 +118,9 @@ export const updateStatus = async ({}, service) => {
 }
 
 
-export const updateServiceLocal = async ({}, service) => {
+export const updateServiceLocal = async ({commit}, service) => {
     LocalStorage.set('service', service)
+    commit('setService', service)
 }
 
 export const fetchServiceLocal = async ({commit}) => {
@@ -106,23 +139,18 @@ export const fetchServiceLocal = async ({commit}) => {
     }
 }
 
+function base64Data(ImageURL) {
+    let block = ImageURL.split(";");
+    return  block[1].split(",")[1];
+}
 
-function b64toBlob(b64Data, contentType, sliceSize) {
-    contentType = contentType || '';
-    sliceSize = sliceSize || 512;
-    let byteCharacters = atob(b64Data);
-    let byteArrays = [];
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-        let slice = byteCharacters.slice(offset, offset + sliceSize);
-        let byteNumbers = new Array(slice.length);
-        for (let i = 0; i < slice.length; i++) {
-            byteNumbers[i] = slice.charCodeAt(i);
-        }
-
-        let byteArray = new Uint8Array(byteNumbers);
-
-        byteArrays.push(byteArray);
+async function uploadSingleImage(image) {
+    const data = new FormData()
+    data.append('image', base64Data(image))
+    let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+    const res = await axios.post(url, data, {})
+    if (res.data.success) {
+       return res.data.data.image.url
     }
-    let blob = new Blob(byteArrays, {type: contentType});
-    return blob;
+    return ''
 }

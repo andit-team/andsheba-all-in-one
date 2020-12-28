@@ -360,7 +360,6 @@
                                         option-value="id"
                                         option-label="bn_name"
                                         :options="wards"
-                                        @input="handleDistrictSelect"
                                         lazy-rules
                                         :rules="[
                                                 val => !!val || 'Please Select A Ward'
@@ -369,7 +368,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" v-if="service.area_type && service.area_type.value === 'upazila'">
+                            <div class="row" v-if="service.area_type && service.area_type.value === 'residential'">
                                 <div class="col-12 col-md-4 q-pr-sm">
                                     <q-select
                                         filled
@@ -462,7 +461,7 @@
 <script>
 import Swal from "sweetalert2";
 import ChipInput from "components/common/ChipInput";
-import {Cookies} from 'quasar';
+import {LocalStorage} from 'quasar';
 
 export default {
     name: "AddService",
@@ -474,7 +473,7 @@ export default {
             mapCenter: null,
             area_types: [
                 {name: "পৌরসভা", value: 'municipal'},
-                {name: "উপজেলা", value: 'upazila'},
+                {name: "উপজেলা", value: 'residential'},
             ]
         }
     },
@@ -486,6 +485,22 @@ export default {
         this.mapCenter = this.service.address.location
         if(this.service.category !== null) {
             await  this.$store.dispatch('service/fetchSubCategories', this.service.category._id);
+        }
+        if(this.service.division !== null) {
+            await this.$store.dispatch('location/fetchDistricts', this.service.division.id)
+        }
+        if(this.service.district !== null) {
+            await this.$store.dispatch('location/fetchMunicipals', this.service.district.id)
+            await this.$store.dispatch('location/fetchUpazilas', this.service.district.id)
+        }
+        if(this.service.municipal !== null) {
+            await this.$store.dispatch('location/fetchWards', this.service.municipal.id)
+        }
+        if(this.service.upazila !== null) {
+            await this.$store.dispatch('location/fetchUnion', this.service.upazila.id)
+        }
+        if(this.service.union !== null) {
+            await this.$store.dispatch('location/fetchVillages', this.service.union.id)
         }
     },
     computed: {
@@ -616,7 +631,6 @@ export default {
             this.markerCenter = location
         },
 
-
         async handleDragEnd() {
             this.$refs.marker.$markerObject.setAnimation(null)
             let location = {
@@ -629,7 +643,6 @@ export default {
                 let address = response.data.results[0].formatted_address
                 this.formattedAddress = address
             }
-            console.log(this.service)
         },
 
         async handleMapClick(click) {
@@ -678,17 +691,6 @@ export default {
         },
 
 
-        async handleFileUpload(file) {
-            const data = new FormData()
-            data.append('image', file)
-            let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
-            const res = await this.$axios.post(url, data, {})
-            if (res.data.success) {
-                return res.data.data.image.url
-            }
-            return null
-        },
-
         async handleDivisionSelect(value) {
             this.service.district = null, this.service.municipal = null, this.service.ward = null, this.service.upazila = null, this.service.union = null, this.service.village = null
             this.districts = [], this.municipals = [], this.wards = [], this.upazilas = [], this.unions = [], this.villages = []
@@ -724,37 +726,27 @@ export default {
                     'warning'
                 )
                 this.tab = 'overview'
-            }
-            this.handleSave();
-            let response = await this.$store.dispatch('pro/addService')
-        },
-
-        async handleServiceAdd() {
-            this.pricing.forEach(question => {
-                question.answers = question.answers.filter(answer => answer.answer_title_or_unit != "" && answer.price != "")
-            })
-            let service = {
-                title: this.name,
-                category: this.category,
-                sub_category: this.sub_category,
-                tags: [],
-                description: this.description,
-                faq: this.faqs.filter(faq => faq.question != ''),
-                questions: this.pricing.filter(question => question.title != ""),
-                address: this.address,
-                thumb_img: this.thumb_image,
-                gallery_images: this.service_images
-            }
-
-            let response = await this.$store.dispatch('pro/addService', service)
-            if (response.error === true) {
-                await Swal.fire('Error', response.msg, 'error')
+            } else if( ! (this.service.village || this.service.ward) ) {
+                Swal.fire(
+                    'Warning',
+                    'Please Provide required Your Area',
+                    'warning'
+                )
+                this.tab = 'location'
             } else {
-                await Swal.fire('Success', 'Service added Successfully', 'success')
-                await this.$router.push('/user/services')
+                this.handleSave();
+                let response = await this.$store.dispatch('pro/addService')
+                if (response.error === true) {
+                    await Swal.fire('Error', response.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Service added Successfully', 'success')
+                    LocalStorage.remove('service')
+                    this.$store.commit('pro/clearService')
+                    await this.$router.push('/user/services')
+                }
             }
-        }
 
+        },
     }
 }
 </script>

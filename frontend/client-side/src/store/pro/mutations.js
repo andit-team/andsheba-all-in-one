@@ -22,3 +22,39 @@ export const setService = (state, service ) => {
     }
 }
 
+export const clearService = (state) => {
+    state.service = {
+        name: null,
+        category: null,
+        sub_category: null,
+        tags: [],
+        description: null,
+        faqs: [
+            {
+                question: "",
+                answer: ""
+            }
+        ],
+        pricing: [
+            {
+                title: "",
+                question_type: "radio",
+                answers: [
+                    {answer_title_or_unit: '',price: ''}
+                ],
+            }
+        ],
+        thumb_image: null,
+        service_images: [],
+        address: null,
+        area_type: null,
+        division: null,
+        district: null,
+        municipal: null,
+        ward: null,
+        upazila: null,
+        union : null,
+        village: null
+    }
+}
+
