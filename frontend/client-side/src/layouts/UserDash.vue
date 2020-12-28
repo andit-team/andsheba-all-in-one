@@ -254,7 +254,9 @@ export default {
     name: "MyLayout",
     data() {
         return {
-            profile: null,
+            profile: {
+                name: ''
+            },
             leftDrawerOpen: false,
             search: "",
             active: true,

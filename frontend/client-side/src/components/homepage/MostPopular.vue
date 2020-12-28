@@ -1,5 +1,5 @@
 <template>
-    <div class="most_popular_section">
+    <div class="most_popular_section_hp">
         <div class="container">
             <div class="row">
                 <div class="heading q-pa-md col-md-6 col-sm-12 col-xs-12">
@@ -114,7 +114,7 @@ export default {
 </script>
 
 <style lang="scss">
-.most_popular_section {
+.most_popular_section_hp {
     background: #fff;
     padding: 40px 0;
     .container {
