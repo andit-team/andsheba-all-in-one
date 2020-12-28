@@ -1649,6 +1649,70 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get all service",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkwNDEzMzcsImV4cCI6MTYwOTA3MDEzN30.f3F-W0TmNs7YYP7eeKjwqvgKrQHZBTHH_7XUWp5bRe8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/agent/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send report",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkwNDEzMzcsImV4cCI6MTYwOTA3MDEzN30.f3F-W0TmNs7YYP7eeKjwqvgKrQHZBTHH_7XUWp5bRe8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Fault Service\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/agent/service/5fe7186c4149003110925ca1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"service",
+								"5fe7186c4149003110925ca1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

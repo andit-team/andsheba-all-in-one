@@ -8,6 +8,11 @@ router.post('/signup', Agent.signUpAgent)
 router.post('/login', Agent.loginAgent)
 router.post('/verify', Agent.verifyAgent)
 
+// Service Controller -----------------------------
+const Service = require('../../controllers/pro/service.controller')
+router.get('/service', Auth.user, Service.findAllServicesByAgent)
+router.put('/service/:_id', Auth.user, Service.updateServiceMessageByAgent)
+
 
 // Export the Router
 module.exports = router 
