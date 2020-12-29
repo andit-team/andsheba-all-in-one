@@ -25,7 +25,6 @@ export const fetchServices = async ({commit}, params) => {
 
 export const fetchService = async ({commit}, id) => {
     let response = await axios.get(`${process.env.API_URL}/customer/search/${id}` );
-    console.log(response.data.data)
     if(response.data.error === false){
         commit('setService',response.data.data);
     }

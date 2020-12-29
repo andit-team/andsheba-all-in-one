@@ -46,6 +46,13 @@ const routes = [
       { path: 'services', component: () => import('pages/agent/Services.vue') },
     ]
   },
+  {
+    path: '/pro',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: 'single', component: () => import('pages/pro/single.vue') },
+    ]
+  },
 
 
   // Always leave this as last one,
