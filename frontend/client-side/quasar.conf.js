@@ -117,8 +117,8 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `Quasar App`,
-        short_name: `Quasar App`,
+        name: `AndSheba`,
+        short_name: `AndSheba`,
         description: `In the era of instant-everything, you shouldn’t have to spend an entire afternoon researching, calling and comparing local pros whenever you need one. So we set out to make it easier. Today, millions of customers use Thumbtack technology to find and hire small businesses across the country.`,
         display: 'standalone',
         orientation: 'portrait',

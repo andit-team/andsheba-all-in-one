@@ -21,12 +21,12 @@
                     readonly
                 /> ({{rating}})
             </div>
-            <div class="card-action">
-                <a class="edit"><q-icon name="far fa-edit"/><span>Edit</span></a>
-                <a class="delete" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon style="font-size: 16px;font-weight: 600;" name="clear"/><span>Inactive</span></a>
-                <a class="delete text-green" v-if="service.status == 'inactive'" @click="Active"><q-icon style="font-size: 16px;font-weight: 600;" name="check"/><span>Active</span></a>
-            </div>
         </q-card-section>
+        <q-card-actions class="justify-between q-pa-md c-card-action">
+            <a class="text-positive"><q-icon name="far fa-edit" style="margin-top: -3px;"/><span class="q-ml-sm">Edit</span></a>
+            <a class="cursor-pointer text-negative" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon name="clear"/><span class="q-ml-xs">Inactive</span></a>
+            <a class="cursor-pointer text-secondary" v-if="service.status == 'inactive'" @click="Active"><q-icon name="check"/><span class="q-ml-xs">Active</span></a>
+        </q-card-actions>
     </q-card>
 </template>
 
@@ -73,37 +73,11 @@ export default {
     padding: 5px;
     border-radius: 13px;
 }
-.card-action {
-    margin-top: 15px;
-    .edit {
-        cursor: pointer;
-        color: #36a745;
-        i {
-            position: absolute;
-            margin-top: 2px;
-        }
-        span {
-            margin-left: 20px;
-        }
-        &:hover {
-            color: #13711f;
-        }
-    }
-    .delete {
-        cursor: pointer;
-        position: absolute;
-        right: 13px;
-        color: #de3544;
-        i {
-            position: absolute;
-            margin-top: 2px;
-        }
-        span {
-            margin-left: 18px;
-        }
-        &:hover {
-            color: #850d18;
-        }
+.c-card-action {
+    font-weight: 400;
+    .q-icon {
+        font-weight: 500;
+        font-size: 16px;
     }
 }
 </style>
