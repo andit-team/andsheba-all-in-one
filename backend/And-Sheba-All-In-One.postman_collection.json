@@ -1245,13 +1245,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA4OTc0NTU1LCJleHAiOjE2MDkwMDMzNTV9.T1FeKk3M5mMFhDp6-V7Hp1HSuK39RDJOs-WE9v753L8",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MTI3Nzk3LCJleHAiOjE2MDkxNTY1OTd9.NfSKTTXGA0rUyAWBJH_lhECzO4k8pi_9O5hFCofcqxc",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.2322434,\r\n            \"lng\": 22.323234423\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"division\":\"3\",\r\n    \"district\": \"21\",\r\n    \"upazila\": \"181\",\r\n    \"union\": \"1629\",\r\n    \"village\": \"2167\",\r\n    \"residential_or_municipal\": \"residential\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Electric Mistri\",\r\n    \"description\": \"I can repair all kinds of Electric Devices\",\r\n    \"thumb_img\": \"https://www.online-tech-tips.com/wp-content/uploads/2019/12/electronic-gadgets.jpeg\",\r\n    \"gallery_images\": [\r\n        \"https://static.kent.ac.uk/nexus/ems/960.jpg\",\r\n        \"https://www.msquaredelectronics.com/wp-content/uploads/2018/07/custom-electronic-design.jpg\"\r\n    ],\r\n    \"address\": {\r\n        \"address\": \"32, Choto mirzapur, khulna\",\r\n        \"location\": {\r\n            \"lat\": 22.845641,\r\n            \"lng\": 89.5403279\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"_id\": \"5fc89e9d8557760c18f2dc55\",\r\n        \"name\": \"Computer\"\r\n    },\r\n    \"sub_category\": {\r\n\r\n    },\r\n    \"tags\": [\r\n        \"computer\",\"hardware\",\"software\"\r\n    ],\r\n    \"faq\": [\r\n        {\r\n            \"question\": \"Question check\",\r\n            \"answer\": \"Answer Check\"\r\n        }\r\n    ],\r\n    \"questions\": [\r\n        {\r\n            \"title\": \"What kinds of problem\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Hardware\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Software\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        },\r\n         {\r\n            \"title\": \"Laptop Or Desktop\",\r\n            \"question_type\": \"radio\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"Laptop\",\r\n                    \"price\": 1000\r\n                },\r\n                {\r\n                    \"answer_title_or_unit\": \"Desktop\",\r\n                    \"price\": 2000\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"division\":\"3\",\r\n    \"district\": \"21\",\r\n    \"upazila\": \"181\",\r\n\r\n    \"residential_or_municipal\": \"residential\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1365,6 +1365,85 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MjE0MDUxLCJleHAiOjE2MDkyNDI4NTF9.1tVaj_udkUj9M9dLXMyYtp3x7y1HGkctzBCJvuX0fHk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"first pro 1\",\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Picture",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MjE0MDUxLCJleHAiOjE2MDkyNDI4NTF9.1tVaj_udkUj9M9dLXMyYtp3x7y1HGkctzBCJvuX0fHk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"picture\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pro/profile-picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"profile-picture"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1377,13 +1456,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://backend.andsheba.com/api/customer/search?longitude=22.323234423&latitude=22.2322434&key=Computer",
-							"protocol": "https",
+							"raw": "http://localhost:5000/api/customer/search?longitude=89.5403279&latitude=22.845641&key=Computer",
+							"protocol": "http",
 							"host": [
-								"backend",
-								"andsheba",
-								"com"
+								"localhost"
 							],
+							"port": "5000",
 							"path": [
 								"api",
 								"customer",
@@ -1392,11 +1470,11 @@
 							"query": [
 								{
 									"key": "longitude",
-									"value": "22.323234423"
+									"value": "89.5403279"
 								},
 								{
 									"key": "latitude",
-									"value": "22.2322434"
+									"value": "22.845641"
 								},
 								{
 									"key": "key",
@@ -1657,7 +1735,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkwNDEzMzcsImV4cCI6MTYwOTA3MDEzN30.f3F-W0TmNs7YYP7eeKjwqvgKrQHZBTHH_7XUWp5bRe8",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkxMzU3NjMsImV4cCI6MTYwOTE2NDU2M30.G4QWmOKl69oNmDF3KB1GdPfsJiyi-YRlDGgVQQ23o4M",
 								"type": "text"
 							}
 						],
