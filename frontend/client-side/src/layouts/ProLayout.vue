@@ -19,7 +19,7 @@
                     v-if="!$q.screen.gt.sm"
                 />
 
-                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/user/dashboard">
+                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/pro/dashboard">
                     <img src="https://andsheba.com/_nuxt/img/logo.0f218c1.png"/>
                 </q-btn>
 
@@ -82,21 +82,21 @@
                         </div>
                     </q-img>
 
-                    <q-item clickable v-ripple to="/user/dashboard">
+                    <q-item clickable v-ripple to="/pro/dashboard">
                         <q-item-section avatar>
                             <q-icon name="dashboard"/>
                         </q-item-section>
                         <q-item-section>Dashboard</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/services" >
+                    <q-item clickable v-ripple to="/pro/services" >
                         <q-item-section avatar>
                             <q-icon name="design_services"/>
                         </q-item-section>
                         <q-item-section>My Services</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/booking_list">
+                    <q-item clickable v-ripple to="/pro/booking_list">
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-check"/>
                         </q-item-section>
@@ -104,20 +104,20 @@
                     </q-item>
 
 
-                    <q-item clickable v-ripple to="/user/profile" >
+                    <q-item clickable v-ripple to="/pro/profile" >
                         <q-item-section avatar>
                             <q-icon name="person"/>
                         </q-item-section>
                         <q-item-section>Profile</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/wallet">
+                    <q-item clickable v-ripple to="/pro/wallet">
                         <q-item-section avatar>
                             <q-icon name="fas fa-file-invoice-dollar"/>
                         </q-item-section>
                         <q-item-section>Wallet</q-item-section>
                     </q-item>
-                    <q-item clickable v-ripple to="/user/subscription">
+                    <q-item clickable v-ripple to="/pro/subscription">
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-alt"/>
                         </q-item-section>
@@ -145,7 +145,7 @@
                         <q-breadcrumbs-el
                             label="Pro"
                             icon="person"
-                            to="/user"
+                            to="/pro"
                         />
                     </q-breadcrumbs>
                 </q-toolbar>
@@ -182,21 +182,21 @@
                         <q-separator inset/>
                         <q-card-section class="column justify-center q-pa-md">
                             <q-list bordered separator>
-                                <q-item clickable v-ripple to="/user" :active="active">
+                                <q-item clickable v-ripple to="/pro" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="dashboard"/>
                                     </q-item-section>
                                     <q-item-section>Dashboard</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/services" :active="active">
+                                <q-item clickable v-ripple to="/pro/services" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="design_services"/>
                                     </q-item-section>
                                     <q-item-section>My Services</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/booking_list" :active="active">
+                                <q-item clickable v-ripple to="/pro/booking_list" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-check"/>
                                     </q-item-section>
@@ -204,20 +204,20 @@
                                 </q-item>
 
 
-                                <q-item clickable v-ripple to="/user/profile" :active="active">
+                                <q-item clickable v-ripple to="/pro/profile" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="person"/>
                                     </q-item-section>
                                     <q-item-section>Profile</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/wallet" :active="active">
+                                <q-item clickable v-ripple to="/pro/wallet" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="fas fa-file-invoice-dollar"/>
                                     </q-item-section>
                                     <q-item-section>Wallet</q-item-section>
                                 </q-item>
-                                <q-item clickable v-ripple to="/user/subscription" :active="active">
+                                <q-item clickable v-ripple to="/pro/subscription" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-alt"/>
                                     </q-item-section>
@@ -267,7 +267,7 @@ export default {
         this.fabYoutube = fabYoutube;
         let response = await this.$store.dispatch('pro/fetchPro')
         if (response.error === true) {
-            await this.$router.push('/user/login')
+            await this.$router.push('/pro/login')
         }
         this.profile = response.data
     },

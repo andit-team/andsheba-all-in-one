@@ -746,7 +746,7 @@ export default {
                     await Swal.fire('Success', 'Service added Successfully', 'success')
                     LocalStorage.remove('service')
                     this.$store.commit('pro/clearService')
-                    await this.$router.push('/user/services')
+                    await this.$router.push('/pro/services')
                 }
             }
 
