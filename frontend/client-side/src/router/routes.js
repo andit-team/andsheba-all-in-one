@@ -43,6 +43,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/agent/Dashboard.vue') },
       { path: 'dashboard', component: () => import('pages/agent/Dashboard.vue') },
+      { path: 'services', component: () => import('pages/agent/Services.vue') },
     ]
   },
 

@@ -337,7 +337,7 @@ exports.findAllServicesByAgent = (req, res, next ) => {
             
         }else{
             const data = {
-                msg: 'Problem in getting service',
+                msg: 'No Data Found',
                 error:true
             }
             RESPONDER.response(res, 200, data)
