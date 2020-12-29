@@ -1379,7 +1379,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"first pro 1\",\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"first pro 1\",\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\",\r\n    \"cover_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"thumb_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"date_of_birth\": \"23-12-1990\",\r\n    \"gender\": \"male\",\r\n    \"description\": \"Lorem ip\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1397,49 +1397,6 @@
 								"api",
 								"pro",
 								"profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Profile Picture",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MjE0MDUxLCJleHAiOjE2MDkyNDI4NTF9.1tVaj_udkUj9M9dLXMyYtp3x7y1HGkctzBCJvuX0fHk",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"picture\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/api/pro/profile-picture",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"pro",
-								"profile-picture"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
 							]
 						}
 					},
