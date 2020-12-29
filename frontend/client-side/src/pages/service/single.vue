@@ -55,7 +55,7 @@
           tempore voluptatibus quae ipsam rerum eum Facilis eligendi
         </div>
         <div class="text-h5 q-my-sm text-weight-bold q-mt-lg">FAQ</div>
-        <div>
+        <div :class="[role=='agent'?'q-mb-xl':'']">
           <q-list class="faq">
             <q-expansion-item expand-separator label="What a nice question ?">
               <q-card>
@@ -92,141 +92,143 @@
           </q-list>
         </div>
         <!-- Faq Bottom -->
-        <div class="row no-wrap items-center q-my-lg">
-          <span class="text-h5 q-mr-md text-weight-bold">45 Reviews</span>
-          <q-rating size="35px" :max="5" color="orange" />
-        </div>
-        <div class="row items-start q-my-md">
-          <div class="col-md-9 col-sm-12 col-xs-12">
-            <div class="row no-wrap items-center q-my-sm">
-              <span class="text-h6 text-primary q-mr-md">5 Stars</span>
-              <q-linear-progress
-                class="col"
-                rounded
-                size="12px"
-                value="0.7"
-                color="orange"
-              />
-              <span class="text-h6 text-center text-primary q-ml-md">(44)</span>
+        <div v-if="role !== 'agent'">
+          <div class="row no-wrap items-center q-my-lg">
+            <span class="text-h5 q-mr-md text-weight-bold">45 Reviews</span>
+            <q-rating size="35px" :max="5" color="orange" />
+          </div>
+          <div class="row items-start q-my-md">
+            <div class="col-md-9 col-sm-12 col-xs-12">
+              <div class="row no-wrap items-center q-my-sm">
+                <span class="text-h6 text-primary q-mr-md">5 Stars</span>
+                <q-linear-progress
+                  class="col"
+                  rounded
+                  size="12px"
+                  value="0.7"
+                  color="orange"
+                />
+                <span class="text-h6 text-center text-primary q-ml-md">(44)</span>
+              </div>
+              <div class="row no-wrap items-center q-my-sm">
+                <span class="text-h6 text-primary q-mr-md">4 Stars</span>
+                <q-linear-progress
+                  class="col"
+                  rounded
+                  size="12px"
+                  value="0.1"
+                  color="orange"
+                />
+                <span class="text-h6 text-center text-primary q-ml-md">(1)</span>
+              </div>
+              <div class="row no-wrap items-center q-my-sm">
+                <span class="text-h6 text-primary q-mr-md">3 Stars</span>
+                <q-linear-progress
+                  class="col"
+                  rounded
+                  size="12px"
+                  value="0.0"
+                  color="orange"
+                />
+                <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
+              </div>
+              <div class="row no-wrap items-center q-my-sm">
+                <span class="text-h6 text-primary q-mr-md">2 Stars</span>
+                <q-linear-progress
+                  class="col"
+                  rounded
+                  size="12px"
+                  value="0.0"
+                  color="orange"
+                />
+                <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
+              </div>
+              <div class="row no-wrap items-center q-my-sm">
+                <span class="text-h6 text-primary q-mr-md">1 Stars</span>
+                <q-linear-progress
+                  class="col"
+                  rounded
+                  size="12px"
+                  value="0.0"
+                  color="orange"
+                />
+                <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
+              </div>
             </div>
-            <div class="row no-wrap items-center q-my-sm">
-              <span class="text-h6 text-primary q-mr-md">4 Stars</span>
-              <q-linear-progress
-                class="col"
-                rounded
-                size="12px"
-                value="0.1"
-                color="orange"
-              />
-              <span class="text-h6 text-center text-primary q-ml-md">(1)</span>
-            </div>
-            <div class="row no-wrap items-center q-my-sm">
-              <span class="text-h6 text-primary q-mr-md">3 Stars</span>
-              <q-linear-progress
-                class="col"
-                rounded
-                size="12px"
-                value="0.0"
-                color="orange"
-              />
-              <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
-            </div>
-            <div class="row no-wrap items-center q-my-sm">
-              <span class="text-h6 text-primary q-mr-md">2 Stars</span>
-              <q-linear-progress
-                class="col"
-                rounded
-                size="12px"
-                value="0.0"
-                color="orange"
-              />
-              <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
-            </div>
-            <div class="row no-wrap items-center q-my-sm">
-              <span class="text-h6 text-primary q-mr-md">1 Stars</span>
-              <q-linear-progress
-                class="col"
-                rounded
-                size="12px"
-                value="0.0"
-                color="orange"
-              />
-              <span class="text-h6 text-center text-primary q-ml-md">(0)</span>
+            <div class="col-sm-12 col-xs-12 row no-wrap justify-end items-center q-my-xl">
+              <div class="text-h6 text-weight-bold q-mr-md">Sort by</div>
+              <q-select outlined dense class="col-3" v-model="sortBy" :options="sortOptions" label="select"/>
             </div>
           </div>
-          <div class="col-sm-12 col-xs-12 row no-wrap justify-end items-center q-my-xl">
-            <div class="text-h6 text-weight-bold q-mr-md">Sort by</div>
-            <q-select outlined dense class="col-3" v-model="sortBy" :options="sortOptions" label="select"/>
-          </div>
-        </div>
 
-        <q-separator />
-        <!-- comment -->
-        <div class="row no-wrap items-center q-my-md">
-          <q-avatar size="28px" class="q-mr-md"
-            ><img :src="service.thumb_img"
-          /></q-avatar>
-          <div class="text-h6 text-weight-bold">gngsnap32</div>
-          <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange text-weight-bold">5</div>
-        </div>
-        <div class="row">
-          <div class="text-subtitle1 text-grey">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
-            tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-            voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
-            tempore voluptatibus quae ipsam rerum eum magni illo
+          <q-separator />
+          <!-- comment -->
+          <div class="row no-wrap items-center q-my-md">
+            <q-avatar size="28px" class="q-mr-md"
+              ><img :src="service.thumb_img"
+            /></q-avatar>
+            <div class="text-h6 text-weight-bold">gngsnap32</div>
+            <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
+            <div class="text-h6 text-orange text-weight-bold">5</div>
           </div>
-        </div>
-        <q-separator class="q-my-md" />
-        <div class="row no-wrap items-center q-my-md">
-          <q-avatar size="28px" class="q-mr-md"
-            ><img :src="service.thumb_img"
-          /></q-avatar>
-          <div class="text-h6 text-weight-bold">ugandau420</div>
-          <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange text-weight-bold">3</div>
-        </div>
-        <div class="row">
-          <div class="text-subtitle1 text-grey">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
-            tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-            voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
-            tempore voluptatibus quae ipsam rerum eum magni illo
+          <div class="row">
+            <div class="text-subtitle1 text-grey">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
+              tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+              voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
+              tempore voluptatibus quae ipsam rerum eum magni illo
+            </div>
           </div>
-        </div>
-        <q-separator  class="q-my-md"/>
-        <div class="row no-wrap items-center q-my-md">
-          <q-avatar size="28px" class="q-mr-md"
-            ><img :src="service.thumb_img"
-          /></q-avatar>
-          <div class="text-h6 text-weight-bold">Shariful402</div>
-          <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange text-weight-bold">4</div>
-        </div>
-        <div class="row">
-          <div class="text-subtitle1 text-grey">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
-            tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-            voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
-            tempore voluptatibus quae ipsam rerum eum magni illo
+          <q-separator class="q-my-md" />
+          <div class="row no-wrap items-center q-my-md">
+            <q-avatar size="28px" class="q-mr-md"
+              ><img :src="service.thumb_img"
+            /></q-avatar>
+            <div class="text-h6 text-weight-bold">ugandau420</div>
+            <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
+            <div class="text-h6 text-orange text-weight-bold">3</div>
           </div>
-        </div>
-        <q-separator  class="q-my-md"/>
-        <div class="row no-wrap items-center q-my-md">
-          <q-avatar size="28px" class="q-mr-md"
-            ><img :src="service.thumb_img"
-          /></q-avatar>
-          <div class="text-h6 text-weight-bold">ugandau420</div>
-          <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
-          <div class="text-h6 text-orange text-weight-bold">1</div>
-        </div>
-        <div class="row">
-          <div class="text-subtitle1 text-grey">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
-            tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
-            voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
-            tempore voluptatibus quae ipsam rerum eum magni illo
+          <div class="row">
+            <div class="text-subtitle1 text-grey">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
+              tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+              voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
+              tempore voluptatibus quae ipsam rerum eum magni illo
+            </div>
+          </div>
+          <q-separator  class="q-my-md"/>
+          <div class="row no-wrap items-center q-my-md">
+            <q-avatar size="28px" class="q-mr-md"
+              ><img :src="service.thumb_img"
+            /></q-avatar>
+            <div class="text-h6 text-weight-bold">Shariful402</div>
+            <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
+            <div class="text-h6 text-orange text-weight-bold">4</div>
+          </div>
+          <div class="row">
+            <div class="text-subtitle1 text-grey">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
+              tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+              voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
+              tempore voluptatibus quae ipsam rerum eum magni illo
+            </div>
+          </div>
+          <q-separator  class="q-my-md"/>
+          <div class="row no-wrap items-center q-my-md">
+            <q-avatar size="28px" class="q-mr-md"
+              ><img :src="service.thumb_img"
+            /></q-avatar>
+            <div class="text-h6 text-weight-bold">ugandau420</div>
+            <q-rating size="28px" class="q-ml-md q-mr-sm" :max="1" color="orange" />
+            <div class="text-h6 text-orange text-weight-bold">1</div>
+          </div>
+          <div class="row">
+            <div class="text-subtitle1 text-grey">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
+              tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore
+              voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
+              tempore voluptatibus quae ipsam rerum eum magni illo
+            </div>
           </div>
         </div>
         <!-- related section -->
@@ -271,15 +273,19 @@
           <q-separator />
 
           <q-card-actions>
-            <q-btn flat round icon="event" />
-            <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold">
+            <q-btn flat round icon="event" v-if="role !== 'agent'"/>
+            <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold" v-if="role !== 'agent'">
               Request for Quote
+            </q-btn>
+            <q-btn color="primary" :to="'/pro/single?id=' + service._id" class="text-weight-bold" v-if="role === 'agent'">
+              See Pro Profile
             </q-btn>
           </q-card-actions>
         </q-card>
       </div>
     </div>
-    <TopAreaServices class="q-mt-lg"/>
+
+    <TopAreaServices class="q-mt-lg" v-if="role !== 'agent'"/>
     <Footer/>
   </div>
 </template>
@@ -294,14 +300,19 @@ components:{
   data() {
     return {
       slide: 1,
+      role:'',
       sortBy: null,
       sortOptions: [
         '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
       ]
     };
   },
-  created() {
+  async created() {
     this.$store.dispatch("service/fetchService", this.$route.query.id);
+    console.log(23)
+    let res = await this.$store.dispatch("agent/fetchAgent");
+    !res.error?this.role = 'agent':null
+    console.log(this.role)
   },
   computed: {
     service: {
