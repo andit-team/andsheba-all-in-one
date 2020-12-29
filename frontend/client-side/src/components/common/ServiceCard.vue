@@ -21,6 +21,11 @@
                     readonly
                 /> ({{rating}})
             </div>
+            <div class="card-action">
+                <div class="row justify-end q-px-xs">
+                    <q-btn flat color="secondary" icon="visibility" :to="'/service/single?id=' + service._id" class="text-weight-bold">&nbsp; Details</q-btn>
+                </div>
+            </div>
         </q-card-section>
         <q-card-actions class="justify-between q-pa-md c-card-action">
             <a class="text-positive"><q-icon name="far fa-edit" style="margin-top: -3px;"/><span class="q-ml-sm">Edit</span></a>
