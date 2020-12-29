@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="text-h5 q-ma-lg">My Services <q-btn class="bg-primary text-white q-ml-md" to="/user/add_services">Add Service</q-btn></div>
+        <div class="text-h5 q-ma-lg">My Services <q-btn class="bg-primary text-white q-ml-md" to="/pro/add_services">Add Service</q-btn></div>
         <q-tabs
             v-model="tab"
             dense

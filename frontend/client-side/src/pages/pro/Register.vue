@@ -111,7 +111,7 @@
                                         color="primary"
                                         flat
                                         class="q-ml-sm"
-                                        to="/user/login"
+                                        to="/pro/login"
                                     />
                                 </div>
                             </q-form>
@@ -262,7 +262,7 @@ export default {
                         response.msg,
                         'success'
                     ).then(r => {
-                        this.$router.push('/user/dashboard')
+                        this.$router.push('/pro/dashboard')
                     })
                 }
             }
