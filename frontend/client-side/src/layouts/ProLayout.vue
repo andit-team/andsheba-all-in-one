@@ -78,7 +78,7 @@
                             <q-avatar size="56px" class="q-mb-sm">
                                 <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
                             </q-avatar>
-                            <div class="text-weight-bold">{{ profile.name }}</div>
+                            <div class="text-weight-bold">{{ pro.name }}</div>
                         </div>
                     </q-img>
 
@@ -271,8 +271,12 @@ export default {
         }
         this.profile = response.data
     },
-    mounted() {
-        console.log(this.$route.path)
+    computed: {
+        pro: {
+           get() {
+               return this.$store.getters["pro/getPro"]
+           }
+        }
     },
 
     methods: {

@@ -139,6 +139,16 @@ export const fetchServiceLocal = async ({commit}) => {
     }
 }
 
+
+export const updateProfilePicture = async ({}, image) => {
+
+}
+
+
+
+
+
+
 function base64Data(ImageURL) {
     let block = ImageURL.split(";");
     return  block[1].split(",")[1];
@@ -154,3 +164,5 @@ async function uploadSingleImage(image) {
     }
     return ''
 }
+
+

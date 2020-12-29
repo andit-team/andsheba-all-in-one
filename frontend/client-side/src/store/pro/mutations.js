@@ -3,7 +3,10 @@ export const setPlans = (state, plans) => {
 }
 
 export const setPro = (state, pro) => {
-    state.pro = pro
+    state.pro = {
+        ...state.pro,
+        ...pro
+    }
 }
 
 export const setServices = (state, services) => {
@@ -57,4 +60,6 @@ export const clearService = (state) => {
         village: null
     }
 }
+
+
 
