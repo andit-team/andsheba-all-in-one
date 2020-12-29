@@ -23,7 +23,7 @@
             </div>
             <div class="card-action">
                 <div class="row justify-end q-px-xs">
-                    <a class="text-warning"><q-icon name="far fa-eye"/><span> Details</span></a>
+                    <q-btn flat color="secondary" icon="visibility" :to="'/service/single?id=' + service._id" class="text-weight-bold">&nbsp; Details</q-btn>
                 </div>
             </div>
         </q-card-section>

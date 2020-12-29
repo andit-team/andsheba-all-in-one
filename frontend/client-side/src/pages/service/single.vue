@@ -19,6 +19,7 @@
               v-for="(image, index) in service.gallery_images"
               :name="index + 1"
               :img-src="image"
+              :key="index"
             />
 
             <q-carousel-slide
@@ -277,8 +278,8 @@
             <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold" v-if="role !== 'agent'">
               Request for Quote
             </q-btn>
-            <q-btn color="primary" :to="'/pro/single?id=' + service._id" class="text-weight-bold" v-if="role === 'agent'">
-              See Pro Profile
+            <q-btn color="primary" :to="'/pro/single?id=' + agent_id"  icon="visibility" style ="margin:0 auto" class="text-weight-bold" v-if="role === 'agent'">
+              &nbsp;See Pro Profile
             </q-btn>
           </q-card-actions>
         </q-card>
@@ -299,8 +300,9 @@ components:{
 },
   data() {
     return {
-      slide: 1,
+      slide: 2,
       role:'',
+      agent_id:'',
       sortBy: null,
       sortOptions: [
         '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
@@ -309,10 +311,12 @@ components:{
   },
   async created() {
     this.$store.dispatch("service/fetchService", this.$route.query.id);
-    console.log(23)
     let res = await this.$store.dispatch("agent/fetchAgent");
-    !res.error?this.role = 'agent':null
-    console.log(this.role)
+    if(!res.error){
+      this.role = 'agent'
+      this.agent_id = res.data._id
+    }
+
   },
   computed: {
     service: {
