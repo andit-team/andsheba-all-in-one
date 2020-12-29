@@ -11,6 +11,8 @@ const Pro = require('../../controllers/pro/pro.controller')
 router.post('/signup', Pro.signUpPro) 
 router.post('/login', Pro.login) 
 router.post('/verify', Pro.verifyPro)
+router.put('/profile', Auth.user, Pro.updateProfile)
+router.put('/profile-picture', Auth.user, Pro.updateProfilePicture)
 
 // Service Controller-----------------------
 const Service = require('../../controllers/pro/service.controller')

@@ -234,3 +234,78 @@ exports.verifyPro = (req, res, next) => {
         RESPONDER.response(res, 200, data)
     }
 }
+
+exports.updateProfilePicture = (req, res, next) => {
+    
+    let updateData = {
+        picture: req.body.picture
+    }
+    let query = {
+        _id: req.userData.user_id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Profile Picture'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Profile Picture Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Profile Picture Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.updateProfile = (req, res, next) => {
+    
+    let updateData = {
+       name: req.body.name,
+       mobile: req.body.mobile,
+       email: req.body.email,
+    }
+    if(req.body.password !== ''){
+        let hash = bcrypt.hashSync(req.body.password, 8)
+        updateData = {
+            ...updateData,
+            password: hash
+        }
+    }
+    let query = {
+        _id: req.userData.user_id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Profile'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Profile Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Profile Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
