@@ -26,6 +26,12 @@ const UserSchema = new Schema({
     wallet_balance: {
         type: Number
     },
+    cover_image: {
+        type: String
+    },
+    thumb_image: {
+        type: String
+    },
     picture:{
         type: String
     },

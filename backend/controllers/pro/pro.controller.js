@@ -235,38 +235,38 @@ exports.verifyPro = (req, res, next) => {
     }
 }
 
-exports.updateProfilePicture = (req, res, next) => {
+// exports.updateProfilePicture = (req, res, next) => {
     
-    let updateData = {
-        picture: req.body.picture
-    }
-    let query = {
-        _id: req.userData.user_id
-    }
-    User.updateOne(query,updateData).then(result => {
+//     let updateData = {
+//         picture: req.body.picture
+//     }
+//     let query = {
+//         _id: req.userData.user_id
+//     }
+//     User.updateOne(query,updateData).then(result => {
 
-        if(result.n > 0){
-            const data = {
-                error:false,
-                msg: 'Successfully Update Profile Picture'
-            }
-            RESPONDER.response(res, 200, data)
-        }else{
-            const data = {
-                error: true,
-                msg: 'Update Profile Picture Unsuccessful'
-            }
-            RESPONDER.response(res, 200, data)
-        }
+//         if(result.n > 0){
+//             const data = {
+//                 error:false,
+//                 msg: 'Successfully Update Profile Picture'
+//             }
+//             RESPONDER.response(res, 200, data)
+//         }else{
+//             const data = {
+//                 error: true,
+//                 msg: 'Update Profile Picture Unsuccessful'
+//             }
+//             RESPONDER.response(res, 200, data)
+//         }
 
-    }).catch(error => {
-        const data = {
-            error: true,
-            msg: 'Update Profile Picture Unsuccessful'
-        }
-        RESPONDER.response(res, 200, data)
-    })
-}
+//     }).catch(error => {
+//         const data = {
+//             error: true,
+//             msg: 'Update Profile Picture Unsuccessful'
+//         }
+//         RESPONDER.response(res, 200, data)
+//     })
+// }
 
 exports.updateProfile = (req, res, next) => {
     
@@ -274,6 +274,11 @@ exports.updateProfile = (req, res, next) => {
        name: req.body.name,
        mobile: req.body.mobile,
        email: req.body.email,
+       cover_image: req.body.cover_image,
+       thumb_image: req.body.thumb_image,
+       date_of_birth: req.body.date_of_birth,
+       gender: req.body.gender,
+       description: req.body.description
     }
     if(req.body.password !== ''){
         let hash = bcrypt.hashSync(req.body.password, 8)
