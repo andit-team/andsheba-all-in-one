@@ -278,7 +278,7 @@
             <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold" v-if="role !== 'agent'">
               Request for Quote
             </q-btn>
-            <q-btn color="primary" :to="'/pro/single?id=' + agent_id"  icon="visibility" style ="margin:0 auto" class="text-weight-bold" v-if="role === 'agent'">
+            <q-btn color="primary" :to="'/pro/single?id=' + service.user._id"  icon="visibility" style ="margin:0 auto" class="text-weight-bold" v-if="role === 'agent'">
               &nbsp;See Pro Profile
             </q-btn>
           </q-card-actions>
@@ -302,7 +302,6 @@ components:{
     return {
       slide: 2,
       role:'',
-      agent_id:'',
       sortBy: null,
       sortOptions: [
         '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
@@ -314,7 +313,6 @@ components:{
     let res = await this.$store.dispatch("agent/fetchAgent");
     if(!res.error){
       this.role = 'agent'
-      this.agent_id = res.data._id
     }
 
   },
@@ -324,6 +322,9 @@ components:{
         return this.$store.getters["service/getService"];
       },
     },
+  },
+  mounted() {
+    console.log(this.services)
   },
 };
 </script>

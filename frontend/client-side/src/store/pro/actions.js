@@ -46,6 +46,20 @@ export const fetchPro = async ({commit}) => {
     }
 }
 
+export const fetchProData = async ({commit},id) => {
+    let response = await axios.post(`${process.env.API_URL}/customer/pro?_id=${id}`)
+    if(response.data.error === false) {
+        commit('setPro', response.data.data);
+        return {
+            error: false,
+            data: response.data.data
+        }
+    }
+    return {
+        error: true
+    }
+}
+
 
 export const addService = async ({state} ) => {
     let token = Cookies.get('token')
