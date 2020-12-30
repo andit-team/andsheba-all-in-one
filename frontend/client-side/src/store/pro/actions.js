@@ -140,8 +140,17 @@ export const fetchServiceLocal = async ({commit}) => {
 }
 
 
-export const updateProfilePicture = async ({}, image) => {
-
+export const updateProfile = async ({}, pro) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.put(`${process.env.API_URL}/pro/profile`, {...pro}, { headers } )
+    return {
+        error: response.data.error,
+        msg: response.data.msg
+    }
 }
 
 
@@ -155,14 +164,17 @@ function base64Data(ImageURL) {
 }
 
 async function uploadSingleImage(image) {
-    const data = new FormData()
-    data.append('image', base64Data(image))
-    let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
-    const res = await axios.post(url, data, {})
-    if (res.data.success) {
-       return res.data.data.image.url
+    try {
+        const data = new FormData()
+        data.append('image', base64Data(image))
+        let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+        const res = await axios.post(url, data, {})
+        if (res.data.success) {
+            return res.data.data.image.url
+        }
+    } catch (e) {
+        return ''
     }
-    return ''
 }
 
 
