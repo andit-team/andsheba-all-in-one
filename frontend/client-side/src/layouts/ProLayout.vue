@@ -52,7 +52,7 @@
                     </q-btn-dropdown>
                     <q-btn round flat>
                         <q-avatar size="26px">
-                            <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
+                            <img :src="pro.thumb_image"/>
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
                     </q-btn>
@@ -71,12 +71,12 @@
             <q-scroll-area class="fit">
                 <q-list>
                     <q-img
-                        src="https://img.freepik.com/free-vector/abstract-technology-background-science-connecting-technology_42705-96.jpg?size=626&ext=jpg"
+                        :src="pro.thumb_image"
                         style="height: 150px"
                     >
                         <div class="absolute-bottom bg-transparent">
                             <q-avatar size="56px" class="q-mb-sm">
-                                <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
+                                <img :src="pro.thumb_image"/>
                             </q-avatar>
                             <div class="text-weight-bold">{{ pro.name }}</div>
                         </div>
@@ -160,7 +160,7 @@
                         <q-card-section class="row justify-center">
                             <q-avatar size="100px">
                                 <img
-                                    src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                                    :src="pro.thumb_image"
                                 />
                             </q-avatar>
                         </q-card-section>

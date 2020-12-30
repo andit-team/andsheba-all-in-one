@@ -21,7 +21,8 @@ module.exports = function (/* ctx */) {
 
       'axios',
       'google',
-        'file-selector'
+        'file-selector',
+        'autocomplete'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css

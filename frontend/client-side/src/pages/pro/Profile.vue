@@ -40,14 +40,14 @@
                     <q-input
                         filled
                         :value="name || pro.name"
-                        @input="handleNameChange"
+                        @input="value => this.name = value"
                         label="Name"
                         class="col-12 col-md-6 q-pa-sm"
                     />
                     <q-input
                         filled
                         :value="email || pro.email"
-                        @input="handleEmailChange"
+                        @input="value => this.email = value"
                         label="Email"
                         class="col-12 col-md-6 q-pa-sm"
                     />
@@ -74,19 +74,20 @@
                         :value="gender || pro.gender"
                         class="col-12 col-md-6 q-pa-sm"
                         :options="options"
-                        @input="handleGenderChange"
+                        @input="value => this.gender = value.value"
                     />
 
                     <q-input
                         filled
                         label="Birth Date"
-                        :value="pro.date_of_birth || date"
+                        :value="date || pro.date_of_birth"
+                        @input="value => this.date = value"
                         type="date"
                         class="col-12 col-md-6 q-pa-sm"
                     />
 
                     <q-input
-                        :value="pro.description || description"
+                        :value="description || pro.description"
                         @input="value => this.description = value"
                         filled
                         type="textarea"
@@ -149,15 +150,6 @@ export default {
             fileReader.readAsDataURL(files[0])
         },
 
-        handleNameChange(value) {
-            this.name = value
-        },
-        handleEmailChange(value) {
-            this.email = value
-        },
-        handleGenderChange(value) {
-            this.gender = value.value
-        },
         base64Data(ImageURL) {
             let block = ImageURL.split(";");
             return block[1].split(",")[1];

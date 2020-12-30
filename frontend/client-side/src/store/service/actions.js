@@ -30,3 +30,11 @@ export const fetchService = async ({commit}, id) => {
     }
 }
 
+
+export const fetchSearch = async ({}, key) => {
+    let response = await axios.post(`${process.env.API_URL}/customer/autocomplete-homepage`, {key})
+    if(!response.data.error) {
+        return response.data.data
+    }
+    return []
+}
