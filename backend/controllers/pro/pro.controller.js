@@ -272,7 +272,6 @@ exports.updateProfile = (req, res, next) => {
     
     let updateData = {
        name: req.body.name,
-       mobile: req.body.mobile,
        email: req.body.email,
        cover_image: req.body.cover_image,
        thumb_image: req.body.thumb_image,
