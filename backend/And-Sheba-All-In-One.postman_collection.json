@@ -1589,6 +1589,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "autocomplete data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/autocomplete-homepage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"autocomplete-homepage"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
