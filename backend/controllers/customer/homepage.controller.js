@@ -9,15 +9,15 @@ exports.sendHomePageData = (req, res, next ) => {
 
     Service.find({
         status: 'active',
-        location: {
-         $near: {
-          $maxDistance: 20000,
-          $geometry: {
-           type: 'Point',
-           coordinates: [req.query.longitude, req.query.latitude]
-          }
-         }
-        }
+        // location: {
+        //  $near: {
+        //   $maxDistance: 20000,
+        //   $geometry: {
+        //    type: 'Point',
+        //    coordinates: [req.query.longitude, req.query.latitude]
+        //   }
+        //  }
+        // }
        }).sort({createdAt: -1}).limit(10).populate('user').then( result => {
 
         // if(result.length > 0){
@@ -36,7 +36,7 @@ exports.sendHomePageData = (req, res, next ) => {
             }
             RESPONDER.response(res, 200, data)
 
-        }).then( catError => {
+        }).catch( catError => {
             const data = {
                 msg: 'Problem in getting Category',
                 error:true
@@ -52,6 +52,48 @@ exports.sendHomePageData = (req, res, next ) => {
         //     }
         //     RESPONDER.response(res, 200, data)
         // }
+
+       }).catch( error => {
+        
+            const data = {
+                msg: 'Problem in getting service',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+       })
+}
+
+exports.autoCompleteHomePage = (req, res, next ) => {
+
+    Service.distinct("title",{
+        status: 'active',
+        $or: [
+            {
+                'title': {$regex: req.body.key, $options: 'i'}
+            },
+            {
+                'category.name': {$regex: req.body.key, $options: 'i'}
+            },
+            {
+                'sub_category.name': {$regex: req.body.key, $options: 'i'}
+            }
+        ]
+       }).then( result => {
+
+        if(result.length > 0){
+            const data = {
+                msg: 'AutoComplete Data Get Successfully',
+                error: false,
+                data: result
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                msg: 'No Service Available',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
 
        }).catch( error => {
         

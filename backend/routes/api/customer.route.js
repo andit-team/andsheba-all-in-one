@@ -16,6 +16,7 @@ router.get('/search/:_id', Service.getOneService)
 // Render Data to Home Page ------------------------
 const HomePageData = require('../../controllers/customer/homepage.controller')
 router.get('/homepage', HomePageData.sendHomePageData)
+router.post('/autocomplete-homepage', HomePageData.autoCompleteHomePage)
 
 // Export the Router
 module.exports = router 
