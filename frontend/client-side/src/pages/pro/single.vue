@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Start - Cover Image Area -->
-    <div class="banner-area">
+    <div class="banner-area" v-bind:style="{ backgroundImage: 'url(' + pro.cover_image + ')' }">
     </div>
     <!-- Ends - Cover Image Area -->
     <div class="row profileArea justify-center q-pb-xl">
@@ -10,7 +10,7 @@
         <q-card-section horizontal>
           <q-card-section class="col-1 flex flex-center">
             <q-avatar size="100px">
-              <img  src="http://amentotech.com/htmls/servosell/images/service-provider-single/img-01.jpg">
+              <img  :src="pro.thumb_image">
             </q-avatar>
           </q-card-section>
           <q-card-section class="q-pt-xs">
@@ -21,7 +21,7 @@
               Verified
             </q-badge>
             <div class="text-subtitle1 text-weight-bold">Freelance Open Desk</div>
-            <div class="text-h5 q-mb-xs text-weight-bold">We Help You To Invent The Bright and Secure Future</div>
+            <div class="text-h5 q-mb-xs text-weight-bold">{{pro.name}}</div>
             
             <div class="flex q-gutter-md">
               <q-rating
@@ -118,7 +118,7 @@ components:{
   async created() {
     let res = await this.$store.dispatch("pro/fetchProData", this.$route.query.id);
     if(!res.error){
-      // this.$store.dispatch('pro/fetchServices')
+      console.log(res.data)
     }else{
       // Alert Here
       this.$router.back()
@@ -127,13 +127,7 @@ components:{
   computed: {
     pro: {
             get() {
-                console.log(this.$store.getters["pro/getPro"])
                 return this.$store.getters["pro/getPro"]
-            }
-        },
-    services: {
-            get() {
-                // return this.$store.getters["pro/getPro"]
             }
         },
   },
@@ -148,7 +142,6 @@ components:{
 .banner-area {
   min-height: 500px;
   width: 100%;
-  background-image:url('https://scontent.fdac6-1.fna.fbcdn.net/v/t1.0-9/115837339_1191064301227542_5839657770245649795_o.jpg?_nc_cat=111&ccb=2&_nc_sid=dd9801&_nc_ohc=6Aouz53SUo8AX9xbtFu&_nc_ht=scontent.fdac6-1.fna&oh=1508aebe7fbf3c2392aa8722a971ae63&oe=60102055');
   background-size: cover;
   background-repeat: no-repeat;
 }
