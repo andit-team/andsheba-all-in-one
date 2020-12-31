@@ -18,7 +18,7 @@
             <q-carousel-slide
               v-for="(image, index) in service.gallery_images"
               :name="index + 1"
-              :img-src="image"
+              :img-src="image || 'https://cdn.quasar.dev/img/mountains.jpg'"
               :key="index"
             />
 
@@ -300,7 +300,7 @@ components:{
 },
   data() {
     return {
-      slide: 2,
+      slide:1,
       role:'',
       sortBy: null,
       sortOptions: [

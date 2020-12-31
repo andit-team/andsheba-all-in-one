@@ -1,6 +1,7 @@
 <template>
     <q-card class="my-card q-ma-md">
         <q-img
+        style="max-height:200px"
             :src="service.thumb_img"
             basic
         >
@@ -27,7 +28,7 @@
                 </div>
             </div>
         </q-card-section>
-        <q-card-actions class="justify-between q-pa-md c-card-action">
+        <q-card-actions v-if="role !== 'agent'" class="justify-between q-pa-md c-card-action">
             <a class="text-positive"><q-icon name="far fa-edit" style="margin-top: -3px;"/><span class="q-ml-sm">Edit</span></a>
             <a class="cursor-pointer text-negative" v-if="service.status == 'active' || service.status == 'accepted'" @click="Inactive"><q-icon name="clear"/><span class="q-ml-xs">Inactive</span></a>
             <a class="cursor-pointer text-secondary" v-if="service.status == 'inactive'" @click="Active"><q-icon name="check"/><span class="q-ml-xs">Active</span></a>
@@ -43,10 +44,16 @@ export default {
     props: ['service'],
     data() {
         return {
-            rating: 4
+            rating: 4,
+            role:'',
         }
     },
-
+    async created() {
+        let res = await this.$store.dispatch("agent/fetchAgent");
+        if(!res.error){
+        this.role = 'agent'
+        }
+    },
     methods: {
         async Active() {
             let response = await this.$store.dispatch('pro/updateStatus', {id: this.service._id, status: 'active'})

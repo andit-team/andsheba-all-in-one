@@ -44,6 +44,10 @@ const routes = [
       { path: '', component: () => import('pages/agent/Dashboard.vue') },
       { path: 'dashboard', component: () => import('pages/agent/Dashboard.vue') },
       { path: 'services', component: () => import('pages/agent/Services.vue') },
+      { path: 'orders', component: () => import('pages/agent/Orders.vue') },
+      { path: 'profile', component: () => import('pages/agent/Profile.vue') },
+      { path: 'wallet', component: () => import('pages/agent/Wallet.vue') },
+      { path: 'plan', component: () => import('pages/agent/Plan.vue') },
     ]
   },
   {
