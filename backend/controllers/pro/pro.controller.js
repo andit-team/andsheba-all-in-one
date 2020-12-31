@@ -162,7 +162,7 @@ exports.getOnePro = (req, res, next) => {
             const data = {
                 error:false,
                 msg: 'Successfully Get Pro Data',
-                data: result
+                data: result[0]
             }
             RESPONDER.response(res, 200, data)
         }else{
