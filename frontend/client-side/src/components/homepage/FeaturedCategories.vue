@@ -10,7 +10,7 @@
                     <span>What do you need to find?</span>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 relative-position" v-bind:class="{'q-pa-md': $q.screen.gt.sm}">
-                    <div class="view-all">
+                    <div class="view-all q-mt-sm">
                         <div class="text-h2 text-right">
                             <a href="#!">View All <i class="fas fa-angle-right"></i></a>
                         </div>
@@ -20,120 +20,15 @@
             </div>
 
             <div class="row justify-around" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
-                <div class="col-12 col-md-4 q-pa-md">
+                <div class="col-12 col-md-4 q-pa-md" v-for="(category, index) in categories" :key="index">
                     <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
+                        <q-img :src="category.image" height="250px"/>
                         <q-btn
                             unelevated
                             rounded
                             icon="fiber_manual_record"
                             class="absolute"
-                            color="white" text-color="black" label="Computer"
-                            style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
-                        />
-
-                        <q-btn
-                            flat
-                            icon="chat"
-                            class="absolute"
-                            color="white"  label="8"
-                            style="bottom: -5px; right: 12px; transform: translateY(-50%);color:black"
-                        />
-                    </q-card>
-                </div>
-                <div class="col-12 col-md-4 q-pa-md">
-                    <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
-                        <q-btn
-                            unelevated
-                            rounded
-                            icon="fiber_manual_record"
-                            class="absolute"
-                            color="white" text-color="black" label="Computer"
-                            style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
-                        />
-
-                        <q-btn
-                            flat
-                            icon="chat"
-                            class="absolute"
-                            color="white"  label="8"
-                            style="bottom: -5px; right: 12px; transform: translateY(-50%);color:black"
-                        />
-                    </q-card>
-                </div>
-                <div class="col-12 col-md-4 q-pa-md">
-                    <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
-                        <q-btn
-                            unelevated
-                            rounded
-                            icon="fiber_manual_record"
-                            class="absolute"
-                            color="white" text-color="black" label="Computer"
-                            style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
-                        />
-
-                        <q-btn
-                            flat
-                            icon="chat"
-                            class="absolute"
-                            color="white"  label="8"
-                            style="bottom: -5px; right: 12px; transform: translateY(-50%);color:black"
-                        />
-                    </q-card>
-                </div>
-                <div class="col-12 col-md-4 q-pa-md">
-                    <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
-                        <q-btn
-                            unelevated
-                            rounded
-                            icon="fiber_manual_record"
-                            class="absolute"
-                            color="white" text-color="black" label="Computer"
-                            style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
-                        />
-
-                        <q-btn
-                            flat
-                            icon="chat"
-                            class="absolute"
-                            color="white"  label="8"
-                            style="bottom: -5px; right: 12px; transform: translateY(-50%);color:black"
-                        />
-                    </q-card>
-                </div>
-                <div class="col-12 col-md-4 q-pa-md">
-                    <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
-                        <q-btn
-                            unelevated
-                            rounded
-                            icon="fiber_manual_record"
-                            class="absolute"
-                            color="white" text-color="black" label="Computer"
-                            style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
-                        />
-
-                        <q-btn
-                            flat
-                            icon="chat"
-                            class="absolute"
-                            color="white"  label="8"
-                            style="bottom: -5px; right: 12px; transform: translateY(-50%);color:black"
-                        />
-                    </q-card>
-                </div>
-                <div class="col-12 col-md-4 q-pa-md">
-                    <q-card class="my-card">
-                        <q-img src="https://cdn.quasar.dev/img/chicken-salad.jpg" />
-                        <q-btn
-                            unelevated
-                            rounded
-                            icon="fiber_manual_record"
-                            class="absolute"
-                            color="white" text-color="black" label="Computer"
+                            color="white" text-color="black" :label="category.name"
                             style="top: 30px; left: 12px; transform: translateY(-50%);color:black"
                         />
 
@@ -154,13 +49,14 @@
 <script>
 export default {
     name: "FeaturedCategories",
+    props: ["categories"]
 }
 </script>
 
 <style lang="scss" scoped>
 .most_popular_section {
     background: #fff;
-    padding: 40px 0;
+    padding: 40px 0 90px 0;
     .container {
         position: relative;
         .heading {
@@ -198,7 +94,7 @@ export default {
         }
         .view-all {
             a {
-                font-size: 24px;
+                font-size: 18px;
                 color: #171717;
                 text-decoration: none;
             }

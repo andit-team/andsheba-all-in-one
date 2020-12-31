@@ -28,9 +28,9 @@
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">
 
 
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="register"> রেজিস্ট্রেশন</q-btn>
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="login"> লগ ইন</q-btn>
-                    <q-btn-dropdown flat icon="web" olor="grey-8" label="ভাষা">
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="register"> Registration</q-btn>
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="login"> Login</q-btn>
+                    <q-btn-dropdown flat icon="web" olor="grey-8" label="Lan">
                         <q-list>
                             <q-item clickable v-close-popup>
                                 <q-item-section>
@@ -52,7 +52,7 @@
                         <q-tooltip>Account</q-tooltip>
 
                     </q-btn>
-                    <q-btn v-if="customer.isVerified" flat color="grey-8" icon="exit_to_app" @click="handleLogout">  &nbsp;লগ আউট</q-btn>
+                    <q-btn v-if="customer.isVerified" flat color="grey-8" icon="exit_to_app" @click="handleLogout">  &nbsp;Logout</q-btn>
                 </div>
             </q-toolbar>
         </q-header>
@@ -71,7 +71,7 @@
                             <q-icon color="grey" name="add"/>
                         </q-item-section>
                         <q-item-section>
-                            <q-item-label> রেজিস্ট্রেশন </q-item-label>
+                            <q-item-label> Registration </q-item-label>
                         </q-item-section>
                     </q-item>
 
@@ -80,7 +80,7 @@
                             <q-icon color="grey" name="person"/>
                         </q-item-section>
                         <q-item-section>
-                            <q-item-label> লগ ইন </q-item-label>
+                            <q-item-label> Login </q-item-label>
                         </q-item-section>
                     </q-item>
 
@@ -100,7 +100,7 @@
                             <q-icon color="grey" name="exit_to_app"/>
                         </q-item-section>
                         <q-item-section>
-                            <q-item-label> &nbsp;লগ আউট </q-item-label>
+                            <q-item-label> &nbsp;Logout </q-item-label>
                         </q-item-section>
                     </q-item>
 

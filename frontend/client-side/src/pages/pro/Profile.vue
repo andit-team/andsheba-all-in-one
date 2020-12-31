@@ -185,6 +185,7 @@ export default {
                 await Swal.fire('Error', response.msg, 'error')
             } else {
                 await Swal.fire('Success', 'Profile updated Successfully', 'success')
+                await this.$store.dispatch('pro/fetchPro')
             }
         }
     }

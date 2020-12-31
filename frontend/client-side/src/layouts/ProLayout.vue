@@ -31,11 +31,7 @@
                     class="q-gutter-md row items-center no-wrap q-mr-lg"
                     v-if="$q.screen.gt.sm"
                 >
-                    <q-btn flat color="grey-8" icon="search" to="service">
-                        সেবা খুজুন
-                    </q-btn
-                    >
-                    <q-btn-dropdown flat icon="web" olor="grey-8" label="ভাষা">
+                    <q-btn-dropdown flat icon="web" olor="grey-8" label="Lan">
                         <q-list>
                             <q-item clickable v-close-popup>
                                 <q-item-section>
@@ -45,7 +41,7 @@
 
                             <q-item clickable v-close-popup>
                                 <q-item-section>
-                                    <q-item-label>ইংলিশ</q-item-label>
+                                    <q-item-label>English</q-item-label>
                                 </q-item-section>
                             </q-item>
                         </q-list>
@@ -56,7 +52,7 @@
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
                     </q-btn>
-                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;লগ আউট</q-btn>
+                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;Logout</q-btn>
                 </div>
             </q-toolbar>
         </q-header>

@@ -3,10 +3,10 @@
         <!-- Banner -->
         <div class="banner_section">
             <div class="container">
-                <div :class="[$q.screen.gt.sm ? 'text-h4 q-mb-md' : 'text-h5 text-center q-mb-md']">Search your nearest Professionals</div>
+                <div :class="[$q.screen.gt.sm ? 'text-h4 banner-title q-mb-md' : 'text-h5 text-center q-mb-md']">Search your nearest Professionals</div>
                 <div style="max-width: 700px">
                     <div class="row search-box" v-if="$q.screen.gt.sm">
-                        <div class="col-xs-12 col-sm-5 relative-position">
+                        <div class="col-xs-12 col-sm-5 relative-position" style="min-height: 50px">
                             <q-icon name="search" class="c-search-icon"/>
                             <autocomplete
                                 class="c-key-autocomplete border-right"
@@ -26,7 +26,7 @@
                                 @place_changed="setPlace">
                             </gmap-autocomplete>
                         </div>
-                        <div class="col-xs-12 col-sm-2">
+                        <div class="col-xs-12 col-sm-2 relative-position">
                             <button @click="onSubmit" :class="$q.screen.gt.sm ? 'full-width submit-btn' : 'full-width text-center'" type="submit" style="font-size: 16px">
                                 <div>Search</div>
                             </button>
@@ -84,10 +84,10 @@
         <!-- Slider Top Services -->
         <!-- App Slider -->
 
-        <TopAreaServices/>
-        <FeaturedCategories/>
+        <TopAreaServices :recents="recents"/>
+        <FeaturedCategories :categories="categories"/>
         <app-slider/>
-        <MostPopular/>
+        <MostPopular :services="popular"/>
         <ProCta/>
         <Questions/>
         <Footer/>
@@ -124,6 +124,9 @@ export default {
             longitude: '',
             latitude: '',
             location: '',
+            categories: [],
+            recents: [],
+            popular: []
         }
     },
     async created() {
@@ -132,9 +135,12 @@ export default {
         this.latitude = result.data.latitude
         this.longitude = result.data.longitude
         this.location = result.data.city + ", " + result.data.country_name
-        let hp_data = this.$axios.get(`${process.env.API_URL}/customer/homepage`, {
+        let hp_data = await this.$axios.get(`${process.env.API_URL}/customer/homepage`, {
             params: { longitude: this.longitude, latitude: this.latitude }
         })
+        this.categories = hp_data.data.data.category
+        this.recents = hp_data.data.data.recent
+        this.popular = hp_data.data.data.popular
     },
 
     methods: {
@@ -176,20 +182,28 @@ export default {
     .container {
         max-width: 1600px;
         padding: 250px 10px;
+
+        .banner-title {
+            font-weight: 600;
+            font-size: 2.225rem;
+            color: #1e212a;
+        }
+
         .border-right {
             &:after {
                 content: "";
-                height: 43px;
+                height: 42px;
                 width: 2px;
                 position: absolute;
                 border-right: 1px solid #757575;
-                margin-top: -48px;
+                margin-top: -46px;
                 right: 0;
             }
         }
 
+
         .search-box {
-            border: 1px solid #757575;
+            border: 1px solid rgba( 117, 117, 117, .5);
             border-right: 0;
             border-radius: 5px;
             background: #f7f8f9;
@@ -265,10 +279,12 @@ export default {
         }
 
         .submit-btn {
+            position: absolute;
+            margin-top: -1px;
             border: 0;
             outline: 0;
             cursor: pointer;
-            height: 100%;
+            height: calc(100% + 2px);
             background: #2b76d2;
             color: #fff;
             padding: 14px;
