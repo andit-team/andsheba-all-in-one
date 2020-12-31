@@ -1308,7 +1308,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3ODMyNDkyLCJleHAiOjE2MDc4NjEyOTJ9.0DnLOhHlTPT3zy70C5XHhd0gzg0wS4c4QN9YaE98b-I",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MzE2NzExLCJleHAiOjE2MDkzNDU1MTF9.xWw1iTKluVh4tBHLpuWPU5yPs8bqrCCwZaJC4rYKgbc",
 								"type": "text"
 							}
 						],
@@ -1619,6 +1619,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get One Pro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/pro?_id=5fe97a46526f24ffd6df4d89",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"pro"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "5fe97a46526f24ffd6df4d89"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1722,7 +1749,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkxMzU3NjMsImV4cCI6MTYwOTE2NDU2M30.G4QWmOKl69oNmDF3KB1GdPfsJiyi-YRlDGgVQQ23o4M",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkzMTY4MjcsImV4cCI6MTYwOTM0NTYyN30.LyCI4-4rA1dmsMPxHFF4OJ_rEcTLqty08AlvD5Hkptg",
 								"type": "text"
 							}
 						],
