@@ -314,7 +314,6 @@ components:{
     if(!res.error){
       this.role = 'agent'
     }
-
   },
   computed: {
     service: {
@@ -324,7 +323,7 @@ components:{
     },
   },
   mounted() {
-    console.log(this.services)
+    console.log(this.service)
   },
 };
 </script>

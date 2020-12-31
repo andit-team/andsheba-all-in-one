@@ -48,6 +48,7 @@ export const fetchPro = async ({commit}) => {
 
 export const fetchProData = async ({commit},id) => {
     let response = await axios.get(`${process.env.API_URL}/customer/pro?_id=${id}`)
+    console.log(response)
     if(response.data.error === false) {
         commit('setPro', response.data.data);
         return {

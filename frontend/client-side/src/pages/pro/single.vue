@@ -65,7 +65,7 @@
       <div class="col-8">
         <div class="text-h6 text-weight-bold q-my-md">Offered Services</div>
         <div class="row">
-          <div v-for="(service,index) in services" :key="index" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+          <div v-for="(service,index) in pro.services" :key="index" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
               <q-card>
                   <q-img
                       :src="service.thumb_img"
