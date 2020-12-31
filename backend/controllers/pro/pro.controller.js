@@ -156,11 +156,6 @@ exports.getOnePro = (req, res, next) => {
                 as: 'services'
             }
         },
-        {
-            $match: {
-               'services.status': 'active'
-            }
-        },
     ]).then(result => {
 
         if(result){
