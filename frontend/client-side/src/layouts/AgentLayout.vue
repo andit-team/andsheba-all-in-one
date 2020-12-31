@@ -19,7 +19,7 @@
                     v-if="!$q.screen.gt.sm"
                 />
 
-                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/user/dashboard">
+                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/">
                     <img src="https://andsheba.com/_nuxt/img/logo.0f218c1.png"/>
                 </q-btn>
 
