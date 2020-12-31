@@ -18,8 +18,8 @@
         <q-tab-panels v-model="tab" animated>
             <q-tab-panel name="active">
                <div class="row q-ma-sm">
-                   <div v-for="(service,index) in services" :key="index" v-if="(service.status === 'active') || (service.status === 'accepted')" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                       <ServiceCard :service="service"/>
+                   <div v-for="(service,index) in services" :key="index"  class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                       <ServiceCard :service="service" v-if="(service.status === 'active') || (service.status === 'accepted')"/>
                    </div>
                </div>
             </q-tab-panel>
@@ -27,8 +27,8 @@
             <q-tab-panel name="inactive">
                 <q-tab-panel name="active">
                     <div class="row q-ma-sm">
-                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'inactive'" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <ServiceCard :service="service"/>
+                        <div v-for="(service,index) in services" :key="index"  class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                            <ServiceCard :service="service" v-if="service.status === 'inactive'"/>
                         </div>
                     </div>
                 </q-tab-panel>
@@ -37,8 +37,8 @@
             <q-tab-panel name="pending">
                 <q-tab-panel name="active">
                     <div class="row q-ma-sm">
-                        <div v-for="(service,index) in services" :key="index" v-if="service.status === 'pending'" class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                            <ServiceCard :service="service"/>
+                        <div v-for="(service,index) in services" :key="index"  class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                            <ServiceCard :service="service" v-if="service.status === 'pending'"/>
                         </div>
                     </div>
                 </q-tab-panel>
@@ -82,7 +82,10 @@ name: "Services",
             }
         },
          
-    }
+    },mounted() {
+        console.log(this.services)
+        console.log(234)
+    },
 }
 </script>
 
