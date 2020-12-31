@@ -102,7 +102,7 @@ export default {
             span {
                 color: rgba(44, 48, 57, .15);
                 font-size: 40px;
-                font-weight: 400;
+                font-weight: 600;
                 display: block;
                 text-align: right;
                 @media (max-width: 885px) {
