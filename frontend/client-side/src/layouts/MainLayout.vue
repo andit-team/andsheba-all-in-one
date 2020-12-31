@@ -30,7 +30,7 @@
 
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="register"> Registration</q-btn>
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="login"> Login</q-btn>
-                    <q-btn-dropdown flat icon="web" olor="grey-8" label="Lan">
+                    <q-btn-dropdown flat icon="language" olor="grey-8">
                         <q-list>
                             <q-item clickable v-close-popup>
                                 <q-item-section>
@@ -40,7 +40,7 @@
 
                             <q-item clickable v-close-popup>
                                 <q-item-section>
-                                    <q-item-label>ইংলিশ</q-item-label>
+                                    <q-item-label>English</q-item-label>
                                 </q-item-section>
                             </q-item>
                         </q-list>

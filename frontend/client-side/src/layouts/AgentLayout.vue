@@ -35,7 +35,7 @@
                         সেবা খুজুন
                     </q-btn
                     >
-                    <q-btn-dropdown flat icon="web" olor="grey-8" label="ভাষা">
+                    <q-btn-dropdown flat icon="language" olor="grey-8">
                         <q-list>
                             <q-item clickable v-close-popup>
                                 <q-item-section>
@@ -45,7 +45,7 @@
 
                             <q-item clickable v-close-popup>
                                 <q-item-section>
-                                    <q-item-label>ইংলিশ</q-item-label>
+                                    <q-item-label>English</q-item-label>
                                 </q-item-section>
                             </q-item>
                         </q-list>
