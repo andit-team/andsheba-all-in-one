@@ -76,10 +76,10 @@ export const addService = async ({state} ) => {
 
     let thumbImage = state.service.thumb_image && await uploadSingleImage(state.service.thumb_image)
     let galleryImages = []
-    await state.service.service_images.map(async image => {
-        let url = await uploadSingleImage(image)
+    for(let i = 0; i< state.service.service_images.length; i++) {
+        let url = await uploadSingleImage(state.service.service_images[i])
         galleryImages.push(url)
-    })
+    }
 
     let service = {
         title: state.service.name,
@@ -103,7 +103,7 @@ export const addService = async ({state} ) => {
         village: state.service.village ? state.service.village.id : '',
         residential_or_municipal: state.service.area_type.value
     }
-    let response = await axios.post(`${process.env.API_URL}/pro/service`, {...service}, { headers } )
+    let response = await axios.post(`${process.env.API_URL}/pro/service`, service, { headers } )
     return {
         error: response.data.error,
         msg: response.data.msg
