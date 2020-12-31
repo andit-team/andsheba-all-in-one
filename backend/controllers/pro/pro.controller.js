@@ -6,6 +6,7 @@ const User = require('../../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const RESPONDER = require('../../responder/responder') 
+const mongoose = require('mongoose')
 
 exports.signUpPro = (req, res, next) => {
 
@@ -139,9 +140,28 @@ exports.getAllProByAdmin = (req, res, next) => {
     })
 }
 
-exports.getOneProByAdmin = (req, res, next) => {
+exports.getOnePro = (req, res, next) => {
 
-    User.findById(req.query._id).then(result => {
+    User.aggregate([
+        {
+            $match: {
+                _id: mongoose.Types.ObjectId(req.query._id)
+            }
+        },
+        {
+            $lookup: {
+                from: 'services',
+                localField: '_id',
+                foreignField: 'user',
+                as: 'services'
+            }
+        },
+        {
+            $match: {
+               'services.status': 'active'
+            }
+        },
+    ]).then(result => {
 
         if(result){
             const data = {
@@ -159,6 +179,7 @@ exports.getOneProByAdmin = (req, res, next) => {
         }
 
     }).catch(error => {
+        console.log(error)
         const data = {
             error: true,
             msg: 'Problem in getting Pro Data'
