@@ -36,10 +36,10 @@
 
             <div class="flex q-gutter-md q-py-sm">
               <div class="">
-                <q-icon name="today" size="20px" /> Since: Jun 27, 2010
+                <q-icon name="today" size="20px" /> Since: {{ pro.createdAt }}
               </div>
               <div class="">
-                <q-icon name="visibility" size="20px" /> 15,063 Viewed
+                <q-icon name="visibility" size="20px" /> {{ Math.floor(Math.random(2,9)*15000) }} Viewed
               </div>
               <div class="">
                 <q-icon name="warning" size="20px" /><span style="color:red"> Report Now</span>
@@ -54,20 +54,18 @@
         </q-card-section>
       </q-card>
       <div class="col-8">
-        <div class="text-h6 text-weight-bold q-mb-md">About “Freelance Open Desk”</div>
+        <div class="text-h6 text-weight-bold q-mb-md">About {{ pro.name }}</div>
         <div class="text-subtitle1">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempoer incididunt utenalo labore etesdolore magna aliqua. Ut enim ad minim veniam, quis nrud exercitation ullamco laboris nisi ut aliquip acommodo consequat. duis auete irure dolor in reprehenderit in voluptate velit.
-          <br><br>
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sede perspiciatis unde omnis iste natus error sitame voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quaete ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicoe Nemo enim ipsam voluptatem quia voluptas sitae aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porrom quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.
+          {{ pro.description }}
         </div>
       </div>
       <!-- Services -->
       <div class="col-8">
         <div class="text-h6 text-weight-bold q-my-md">Offered Services</div>
-        <div class="row">
-          <div v-for="(service,index) in pro.services" :key="index" class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+        <div class="row fixed-height">
+          <div v-for="(service,index) in pro.services" :key="index" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 q-pa-sm">
               <q-card>
-                  <q-img
+                  <q-img style="max-height:200px"
                       :src="service.thumb_img"
                       basic
                   >

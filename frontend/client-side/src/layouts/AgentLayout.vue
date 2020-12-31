@@ -89,39 +89,39 @@
                         <q-item-section>Dashboard</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/services" >
+                    <q-item clickable v-ripple to="/agent/services" >
                         <q-item-section avatar>
                             <q-icon name="design_services"/>
                         </q-item-section>
                         <q-item-section>My Services</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/booking_list">
+                    <q-item clickable v-ripple to="/agent/orders">
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-check"/>
                         </q-item-section>
-                        <q-item-section>Booking List</q-item-section>
+                        <q-item-section>Order List</q-item-section>
                     </q-item>
 
 
-                    <q-item clickable v-ripple to="/user/profile" >
+                    <q-item clickable v-ripple to="/agent/profile" >
                         <q-item-section avatar>
                             <q-icon name="person"/>
                         </q-item-section>
                         <q-item-section>Profile</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/wallet">
+                    <q-item clickable v-ripple to="/agent/wallet">
                         <q-item-section avatar>
                             <q-icon name="fas fa-file-invoice-dollar"/>
                         </q-item-section>
                         <q-item-section>Wallet</q-item-section>
                     </q-item>
-                    <q-item clickable v-ripple to="/user/subscription">
+                    <q-item clickable v-ripple to="/agent/plan">
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-alt"/>
                         </q-item-section>
-                        <q-item-section>Subscription</q-item-section>
+                        <q-item-section>Plan</q-item-section>
                     </q-item>
                     <q-item
                         clickable
@@ -152,7 +152,7 @@
             </div>
             <div
                 :class="[
-          'row justify-center q-gutter-sm'
+          'row justify-center q-gutter-sm q-mt-xl'
         ]"
             >
                 <div class="col-md-2" v-if="$q.screen.gt.sm">
@@ -196,32 +196,32 @@
                                     <q-item-section>My Services</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/booking_list" :active="active">
+                                <q-item clickable v-ripple to="/agent/orders" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-check"/>
                                     </q-item-section>
-                                    <q-item-section>Booking List</q-item-section>
+                                    <q-item-section>Order List</q-item-section>
                                 </q-item>
 
 
-                                <q-item clickable v-ripple to="/user/profile" :active="active">
+                                <q-item clickable v-ripple to="/agent/profile" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="person"/>
                                     </q-item-section>
                                     <q-item-section>Profile</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/wallet" :active="active">
+                                <q-item clickable v-ripple to="/agent/wallet" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="fas fa-file-invoice-dollar"/>
                                     </q-item-section>
                                     <q-item-section>Wallet</q-item-section>
                                 </q-item>
-                                <q-item clickable v-ripple to="/user/subscription" :active="active">
+                                <q-item clickable v-ripple to="/agent/plan" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-alt"/>
                                     </q-item-section>
-                                    <q-item-section>Subscription</q-item-section>
+                                    <q-item-section>Plans</q-item-section>
                                 </q-item>
                                 <q-item
                                     clickable
