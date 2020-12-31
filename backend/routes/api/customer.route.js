@@ -20,7 +20,7 @@ router.post('/autocomplete-homepage', HomePageData.autoCompleteHomePage)
 
 // Pro Controller ---------------------------
 const Pro = require('../../controllers/pro/pro.controller')
-router.get('/pro', Pro.getOneProByAdmin)
+router.get('/pro', Pro.getOnePro)
 
 // Export the Router
 module.exports = router 
