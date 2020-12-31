@@ -56,7 +56,7 @@
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
                     </q-btn>
-                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;লগ আউট</q-btn>
+                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;Logout</q-btn>
                 </div>
             </q-toolbar>
         </q-header>

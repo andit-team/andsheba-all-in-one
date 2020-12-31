@@ -1308,7 +1308,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA3ODMyNDkyLCJleHAiOjE2MDc4NjEyOTJ9.0DnLOhHlTPT3zy70C5XHhd0gzg0wS4c4QN9YaE98b-I",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MzE2NzExLCJleHAiOjE2MDkzNDU1MTF9.xWw1iTKluVh4tBHLpuWPU5yPs8bqrCCwZaJC4rYKgbc",
 								"type": "text"
 							}
 						],
@@ -1379,7 +1379,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"first pro 1\",\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"first pro 1\",\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\",\r\n    \"cover_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"thumb_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"date_of_birth\": \"23-12-1990\",\r\n    \"gender\": \"male\",\r\n    \"description\": \"Lorem ip\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1397,49 +1397,6 @@
 								"api",
 								"pro",
 								"profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Profile Picture",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNlZmQyNDVkMzUyOTFhNzRiYjQ5NDIiLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5MjE0MDUxLCJleHAiOjE2MDkyNDI4NTF9.1tVaj_udkUj9M9dLXMyYtp3x7y1HGkctzBCJvuX0fHk",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"picture\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/api/pro/profile-picture",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"pro",
-								"profile-picture"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -1632,6 +1589,63 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "autocomplete data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"key\": \"e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/autocomplete-homepage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"autocomplete-homepage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Pro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/pro?_id=5fe97a46526f24ffd6df4d89",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"pro"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "5fe97a46526f24ffd6df4d89"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1735,7 +1749,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkxMzU3NjMsImV4cCI6MTYwOTE2NDU2M30.G4QWmOKl69oNmDF3KB1GdPfsJiyi-YRlDGgVQQ23o4M",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmU3MDI3ZTQxYTM4ZjJlZDg4YjZmMjYiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDkzMTY4MjcsImV4cCI6MTYwOTM0NTYyN30.LyCI4-4rA1dmsMPxHFF4OJ_rEcTLqty08AlvD5Hkptg",
 								"type": "text"
 							}
 						],

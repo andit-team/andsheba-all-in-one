@@ -3,13 +3,19 @@
         <!-- Banner -->
         <div class="banner_section">
             <div class="container">
-                <div :class="[$q.screen.gt.sm ? 'text-h4 q-mb-md' : 'text-h5 text-center q-mb-md']">Search your nearest Professionals</div>
-                <q-form @submit="onSubmit" style="max-width: 700px">
-
+                <div :class="[$q.screen.gt.sm ? 'text-h4 banner-title q-mb-md' : 'text-h5 text-center q-mb-md']">Search your nearest Professionals</div>
+                <div style="max-width: 700px">
                     <div class="row search-box" v-if="$q.screen.gt.sm">
-                        <div class="col-xs-12 col-sm-5 border-right">
-                            <q-icon name="search"/>
-                            <input v-model="key" class="search-text form-control full-height" placeholder="What are you looking for?">
+                        <div class="col-xs-12 col-sm-5 relative-position" style="min-height: 50px">
+                            <q-icon name="search" class="c-search-icon"/>
+                            <autocomplete
+                                class="c-key-autocomplete border-right"
+                                placeholder="What are you looking for?"
+                                aria-label="What are you looking for?"
+                                @input="handleKeyChange"
+                                :search="handleSearch"
+                                @submit="handleSelect"
+                            ></autocomplete>
                         </div>
                         <div class="col-xs-12 col-sm-5">
                             <q-icon name="near_me" />
@@ -20,8 +26,8 @@
                                 @place_changed="setPlace">
                             </gmap-autocomplete>
                         </div>
-                        <div class="col-xs-12 col-sm-2">
-                            <button  :class="$q.screen.gt.sm ? 'full-width submit-btn' : 'full-width text-center'" type="submit" style="font-size: 16px">
+                        <div class="col-xs-12 col-sm-2 relative-position">
+                            <button @click="onSubmit" :class="$q.screen.gt.sm ? 'full-width submit-btn' : 'full-width text-center'" type="submit" style="font-size: 16px">
                                 <div>Search</div>
                             </button>
                         </div>
@@ -31,9 +37,17 @@
 
                     <div class="row" v-if="!$q.screen.gt.sm">
                         <div class="col-xs-12 col-sm-5 col-md-5 q-mb-lg">
-                            <q-input outlined v-model="key" label="What are you looking for?" style="background: #f7f8f9" >
+                            <q-input outlined v-model="key" label="What are you looking for?" class="c-key-search" style="background: #f7f8f9" >
                                 <template v-slot:prepend>
                                     <q-icon name="search" />
+                                </template>
+                                <template v-slot:default>
+                                    <autocomplete
+                                        class="c-key-autocomplete"
+                                        :search="handleSearch"
+                                        @submit="handleSelect"
+                                        @input="handleKeyChange"
+                                    ></autocomplete>
                                 </template>
                             </q-input>
                         </div>
@@ -58,22 +72,22 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-2 col-md-2">
-                            <q-btn color="primary"  :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 0px 25px; font-size: 22px">
+                            <q-btn color="primary"  @click="onSubmit" :class="$q.screen.gt.sm ? '' : 'full-width text-center'" type="submit" style="padding: 0px 25px; font-size: 22px">
                                 <div>Search</div>
                             </q-btn>
                         </div>
                     </div>
-                </q-form>
+                </div>
             </div>
         </div>
 
         <!-- Slider Top Services -->
         <!-- App Slider -->
 
-        <TopAreaServices/>
-        <FeaturedCategories/>
+        <TopAreaServices :recents="recents"/>
+        <FeaturedCategories :categories="categories"/>
         <app-slider/>
-        <MostPopular/>
+        <MostPopular :services="popular"/>
         <ProCta/>
         <Questions/>
         <Footer/>
@@ -110,6 +124,9 @@ export default {
             longitude: '',
             latitude: '',
             location: '',
+            categories: [],
+            recents: [],
+            popular: []
         }
     },
     async created() {
@@ -118,19 +135,40 @@ export default {
         this.latitude = result.data.latitude
         this.longitude = result.data.longitude
         this.location = result.data.city + ", " + result.data.country_name
-        let hp_data = this.$axios.get(`${process.env.API_URL}/customer/homepage`, {
+        let hp_data = await this.$axios.get(`${process.env.API_URL}/customer/homepage`, {
             params: { longitude: this.longitude, latitude: this.latitude }
         })
+        this.categories = hp_data.data.data.category
+        this.recents = hp_data.data.data.recent
+        this.popular = hp_data.data.data.popular
     },
 
     methods: {
+        handleSearch(value){
+            if(value.length > 0) {
+                return new Promise((resolve) => {
+                    this.$store.dispatch('service/fetchSearch', value).then(data => {
+                        resolve(data)
+                    })
+                })
+            }
+            return []
+        },
+
+        handleSelect(value) {
+            this.key = value
+        },
+        handleKeyChange(e) {
+            this.key = e.target.value
+        },
+
         setPlace(value) {
             this.location = value.formatted_address
             this.latitude = value.geometry.location.lat();
             this.longitude = value.geometry.location.lng();
         },
         onSubmit() {
-            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&key=' + this.key )
+            this.$router.push('/service?longitude=' + this.longitude + '&latitude=' + this.latitude + '&key=' + (this.key || '') )
         }
     }
 };
@@ -144,6 +182,13 @@ export default {
     .container {
         max-width: 1600px;
         padding: 250px 10px;
+
+        .banner-title {
+            font-weight: 600;
+            font-size: 2.225rem;
+            color: #1e212a;
+        }
+
         .border-right {
             &:after {
                 content: "";
@@ -151,15 +196,23 @@ export default {
                 width: 2px;
                 position: absolute;
                 border-right: 1px solid #757575;
-                margin-top: 5px;
+                margin-top: -46px;
+                right: 0;
             }
         }
 
+
         .search-box {
-            border: 1px solid #757575;
+            border: 1px solid rgba( 117, 117, 117, .5);
             border-right: 0;
             border-radius: 5px;
             background: #f7f8f9;
+
+            .c-search-icon {
+                position: absolute;
+                height: 55px;
+                font-size: 28px;
+            }
 
             .search-text {
                 background: #f7f8f9;
@@ -174,6 +227,48 @@ export default {
             }
         }
 
+        .c-key-autocomplete {
+            height: 100%;
+            .autocomplete {
+                height: 100%;
+                input {
+                    border: none;
+                    outline: none;
+                    height: 100%;
+                    border-radius: 0;
+                    font-size: 14px;
+                    background: transparent;
+                }
+                .autocomplete-result-list {
+                    background: #f7f8f9;
+                }
+            }
+        }
+
+        .c-key-search {
+            input {
+                display: none;
+            }
+            .c-key-autocomplete {
+                .autocomplete {
+                    input {
+                        display: block;
+                        padding: 0;
+                        margin-top: 15px;
+                        height: 70%;
+                    }
+                    .autocomplete-result-list {
+                        width: calc(100% + 117px) !important;
+                        margin-left: -48px;
+                        margin-top: -18px;
+                    }
+                }
+            }
+        }
+
+
+
+
         .autocomplete-search {
             width: calc(100% - 60px);
             height: 100%;
@@ -184,10 +279,12 @@ export default {
         }
 
         .submit-btn {
+            position: absolute;
+            margin-top: -1px;
             border: 0;
             outline: 0;
             cursor: pointer;
-            height: 100%;
+            height: calc(100% + 2px);
             background: #2b76d2;
             color: #fff;
             padding: 14px;

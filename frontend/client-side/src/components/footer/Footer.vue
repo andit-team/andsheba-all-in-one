@@ -12,6 +12,7 @@
                                 <div class="footer-link">Contact Us</div>
                                 <div class="footer-link">Faq</div>
                                 <div class="footer-link">Help</div>
+                                <div class="footer-link"><a href="/#/agent">Become a Agent</a></div>
                             </q-list>
                         </div>
                         <!-- /Footer Widget -->
@@ -127,7 +128,23 @@ export default {
 
 
     &:hover {
-        text-decoration: underline;
+        color: #2b76d2;
+    }
+
+
+    a {
+        padding: 0;
+        color: #000;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.4s ease 0s;
+        margin-bottom: 10px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+            color: #2b76d2;
+        }
     }
 }
 

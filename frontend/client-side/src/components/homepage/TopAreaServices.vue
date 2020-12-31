@@ -10,7 +10,7 @@
                     <span>Explore the greates our services. You won’t be disappointed</span>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 relative-position" v-bind:class="{'q-pa-md': $q.screen.gt.sm}">
-                    <div class="view-all">
+                    <div class="view-all q-pt-sm">
                         <div class="text-h2 text-right">
                             <a href="#!">View All <i class="fas fa-angle-right"></i></a>
                         </div>
@@ -19,8 +19,8 @@
                 </div>
             </div>
 
-            <VueSlickCarousel v-bind="slideSetting" class="q-mb-lg" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
-                <div v-for="(service, index) in services" :key="index">
+            <VueSlickCarousel v-if="recents.length > 0" v-bind="slideSetting" class="q-mb-lg" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
+                <div v-for="(service, index) in recents || []" :key="index">
                     <ServiceCard :service="service"/>
                 </div>
             </VueSlickCarousel>
@@ -37,6 +37,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
     name: "MostPopular",
+    props: ['recents'],
     components: {ServiceCard, VueSlickCarousel},
     data () {
         return {
@@ -63,51 +64,6 @@ export default {
                     }
                 ]
             },
-
-            services: [
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-02.jpg",
-                    category: {
-                        name: "Automobile"
-                    },
-                    title: "Car Repair Services"
-                },
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-03.jpg",
-                    category: {
-                        name: "Electrical"
-                    },
-                    title: "Electrical Panel Repairing"
-                },
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-04.jpg",
-                    category: {
-                        name: "Automobile"
-                    },
-                    title: "Stream Car Wash"
-                },
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-02.jpg",
-                    category: {
-                        name: "Automobile"
-                    },
-                    title: "Car Repair Services"
-                },
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-03.jpg",
-                    category: {
-                        name: "Electrical"
-                    },
-                    title: "Electrical Panel Repairing"
-                },
-                {
-                    thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-04.jpg",
-                    category: {
-                        name: "Automobile"
-                    },
-                    title: "Stream Car Wash"
-                }
-            ]
         }
     }
 }
@@ -115,8 +71,8 @@ export default {
 
 <style lang="scss">
 .most_popular_section {
-    background: #f7f8f9;
-    padding: 40px 0;
+    background: #fafafa;
+    padding: 40px 0 70px 0;
     .container {
         position: relative;
         .heading {
@@ -154,15 +110,16 @@ export default {
         }
         .view-all {
             a {
-                font-size: 24px;
+                font-size: 18px;
                 color: #171717;
+                font-weight: 600;
                 text-decoration: none;
             }
 
             span {
-                color: rgba(44, 48, 57, .15);
+                color: #f0f0f0;
                 font-size: 40px;
-                font-weight: 400;
+                font-weight: 600;
                 display: block;
                 text-align: right;
                 @media (max-width: 885px) {

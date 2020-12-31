@@ -1,30 +1,30 @@
 <template>
     <div class="question_area">
-        <div class="container q-px-lg">
-            <div class="title q-pa-md"> কিছু প্রশ্ন সমূহঃ</div>
+        <div class="container">
+            <div class="title q-px-md">Recent questions</div>
             <VueSlickCarousel v-bind="slideSetting" class="question-carousel">
                 <div>
-                    <div class="block q-ma-md">
+                    <div class="block q-mx-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/3.47d4a83.jpg">
-                        <div class="question-title">একটি জানালা প্রতিষ্ঠাপনের খরচ কত?</div>
+                        <div class="question-title cursor-pointer">How much does it cost to have your furnace cleaned?</div>
                     </div>
                 </div>
                 <div>
-                    <div class="block q-ma-md">
+                    <div class="block q-mx-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/4.4bfd504.jpg">
-                        <div class="question-title">একজন স্বাস্থ্য কর্মীর সেবা প্রতি খরচ কত? </div>
+                        <div class="question-title cursor-pointer">How much does it cost for surround sound installation?</div>
                     </div>
                 </div>
                 <div>
-                    <div class="block q-ma-md">
+                    <div class="block q-mx-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/5.f9cb0c7.jpg">
-                        <div class="question-title">বডি ম্যাসাজের উপকারিতা কি?</div>
+                        <div class="question-title cursor-pointer">How much would it cost to put in new windows?</div>
                     </div>
                 </div>
                 <div>
-                    <div class="block q-ma-md">
+                    <div class="block q-mx-md">
                         <img class="full-width" src="https://andsheba.com/_nuxt/img/6.c99fae2.jpg">
-                        <div class="question-title">একটি জানালা প্রতিষ্ঠাপনের খরচ কত?</div>
+                        <div class="question-title cursor-pointer">How much does it cost to have gutters cleaned?</div>
                     </div>
                 </div>
                 <template #prevArrow="arrowOption">
@@ -112,7 +112,7 @@ export default {
 .question_area {
     background: #f5f5f5;
     padding-top: 70px;
-    padding-bottom: 130px;
+    padding-bottom: 70px;
 
     .title {
         font-size: 30px;
@@ -150,7 +150,8 @@ export default {
             }
         }
         .question-title {
-            font-size: 24px;
+            font-size: 22px;
+            line-height: 32px;
             margin-top: 15px;
             font-weight: 500;
         }

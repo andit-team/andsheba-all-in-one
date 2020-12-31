@@ -1,6 +1,8 @@
 export default function () {
     return {
-        pro: null,
+        pro: {
+            name: ''
+        },
         plans: [],
         token: '',
         services: [],

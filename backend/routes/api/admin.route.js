@@ -40,7 +40,7 @@ router.put('/customer-status/:_id', Auth.admin, Customer.updateCustomerStatusByA
 // Pro Controller-----------------------------------------
 const Pro = require('../../controllers/pro/pro.controller')
 router.get('/pros', Auth.admin, Pro.getAllProByAdmin)
-router.get('/pro', Auth.admin, Pro.getOneProByAdmin)
+router.get('/pro', Auth.admin, Pro.getOnePro)
 router.put('/pro-status/:_id', Auth.admin, Pro.updateProStatusByAdmin)
 
 // Agent Controller---------------------------------------

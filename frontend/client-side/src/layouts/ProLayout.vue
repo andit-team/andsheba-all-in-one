@@ -31,11 +31,7 @@
                     class="q-gutter-md row items-center no-wrap q-mr-lg"
                     v-if="$q.screen.gt.sm"
                 >
-                    <q-btn flat color="grey-8" icon="search" to="service">
-                        সেবা খুজুন
-                    </q-btn
-                    >
-                    <q-btn-dropdown flat icon="web" olor="grey-8" label="ভাষা">
+                    <q-btn-dropdown flat icon="web" olor="grey-8" label="Lan">
                         <q-list>
                             <q-item clickable v-close-popup>
                                 <q-item-section>
@@ -45,18 +41,18 @@
 
                             <q-item clickable v-close-popup>
                                 <q-item-section>
-                                    <q-item-label>ইংলিশ</q-item-label>
+                                    <q-item-label>English</q-item-label>
                                 </q-item-section>
                             </q-item>
                         </q-list>
                     </q-btn-dropdown>
                     <q-btn round flat>
                         <q-avatar size="26px">
-                            <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
+                            <img :src="pro.thumb_image"/>
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
                     </q-btn>
-                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;লগ আউট</q-btn>
+                    <q-btn flat color="grey-8" icon="exit_to_app" @click="handleLogout"> &nbsp;Logout</q-btn>
                 </div>
             </q-toolbar>
         </q-header>
@@ -71,14 +67,14 @@
             <q-scroll-area class="fit">
                 <q-list>
                     <q-img
-                        src="https://img.freepik.com/free-vector/abstract-technology-background-science-connecting-technology_42705-96.jpg?size=626&ext=jpg"
+                        :src="pro.thumb_image"
                         style="height: 150px"
                     >
                         <div class="absolute-bottom bg-transparent">
                             <q-avatar size="56px" class="q-mb-sm">
-                                <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
+                                <img :src="pro.thumb_image"/>
                             </q-avatar>
-                            <div class="text-weight-bold">{{ profile.name }}</div>
+                            <div class="text-weight-bold">{{ pro.name }}</div>
                         </div>
                     </q-img>
 
@@ -160,7 +156,7 @@
                         <q-card-section class="row justify-center">
                             <q-avatar size="100px">
                                 <img
-                                    src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                                    :src="pro.thumb_image"
                                 />
                             </q-avatar>
                         </q-card-section>
@@ -271,8 +267,12 @@ export default {
         }
         this.profile = response.data
     },
-    mounted() {
-        console.log(this.$route.path)
+    computed: {
+        pro: {
+           get() {
+               return this.$store.getters["pro/getPro"]
+           }
+        }
     },
 
     methods: {

@@ -1,13 +1,14 @@
 <template>
-    <q-card class="my-card q-ma-md">
+    <q-card class="my-card q-ma-md cursor-pointer" @click="goToService">
         <q-img
             :src="service.thumb_img"
+            height="220px"
             basic
         >
             <div class="absolute-bottom text-h6 bg-transparent">
                 <div class="service-user">
                     <a href="#">
-                        <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4">
+                        <img :src="service.user.thumb_image">
                     </a>
                 </div>
             </div>
@@ -44,6 +45,11 @@ export default {
             rating: 4
         }
     },
+    methods: {
+        goToService() {
+            this.$router.push(`service/single?id=${this.service._id}`)
+        }
+    }
 
 }
 </script>

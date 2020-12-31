@@ -6,6 +6,7 @@ const User = require('../../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const RESPONDER = require('../../responder/responder') 
+const mongoose = require('mongoose')
 
 exports.signUpPro = (req, res, next) => {
 
@@ -139,15 +140,29 @@ exports.getAllProByAdmin = (req, res, next) => {
     })
 }
 
-exports.getOneProByAdmin = (req, res, next) => {
+exports.getOnePro = (req, res, next) => {
 
-    User.findById(req.query._id).then(result => {
+    User.aggregate([
+        {
+            $match: {
+                _id: mongoose.Types.ObjectId(req.query._id)
+            }
+        },
+        {
+            $lookup: {
+                from: 'services',
+                localField: '_id',
+                foreignField: 'user',
+                as: 'services'
+            }
+        },
+    ]).then(result => {
 
         if(result){
             const data = {
                 error:false,
                 msg: 'Successfully Get Pro Data',
-                data: result
+                data: result[0]
             }
             RESPONDER.response(res, 200, data)
         }else{
@@ -159,6 +174,7 @@ exports.getOneProByAdmin = (req, res, next) => {
         }
 
     }).catch(error => {
+        console.log(error)
         const data = {
             error: true,
             msg: 'Problem in getting Pro Data'
@@ -235,45 +251,49 @@ exports.verifyPro = (req, res, next) => {
     }
 }
 
-exports.updateProfilePicture = (req, res, next) => {
+// exports.updateProfilePicture = (req, res, next) => {
     
-    let updateData = {
-        picture: req.body.picture
-    }
-    let query = {
-        _id: req.userData.user_id
-    }
-    User.updateOne(query,updateData).then(result => {
+//     let updateData = {
+//         picture: req.body.picture
+//     }
+//     let query = {
+//         _id: req.userData.user_id
+//     }
+//     User.updateOne(query,updateData).then(result => {
 
-        if(result.n > 0){
-            const data = {
-                error:false,
-                msg: 'Successfully Update Profile Picture'
-            }
-            RESPONDER.response(res, 200, data)
-        }else{
-            const data = {
-                error: true,
-                msg: 'Update Profile Picture Unsuccessful'
-            }
-            RESPONDER.response(res, 200, data)
-        }
+//         if(result.n > 0){
+//             const data = {
+//                 error:false,
+//                 msg: 'Successfully Update Profile Picture'
+//             }
+//             RESPONDER.response(res, 200, data)
+//         }else{
+//             const data = {
+//                 error: true,
+//                 msg: 'Update Profile Picture Unsuccessful'
+//             }
+//             RESPONDER.response(res, 200, data)
+//         }
 
-    }).catch(error => {
-        const data = {
-            error: true,
-            msg: 'Update Profile Picture Unsuccessful'
-        }
-        RESPONDER.response(res, 200, data)
-    })
-}
+//     }).catch(error => {
+//         const data = {
+//             error: true,
+//             msg: 'Update Profile Picture Unsuccessful'
+//         }
+//         RESPONDER.response(res, 200, data)
+//     })
+// }
 
 exports.updateProfile = (req, res, next) => {
     
     let updateData = {
        name: req.body.name,
-       mobile: req.body.mobile,
        email: req.body.email,
+       cover_image: req.body.cover_image,
+       thumb_image: req.body.thumb_image,
+       date_of_birth: req.body.date_of_birth,
+       gender: req.body.gender,
+       description: req.body.description
     }
     if(req.body.password !== ''){
         let hash = bcrypt.hashSync(req.body.password, 8)
