@@ -19,7 +19,12 @@ exports.signUpPro = (req, res, next) => {
        status: 'active',
        role: 'pro',
        registration_ip: req.ip,
-       plan: req.body.plan
+       plan: req.body.plan,
+       address: req.body.address,
+        location: {
+            type: 'Point',
+            coordinates: [req.body.address.location.lng,req.body.address.location.lat]
+        },
     })
 
     newUser.save().then( result => {
