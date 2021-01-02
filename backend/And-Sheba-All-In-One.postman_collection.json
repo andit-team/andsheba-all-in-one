@@ -1506,7 +1506,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"first Customer\",\r\n    \"mobile\": \"+8801780320743\",\r\n    \"password\": \"12345678\",\r\n    \"email\":\"customer@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"mobile\": \"+8801780320743\",\r\n    \"password\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1642,6 +1642,42 @@
 									"key": "_id",
 									"value": "5fe97a46526f24ffd6df4d89"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk1Njc3ODMsImV4cCI6MTYwOTU5NjU4M30.Z94CkxdfbyFBHuhXxXZu9IKUFWnKXcIqHKrVSOIBvPk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Updated Name\",\r\n    \"thumb_image\": \"https://www.nj.com/resizer/h8MrN0-Nw5dB5FOmMVGMmfVKFJo=/450x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/SJGKVE5UNVESVCW7BBOHKQCZVE.jpg\",\r\n    \"email\": \"update@gmail.com\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"update"
 							]
 						}
 					},
