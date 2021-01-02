@@ -43,50 +43,15 @@
         <div class="text-h5 q-my-sm text-weight-bold q-mt-md">Service Overview</div>
 
         <div class="text-h6 text-grey q-mt-md">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis eligendi
-          tempore voluptatibus quae ipsam rerum eum Facilis eligendi tempore voluptatibus
-          quae ipsam rerum eum Facilis eligendi tempore voluptatibus tempore voluptatibus
-          quae ipsam rerum eum magni illo <br /><br />
-          tempore voluptatibus quae ipsam rerum eumquae ipsam rerum eum Facilis eligendi
-          tempore voluptatibus quae ipsam rerum eum Facilis eligendi Facilis eligendi
-          tempore voluptatibus quae ipsam rerum eum Facilis eligendi
-          <br /><br />
-          tempore voluptatibus quae ipsam rerum eumquae ipsam rerum eum Facilis eligendi
-          tempore voluptatibus quae ipsam rerum eum Facilis eligendi Facilis eligendi
-          tempore voluptatibus quae ipsam rerum eum Facilis eligendi
+          {{ service.description }}
         </div>
         <div class="text-h5 q-my-sm text-weight-bold q-mt-lg">FAQ</div>
         <div :class="[role=='agent'?'q-mb-xl':'']">
           <q-list class="faq">
-            <q-expansion-item expand-separator label="What a nice question ?">
+            <q-expansion-item expand-separator v-for="(item,index) in service.faq" :label="item.question" :key="index">
               <q-card>
                 <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
-                  reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
-                  officiis modi facere maiores architecto suscipit iste eveniet doloribus
-                  ullam aliquid.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-            <q-separator />
-            <q-expansion-item expand-separator label="How is you life going ?">
-              <q-card>
-                <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
-                  reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
-                  officiis modi facere maiores architecto suscipit iste eveniet doloribus
-                  ullam aliquid.
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-            <q-separator />
-            <q-expansion-item expand-separator label="How is you life going ?">
-              <q-card>
-                <q-card-section>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius
-                  reprehenderit eos corrupti commodi magni quaerat ex numquam, dolorum
-                  officiis modi facere maiores architecto suscipit iste eveniet doloribus
-                  ullam aliquid.
+                  {{ item.answer }}
                 </q-card-section>
               </q-card>
             </q-expansion-item>
@@ -256,7 +221,7 @@
                 class="col-auto text-grey text-subtitle1 q-pt-md row no-wrap items-center text-weight-bold"
               >
                 <q-icon name="place" />
-                Khulna
+                {{ service.address.address.split(',')[1] }}
               </div>
             </div>
 
