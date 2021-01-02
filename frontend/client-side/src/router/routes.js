@@ -7,6 +7,18 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: 'login', component: () => import('pages/Login.vue') },
       { path: 'register', component: () => import('pages/Register.vue') },
+
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('layouts/UserLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/user/Dashboard.vue') },
+      { path: 'bookings', component: () => import('pages/user/Bookings.vue') },
+      { path: 'profile', component: () => import('pages/user/Profile.vue') },
+      { path: 'wallet', component: () => import('pages/user/Wallet.vue') },
+      { path: 'subscription', component: () => import('pages/user/Subscription.vue') },
     ]
   },
   {

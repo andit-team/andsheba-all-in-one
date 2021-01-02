@@ -45,9 +45,10 @@
                             </q-item>
                         </q-list>
                     </q-btn-dropdown>
-                    <q-btn v-if="customer.isVerified" round flat>
+                    <q-btn v-if="customer.isVerified" round flat to="/user">
                         <q-avatar size="26px">
-                            <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4">
+                            <img :src="customer.thumb_image" v-if="customer.thumb_image && customer.thumb_image.length > 5"/>
+                            <img v-else alt="Male User icon" src="https://img.icons8.com/fluent/344/user-male-circle.png" lazy="loaded">
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
 
@@ -84,7 +85,7 @@
                         </q-item-section>
                     </q-item>
 
-                    <q-item v-if="customer.isVerified" v-ripple clickable>
+                    <q-item v-if="customer.isVerified" clickable v-ripple to="/user">
                         <q-item-section avatar>
                             <q-avatar size="26px">
                                 <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4">
@@ -145,7 +146,6 @@ export default {
         }
     },
     created() {
-        this.fabYoutube = fabYoutube;
         this.$store.dispatch('customer/fetchCustomer');
     },
     computed: {

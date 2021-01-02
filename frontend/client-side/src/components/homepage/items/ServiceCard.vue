@@ -8,7 +8,7 @@
             <div class="absolute-bottom text-h6 bg-transparent">
                 <div class="service-user">
                     <a href="#">
-                        <img :src="service.user.thumb_image">
+                        <img :src="service.user ? service.user.thumb_image: ''">
                     </a>
                 </div>
             </div>
