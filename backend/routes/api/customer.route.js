@@ -7,6 +7,7 @@ const Customer = require('../../controllers/customer/customer.controller')
 router.post('/signup', Customer.signUp)
 router.post('/login', Customer.login)
 router.post('/verify', Customer.verifyCustomer)
+router.put('/update', Auth.user, Customer.updateCustomerProfile)
 
 // Service for Customer---------------------------
 const Service = require('../../controllers/customer/service.controller')
