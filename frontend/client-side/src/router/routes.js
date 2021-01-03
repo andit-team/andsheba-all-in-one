@@ -15,6 +15,7 @@ const routes = [
     component: () => import('layouts/UserLayout.vue'),
     children: [
       { path: '', component: () => import('pages/user/Dashboard.vue') },
+      { path: 'dashboard', component: () => import('pages/user/Dashboard.vue') },
       { path: 'bookings', component: () => import('pages/user/Bookings.vue') },
       { path: 'profile', component: () => import('pages/user/Profile.vue') },
       { path: 'wallet', component: () => import('pages/user/Wallet.vue') },

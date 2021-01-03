@@ -24,13 +24,13 @@
                         </div>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'checkbox'" class="q-gutter-sm row">
-                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index][index1]" :label="option.answer_title_or_unit"/>
+                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index].answers[index1].value" :label="option.answer_title_or_unit"/>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'radio'" class="q-gutter-sm row">
-                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index]" :val="option.answer_title_or_unit" :label="option.answer_title_or_unit" />
+                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index].value" :val="option._id" :label="option.answer_title_or_unit" />
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'text'" class="q-gutter-sm row">
-                        <q-input v-model="answers[index]" class="full-width" outlined type="textarea"/>
+                        <q-input v-model="answers[index].value" class="full-width" outlined type="textarea"/>
                     </q-card-section>
                 </q-card>
 
@@ -44,7 +44,7 @@
                                         :height="200"
                                         class="file-selector"
                                         accept-extensions=".jpg,.svg,.png,.jpeg"
-                                        :multiple="false"
+                                        :multiple="true"
                                         :max-file-size="5 * 1024 * 1024"
                                         @changed="handleServiceImagesChange"
                                     >
@@ -121,16 +121,18 @@ export default {
         answers: {
             get() {
                 if(this.questions === null) {
-                    this.questions = this.$store.getters["service/getAnswers"]
+                    this.questions = JSON.parse ( JSON.stringify ( this.$store.getters["service/getAnswers"] ) )
                 }
                 return this.questions
-            },
-            set(value) {
-                console.log(value)
             }
         },
         cart: {
             get() {
+                this.$store.dispatch('service/updateAnswersLocal', {
+                    service_id: this.service._id,
+                    answers: this.questions
+                })
+
                 if(this.questions === null) {
                     return {
                         list: [],
@@ -140,40 +142,37 @@ export default {
                     let list = []
                     let total = 0
                     this.questions.forEach((question, i) => {
-                        if(typeof question === 'object') {
-                            if(this.service.questions[i].question_type == 'unit') {
-                                if(question.unit.length > 0) {
-                                    let unit = +question.unit
-                                    let price = unit *  this.service.questions[i].answers[0].price
-
+                        if(this.service.questions[i].question_type === "radio") {
+                            this.service.questions[i].answers.map(answer => {
+                                if(question.value === answer._id) {
                                     list.push({
-                                        _id: this.service.questions[i].answers[0]._id,
-                                        title: question.unit_type + " x " + unit,
-                                        price: price
+                                        _id: answer._id,
+                                        title: answer.answer_title_or_unit,
+                                        price: answer.price
                                     })
-                                    total = total + price
+                                    total += answer.price
                                 }
-                            } else {
-                                question.forEach((option, j) => {
-                                    if(option === true) {
-                                        list.push({
-                                            _id: this.service.questions[i].answers[j]._id,
-                                            title: this.service.questions[i].answers[j].answer_title_or_unit,
-                                            price: this.service.questions[i].answers[j].price
-                                        })
-                                        total = total + this.service.questions[i].answers[j].price
-                                    }
+                            })
+                        } else if(this.service.questions[i].question_type === "unit") {
+                            if(question.unit.length > 0) {
+                                let unit = +question.unit
+                                let price = unit *  this.service.questions[i].answers[0].price
+                                list.push({
+                                    _id: this.service.questions[i].answers[0]._id,
+                                    title: question.unit_type + " x " + unit,
+                                    price: price
                                 })
+                                total = total + price
                             }
-                        } else {
-                            this.service.questions[i].answers.forEach(option => {
-                                if(question === option.answer_title_or_unit) {
+                        } else if(this.service.questions[i].question_type === "checkbox") {
+                            question.answers.map((answer, j) => {
+                                if(answer.value === true) {
                                     list.push({
-                                        _id: option._id,
-                                        title: option.answer_title_or_unit,
-                                        price: option.price
+                                        _id: this.service.questions[i].answers[j]._id,
+                                        title: this.service.questions[i].answers[j].answer_title_or_unit,
+                                        price: this.service.questions[i].answers[j].price
                                     })
-                                    total += option.price
+                                    total += this.service.questions[i].answers[j].price
                                 }
                             })
 
@@ -191,25 +190,12 @@ export default {
         async handleServiceImagesChange(files) {
             let length = files.length
             for(let i=0;i<length;i++) {
-                let url = await this.handleFileUpload(files[i])
-                console.log(url);
-                if(url !== null) {
-                    this.service_images.push(url)
+                let fileReader = new FileReader()
+                fileReader.onload = e => {
+                    this.service_images.push(e.currentTarget.result)
                 }
+                fileReader.readAsDataURL(files[i])
             }
-            console.log(this.service_images)
-
-        },
-
-        async handleFileUpload(file) {
-            const data = new FormData()
-            data.append('image', file)
-            let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
-            const res = await this.$axios.post(url, data, {})
-            if (res.data.success) {
-                return res.data.data.image.url
-            }
-            return null
         },
     }
 };

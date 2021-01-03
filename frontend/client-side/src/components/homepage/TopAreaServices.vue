@@ -20,7 +20,10 @@
             </div>
 
             <VueSlickCarousel v-if="recents.length > 0" v-bind="slideSetting" class="q-mb-lg" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
-                <div v-for="(service, index) in recents || []" :key="index">
+                <div v-for="(service, index) in recents || []" :key="index" >
+                    <ServiceCard :service="service"/>
+                </div>
+                <div v-for="(service, index) in recents || []" :key="index" >
                     <ServiceCard :service="service"/>
                 </div>
             </VueSlickCarousel>
@@ -42,24 +45,23 @@ export default {
     data () {
         return {
             slideSetting: {
-                "dots": false,
-                "arrows": false,
-                "focusOnSelect": true,
+                dots: false,
+                arrows: false,
                 autoplay: true,
                 autoplaySpeed: 3000,
-                "infinite": true,
-                "slidesToShow": 3,
-                "slidesToScroll": 3,
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
                 responsive: [
                     {
-                        "breakpoint": 1300,
-                        "settings": {
-                            "slidesToShow": 2,
+                        breakpoint: 1300,
+                        settings: {
+                            slidesToShow: 2,
                         }
                     }, {
-                        "breakpoint": 700,
-                        "settings": {
-                            "slidesToShow": 1,
+                        breakpoint: 700,
+                        settings: {
+                            slidesToShow: 1,
                         }
                     }
                 ]

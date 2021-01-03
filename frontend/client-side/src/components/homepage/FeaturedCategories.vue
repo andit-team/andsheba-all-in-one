@@ -20,7 +20,7 @@
             </div>
 
             <div class="row justify-around" v-bind:class="{'q-pa-md': !$q.screen.gt.sm}">
-                <div class="col-12 col-md-4 q-pa-md" v-for="(category, index) in categories" :key="index">
+                <div class="col-12 col-md-4 q-pa-md" v-for="(category, index) in categories" :key="index" >
                     <q-card class="my-card">
                         <q-img :src="category.image" height="250px"/>
                         <q-btn

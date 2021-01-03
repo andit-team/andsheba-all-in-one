@@ -4,6 +4,8 @@ export default function () {
         answers: null,
         categories: [],
         sub_categories: [],
-        services: []
+        services: [],
+        cart: [],
+
     }
 }
