@@ -19,7 +19,7 @@
                     v-if="!$q.screen.gt.sm"
                 />
 
-                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/">
+                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/agent/dashboard">
                     <img src="https://andsheba.com/_nuxt/img/logo.0f218c1.png"/>
                 </q-btn>
 
@@ -31,10 +31,6 @@
                     class="q-gutter-md row items-center no-wrap q-mr-lg"
                     v-if="$q.screen.gt.sm"
                 >
-                    <q-btn flat color="grey-8" icon="search" to="service">
-                        সেবা খুজুন
-                    </q-btn
-                    >
                     <q-btn-dropdown flat icon="language" olor="grey-8">
                         <q-list>
                             <q-item clickable v-close-popup>
