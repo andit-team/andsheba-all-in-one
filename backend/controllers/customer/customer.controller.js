@@ -234,3 +234,46 @@ exports.verifyCustomer = (req, res, next) => {
         RESPONDER.response(res, 200, data)
     }
 }
+
+exports.updateCustomerProfile = (req, res, next) => {
+    
+    let updateData = {
+        name: req.body.name,
+        thumb_image: req.body.thumb_image,
+        email:req.body.email,
+    }
+
+    if(req.body.password !== ''){
+        const hash = bcrypt.hashSync(req.body.password, 8)
+        updateData = {
+            ...updateData,
+            password: hash
+        }
+    }
+    let query = {
+        _id: req.userData.user_id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Customer Profile'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Customer Profile Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Customer Profile Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}

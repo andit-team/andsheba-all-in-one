@@ -43,7 +43,7 @@
                         />
                         <q-input
                             filled
-                            type="text"
+                            type="password"
                             v-model="password"
                             label="পাসওয়ার্ড *"
                             lazy-rules
