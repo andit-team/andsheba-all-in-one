@@ -1,5 +1,5 @@
 /**
- * District Model-----------------------
+ * Order Model-----------------------
  */
 
 const mongoose = require('mongoose')
@@ -13,7 +13,11 @@ const OrderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
     },
-    user: { 
+    pro: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+    },
+    customer: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
     },
@@ -29,7 +33,43 @@ const OrderSchema = new Schema({
             }
             
         }
-    ]
+    ],
+    total: {
+        type: Number
+    },
+    sub_total: {
+        type: Number
+    },
+    status: {
+        type: String
+    },
+    division: {
+        type: String,
+    },
+    district: {
+      type: String,
+    },
+    municipal: {
+      type: String,
+    },
+    ward: {
+      type: String,
+    },
+    upazila: {
+      type: String,
+    },
+    union: {
+      type: String,
+    },
+    village: {
+      type: String,
+    },
+    message: {
+        type: String
+    }
+},
+{
+    timestamps: true
 })
 
 const Orders = mongoose.model('Orders', OrderSchema)
