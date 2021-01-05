@@ -21,5 +21,10 @@ router.get('/services', Auth.user, Service.findAllServices)
 router.get('/service/:_id', Auth.user, Service.getOneService)
 router.put('/service-status/:_id', Auth.user, Service.updateServiceStatus)
 
+// Order Controller------------------------
+const Order = require('../../controllers/customer/order.controller')
+router.get('/orders', Auth.user, Order.getAllOrdersByPro)
+router.get('/order', Order.getOneOrder)
+
 // Export the Router
 module.exports = router 

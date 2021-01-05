@@ -823,6 +823,71 @@
 					]
 				},
 				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "get all order",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmNhZmVjZDVlMzE2NzMzNjg2ZTkwYWYiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MDk4Mjg1ODYsImV4cCI6MTYwOTg1NzM4Nn0.-pNgb0giKH2LrD2QlJSLm9VHF12_XENYRdhBzAPOnIM",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/admin/orders?status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"admin",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one order",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/pro/order?_id=5ff403c286b9ab2a24df9144",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"pro",
+										"order"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5ff403c286b9ab2a24df9144"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Admin Create",
 					"request": {
 						"method": "POST",
@@ -1128,6 +1193,71 @@
 			"name": "Pro",
 			"item": [
 				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "get all orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5ODI4MDk2LCJleHAiOjE2MDk4NTY4OTZ9.WFhlVSs7nJ6Eo0ZOin7mkSxrCEdK-cuMUKwyjkQjEtA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/pro/orders?status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"pro",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get One Order",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/pro/order?_id=5ff403c286b9ab2a24df9144",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"pro",
+										"order"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5ff403c286b9ab2a24df9144"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "signup",
 					"request": {
 						"method": "POST",
@@ -1164,7 +1294,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"mobile\": \"+8801780320711\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"mobile\": \"+8801994992011\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1407,6 +1537,107 @@
 		{
 			"name": "Customer",
 			"item": [
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Place Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk4MTgyMTcsImV4cCI6MTYwOTg0NzAxN30.6-mPz5__BOSfGBLWbLG1jLq1lL4DLAtBStU_az0-76I",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"service_id\": \"5fed923f9fdff433a43d9591\",\r\n    \"answered_questions\": [\r\n        {\r\n            \"_id\": \"5fed923f9fdff433a43d958c\",\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"_id\": \"5fed923f9fdff433a43d958b\",\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"images\": [\r\n                \"https://image.com/image1\",\r\n                \"https://image.com/image2\",\r\n                \"https://image.com/image3\"\r\n    ],\r\n    \"total\": \"5000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/customer/place-order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"customer",
+										"place-order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all Orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk4MTgyMTcsImV4cCI6MTYwOTg0NzAxN30.6-mPz5__BOSfGBLWbLG1jLq1lL4DLAtBStU_az0-76I",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/customer/orders?status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"customer",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one order",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/customer/order?_id=5ff403c286b9ab2a24df9144",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"customer",
+										"order"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5ff403c286b9ab2a24df9144"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Search Service",
 					"request": {
@@ -1682,48 +1913,77 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Place Order",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk4MTgyMTcsImV4cCI6MTYwOTg0NzAxN30.6-mPz5__BOSfGBLWbLG1jLq1lL4DLAtBStU_az0-76I",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"service_id\": \"5fed923f9fdff433a43d9591\",\r\n    \"answered_questions\": [\r\n        {\r\n            \"_id\": \"5fed923f9fdff433a43d958c\",\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"_id\": \"5fed923f9fdff433a43d958b\",\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ],\r\n            \"total\": \"5000\"\r\n        }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/api/customer/place-order",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"customer",
-								"place-order"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
 		{
 			"name": "Agent",
 			"item": [
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Get All Orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGQ0NDlmZGZmNDMzYTQzZDk1NzgiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MDk4MjgzNzMsImV4cCI6MTYwOTg1NzE3M30.vidbKyGJhN6woguxY1pCavAGkoYVAfAOgVB0neTr75M",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5000/api/agent/orders?status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"agent",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get one order",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/agent/order?_id=5ff403c286b9ab2a24df9144",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"agent",
+										"order"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "5ff403c286b9ab2a24df9144"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "SignUp",
 					"request": {
