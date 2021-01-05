@@ -83,7 +83,7 @@ exports.getAllOrdersByPro = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('agent').populate('customer').then(result => {
+    Order.find(query).populate('agent').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -117,7 +117,7 @@ exports.getAllOrdersByAgent = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('pro').populate('customer').then(result => {
+    Order.find(query).populate('pro').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -151,8 +151,7 @@ exports.getAllOrdersByCustomer = (req, res, next ) => {
             status: req.query.status
         }
     }
-    console.log(query)
-    Order.find(query).populate('pro').populate('agent').then(result => {
+    Order.find(query).populate('pro').populate('agent').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -184,7 +183,7 @@ exports.getAllOrdersByAdmin = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('pro').populate('agent').populate('customer').then(result => {
+    Order.find(query).populate('pro').populate('agent').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -210,7 +209,7 @@ exports.getAllOrdersByAdmin = (req, res, next ) => {
 
 exports.getOneOrder = (req, res, next ) => {
     
-    Order.findById(req.query._id).populate('pro').populate('agent').populate('customer').then(result => {
+    Order.findById(req.query._id).populate('pro').populate('agent').populate('customer').populate('service').then(result => {
         if(result){
             const data = {
                 msg: 'Order Data Get Successfully',
