@@ -23,5 +23,11 @@ router.post('/autocomplete-homepage', HomePageData.autoCompleteHomePage)
 const Pro = require('../../controllers/pro/pro.controller')
 router.get('/pro', Pro.getOnePro)
 
+// Order Controller --------------------------
+const Order = require('../../controllers/customer/order.controller')
+router.post('/place-order', Auth.user, Order.placeOrder)
+router.get('/orders', Auth.user, Order.getAllOrdersByCustomer)
+router.get('/order', Order.getOneOrder)
+
 // Export the Router
 module.exports = router 
