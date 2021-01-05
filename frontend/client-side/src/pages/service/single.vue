@@ -202,7 +202,7 @@
       <!-- right side -->
       <div class="col-md-3 col-sm-12 col-xs-12">
         <q-card :class="[$q.screen.gt.sm?'':'q-mt-xl','my-card']">
-          <q-img  :src="service.thumb_img" />
+          <q-img  :src="service.user.thumb_image" height="300px"/>
 
           <q-card-section>
             <q-btn

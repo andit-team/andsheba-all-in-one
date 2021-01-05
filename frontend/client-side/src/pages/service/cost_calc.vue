@@ -3,7 +3,7 @@
         <div class="column justify-center content-center items-center q-mt-xl">
             <q-img v-if="$q.screen.gt.sm"
                    width="10%"
-                   :src="service.thumb_img"
+                   :src="service ? service.thumb_img : ''"
 
             />
             <div :class="[$q.screen.gt.sm?'text-h4':'text-h5 text-center']">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row q-my-xl q-px-lg justify-center q-gutter-md">
-            <div class="col-md-7 col-sm-6 col-xs-12">
+            <div class="col-md-7 col-sm-6 col-xs-12" v-if="service">
                 <q-card v-for="(question, index) in service.questions" :key="index" flat bordered class="q-mb-md">
                     <q-card-section>
                         <div class="text-h6">
@@ -86,7 +86,7 @@
                         <div class="text-h6">Total: <span> {{cart.total}} TK</span></div>
                         <q-space/>
                         <q-separator vertical/>
-                        <q-btn flat class="bg-primary" color="white">
+                        <q-btn flat class="bg-primary" @click="handleOrder" color="white">
                             Place Order
                         </q-btn>
                     </q-card-actions>
@@ -96,6 +96,9 @@
     </div>
 </template>
 <script>
+import Swal from "sweetalert2";
+import {LocalStorage} from "quasar";
+
 export default {
     data() {
         return {
@@ -107,6 +110,7 @@ export default {
             pool: true,
             questions: null,
             service_images: [],
+            order: {}
         };
     },
     created() {
@@ -129,10 +133,14 @@ export default {
         cart: {
             get() {
                 this.$store.dispatch('service/updateAnswersLocal', {
-                    service_id: this.service._id,
+                    service_id: this.service ? this.service._id : '',
                     answers: this.questions
                 })
 
+                let order = {
+                    service_id: this.service ? this.service._id : '',
+                    answered_questions: []
+                }
                 if(this.questions === null) {
                     return {
                         list: [],
@@ -142,12 +150,23 @@ export default {
                     let list = []
                     let total = 0
                     this.questions.forEach((question, i) => {
+                        let answered_questions = {
+                            _id: this.service.questions[i]._id,
+                            title: this.service.questions[i].title,
+                            question_type: this.service.questions[i].question_type,
+                            answers: []
+                        }
                         if(this.service.questions[i].question_type === "radio") {
                             this.service.questions[i].answers.map(answer => {
                                 if(question.value === answer._id) {
                                     list.push({
                                         _id: answer._id,
                                         title: answer.answer_title_or_unit,
+                                        price: answer.price
+                                    })
+                                    answered_questions.answers.push({
+                                        _id: answer._id,
+                                        answer_title_or_unit: answer.answer_title_or_unit,
                                         price: answer.price
                                     })
                                     total += answer.price
@@ -163,6 +182,11 @@ export default {
                                     price: price
                                 })
                                 total = total + price
+                                answered_questions.answers = [{
+                                    _id: this.service.questions[i].answers[0]._id,
+                                    answer_title_or_unit: question.unit_type + " x " + unit,
+                                    price: price
+                                }]
                             }
                         } else if(this.service.questions[i].question_type === "checkbox") {
                             question.answers.map((answer, j) => {
@@ -172,17 +196,42 @@ export default {
                                         title: this.service.questions[i].answers[j].answer_title_or_unit,
                                         price: this.service.questions[i].answers[j].price
                                     })
+                                    answered_questions.answers.push({
+                                        _id: this.service.questions[i].answers[j]._id,
+                                        answer_title_or_unit: this.service.questions[i].answers[j].answer_title_or_unit,
+                                        price: this.service.questions[i].answers[j].price
+                                    })
                                     total += this.service.questions[i].answers[j].price
                                 }
                             })
-
+                        } else if (this.service.questions[i].question_type === "text") {
+                            if(question.value.length > 0) {
+                                answered_questions.answers = [{
+                                    _id: question._id,
+                                    answer_title_or_unit: question.value,
+                                    price: 0
+                                }]
+                            }
+                        }
+                        if(answered_questions.answers.length > 0) {
+                            order.answered_questions.push(answered_questions)
                         }
                     })
+                    this.order = {
+                        ...order,
+                        total,
+                        images: this.service_images
+                    }
                     return {
                         list: list,
                         total: total
                     }
                 }
+            }
+        },
+        user: {
+            get() {
+                return this.$store.getters["customer/getCustomer"]
             }
         }
     },
@@ -197,6 +246,23 @@ export default {
                 fileReader.readAsDataURL(files[i])
             }
         },
+        async handleOrder() {
+            if(!this.user.isVerified) {
+                await Swal.fire('Warning', "Please log in", 'warning')
+                LocalStorage.set('last_url', this.$route.fullPath)
+                await this.$router.push('/login')
+            } else {
+                this.$swal_loading()
+                let result = await this.$store.dispatch('customer/placeOrder', this.order)
+                if (result.error) {
+                    await Swal.fire('Error', result.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Successfully Order Placed', 'success')
+                    await this.$router.push('/user/bookings')
+                }
+            }
+        }
+
     }
 };
 </script>

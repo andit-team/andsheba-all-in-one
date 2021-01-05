@@ -178,7 +178,7 @@ function base64Data(ImageURL) {
     return  block[1].split(",")[1];
 }
 
-async function uploadSingleImage(image) {
+export async function uploadSingleImage(image) {
     try {
         const data = new FormData()
         data.append('image', base64Data(image))

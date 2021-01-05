@@ -596,7 +596,13 @@ export default {
             this.handleSave();
         },
         handleSave() {
-            this.$store.dispatch('pro/updateServiceLocal', this.service)
+            let service = {
+                ...this.service,
+                thumb_image: null,
+                service_images: []
+            }
+            console.log(service)
+            this.$store.dispatch('pro/updateServiceLocal', service)
         },
         handleCategorySelect(value) {
             this.$store.dispatch('service/fetchSubCategories', value._id);

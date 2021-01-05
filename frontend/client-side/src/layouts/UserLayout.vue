@@ -19,7 +19,7 @@
                     v-if="!$q.screen.gt.sm"
                 />
 
-                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/user">
+                <q-btn flat no-caps no-wrap class="q-ml-xs" to="/">
                     <img src="https://andsheba.com/_nuxt/img/logo.0f218c1.png"/>
                 </q-btn>
 
@@ -90,7 +90,7 @@
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-check"/>
                         </q-item-section>
-                        <q-item-section>My Booking</q-item-section>
+                        <q-item-section>My Orders</q-item-section>
                     </q-item>
 
 
@@ -182,7 +182,7 @@
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-check"/>
                                     </q-item-section>
-                                    <q-item-section>My Bookings</q-item-section>
+                                    <q-item-section>My Orders</q-item-section>
                                 </q-item>
 
 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Cookies} from "quasar";
+import {uploadSingleImage} from "src/store/pro/actions";
 
 export const registerCustomer = async ({}, customer) => {
     let response = await axios.post(`${process.env.API_URL}/customer/signup`, customer );
@@ -57,5 +58,29 @@ export const updateCustomer = async ({commit}, customer) => {
     return {
         error: true,
         msg: response.data.msg
+    }
+}
+
+export const placeOrder = async ({}, order) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    for(let i=0; i < order.images.length; i++) {
+        let url = await uploadSingleImage(order.images[i])
+        console.log(url)
+        order.images[i] = url
+    }
+    let result = await axios.post(`${process.env.API_URL}/customer/place-order`, order, {headers})
+    if( result.error ) {
+        return {
+            error: true,
+            msg: "Request failed"
+        }
+    }
+    return {
+        error: result.data.error,
+        msg: result.data.msg
     }
 }
