@@ -51,14 +51,14 @@ exports.placeOrder = (req, res, next ) => {
                 RESPONDER.response(res, 200, data)
             }else{
                 const data = {
-                    msg: 'Problem in placeing service',
+                    msg: 'Problem in placeing Order',
                     error:true
                 }
                 RESPONDER.response(res, 200, data)
             }
         }).catch(error => {
             const data = {
-                msg: 'Problem in placeing service',
+                msg: 'Problem in placeing Order',
                 error:true
             }
             RESPONDER.response(res, 200, data)
