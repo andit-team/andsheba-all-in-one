@@ -1682,6 +1682,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Place Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk4MTgyMTcsImV4cCI6MTYwOTg0NzAxN30.6-mPz5__BOSfGBLWbLG1jLq1lL4DLAtBStU_az0-76I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"service_id\": \"5fed923f9fdff433a43d9591\",\r\n    \"answered_questions\": [\r\n        {\r\n            \"_id\": \"5fed923f9fdff433a43d958c\",\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"_id\": \"5fed923f9fdff433a43d958b\",\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ],\r\n            \"total\": \"5000\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/customer/place-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"place-order"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

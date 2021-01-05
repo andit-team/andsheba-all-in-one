@@ -26,7 +26,7 @@ const OrderSchema = new Schema({
             _id: mongoose.Schema.Types.ObjectId,
             title: String,
             question_type: String,
-            answer: [{
+            answers: [{
                 _id: mongoose.Schema.Types.ObjectId,
                 answer_title_or_unit: String,
                 price: Number,
