@@ -86,7 +86,7 @@
                         <q-item-section>Dashboard</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/user/bookings">
+                    <q-item clickable v-ripple to="/user/orders">
                         <q-item-section avatar>
                             <q-icon name="far fa-calendar-check"/>
                         </q-item-section>
@@ -178,7 +178,7 @@
                                     <q-item-section>Dashboard</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/user/bookings" :active="active">
+                                <q-item clickable v-ripple to="/user/orders" :active="active">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-check"/>
                                     </q-item-section>

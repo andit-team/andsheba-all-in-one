@@ -168,6 +168,32 @@ export const updateProfile = async ({}, pro) => {
     }
 }
 
+export const fetchOrders = async ({commit}, status) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/pro/orders`, {headers, params: {status: status || ''}})
+    if(response.data.error === false) {
+        commit('setOrders', response.data.data)
+    }
+}
+
+export const fetchOrder = async ({commit}, id) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/pro/order`, {headers, params: {_id: id || ''}})
+    if(response.data.error === false) {
+        commit('setOrder', response.data.data)
+        return false
+    } else {
+        return true
+    }
+}
 
 
 

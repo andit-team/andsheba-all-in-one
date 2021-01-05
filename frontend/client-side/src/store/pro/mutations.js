@@ -62,4 +62,10 @@ export const clearService = (state) => {
 }
 
 
+export const setOrders = (state, orders) => {
+    state.orders = orders
+}
 
+export const setOrder = (state, order) => {
+    this.order = order
+}

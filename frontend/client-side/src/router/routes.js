@@ -16,7 +16,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/user/Dashboard.vue') },
       { path: 'dashboard', component: () => import('pages/user/Dashboard.vue') },
-      { path: 'bookings', component: () => import('pages/user/Bookings.vue') },
+      { path: 'orders', component: () => import('pages/user/Orders.vue') },
       { path: 'profile', component: () => import('pages/user/Profile.vue') },
       { path: 'wallet', component: () => import('pages/user/Wallet.vue') },
       { path: 'subscription', component: () => import('pages/user/Subscription.vue') },
@@ -43,6 +43,7 @@ const routes = [
       { path: 'services', component: () => import('pages/pro/Services.vue') },
       { path: 'add_services', component: () => import('pages/pro/AddService.vue') },
       { path: 'booking_list', component: () => import('pages/pro/BookingList.vue') },
+      { path: 'order_details', component: () => import('pages/pro/OrderDetails') },
       { path: 'profile', component: () => import('pages/pro/Profile.vue') },
       { path: 'wallet', component: () => import('pages/pro/Wallet.vue') },
       { path: 'subscription', component: () => import('pages/pro/Subscription.vue') },

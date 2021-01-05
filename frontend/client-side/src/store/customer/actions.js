@@ -84,3 +84,15 @@ export const placeOrder = async ({}, order) => {
         msg: result.data.msg
     }
 }
+
+export const fetchOrders = async ({commit}, status) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/customer/orders`, {headers, params: {status: status || ''}})
+    if(response.data.error === false) {
+        commit('setOrders', response.data.data)
+    }
+}

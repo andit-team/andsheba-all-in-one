@@ -38,6 +38,8 @@ export default function () {
             upazila: null,
             union : null,
             village: null
-        }
+        },
+        orders: [],
+        order: {},
     }
 }

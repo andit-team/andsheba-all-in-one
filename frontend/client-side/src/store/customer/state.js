@@ -3,5 +3,6 @@ export default function () {
         customer: {
             isVerified: false
         },
+        orders: []
     }
 }
