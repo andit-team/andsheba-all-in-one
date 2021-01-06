@@ -243,58 +243,92 @@
 </template>
 
 <script>
-import {fabYoutube} from "@quasar/extras/fontawesome-v5";
 import {Cookies} from "quasar";
-
+import io from "socket.io-client"
+import { mapState } from 'vuex'
+var data = { soundurl : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
 export default {
     name: "AgentLayout",
     data() {
         return {
-            profile: null,
             leftDrawerOpen: false,
-            search: "",
             active: true,
+            activelink: 'Dashboard',
         };
     },
 
     async created() {
-        this.fabYoutube = fabYoutube;
         let response = await this.$store.dispatch('agent/fetchAgent')
         if (response.error === true) {
             await this.$router.push('/agent/login')
         }
-        this.profile = response.data
     },
-
     methods: {
         handleLogout() {
             Cookies.remove('token');
             this.$router.push('/agent/login')
+        },
+        setupSocket (){
+            const token = Cookies.get('token')
+            
+            if (token && !this.socket) {
+            const newSocket = io(process.env.SOCKET_URL, {
+                query: {
+                token: Cookies.get('token'),
+                },
+            });
+            newSocket.on("disconnect", () => {
+                this.$store.dispatch('auth/setSocket',null)
+                setTimeout(setupSocket, 3000);
+                console.log("Socket Connection Failed")
+            });
+
+            newSocket.on("connect", () => {
+                console.log("Socket Connected")
+            });
+            newSocket.on("service_added", (data) => {
+                console.log(234)
+                let id = data.data._id
+                let self = this
+                this.$store.dispatch('service/pushServices',data)
+                this.playSound()
+                this.$toast.open({
+                message: 'New Service Request!',
+                type: 'success',
+                position:'top-right',
+                dismissible:true,
+                duration: 10000,
+                onClick: function(){
+                    self.$router.push('services/edit/'+id)
+                },
+                });
+            });
+            
+                this.$store.dispatch('auth/setSocket',newSocket)
+
+            
+            }
+        },
+        playSound () {
+        var audio = new Audio(data.soundurl);
+        audio.play();
+        },
+        activelinkChange(link){
+        this.activelink = link
         }
-    }
+    },
+    computed: {
+        ...mapState({
+                agentProfile: state => state.agent.agent,
+                socket: state => state.auth.socket
+            }),  
+        profile: {
+                get() { return this.agentProfile }
+            },
+    },
+    mounted() {
+        this.setupSocket()
+    },
 };
 </script>
 
-<style lang="sass">
-.YL
-    &__toolbar-input-container
-        min-width: 100px
-        width: 30%
-
-    &__toolbar-input-btn
-        border-radius: 0
-        border-style: solid
-        border-width: 1px 1px 1px 0
-        border-color: rgba(0, 0, 0, .24)
-        max-width: 60px
-        width: 100%
-
-    &__drawer-footer-link
-        color: inherit
-        text-decoration: none
-        font-weight: 500
-        font-size: .75rem
-
-        &:hover
-            color: #000
-</style>

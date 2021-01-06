@@ -99,8 +99,6 @@ name: "Orders",
         },
          
     },mounted() {
-        console.log(this.orders)
-        console.log(234)
     },
 }
 </script>

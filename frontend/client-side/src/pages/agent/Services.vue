@@ -82,9 +82,6 @@ name: "Services",
             }
         },
          
-    },mounted() {
-        console.log(this.services)
-        console.log(234)
     },
 }
 </script>

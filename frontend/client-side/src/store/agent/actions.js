@@ -24,6 +24,7 @@ export const loginAgent = async ({}, agent) => {
 }
 
 export const fetchAgent = async ({commit}) => {
+    
     let token = Cookies.get('token')
     let response = await axios.post(`${process.env.API_URL}/agent/verify`, {token} )
     if(response.data.error === false) {
@@ -68,7 +69,6 @@ export const fetchOrders = async ({commit}) => {
         'Authorization': `Authorization ${token}`
     }
     let response = await axios.get(`${process.env.API_URL}/agent/orders?status`,{ headers })
-    console.log(response)
     if(response.data.error === false) {
         commit('setOrders', response.data.data)
     }
