@@ -1,13 +1,11 @@
 <template>
-    <q-card class="my-card q-ma-lg">
+    <q-card class="my-card q-ma-lg no-shadow" style="border: 1px solid rgba(80,83,89, .5) !important;">
         <div class="row">
             <div class="col-md-12 col-lg-9">
                 <q-card-section :horizontal="$q.screen.gt.sm" class="q-pa-lg">
                     <q-img
                         class="col-5"
                         :src="order.service.thumb_img"
-                        width="200px"
-                        height="200px"
                     />
 
                     <q-card-section :class="$q.screen.gt.sm ? 'q-ma-md' : 'q-mt-lg q-px-none'">
@@ -45,10 +43,10 @@
                     </q-card-section>
                 </q-card-section>
             </div>
-            <div class="col-12 col-md-3 q-pa-lg">
+            <div class="col-12 col-md-6 col-lg-3 q-pa-lg">
                 <div v-if="order.status === 'pending'">
-                    <a @click="() => this.$router.push('')" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.sm ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
-                    <a @click="() => this.$router.push('/pro/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.sm ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept</a>
+                    <a @click="() => this.$router.push('')" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
+                    <a @click="() => this.$router.push('/pro/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept</a>
                 </div>
             </div>
         </div>

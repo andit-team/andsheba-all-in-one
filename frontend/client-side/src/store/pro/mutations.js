@@ -67,5 +67,5 @@ export const setOrders = (state, orders) => {
 }
 
 export const setOrder = (state, order) => {
-    this.order = order
+    state.order = order
 }

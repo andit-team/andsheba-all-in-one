@@ -40,6 +40,6 @@ export default function () {
             village: null
         },
         orders: [],
-        order: {},
+        order: null,
     }
 }

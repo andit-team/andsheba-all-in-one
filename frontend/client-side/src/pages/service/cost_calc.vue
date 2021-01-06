@@ -178,13 +178,13 @@ export default {
                                 let price = unit *  this.service.questions[i].answers[0].price
                                 list.push({
                                     _id: this.service.questions[i].answers[0]._id,
-                                    title: question.unit_type + " x " + unit,
+                                    title: unit + " " +  question.unit_type ,
                                     price: price
                                 })
                                 total = total + price
                                 answered_questions.answers = [{
                                     _id: this.service.questions[i].answers[0]._id,
-                                    answer_title_or_unit: question.unit_type + " x " + unit,
+                                    answer_title_or_unit: unit + " " + question.unit_type,
                                     price: price
                                 }]
                             }
@@ -258,7 +258,7 @@ export default {
                     await Swal.fire('Error', result.msg, 'error')
                 } else {
                     await Swal.fire('Success', 'Successfully Order Placed', 'success')
-                    await this.$router.push('/user/bookings')
+                    await this.$router.push('/user/orders')
                 }
             }
         }

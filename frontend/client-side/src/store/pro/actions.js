@@ -195,6 +195,25 @@ export const fetchOrder = async ({commit}, id) => {
     }
 }
 
+export const updateOrder = async ({commit}, order) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let result = await axios.put(`${process.env.API_URL}/pro/order-status/${order.id}`, order, {headers})
+    if( result.error ) {
+        return {
+            error: true,
+            msg: "Request failed"
+        }
+    }
+    return {
+        error: result.data.error,
+        msg: result.data.msg
+    }
+}
+
 
 
 
