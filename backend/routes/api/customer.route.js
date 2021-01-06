@@ -28,6 +28,7 @@ const Order = require('../../controllers/customer/order.controller')
 router.post('/place-order', Auth.user, Order.placeOrder)
 router.get('/orders', Auth.user, Order.getAllOrdersByCustomer)
 router.get('/order', Order.getOneOrder)
+router.put('/order-status/:_id', Auth.user, Order.updateOrderStatusByCustomer)
 
 // Export the Router
 module.exports = router 

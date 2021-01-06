@@ -1254,6 +1254,43 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Update Order status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5OTIyOTEwLCJleHAiOjE2MDk5NTE3MTB9.xrvTxBv-Bk3xeA5o5zNjeVtfnZfJPzfaAkKDTIYY4_M",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"status\": \"accepted\"\r\n    //\"proposal_flag\": true,\r\n    //\"answered_questions\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/pro/order-status/5ff579c5aaf580383ca05e4d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"pro",
+										"order-status",
+										"5ff579c5aaf580383ca05e4d"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1547,7 +1584,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk4MTgyMTcsImV4cCI6MTYwOTg0NzAxN30.6-mPz5__BOSfGBLWbLG1jLq1lL4DLAtBStU_az0-76I",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk5MjI5NzUsImV4cCI6MTYwOTk1MTc3NX0.w7TlBfrjlAuaZw0XRSZZdeoQORkzthTRj4xEkVIm8UM",
 										"type": "text"
 									}
 								],
@@ -1631,6 +1668,43 @@
 											"key": "_id",
 											"value": "5ff403c286b9ab2a24df9144"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5OTIyOTEwLCJleHAiOjE2MDk5NTE3MTB9.xrvTxBv-Bk3xeA5o5zNjeVtfnZfJPzfaAkKDTIYY4_M",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"accepted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/customer/order-status/5ff579c5aaf580383ca05e4d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"customer",
+										"order-status",
+										"5ff579c5aaf580383ca05e4d"
 									]
 								}
 							},
