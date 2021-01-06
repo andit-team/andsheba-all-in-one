@@ -47,6 +47,12 @@ const OrderSchema = new Schema({
     status: {
         type: String
     },
+    approved_by_customer: {
+        type: Boolean
+    },
+    approved_by_pro: {
+        type: Boolean
+    },
     division: {
         type: String,
     },

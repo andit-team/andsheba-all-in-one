@@ -17,6 +17,8 @@ exports.placeOrder = (req, res, next ) => {
             images: req.body.images,
             total: req.body.total,
             status: 'pending',
+            approved_by_customer: true,
+            approved_by_pro: false,
             message: 'Your Order is in Pending Mode'
         }
 
@@ -226,6 +228,108 @@ exports.getOneOrder = (req, res, next ) => {
     }).catch(error => {
         const data = {
             msg: 'Problem in getting Orders',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.updateOrderStatusByPro = (req, res, next ) => {
+    let query = {
+        _id: req.params._id
+    }
+
+    let updateData = {}
+    if(req.body.status === 'rejected'){
+        updateData = {
+            ...updateData,
+            status: req.body.status,
+            approved_by_pro: false
+        }
+    }
+
+    if(req.body.status === 'accepted'){
+        updateData = {
+            ...updateData,
+            status: req.body.status,
+            approved_by_pro: true
+        }
+    }
+
+    if(req.body.status === 'accepted' && req.body.proposal_flag === true){
+        updateData = {
+            ...updateData,
+            status: 'pending',
+            approved_by_pro: true,
+            answered_questions: req.body.answered_questions,
+            approved_by_customer: false
+        }
+    }
+
+    Order.findOneAndUpdate(query,updateData).then(result => {
+        if(result){
+            const data = {
+                msg: 'Order Status Changed Successfully',
+                error: false
+            }
+            req.io.to(result.customer).emit('order_status_get_by_customer', result) // For Customer realtime notification------------------------------------
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                msg: 'Problem in changing Order status',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+    }).catch(error => {
+        const data = {
+            msg: 'Problem in changing Order status',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}
+
+exports.updateOrderStatusByCustomer = (req, res, next ) => {
+    let query = {
+        _id: req.params._id
+    }
+
+    let updateData = {}
+    if(req.body.status === 'rejected'){
+        updateData = {
+            ...updateData,
+            status: req.body.status,
+            approved_by_customer: false
+        }
+    }
+
+    if(req.body.status === 'accepted'){
+        updateData = {
+            ...updateData,
+            status: req.body.status,
+            approved_by_customer: true
+        }
+    }
+
+    Order.findOneAndUpdate(query,updateData).then(result => {
+        if(result){
+            const data = {
+                msg: 'Order Status Changed Successfully',
+                error: false
+            }
+            req.io.to(result.pro).emit('order_status_get_by_pro', result) // For Pro realtime notification------------------------------------
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                msg: 'Problem in changing Order status',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+    }).catch(error => {
+        const data = {
+            msg: 'Problem in changing Order status',
             error:true
         }
         RESPONDER.response(res, 200, data)
