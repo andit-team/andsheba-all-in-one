@@ -43,7 +43,6 @@ exports.placeOrder = (req, res, next ) => {
         newOrder.save().then(result => {
             if(result){
                 req.io.to(result.pro).emit('order_get_by_pro', result) // For Pro realtime notification------------------------------------
-                req.io.to(result.agent).emit('order_get_by_agent', result) // For Pro realtime notification------------------------------------
                 const data = {
                     msg: 'Order Placed Successfully',
                     error: false,
