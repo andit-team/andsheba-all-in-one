@@ -270,7 +270,8 @@ exports.updateOrderStatusByPro = (req, res, next ) => {
         if(result){
             const data = {
                 msg: 'Order Status Changed Successfully',
-                error: false
+                error: false,
+                data: result
             }
             req.io.to(result.customer).emit('order_status_get_by_customer', result) // For Customer realtime notification------------------------------------
             RESPONDER.response(res, 200, data)
@@ -316,7 +317,8 @@ exports.updateOrderStatusByCustomer = (req, res, next ) => {
         if(result){
             const data = {
                 msg: 'Order Status Changed Successfully',
-                error: false
+                error: false,
+                data: result
             }
             req.io.to(result.pro).emit('order_status_get_by_pro', result) // For Pro realtime notification------------------------------------
             RESPONDER.response(res, 200, data)
