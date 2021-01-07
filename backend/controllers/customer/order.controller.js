@@ -44,8 +44,8 @@ exports.placeOrder = (req, res, next ) => {
         const newOrder = new Order(order)
         newOrder.save().then(result => {
             if(result){
-                req.io.to(result.pro).emit('order_get_by_pro', result) // For Pro realtime notification------------------------------------
-                req.io.to(result.agent).emit('order_get_by_agent', result) // For Agent realtime notification------------------------------------
+                req.io.to(result.pro.toString()).emit('order_get_by_pro', result) // For Pro realtime notification------------------------------------
+                req.io.to(result.agent.toString()).emit('order_get_by_agent', result) // For Agent realtime notification------------------------------------
                 const data = {
                     msg: 'Order Placed Successfully',
                     error: false,
@@ -274,7 +274,7 @@ exports.updateOrderStatusByPro = (req, res, next ) => {
                 error: false,
                 data: result
             }
-            req.io.to(result.customer).emit('order_status_get_by_customer', result) // For Customer realtime notification------------------------------------
+            req.io.to(result.customer.toString()).emit('order_status_get_by_customer', result) // For Customer realtime notification------------------------------------
             RESPONDER.response(res, 200, data)
         }else{
             const data = {
@@ -321,7 +321,7 @@ exports.updateOrderStatusByCustomer = (req, res, next ) => {
                 error: false,
                 data: result
             }
-            req.io.to(result.pro).emit('order_status_get_by_pro', result) // For Pro realtime notification------------------------------------
+            req.io.to(result.pro.toString()).emit('order_status_get_by_pro', result) // For Pro realtime notification------------------------------------
             RESPONDER.response(res, 200, data)
         }else{
             const data = {
