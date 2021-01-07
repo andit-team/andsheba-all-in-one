@@ -297,7 +297,7 @@ exports.updateOrderStatusByCustomer = (req, res, next ) => {
     }
 
     let updateData = {}
-    if(req.body.status === 'rejected'){
+    if(req.body.status === 'cancelled'){
         updateData = {
             ...updateData,
             status: req.body.status,
