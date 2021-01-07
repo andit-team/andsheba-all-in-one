@@ -246,6 +246,7 @@
 import {Cookies} from "quasar";
 import io from "socket.io-client"
 import { mapState } from 'vuex'
+import { Notify } from 'quasar'
 var data = { soundurl : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
 export default {
     name: "AgentLayout",
@@ -270,7 +271,8 @@ export default {
         },
         setupSocket (){
             const token = Cookies.get('token')
-            
+
+
             if (token && !this.socket) {
             const newSocket = io(process.env.SOCKET_URL, {
                 query: {
@@ -286,25 +288,26 @@ export default {
             newSocket.on("connect", () => {
                 console.log("Socket Connected")
             });
-            newSocket.on("service_added", (data) => {
-                console.log(234)
-                let id = data.data._id
-                let self = this
-                this.$store.dispatch('service/pushServices',data)
+            newSocket.on("order_get_by_agent", (data) => {
+                //let id = data.data._id
+                //let self = this
+                //this.$store.dispatch('service/pushServices',data)
                 this.playSound()
-                this.$toast.open({
-                message: 'New Service Request!',
-                type: 'success',
+                
+                //Alert
+                this.$q.notify({
+                progress: true,
+                message: 'New Order Request in your Area',
+                color: 'primary',
                 position:'top-right',
-                dismissible:true,
-                duration: 10000,
-                onClick: function(){
-                    self.$router.push('services/edit/'+id)
-                },
-                });
+                multiLine: true,
+                avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+                actions: [
+                { label: 'Check', color: 'yellow', handler: () => { /* ... */ } }
+                ]
+            })
             });
             
-                this.$store.dispatch('auth/setSocket',newSocket)
 
             
             }
