@@ -32,9 +32,6 @@
             </q-tab-panel>
         </q-tab-panels>
 
-
-
-
     </div>
 </template>
 
@@ -54,7 +51,7 @@ name: "BookingList",
     computed: {
         orders: {
             get() {
-                return this.$store.getters["pro/getOrders"].reverse()
+                return this.$store.getters["pro/getOrders"]
             }
         },
         pending: {

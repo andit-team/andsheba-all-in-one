@@ -17,6 +17,7 @@ const routes = [
       { path: '', component: () => import('pages/user/Dashboard.vue') },
       { path: 'dashboard', component: () => import('pages/user/Dashboard.vue') },
       { path: 'orders', component: () => import('pages/user/Orders.vue') },
+      { path: 'order_details', component: () => import('pages/user/OrderDetails') },
       { path: 'profile', component: () => import('pages/user/Profile.vue') },
       { path: 'wallet', component: () => import('pages/user/Wallet.vue') },
       { path: 'subscription', component: () => import('pages/user/Subscription.vue') },

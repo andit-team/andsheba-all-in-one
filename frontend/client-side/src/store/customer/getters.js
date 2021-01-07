@@ -5,3 +5,7 @@ export const getCustomer = state => {
 export const getOrders = state => {
     return state.orders
 }
+
+export const getOrder = state => {
+    return state.order
+}

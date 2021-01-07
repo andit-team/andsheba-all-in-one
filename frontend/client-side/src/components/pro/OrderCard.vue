@@ -15,6 +15,7 @@
                                 <span>Booking Date</span>
                                 <span>{{new Date(order.createdAt).toDateString()}}
                             <span class="status pending" v-if="order.status === 'pending'">Pending</span>
+                            <span class="status accepted" v-if="order.status === 'accepted'">Accepted</span>
                             <span class="status completed" v-if="order.status === 'completed'">Completed</span>
                             <span class="status in-progress" v-if="order.status === 'in-progress'">In Progress</span>
                             <span class="status rejected" v-if="order.status === 'rejected'">Rejected</span>
@@ -44,9 +45,9 @@
                 </q-card-section>
             </div>
             <div class="col-12 col-md-6 col-lg-3 q-pa-lg">
-                <div v-if="order.status === 'pending'">
-                    <a @click="() => this.$router.push('')" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
-                    <a @click="() => this.$router.push('/pro/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept</a>
+                <div>
+                    <a v-if="order.status === 'pending'" @click="handleCancel" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
+                    <a @click="() => this.$router.push('/pro/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">View</a>
                 </div>
             </div>
         </div>
@@ -54,6 +55,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "OrderCard",
     props: ['order'],
@@ -61,6 +64,27 @@ export default {
         user: {
             get() {
                 return this.$store.getters["customer/getCustomer"]
+            }
+        }
+    },
+    methods: {
+        async handleCancel() {
+            let {isConfirmed} = await  Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            })
+            if (isConfirmed) {
+                const result = await this.$store.dispatch('pro/updateOrder', {_id: this.order._id, status: 'rejected'})
+                if (result.error === true) {
+                    await Swal.fire('Error', result.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Service Canceled Successfully', 'success')
+                }
             }
         }
     }
@@ -113,6 +137,9 @@ export default {
             }
             span.pending {
                 background: #f9c10a;
+            }
+            span.accepted {
+                background: #41b9ac;
             }
             span.completed {
                 background: #36a745;

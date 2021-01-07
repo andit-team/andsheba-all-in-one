@@ -8,3 +8,7 @@ export const setCustomer = (state, customer) => {
 export const setOrders = (state, orders) => {
     state.orders = orders
 }
+
+export const setOrder = (state, order) => {
+    state.order = order
+}

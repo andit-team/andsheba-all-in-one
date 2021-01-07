@@ -34,8 +34,8 @@
                 </q-card>
             </div>
         </div>
-        <div class="q-ma-lg">
-            <q-btn class="q-mr-md q-px-sm bg-primary text-white no-shadow">Accept</q-btn>
+        <div class="q-ma-lg" v-if="!order.approved_by_pro">
+            <q-btn class="q-mr-md q-px-sm bg-primary text-white no-shadow" @click="handleAccept">Accept</q-btn>
             <q-btn class="text-primary no-shadow" @click="() => {this.proposal = true}">Send Proposal</q-btn>
         </div>
 
@@ -85,10 +85,7 @@
                     </q-card-section>
                 </q-card>
             </q-card>
-
-
         </q-dialog>
-
     </div>
 </template>
 
@@ -102,7 +99,6 @@ export default {
             proposal: false,
             additional: [
                 {
-                    _id: "",
                     answer_title_or_unit: null,
                     price: null
                 }
@@ -145,22 +141,28 @@ export default {
     methods: {
         addAdditional() {
             this.additional.push({
-                _id: "",
                 answer_title_or_unit: null,
                 price: null
             })
+        },
+        async handleAccept() {
+            const result = await this.$store.dispatch('pro/updateOrder', {_id: this.order._id, status: 'accepted'})
+            if (result.error === true) {
+                await Swal.fire('Error', result.msg, 'error')
+            } else {
+                await Swal.fire('Success', 'Service Accepted Successfully', 'success')
+            }
         },
         async handleSendProposal() {
             this.proposal = false
             let questions = JSON.parse(JSON.stringify(this.order.answered_questions))
             questions.push({
-                _id: "",
                 title: 'Additional',
                 question_type: 'additional',
                 answers: this.additional
             })
             let order = {
-                id: this.order._id,
+                _id: this.order._id,
                 status: "accepted",
                 proposal_flag: true,
                 answered_questions: questions
@@ -170,6 +172,7 @@ export default {
                 await Swal.fire('Error', result.msg, 'error')
             } else {
                 await Swal.fire('Success', 'Order proposal send', 'success')
+                await this.$store.dispatch('pro/fetchOrder', this.$route.query.id )
             }
         }
     }

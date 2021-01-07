@@ -201,7 +201,7 @@ export const updateOrder = async ({commit}, order) => {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    let result = await axios.put(`${process.env.API_URL}/pro/order-status/${order.id}`, order, {headers})
+    let result = await axios.put(`${process.env.API_URL}/pro/order-status/${order._id}`, order, {headers})
     if( result.error ) {
         return {
             error: true,

@@ -1,13 +1,11 @@
 <template>
-    <q-card class="my-card q-ma-lg">
+    <q-card class="my-card q-ma-lg no-shadow" style="border: 1px solid rgba(80,83,89, .5) !important;">
         <div class="row">
             <div class="col-md-12 col-lg-9">
                 <q-card-section :horizontal="$q.screen.gt.sm" class="q-pa-lg">
                     <q-img
                         class="col-5"
                         :src="order.service.thumb_img"
-                        width="200px"
-                        height="200px"
                     />
 
                     <q-card-section :class="$q.screen.gt.sm ? 'q-ma-md' : 'q-mt-lg q-px-none'">
@@ -17,6 +15,7 @@
                                 <span>Booking Date</span>
                                 <span>{{new Date(order.createdAt).toDateString()}}
                             <span class="status pending" v-if="order.status === 'pending'">Pending</span>
+                            <span class="status accepted" v-if="order.status === 'accepted'">Accepted</span>
                             <span class="status completed" v-if="order.status === 'completed'">Completed</span>
                             <span class="status in-progress" v-if="order.status === 'in-progress'">In Progress</span>
                             <span class="status rejected" v-if="order.status === 'rejected'">Rejected</span>
@@ -45,21 +44,13 @@
                     </q-card-section>
                 </q-card-section>
             </div>
-            <div class="col-md-12 col-lg-3">
-                <div class="action-area" v-if="status === 'in-progress'">
-                    <div class="action-btn chat">
-                        <q-icon name="fa fa-eye"/>
-                        <span>Chat</span>
-                    </div>
-                    <div class="action-btn cancel">
-                        <q-icon name="fa fa-times"/>
-                        <span>Cancel the Service</span>
-                    </div>
-                    <br>
-                    <div class="action-btn accept">
-                        <q-icon name="fa fa-check"/>
-                        <span>Complete Request to User</span>
-                    </div>
+            <div class="col-12 col-md-6 col-lg-3 q-pa-lg">
+                <div class="block">
+                    <a v-if="order.status === 'pending'" @click="handleCancel" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
+                    <a @click="() => this.$router.push('/user/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">View</a>
+                </div>
+                <div class="q-mr-sm" style="margin-top: 40px" v-if="!order.approved_by_customer">
+                    <a @click="() => this.$router.push('/user/order_details?id=' + order._id)" class="q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6ee; color: #38af48;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept new Offer</a>
                 </div>
             </div>
         </div>
@@ -67,6 +58,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     name: "OrderCard",
     props: ['order'],
@@ -74,6 +67,27 @@ export default {
         user: {
             get() {
                 return this.$store.getters["customer/getCustomer"]
+            }
+        }
+    },
+    methods: {
+        async handleCancel() {
+            let {isConfirmed} = await  Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            })
+            if (isConfirmed) {
+                const result = await this.$store.dispatch('pro/updateOrder', {_id: this.order._id, status: 'rejected'})
+                if (result.error === true) {
+                    await Swal.fire('Error', result.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Service Canceled Successfully', 'success')
+                }
             }
         }
     }
@@ -127,6 +141,9 @@ export default {
             span.pending {
                 background: #f9c10a;
             }
+            span.accepted {
+                background: #41b9ac;
+            }
             span.completed {
                 background: #36a745;
             }
@@ -139,48 +156,4 @@ export default {
         }
     }
 }
-
-.action-area {
-    padding: 0;
-    margin: 15px;
-    height: 80px;
-}
-
-.action-btn {
-    padding: 3px 10px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-    i {
-        margin-top: -4px;
-        padding-right: 7px;
-    }
-    span {
-
-    }
-    &.chat {
-        float: right;
-        background-color: #e2f6f6;
-        color: #41b9ac;
-        position: absolute;
-        right: 200px;
-    }
-    &.cancel {
-        float: right;
-        background-color: #fce3e7;
-        color: #e63f4e;
-        position: absolute;
-        right: 35px;
-    }
-    &.accept {
-        float: right;
-        background-color: #e2f6ee;
-        color: #39b059;
-        position: absolute;
-        right: 35px;
-        margin-top: 25px
-    }
-}
-
 </style>

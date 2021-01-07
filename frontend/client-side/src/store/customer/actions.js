@@ -96,3 +96,37 @@ export const fetchOrders = async ({commit}, status) => {
         commit('setOrders', response.data.data)
     }
 }
+
+export const fetchOrder = async ({commit}, id) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/customer/order`, {headers, params: {_id: id || ''}})
+    if(response.data.error === false) {
+        commit('setOrder', response.data.data)
+        return false
+    } else {
+        return true
+    }
+}
+
+export const updateOrder = async ({commit}, order) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let result = await axios.put(`${process.env.API_URL}/customer/order-status/${order._id}`, order, {headers})
+    if( result.error ) {
+        return {
+            error: true,
+            msg: "Request failed"
+        }
+    }
+    return {
+        error: result.data.error,
+        msg: result.data.msg
+    }
+}
