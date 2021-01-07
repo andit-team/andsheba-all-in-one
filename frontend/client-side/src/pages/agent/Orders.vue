@@ -14,6 +14,7 @@
             <q-tab name="pending" :label="`Pending ( ${pending} )`" class="text-warning" />
             <q-tab name="completed" :label="`Completed ( ${completed} )`" class="text-gray"/>
             <q-tab name="rejected" :label="`Rejected ( ${rejected} )`" class="text-red"/>
+            <q-tab name="cancelled" :label="`Cancelled ( ${cancelled} )`" class="text-orange"/>
         </q-tabs>
 
         <q-tab-panels v-model="tab" animated>
@@ -50,6 +51,16 @@
                     <div class="row">
                         <div v-for="(order,index) in orders" :key="index"  class="col-xs-12 col-sm-12 col-md-12">
                             <AgentBookingsCard :order="order" v-if="order.status === 'rejected'" status="rejected"/>
+                        </div>
+                    </div>
+                </q-tab-panel>
+            </q-tab-panel>
+            
+            <q-tab-panel name="cancelled">
+                <q-tab-panel name="active">
+                    <div class="row">
+                        <div v-for="(order,index) in orders" :key="index"  class="col-xs-12 col-sm-12 col-md-12">
+                            <AgentBookingsCard :order="order" v-if="order.status === 'cancelled'" status="cancelled"/>
                         </div>
                     </div>
                 </q-tab-panel>
@@ -95,6 +106,11 @@ name: "Orders",
         rejected: {
             get() {
                 return this.orders.filter(order => order.status == 'rejected').length
+            }
+        },
+        cancelled: {
+            get() {
+                return this.orders.filter(order => order.status == 'cancelled').length
             }
         },
          

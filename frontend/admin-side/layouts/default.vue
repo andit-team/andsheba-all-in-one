@@ -405,16 +405,17 @@ export default {
         });
       });
 
+      console.log(newSocket)
       this.$store.commit('auth/setSocket',newSocket)
     }
   },
-  logout(){
-      this.$cookies.remove('accessToken');
-      this.$store.commit('auth/setStatus')
-      this.$router.push({
-        path: '/login'
-      });
-    },
+    logout(){
+        this.$cookies.remove('accessToken');
+        this.$store.commit('auth/setStatus')
+        this.$router.push({
+          path: '/login'
+        });
+      },
     playSound () {
       var audio = new Audio(data.soundurl);
       audio.play();
