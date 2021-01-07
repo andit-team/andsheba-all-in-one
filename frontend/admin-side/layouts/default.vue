@@ -353,7 +353,9 @@ export default {
   methods: {
     setupSocket (){
     const token = this.$cookies.get('accessToken')
+    
     if (token && !this.socket) {
+      
       const newSocket = io(process.env.SOCKET_URL, {
         query: {
           token: this.$cookies.get('accessToken'),
@@ -363,15 +365,15 @@ export default {
       newSocket.on("disconnect", () => {
         this.$store.commit('auth/setSocket',null)
         setTimeout(setupSocket, 3000);
-        console.log("Socket Connection Failed")
+        console.log("%cSocket Disconnected","color: red; font-size: 20px");
       });
 
       newSocket.on("connect", () => {
-        console.log("Socket Connected")
+        console.log("%cSocket Connected","color: green; font-size: 20px");
       });
 
       newSocket.on("service_added", (data) => {
-        console.log(234)
+        console.log("%cNew Service Added","color: teal; font-size: 20px");
         let id = data.data._id
         let self = this
         this.$store.commit('service/pushServices',data)
@@ -405,7 +407,6 @@ export default {
         });
       });
 
-      console.log(newSocket)
       this.$store.commit('auth/setSocket',newSocket)
     }
   },
