@@ -23,11 +23,9 @@ const OrderSchema = new Schema({
     },
     answered_questions: [
         {
-            _id: mongoose.Schema.Types.ObjectId,
             title: String,
             question_type: String,
             answers: [{
-                _id: mongoose.Schema.Types.ObjectId,
                 answer_title_or_unit: String,
                 price: Number,
             }]
