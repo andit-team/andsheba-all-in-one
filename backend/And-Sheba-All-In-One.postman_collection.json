@@ -1262,13 +1262,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5OTIyOTEwLCJleHAiOjE2MDk5NTE3MTB9.xrvTxBv-Bk3xeA5o5zNjeVtfnZfJPzfaAkKDTIYY4_M",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjEwMDAxNjgwLCJleHAiOjE2MTAwMzA0ODB9.8J08GUi1WOH92mPiQqkqSp0ZRA8twRSAyiBZ-hoMa_s",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"status\": \"accepted\"\r\n    //\"proposal_flag\": true,\r\n    //\"answered_questions\": []\r\n}",
+									"raw": "{\r\n    \r\n    \"status\": \"accepted\",\r\n    \"proposal_flag\": true,\r\n    \"answered_questions\": [\r\n        {\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"title\": \"additional\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1276,7 +1276,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/pro/order-status/5ff579c5aaf580383ca05e4d",
+									"raw": "http://localhost:5000/api/pro/order-status/5ff6ac7b9487a93a64c0e6e0",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1286,7 +1286,7 @@
 										"api",
 										"pro",
 										"order-status",
-										"5ff579c5aaf580383ca05e4d"
+										"5ff6ac7b9487a93a64c0e6e0"
 									]
 								}
 							},
@@ -1584,13 +1584,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MDk5MjI5NzUsImV4cCI6MTYwOTk1MTc3NX0.w7TlBfrjlAuaZw0XRSZZdeoQORkzthTRj4xEkVIm8UM",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAwMDE0NTQsImV4cCI6MTYxMDAzMDI1NH0.AFgfTK5CFKLcnPQqApDFhf8h36kEuGhpDZGgfmHBlxI",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"service_id\": \"5fed923f9fdff433a43d9591\",\r\n    \"answered_questions\": [\r\n        {\r\n            \"_id\": \"5fed923f9fdff433a43d958c\",\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"_id\": \"5fed923f9fdff433a43d958b\",\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"images\": [\r\n                \"https://image.com/image1\",\r\n                \"https://image.com/image2\",\r\n                \"https://image.com/image3\"\r\n    ],\r\n    \"total\": \"5000\"\r\n}",
+									"raw": "{\r\n    \"service_id\": \"5fed923f9fdff433a43d9591\",\r\n    \"answered_questions\": [\r\n        {\r\n            \"title\": \"How many pages you need?\",\r\n            \"question_type\": \"unit\",\r\n            \"answers\": [\r\n                {\r\n                    \"answer_title_or_unit\": \"1\",\r\n                    \"price\":\"5000\"\r\n                }\r\n            ]\r\n        }\r\n    ],\r\n    \"images\": [\r\n            \"https://image.com/image1\",\r\n            \"https://image.com/image2\",\r\n            \"https://image.com/image3\"\r\n    ],\r\n    \"total\": \"5000\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
