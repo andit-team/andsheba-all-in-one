@@ -279,16 +279,19 @@ export default {
                 token: Cookies.get('token'),
                 },
             });
+
             newSocket.on("disconnect", () => {
-                this.$store.dispatch('auth/setSocket',null)
+                this.$store.commit('auth/setSocket',null)
                 setTimeout(setupSocket, 3000);
                 console.log("Socket Connection Failed")
             });
 
             newSocket.on("connect", () => {
-                console.log("Socket Connected")
+                console.log("%cSocket Connected","color: green; font-size: 20px");
             });
+
             newSocket.on("order_get_by_agent", (data) => {
+                console.log(4324)
                 //let id = data.data._id
                 //let self = this
                 //this.$store.dispatch('service/pushServices',data)
@@ -307,9 +310,6 @@ export default {
                 ]
             })
             });
-            
-
-            
             }
         },
         playSound () {
