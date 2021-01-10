@@ -18,6 +18,10 @@ const Order = require('../../controllers/customer/order.controller')
 router.get('/orders', Auth.agent, Order.getAllOrdersByAgent)
 router.get('/order', Order.getOneOrder)
 
+// Agent Dashboard Data--------------------------
+const DashboardData = require('../../controllers/agent/agent.dashboard.controller')
+router.get('/dashboard', Auth.agent, DashboardData.sendHomePageData)
+
 
 // Export the Router
 module.exports = router 

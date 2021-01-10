@@ -26,5 +26,9 @@ router.get('/orders', Auth.pro, Order.getAllOrdersByPro)
 router.get('/order', Order.getOneOrder)
 router.put('/order-status/:_id', Auth.pro, Order.updateOrderStatusByPro)
 
+// Pro Dashboard Data--------------------------
+const DashboardData = require('../../controllers/pro/pro.dashboard.controller')
+router.get('/dashboard', Auth.pro, DashboardData.sendHomePageData)
+
 // Export the Router
 module.exports = router 
