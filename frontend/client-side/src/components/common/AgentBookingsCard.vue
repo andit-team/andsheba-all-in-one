@@ -1,8 +1,8 @@
 <template>
-    <q-card class="my-card q-mb-md">
+    <q-card class="my-card q-mb-lg">
         <div class="row">
             <div class="col-md-12 col-lg-9">
-                <q-card-section horizontal class="q-pa-lg">
+                <q-card-section horizontal class="q-pa-md">
                     <q-img
                         class="col-5"
                         src="https://cdn.quasar.dev/img/parallax1.jpg"
@@ -73,7 +73,10 @@
 <script>
 export default {
     name: "AgentBookingsCard",
-    props: ['status','order']
+    props: ['status','order'],
+    mounted() {
+        console.log(this.order)
+    },
 }
 </script>
 
@@ -84,8 +87,13 @@ export default {
     font-weight: bolder;
     display: block;
     cursor: pointer;
+}
+
+.my-card {
+    cursor: pointer;
+    border: 2px solid darkgray; 
     &:hover {
-        color: #2b76d2;
+        background: rgb(121 213 255 / 24%);
     }
 }
 .details-table {
