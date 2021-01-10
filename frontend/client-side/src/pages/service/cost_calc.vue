@@ -39,7 +39,7 @@
                         <div class="block q-mt-lg q-mb-md">
                             <h6 class="q-ma-none">Upload Images to describe your service</h6>
                             <div class="row q-my-lg">
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >1467720872
                                     <file-selector
                                         :height="200"
                                         class="file-selector"
@@ -52,7 +52,7 @@
                                         <p class="q-mt-sm" style="font-size: 18px">Browse Images</p>
                                     </file-selector>
                                 </div>
-                                <div v-for="url in service_images" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md">
+                                <div v-for="(url,index) in service_images" v-bind:key="index" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md">
                                     <q-img
                                         :src="url"
                                         spinner-color="white"

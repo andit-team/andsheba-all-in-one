@@ -50,7 +50,9 @@ module.exports = function (/* ctx */) {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       env: {
         API_URL: 'http://localhost:5000/api',
-        _API_URL: 'https://backend.andsheba.com/api'
+        _API_URL: 'https://backend.andsheba.com/api',
+        _SOCKET_URL: 'https://backend.andsheba.com',
+        SOCKET_URL: 'http://localhost:5000'
       },
 
       // transpile: false,
@@ -103,7 +105,8 @@ module.exports = function (/* ctx */) {
       plugins: [
         'Cookies',
         'LocalStorage',
-        'SessionStorage'
+        'SessionStorage',
+        'Notify',
       ]
     },
 

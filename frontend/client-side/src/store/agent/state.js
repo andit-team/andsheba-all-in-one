@@ -3,6 +3,8 @@ export default function () {
         agent: {
             isVerified: false
         },
-        services:[]
+        services:[],
+        orders:[],
+        order:[],
     }
 }

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 // import example from './module-example'
 import pro from './pro'
+import auth from './auth'
 import service from './service'
 import customer from './customer'
 import location from './location'
@@ -23,6 +24,7 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       pro,
+      auth,
       service,
       customer,
       location,
