@@ -3,6 +3,7 @@
  */
 const jwt = require('jsonwebtoken') 
 const RESPONDER = require('../responder/responder') 
+
 module.exports.admin = (req, res, next) => {
     try{
 
@@ -34,7 +35,7 @@ module.exports.admin = (req, res, next) => {
     }
 }
 
-module.exports.user = (req, res, next) => {
+module.exports.pro = (req, res, next) => {
     try{
 
         const token = req.headers.authorization.split(' ')[1] 
@@ -48,12 +49,62 @@ module.exports.user = (req, res, next) => {
                 user_id: decodedToken._id
             }
             next()
-        }else if(decodedToken.role === 'agent'){
+        }else{
+            const data = {
+                msg: 'You are not authenticated',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }catch (err) {
+        const data = {
+            msg: 'You are not authenticated',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    }
+}
+
+module.exports.agent = (req, res, next) => {
+    try{
+
+        const token = req.headers.authorization.split(' ')[1] 
+        const decodedToken = jwt.verify(
+            token,
+            process.env.SECRET
+        ) 
+
+        if(decodedToken.role === 'agent'){
             req.userData = {
                 user_id: decodedToken._id
             }
             next()
-        }else if(decodedToken.role === 'customer'){
+        }else{
+            const data = {
+                msg: 'You are not authenticated',
+                error:true
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }catch (err) {
+        const data = {
+            msg: 'You are not authenticated',
+            error:true
+        }
+        RESPONDER.response(res, 200, data)
+    }
+}
+module.exports.customer = (req, res, next) => {
+    try{
+
+        const token = req.headers.authorization.split(' ')[1] 
+        const decodedToken = jwt.verify(
+            token,
+            process.env.SECRET
+        ) 
+        if(decodedToken.role === 'customer'){
             req.userData = {
                 user_id: decodedToken._id
             }

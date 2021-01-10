@@ -39,7 +39,7 @@ const routes = [
     path: '/pro',
     component: () => import('layouts/ProLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/pro/Dashboard.vue') },
+      { path: '', redirect: 'dashboard' },
       { path: 'dashboard', component: () => import('pages/pro/Dashboard.vue') },
       { path: 'services', component: () => import('pages/pro/Services.vue') },
       { path: 'add_services', component: () => import('pages/pro/AddService.vue') },
@@ -56,7 +56,7 @@ const routes = [
     path: '/agent',
     component: () => import('layouts/AgentLayout'),
     children: [
-      { path: '', component: () => import('pages/agent/Dashboard.vue') },
+      { path: '',redirect: 'dashboard' },
       { path: 'dashboard', component: () => import('pages/agent/Dashboard.vue') },
       { path: 'services', component: () => import('pages/agent/Services.vue') },
       { path: 'orders', component: () => import('pages/agent/Orders.vue') },
