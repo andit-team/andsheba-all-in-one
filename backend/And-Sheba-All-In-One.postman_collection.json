@@ -2021,6 +2021,33 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAyNzAyNDgsImV4cCI6MTYxMDI5OTA0OH0.atS3gcJ-HmqTmbvV4S2kZcDebn7y9TuTVUEZ3At-7JM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/customer/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"customer",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
