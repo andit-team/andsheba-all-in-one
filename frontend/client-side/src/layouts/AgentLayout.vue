@@ -137,11 +137,10 @@
             <div class="bg-grey-2 row justify-center">
                 <q-toolbar :class="[$q.screen.gt.sm?'col-10 q-pa-xl':'col-12 q-pa-md', 'q-gutter-sm']">
                     <q-breadcrumbs>
-                        <q-breadcrumbs-el icon="home" to="/"/>
+                        <q-breadcrumbs-el icon="home"/>
                         <q-breadcrumbs-el
-                            label="Pro"
+                            label="Agent"
                             icon="person"
-                            to="/user"
                         />
                     </q-breadcrumbs>
                 </q-toolbar>
@@ -178,51 +177,15 @@
                         <q-separator inset/>
                         <q-card-section class="column justify-center q-pa-md">
                             <q-list bordered separator>
-                                <q-item clickable v-ripple to="/agent" :active="active">
+                                <q-item clickable v-ripple v-for="menu in menuItems"  :key="menu.route" :to="menu.route">
                                     <q-item-section avatar>
-                                        <q-icon name="dashboard"/>
+                                        <q-icon :name="menu.icon"/>
                                     </q-item-section>
-                                    <q-item-section>Dashboard</q-item-section>
-                                </q-item>
-
-                                <q-item clickable v-ripple to="/agent/services" :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="design_services"/>
-                                    </q-item-section>
-                                    <q-item-section>My Services</q-item-section>
-                                </q-item>
-
-                                <q-item clickable v-ripple to="/agent/orders" :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="far fa-calendar-check"/>
-                                    </q-item-section>
-                                    <q-item-section>Order List</q-item-section>
-                                </q-item>
-
-
-                                <q-item clickable v-ripple to="/agent/profile" :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="person"/>
-                                    </q-item-section>
-                                    <q-item-section>Profile</q-item-section>
-                                </q-item>
-
-                                <q-item clickable v-ripple to="/agent/wallet" :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="fas fa-file-invoice-dollar"/>
-                                    </q-item-section>
-                                    <q-item-section>Wallet</q-item-section>
-                                </q-item>
-                                <q-item clickable v-ripple to="/agent/plan" :active="active">
-                                    <q-item-section avatar>
-                                        <q-icon name="far fa-calendar-alt"/>
-                                    </q-item-section>
-                                    <q-item-section>Plans</q-item-section>
+                                    <q-item-section>{{ menu.title }}</q-item-section>
                                 </q-item>
                                 <q-item
                                     clickable
                                     v-ripple
-                                    :active="active"
                                     @click="handleLogout"
                                 >
                                     <q-item-section avatar>
@@ -253,8 +216,38 @@ export default {
     data() {
         return {
             leftDrawerOpen: false,
-            active: true,
-            activelink: 'Dashboard',
+            menuItems:[
+                    {
+                    title:'Dashboard',
+                    icon:'dashboard',
+                    route:'/agent/dashboard'
+                    },
+                    {
+                    title:'My Services',
+                    icon:'design_services',
+                    route:'/agent/services'
+                    },
+                    {
+                    title:'Order List',
+                    icon:'far fa-calendar-check',
+                    route:'/agent/orders'
+                    },
+                    {
+                    title:'Profile',
+                    icon:'person',
+                    route:'/agent/profile'
+                    },
+                    {
+                    title:'Wallet',
+                    icon:'fas fa-wallet',
+                    route:'/agent/wallet'
+                    },
+                    {
+                    title:'Plans',
+                    icon:'far fa-calendar-alt',
+                    route:'/agent/plan'
+                    },
+                ]
         };
     },
 
@@ -316,9 +309,6 @@ export default {
         var audio = new Audio(data.soundurl);
         audio.play();
         },
-        activelinkChange(link){
-        this.activelink = link
-        }
     },
     computed: {
         ...mapState({
@@ -335,3 +325,13 @@ export default {
 };
 </script>
 
+<style scoped>
+.q-router-link--active {
+    color: white;
+    background: #0188c5;
+    font-size: large;
+    border-right: 4px solid #ce080a;
+    transition: all .5s ease;
+}
+    
+</style>
