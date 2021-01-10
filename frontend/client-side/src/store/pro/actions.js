@@ -58,7 +58,6 @@ export const fetchPro = async ({commit, state}) => {
 
 export const fetchProData = async ({commit},id) => {
     let response = await axios.get(`${process.env.API_URL}/customer/pro?_id=${id}`)
-    console.log(response)
     if(response.data.error === false) {
         commit('setPro', response.data.data);
         return {
@@ -68,6 +67,18 @@ export const fetchProData = async ({commit},id) => {
     }
     return {
         error: true
+    }
+}
+
+export const fetchDashboard = async ({commit}) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/pro/dashboard`,{ headers })
+    if(response.data.error === false) {
+        commit('setDashboard', response.data)
     }
 }
 

@@ -9,57 +9,19 @@ const mongoose = require('mongoose')
 
 exports.sendHomePageData = (req, res, next ) => {
 
-    const orderAggregatorOpts = [
-        {
-            $match: { agent: mongoose.Types.ObjectId(req.userData.user_id) }
-        },
-        {
-            $group: {
-                _id: "$status",
-                count: { $sum: 1 }
-            }
-        },
-        { 
-            $project: {  
-            _id: 0,
-            status: "$_id",
-            count: 1
-        }
-      }
-    ]
-
-    const serviceAggregatorOpts = [
-        {
-            $match: { agent: mongoose.Types.ObjectId(req.userData.user_id) }
-        },
-        {
-            $group: {
-                _id: "$status",
-                count: { $sum: 1 }
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                status: "$_id",
-                count: 1
-            }
-        }
-    ]
-
-    Order.aggregate(orderAggregatorOpts).then( result => {
+    Order.countDocuments({agent: mongoose.Types.ObjectId(req.userData.user_id)}).then( result => {
 
         return result
 
     }).then(orderData => {
 
-        Service.aggregate(serviceAggregatorOpts).then( result => {
+        Service.countDocuments({agent: mongoose.Types.ObjectId(req.userData.user_id)}).then( result => {
 
             const data = {
                 msg: 'Successfully Get Data',
                 error: false,
-                serviceData: result,
-                orderData: orderData
+                serviceCount: result,
+                orderCount: orderData
             }
             RESPONDER.response(res, 200, data)
     

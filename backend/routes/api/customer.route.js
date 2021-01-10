@@ -24,11 +24,15 @@ const Pro = require('../../controllers/pro/pro.controller')
 router.get('/pro', Pro.getOnePro)
 
 // Order Controller --------------------------
-const Order = require('../../controllers/customer/order.controller')
+const Order = require('../../controllers/order/order.controller')
 router.post('/place-order', Auth.customer, Order.placeOrder)
 router.get('/orders', Auth.customer, Order.getAllOrdersByCustomer)
 router.get('/order', Order.getOneOrder)
 router.put('/order-status/:_id', Auth.customer, Order.updateOrderStatusByCustomer)
+
+// Customer Dashboard Data--------------------------
+const DashboardData = require('../../controllers/customer/dashboard.controller')
+router.get('/dashboard', Auth.customer, DashboardData.sendHomePageData)
 
 // Export the Router
 module.exports = router 

@@ -263,6 +263,7 @@ exports.updateOrderStatusByPro = (req, res, next ) => {
             status: 'pending',
             approved_by_pro: true,
             answered_questions: req.body.answered_questions,
+            total: req.body.total,
             approved_by_customer: false
         }
     }

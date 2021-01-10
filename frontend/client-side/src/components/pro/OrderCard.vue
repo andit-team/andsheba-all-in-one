@@ -18,6 +18,7 @@
                             <span class="status accepted" v-if="order.status === 'accepted'">Accepted</span>
                             <span class="status completed" v-if="order.status === 'completed'">Completed</span>
                             <span class="status in-progress" v-if="order.status === 'in-progress'">In Progress</span>
+                            <span class="status rejected" v-if="order.status === 'cancelled'">Cancelled</span>
                             <span class="status rejected" v-if="order.status === 'rejected'">Rejected</span>
                         </span>
                             </li>

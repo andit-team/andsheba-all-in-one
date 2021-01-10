@@ -1,15 +1,9 @@
 <template>
     <div class="q-ma-lg">
         <div class="text-h5 q-ma-md">Dashboard</div>
-        <div class="row q-ma-md full-width">
+        <div class="row q-ma-md full-width" v-if="dashboard">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Bookings" value="245" bg-color="#ff0080"/>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Services" value="66" bg-color="#323031"/>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Notification" value="8" bg-color="#d9c504"/>
+                <DashboardCards title="Orders" :value="dashboard.orderCount" bg-color="#ff0080" link="/user/orders"/>
             </div>
         </div>
     </div>
@@ -21,15 +15,19 @@ import DashboardCards from "components/dashboard/DashboardCards";
 export default {
     name: "Dashboard",
     components: {DashboardCards},
-    data() {
-        return {
 
-        }
+    created() {
+        this.$store.dispatch('customer/fetchDashboard')
     },
     computed: {
         user: {
             get() {
                 return this.$store.getters["customer/getCustomer"]
+            }
+        },
+        dashboard: {
+            get() {
+                return this.$store.getters["customer/getDashboard"]
             }
         }
     },

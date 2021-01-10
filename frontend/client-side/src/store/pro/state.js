@@ -42,5 +42,6 @@ export default function () {
         },
         orders: [],
         order: null,
+        dashboard: null
     }
 }

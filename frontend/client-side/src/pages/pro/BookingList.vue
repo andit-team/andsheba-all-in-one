@@ -15,6 +15,7 @@
             <q-tab name="pending" :label="`Pending Bookings`" />
             <q-tab name="accepted" :label="`Active Bookings`" />
             <q-tab name="completed" :label="`Completed Bookings`"/>
+            <q-tab name="cancelled" :label="`Cancelled Bookings`"/>
             <q-tab name="rejected" :label="`Rejected Bookings`"/>
         </q-tabs>
 
