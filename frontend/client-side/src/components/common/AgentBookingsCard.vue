@@ -1,70 +1,111 @@
 <template>
     <q-card class="my-card q-mb-lg">
         <div class="row">
-            <div class="col-md-12 col-lg-9">
+            <div class="col-md-12">
                 <q-card-section horizontal class="q-pa-md">
-                    <q-img
-                        class="col-5"
-                        src="https://cdn.quasar.dev/img/parallax1.jpg"
-                        width="180px"
-                    />
-
+                    <q-img src="https://cdn.quasar.dev/img/parallax1.jpg" class="col-2"/>
                     <q-card-section>
-                        <a class="heading">Car Repair Services</a>
-                        <q-list class="details-table">
-                            <li>
-                                <span>Booking Date</span>
-                                <span>23 Jul 2020
-                                <span class="status pending" v-if="status === 'pending'">Pending</span>
-                                <span class="status completed" v-if="status === 'completed'">Completed</span>
-                                <span class="status in-progress" v-if="status === 'accepted'">In Progress</span>
-                                <span class="status rejected" v-if="status === 'rejected'">Rejected</span>
-                                <span class="status cancelled" v-if="status === 'cancelled'">Cancelled</span>
-                        </span>
-                            </li>
-                            <li>
-                                <span>Booking time</span>
-                                <span>13:00:00 - 14:00:00</span>
-                            </li>
-                            <li>
-                                <span>Amount</span>
-                                <span>$500</span>
-                            </li>
-                            <li>
-                                <span>Location</span>
-                                <span>223 Jehovah Drive Roanoke</span>
-                            </li>
-                            <li>
-                                <span>Phone</span>
-                                <span>410-242-3850</span>
-                            </li>
-                            <li>
-                                <span>User</span>
-                                <span>
-                            <img class="avatar-img rounded-circle" alt="User Image" src="icons/icon-192x192.png">
-                            <span>Jeffrey Akridge</span>
-                        </span>
-                            </li>
+                        <q-list>
+                            <q-item>
+                                <q-item-section>
+                                    <q-item-label class="text-weight-bold text-h6">{{order.service.title}}</q-item-label>
+                                    <q-item-label caption>by {{order.pro.name}}</q-item-label>
+                                </q-item-section>
+
+                                <q-item-section side top>
+                                    <q-badge color="secondary" style="font-size:15px" class="q-py-xs" v-if="status === 'pending'">Pending</q-badge>
+                                    <q-badge color="green" style="font-size:15px" class="q-py-xs" v-if="status === 'completed'">Completed</q-badge>
+                                    <q-badge color="primary" style="font-size:15px" class="q-py-xs" v-if="status === 'accepted'">In Progress</q-badge>
+                                    <q-badge color="red" style="font-size:15px" class="q-py-xs" v-if="status === 'rejected'">Rejected</q-badge>
+                                    <q-badge color="orange" style="font-size:15px" class="q-py-xs"  v-if="status === 'cancelled'">Cancelled</q-badge>
+                                </q-item-section>
+                            </q-item>
+                            <q-item>
+                                <q-item-section avatar>
+                                    <q-icon color="primary" name="event" />
+                                </q-item-section>
+                                <q-item-section>23 Jul 2020 </q-item-section>
+
+                                <q-item-section avatar side>
+                                    <q-icon color="primary" name="schedule" />
+                                </q-item-section>
+                                <q-item-section side>10:00 AM - 06:00 PM</q-item-section>
+                            </q-item>
+                            <q-item>
+                                <q-item-section avatar>
+                                    <q-icon color="primary" name="map" />
+                                </q-item-section>
+                                <q-item-section>32 Choto Mirzapur Khulna </q-item-section>
+                                <q-item-section side><q-badge color="orange" style="font-size:15px" class="q-py-xs">${{order.total}}</q-badge></q-item-section>
+                            </q-item>
+                            <q-item class="row q-gutter-md">
+                                <q-btn round color="black" icon="visibility">
+                                    <q-tooltip content-class="bg-black" :offset="[10, 10]">
+                                    View Details
+                                    </q-tooltip>
+                                </q-btn>
+                                <q-btn round color="primary" icon="message">
+                                    <q-tooltip content-class="bg-primary" :offset="[10, 10]">
+                                    Chat Now
+                                    </q-tooltip>
+                                </q-btn>
+                                <q-btn round color="green" icon="done">
+                                    <q-tooltip content-class="bg-green" :offset="[10, 10]">
+                                    Set as Done
+                                    </q-tooltip>
+                                </q-btn>
+                                <q-btn round color="red" icon="clear">
+                                    <q-tooltip content-class="bg-red" :offset="[10, 10]">
+                                    Cancel This
+                                    </q-tooltip>
+                                </q-btn>
+                            </q-item>
                         </q-list>
                     </q-card-section>
+                    <q-separator inset vertical />
+                    <q-card-section>
+                        <q-list>
+                            <q-item-label header>Customer Details</q-item-label>
+                            <q-separator inset />
+                            <q-item>
+                                <q-item-section top avatar>
+                                <q-avatar>
+                                    <img :src="order.pro.thumb_image !== ''?order.customer.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
+                                </q-avatar>
+                                </q-item-section>
+
+                                <q-item-section>
+                                <q-item-label class="text-weight-bold">{{order.customer.name}}</q-item-label>
+                                <q-item-label caption>32 Choto Mirzapur</q-item-label>
+                                </q-item-section>
+
+                                <q-item-section side top>
+                                    <q-badge color="secondary" style="font-size:15px"><q-icon name="call" size="15px" class="q-ml-xs"/>&nbsp;<a :href="`tel:${order.customer.mobile}`" style="text-decoration: none;color:#fff">{{order.customer.mobile}}</a></q-badge>
+                                </q-item-section>
+                            </q-item>
+                            
+                            <q-item-label header>Provider Details</q-item-label>
+                            <q-separator inset />
+                            <q-item>
+                                <q-item-section top avatar>
+                                <q-avatar>
+                                    <img :src="order.pro.thumb_image !== ''?order.pro.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
+                                </q-avatar>
+                                </q-item-section>
+
+                                <q-item-section>
+                                <q-item-label class="text-weight-bold">{{order.pro.name}}</q-item-label>
+                                <q-item-label caption>32 Choto Mirzapur</q-item-label>
+                                </q-item-section>
+
+                                <q-item-section side top>
+                                    <q-badge color="secondary" style="font-size:15px"><q-icon name="call" size="15px" class="q-ml-xs"/>&nbsp;<a :href="`tel:${order.pro.mobile}`" style="text-decoration: none;color:#fff">{{order.pro.mobile}}</a></q-badge>
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-card-section>
+
                 </q-card-section>
-            </div>
-            <div class="col-md-12 col-lg-3">
-                <div class="action-area" v-if="status === 'accepted'">
-                    <div class="action-btn chat">
-                        <q-icon name="fa fa-eye"/>
-                        <span>Chat</span>
-                    </div>
-                    <div class="action-btn cancel">
-                        <q-icon name="fa fa-times"/>
-                        <span>Cancel the Service</span>
-                    </div>
-                    <br>
-                    <div class="action-btn accept">
-                        <q-icon name="fa fa-check"/>
-                        <span>Complete Request to User</span>
-                    </div>
-                </div>
             </div>
         </div>
     </q-card>
@@ -90,102 +131,9 @@ export default {
 }
 
 .my-card {
-    cursor: pointer;
     border: 2px solid darkgray; 
     &:hover {
-        background: rgb(121 213 255 / 24%);
+        background: #ffffff3d;
     }
 }
-.details-table {
-    list-style: none;
-    li {
-        padding: 2px;
-        span {
-            font-size: 15px;
-            width: 120px;
-            display: inline-block;
-            font-weight: 500;
-        }
-        span:last-child {
-            width: auto;
-            color: #8a8d92;
-            font-weight: 700;
-            img {
-                width: 28px;
-                height: 28px;
-                position: absolute;
-                border-radius: 28px;
-            }
-            span {
-                margin-left: 32px;
-                margin-top: 2px;
-            }
-            span.status {
-                margin: 0 5px;
-                display: inline-block;
-                padding: 1px 12px;
-                font-size: 12px;
-                font-weight: 400;
-                border-radius: 10px;
-                color: #fff;
-            }
-            span.pending {
-                background: #f9c10a;
-            }
-            span.completed {
-                background: #36a745;
-            }
-            span.in-progress {
-                background: #307bff;
-            }
-            span.rejected {
-                background: #dc3545;
-            }
-        }
-    }
-}
-
-.action-area {
-    padding: 0;
-    margin: 15px;
-    height: 80px;
-}
-
-.action-btn {
-    padding: 3px 10px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-    i {
-        margin-top: -4px;
-        padding-right: 7px;
-    }
-    span {
-
-    }
-    &.chat {
-        float: right;
-        background-color: #e2f6f6;
-        color: #41b9ac;
-        position: absolute;
-        right: 200px;
-    }
-    &.cancel {
-        float: right;
-        background-color: #fce3e7;
-        color: #e63f4e;
-        position: absolute;
-        right: 35px;
-    }
-    &.accept {
-        float: right;
-        background-color: #e2f6ee;
-        color: #39b059;
-        position: absolute;
-        right: 35px;
-        margin-top: 25px
-    }
-}
-
 </style>
