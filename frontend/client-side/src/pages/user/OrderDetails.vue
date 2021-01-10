@@ -46,7 +46,7 @@
                 </q-card>
             </div>
         </div>
-        <div class="q-ma-lg" v-if="!order.approved_by_customer">
+        <div class="q-ma-lg" v-if="order && !order.approved_by_customer">
             <q-btn class="q-mr-md q-px-sm bg-primary text-white no-shadow" @click="()=>handleStatus('accepted')">Accept</q-btn>
             <q-btn class="q-mr-md q-px-sm text-danger no-shadow" @click="()=>handleStatus('cancelled')">Cancel</q-btn>
         </div>

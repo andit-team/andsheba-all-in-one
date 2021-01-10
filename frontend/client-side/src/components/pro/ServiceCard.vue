@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card q-ma-md">
         <q-img
-        style="max-height:200px"
+            style="max-height:200px"
             :src="service.thumb_img"
             basic
         >
@@ -21,11 +21,6 @@
                     color="yellow"
                     readonly
                 /> ({{rating}})
-            </div>
-            <div class="card-action">
-                <div class="row justify-end q-px-xs">
-                    <q-btn flat color="secondary" icon="visibility" :to="'/service/single?id=' + service._id" class="text-weight-bold">&nbsp; Details</q-btn>
-                </div>
             </div>
         </q-card-section>
         <q-card-actions class="justify-between q-pa-md c-card-action">

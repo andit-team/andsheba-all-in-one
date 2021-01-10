@@ -137,7 +137,7 @@
             <div class="bg-grey-2 row justify-center">
                 <q-toolbar :class="[$q.screen.gt.sm?'col-10 q-pa-xl':'col-12 q-pa-md', 'q-gutter-sm']">
                     <q-breadcrumbs>
-                        <q-breadcrumbs-el icon="home" to="/"/>
+                        <q-breadcrumbs-el icon="home" to="/pro"/>
                         <q-breadcrumbs-el
                             label="Pro"
                             icon="person"

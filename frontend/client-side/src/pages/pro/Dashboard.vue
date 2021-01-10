@@ -3,13 +3,10 @@
         <div class="text-h5 q-ma-md">Dashboard</div>
         <div class="row q-ma-md full-width">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Bookings" value="245" bg-color="#ff0080"/>
+                <DashboardCards title="Bookings" :value="dashboard.orderCount" bg-color="#ff0080" link="/pro/booking_list"/>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Services" value="66" bg-color="#323031"/>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Notification" value="8" bg-color="#d9c504"/>
+                <DashboardCards title="Services" :value="dashboard.serviceCount" bg-color="#323031" link="/pro/services"/>
             </div>
         </div>
     </div>
@@ -26,15 +23,16 @@ export default {
           pro: null
       }
     },
-
-
     async created() {
-        let response = await this.$store.dispatch('pro/fetchPro')
-        if(response.error === true ) {
-            await this.$router.push('/login')
-        }
-        this.pro = response.data
+        await this.$store.dispatch('pro/fetchDashboard')
     },
+    computed: {
+        dashboard: {
+            get() {
+                return this.$store.getters["pro/getDashboard"]
+            }
+        }
+    }
 
 }
 </script>
