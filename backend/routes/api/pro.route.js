@@ -4,7 +4,7 @@ const Auth = require('../../auth/auth')
 
 // Get All Plan---------------------------
 const Plan = require('../../controllers/admin/plan.controller')
-router.get('/plans', Plan.getAllPlansBypro)
+router.get('/plans', Plan.getAllPlansByUser)
 
 // Pro Controller--------------------------
 const Pro = require('../../controllers/pro/pro.controller') 
