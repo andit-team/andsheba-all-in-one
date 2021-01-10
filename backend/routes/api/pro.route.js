@@ -21,7 +21,7 @@ router.get('/service/:_id', Auth.pro, Service.getOneService)
 router.put('/service-status/:_id', Auth.pro, Service.updateServiceStatus)
 
 // Order Controller------------------------
-const Order = require('../../controllers/customer/order.controller')
+const Order = require('../../controllers/order/order.controller')
 router.get('/orders', Auth.pro, Order.getAllOrdersByPro)
 router.get('/order', Order.getOneOrder)
 router.put('/order-status/:_id', Auth.pro, Order.updateOrderStatusByPro)

@@ -50,7 +50,7 @@ router.get('/agent', Auth.admin, Agent.getOneAgent)
 router.put('/agent/:_id', Auth.admin, Agent.updateAgentByAdmin)
 
 // Order Controller------------------------
-const Order = require('../../controllers/customer/order.controller')
+const Order = require('../../controllers/order/order.controller')
 router.get('/orders', Auth.admin, Order.getAllOrdersByAdmin)
 router.get('/order', Order.getOneOrder)
 
