@@ -77,7 +77,7 @@ name: "Orders",
     components: {AgentBookingsCard},
     data () {
         return {
-            tab: 'active',
+            tab: 'pending',
             ratingModel: 3,
         }
     },
