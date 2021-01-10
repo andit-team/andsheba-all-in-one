@@ -14,7 +14,7 @@ router.get('/service', Auth.agent, Service.findAllServicesByAgent)
 router.put('/service/:_id', Auth.agent, Service.updateServiceMessageByAgent)
 
 // Order Controller------------------------
-const Order = require('../../controllers/customer/order.controller')
+const Order = require('../../controllers/order/order.controller')
 router.get('/orders', Auth.agent, Order.getAllOrdersByAgent)
 router.get('/order', Order.getOneOrder)
 
