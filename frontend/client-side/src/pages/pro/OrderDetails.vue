@@ -9,6 +9,19 @@
                     <div class="q-my-sm">Q: <span>{{question.title}}</span></div>
                     <div class="q-my-sm"><span>A: </span><span v-for="(answer, index) in question.answers"><span v-if="index > 0">, </span>{{answer.answer_title_or_unit}}</span></div>
                 </div>
+
+                <div class="q-ma-lg" v-if="order.images.length > 0">
+                    <h6 class="q-ma-none">Images</h6>
+                    <div class="row q-my-lg">
+                        <div v-for="(url,index) in order.images" v-bind:key="index" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 q-pr-md q-my-md">
+                            <q-img
+                                :src="url"
+                                spinner-color="white"
+                                style="height: 120px;width: 150px"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-4 q-pa-lg">
                 <q-card class="my-card">
@@ -32,9 +45,10 @@
                         <q-separator vertical/>
                     </q-card-actions>
                 </q-card>
+
             </div>
         </div>
-        <div class="q-ma-lg" v-if="!order.approved_by_pro">
+        <div class="q-ma-lg" v-if="order.status == 'pending' && !order.approved_by_pro">
             <q-btn class="q-mr-md q-px-sm bg-primary text-white no-shadow" @click="handleAccept">Accept</q-btn>
             <q-btn class="text-primary no-shadow" @click="() => {this.proposal = true}">Send Proposal</q-btn>
         </div>

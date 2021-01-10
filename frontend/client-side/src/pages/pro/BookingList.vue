@@ -3,6 +3,7 @@
         <div class="text-h5 q-ma-lg">Booking List</div>
         <q-tabs
             v-model="tab"
+            @input="handleStatus"
             dense
             class="text-grey q-ma-sm"
             active-color="primary"
@@ -10,27 +11,16 @@
             align="left"
             narrow-indicator
         >
-            <q-tab name="all" :label="`All Bookings ( ${orders.length} )`" />
-            <q-tab name="pending" :label="`Pending Bookings ( )`" />
-            <q-tab name="active" :label="`Active Bookings ( )`" />
-            <q-tab name="completed" :label="`Completed Bookings ( )`"/>
-
+            <q-tab name="all" :label="`All Bookings`" />
+            <q-tab name="pending" :label="`Pending Bookings`" />
+            <q-tab name="accepted" :label="`Active Bookings`" />
+            <q-tab name="completed" :label="`Completed Bookings`"/>
+            <q-tab name="rejected" :label="`Rejected Bookings`"/>
         </q-tabs>
 
-        <q-tab-panels v-model="tab" animated>
-            <q-tab-panel name="all">
-                <OrderCard v-for="order in orders" :order="order"/>
-            </q-tab-panel>
-            <q-tab-panel name="pending">
-                <OrderCard v-for="order in pending" :order="order"/>
-            </q-tab-panel>
-            <q-tab-panel name="active">
-                <OrderCard v-for="order in active" :order="order"/>
-            </q-tab-panel>
-            <q-tab-panel name="completed">
-                <OrderCard v-for="order in completed" :order="order"/>
-            </q-tab-panel>
-        </q-tab-panels>
+        <div class="text-right q-mr-lg">Total {{orders.length}} Booking</div>
+
+        <OrderCard v-for="order in orders" :order="order"/>
 
     </div>
 </template>
@@ -53,21 +43,13 @@ name: "BookingList",
             get() {
                 return this.$store.getters["pro/getOrders"]
             }
-        },
-        pending: {
-            get() {
-                return this.orders.filter(order => order.status == 'pending')
-            }
-        },
-        active: {
-            get() {
-                return this.orders.filter(order => order.status == 'active')
-            }
-        },
-        completed: {
-            get() {
-                return this.orders.filter(order => order.status == 'completed')
-            }
+        }
+    },
+    methods: {
+        handleStatus(status) {
+            status = status == 'all' ? '' : status
+            this.$store.commit('pro/setOrders',[])
+            this.$store.dispatch('pro/fetchOrders', status)
         }
     }
 }

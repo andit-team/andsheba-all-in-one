@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ServiceCard from "components/common/ServiceCard"
+import ServiceCard from "components/pro/ServiceCard"
 export default {
 name: "Services",
     components: {ServiceCard},

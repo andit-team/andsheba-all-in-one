@@ -1,6 +1,7 @@
 export default function () {
     return {
         pro: {
+            auth: false,
             name: ''
         },
         plans: [],

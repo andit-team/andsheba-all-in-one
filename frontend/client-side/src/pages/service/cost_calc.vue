@@ -39,7 +39,7 @@
                         <div class="block q-mt-lg q-mb-md">
                             <h6 class="q-ma-none">Upload Images to describe your service</h6>
                             <div class="row q-my-lg">
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >1467720872
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >
                                     <file-selector
                                         :height="200"
                                         class="file-selector"
@@ -98,6 +98,7 @@
 <script>
 import Swal from "sweetalert2";
 import {LocalStorage} from "quasar";
+import {uploadSingleImage} from "src/store/pro/actions";
 
 export default {
     data() {
@@ -144,7 +145,7 @@ export default {
                 if(this.questions === null) {
                     return {
                         list: [],
-                        total: 0
+                        total: 0,
                     }
                 } else {
                     let list = []

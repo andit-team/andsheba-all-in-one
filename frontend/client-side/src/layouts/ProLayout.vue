@@ -85,7 +85,7 @@
                         <q-item-section>Dashboard</q-item-section>
                     </q-item>
 
-                    <q-item clickable v-ripple to="/pro/services" >
+                    <q-item clickable v-ripple to="/pro/services">
                         <q-item-section avatar>
                             <q-icon name="design_services"/>
                         </q-item-section>
@@ -100,7 +100,7 @@
                     </q-item>
 
 
-                    <q-item clickable v-ripple to="/pro/profile" >
+                    <q-item clickable v-ripple to="/pro/profile">
                         <q-item-section avatar>
                             <q-icon name="person"/>
                         </q-item-section>
@@ -245,6 +245,8 @@
 <script>
 import {fabYoutube} from "@quasar/extras/fontawesome-v5";
 import {Cookies} from "quasar";
+import io from "socket.io-client"
+let data = { sound_url : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
 
 export default {
     name: "MyLayout",
@@ -269,9 +271,9 @@ export default {
     },
     computed: {
         pro: {
-           get() {
-               return this.$store.getters["pro/getPro"]
-           }
+            get() {
+                return this.$store.getters["pro/getPro"]
+            }
         }
     },
 
@@ -279,7 +281,68 @@ export default {
         handleLogout() {
             Cookies.remove('token');
             this.$router.push('/')
-        }
+        },
+        setupSocket() {
+            const token = Cookies.get('token')
+            if (token && !this.socket) {
+                const newSocket = io(process.env.SOCKET_URL, {
+                    query: {
+                        token: Cookies.get('token'),
+                    },
+                });
+                newSocket.on("disconnect", () => {
+                    setTimeout(this.setupSocket, 3000);
+                    console.log("Socket Connection Failed")
+                });
+
+                newSocket.on("connect", () => {
+                    console.log("Socket Connected")
+                });
+                newSocket.on("order_get_by_pro", (data) => {
+                    this.playSound()
+                    let id = data._id
+                    console.log(data)
+                    this.$q.notify({
+                        progress: true,
+                        message: 'A new booking received',
+                        color: 'primary',
+                        position:'top-right',
+                        multiLine: true,
+                        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+                        timeout: 10000,
+                        actions: [
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/order_details?id=${data._id}`) } }
+                        ]
+                    })
+                });
+
+                newSocket.on("order_status_get_by_pro", (data) => {
+                    this.playSound()
+                    let id = data._id
+                    console.log(data)
+                    this.$q.notify({
+                        progress: true,
+                        message: 'A new booking update received',
+                        color: 'primary',
+                        position:'top-right',
+                        multiLine: true,
+                        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+                        timeout: 10000,
+                        actions: [
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/order_details?id=${data._id}`) } }
+                        ]
+                    })
+                });
+
+            }
+        },
+        playSound() {
+            let audio = new Audio(data.sound_url);
+            audio.play();
+        },
+    },
+    mounted() {
+        this.setupSocket()
     }
 };
 </script>

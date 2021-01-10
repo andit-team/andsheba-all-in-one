@@ -229,8 +229,9 @@
 </template>
 
 <script>
-import {fabYoutube} from "@quasar/extras/fontawesome-v5";
 import {Cookies} from "quasar";
+import io from "socket.io-client";
+let data = { sound_url : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
 
 export default {
     name: "UserLayout",
@@ -262,7 +263,49 @@ export default {
             Cookies.remove('token');
             this.$store.commit('customer/setCustomer', {isVerified: false})
             this.$router.push('/')
-        }
+        },
+        setupSocket() {
+            const token = Cookies.get('token')
+            if (token && !this.socket) {
+                const newSocket = io(process.env.SOCKET_URL, {
+                    query: {
+                        token: Cookies.get('token'),
+                    },
+                });
+                newSocket.on("disconnect", () => {
+                    setTimeout(this.setupSocket, 3000);
+                    console.log("Socket Connection Failed")
+                });
+
+                newSocket.on("connect", () => {
+                    console.log("Socket Connected")
+                });
+
+                newSocket.on("order_status_get_by_customer", (data) => {
+                    this.playSound()
+                    this.$q.notify({
+                        progress: true,
+                        message: 'A new booking update received',
+                        color: 'primary',
+                        position:'top-right',
+                        multiLine: true,
+                        avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
+                        timeout: 10000,
+                        actions: [
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/user/order_details?id=${data._id}`) } }
+                        ]
+                    })
+                });
+
+            }
+        },
+        playSound() {
+            let audio = new Audio(data.sound_url);
+            audio.play();
+        },
+    },
+    mounted() {
+        this.setupSocket()
     }
 };
 </script>

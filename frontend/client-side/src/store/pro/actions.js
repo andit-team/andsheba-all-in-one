@@ -31,19 +31,29 @@ export const loginPro = async ({}, pro) => {
     }
 }
 
-export const fetchPro = async ({commit}) => {
-    let token = Cookies.get('token')
-    let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
-    if(response.data.error === false) {
-        commit('setPro', response.data.data);
+export const fetchPro = async ({commit, state}) => {
+    if(!state.pro.auth) {
+        let token = Cookies.get('token')
+        let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
+        if(response.data.error === false) {
+            commit('setPro', {
+                auth: true,
+                ...response.data.data
+            });
+            return {
+                error: false,
+                data: response.data.data
+            }
+        }
         return {
-            error: false,
-            data: response.data.data
+            error: true
         }
     }
     return {
-        error: true
+        error: false,
+        data: state.pro
     }
+
 }
 
 export const fetchProData = async ({commit},id) => {
