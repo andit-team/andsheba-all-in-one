@@ -18,6 +18,7 @@
                             <span class="status accepted" v-if="order.status === 'accepted'">Accepted</span>
                             <span class="status completed" v-if="order.status === 'completed'">Completed</span>
                             <span class="status in-progress" v-if="order.status === 'in-progress'">In Progress</span>
+                            <span class="status rejected" v-if="order.status === 'cancelled'">Cancelled</span>
                             <span class="status rejected" v-if="order.status === 'rejected'">Rejected</span>
                         </span>
                             </li>
@@ -49,7 +50,7 @@
                     <a v-if="order.status === 'pending'" @click="handleCancel" class="text-negative q-px-md q-py-sm q-mx-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #fce3e7;font-size: 12px;text-transform: capitalize;border-radius: 4px">Cancel</a>
                     <a @click="() => this.$router.push('/user/order_details?id=' + order._id)" class="text-primary q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6f6;font-size: 12px;text-transform: capitalize;border-radius: 4px">View</a>
                 </div>
-                <div class="q-mr-sm" style="margin-top: 40px" v-if="!order.approved_by_customer">
+                <div class="q-mr-sm" style="margin-top: 40px" v-if="order.status === 'pending' && !order.approved_by_customer">
                     <a @click="() => this.$router.push('/user/order_details?id=' + order._id)" class="q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''" style="background: #e2f6ee; color: #38af48;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept new Offer</a>
                 </div>
             </div>
@@ -82,7 +83,7 @@ export default {
                 confirmButtonText: 'Yes'
             })
             if (isConfirmed) {
-                const result = await this.$store.dispatch('pro/updateOrder', {_id: this.order._id, status: 'rejected'})
+                const result = await this.$store.dispatch('customer/updateOrder', {_id: this.order._id, status: 'cancelled'})
                 if (result.error === true) {
                     await Swal.fire('Error', result.msg, 'error')
                 } else {

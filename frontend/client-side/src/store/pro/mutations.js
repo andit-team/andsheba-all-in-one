@@ -69,3 +69,7 @@ export const setOrders = (state, orders) => {
 export const setOrder = (state, order) => {
     state.order = order
 }
+
+export const setDashboard = (state, dashboard) => {
+    state.dashboard = dashboard
+}

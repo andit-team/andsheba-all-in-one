@@ -1,18 +1,20 @@
 <template>
-    <q-card class="my-card q-ma-sm">
-        <q-card-section class="q-pa-lg" style="color: #fff;height: 155px;" v-bind:style="{background: bgColor}">
-            <div class="text-h4 border-circle inline-block">
-                <span>{{value}}</span>
-            </div>
-            <div class="title">{{title}}</div>
-        </q-card-section>
-    </q-card>
+    <div class="cursor-pointer" @click="() => {this.$router.push(link)}">
+        <q-card class="my-card q-ma-sm">
+            <q-card-section class="q-pa-lg" style="color: #fff;height: 155px;" v-bind:style="{background: bgColor}">
+                <div class="text-h4 border-circle inline-block">
+                    <span>{{value}}</span>
+                </div>
+                <div class="title">{{title}}</div>
+            </q-card-section>
+        </q-card>
+    </div>
 </template>
 
 <script>
 export default {
     name: "DashboardCards",
-    props: ['title', 'value', 'bgColor'],
+    props: ['title', 'value', 'bgColor', 'link'],
 }
 </script>
 
@@ -39,4 +41,3 @@ export default {
 
 }
 </style>
-
