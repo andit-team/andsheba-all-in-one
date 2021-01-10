@@ -15,12 +15,12 @@
                             <li>
                                 <span>Booking Date</span>
                                 <span>23 Jul 2020
-                            <span class="status pending" v-if="status === 'pending'">Pending</span>
-                            <span class="status completed" v-if="status === 'completed'">Completed</span>
-                            <span class="status in-progress" v-if="status === 'accepted'">In Progress</span>
-                            <span class="status rejected" v-if="status === 'rejected'">Rejected</span>
-                            <span class="status cancelled" v-if="status === 'cancelled'">Cancelled</span>
-                        </span>cancelled
+                                <span class="status pending" v-if="status === 'pending'">Pending</span>
+                                <span class="status completed" v-if="status === 'completed'">Completed</span>
+                                <span class="status in-progress" v-if="status === 'accepted'">In Progress</span>
+                                <span class="status rejected" v-if="status === 'rejected'">Rejected</span>
+                                <span class="status cancelled" v-if="status === 'cancelled'">Cancelled</span>
+                        </span>
                             </li>
                             <li>
                                 <span>Booking time</span>
