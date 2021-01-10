@@ -7,7 +7,7 @@ const Customer = require('../../controllers/customer/customer.controller')
 router.post('/signup', Customer.signUp)
 router.post('/login', Customer.login)
 router.post('/verify', Customer.verifyCustomer)
-router.put('/update', Auth.user, Customer.updateCustomerProfile)
+router.put('/update', Auth.customer, Customer.updateCustomerProfile)
 
 // Service for Customer---------------------------
 const Service = require('../../controllers/customer/service.controller')
@@ -25,10 +25,10 @@ router.get('/pro', Pro.getOnePro)
 
 // Order Controller --------------------------
 const Order = require('../../controllers/customer/order.controller')
-router.post('/place-order', Auth.user, Order.placeOrder)
-router.get('/orders', Auth.user, Order.getAllOrdersByCustomer)
+router.post('/place-order', Auth.customer, Order.placeOrder)
+router.get('/orders', Auth.customer, Order.getAllOrdersByCustomer)
 router.get('/order', Order.getOneOrder)
-router.put('/order-status/:_id', Auth.user, Order.updateOrderStatusByCustomer)
+router.put('/order-status/:_id', Auth.customer, Order.updateOrderStatusByCustomer)
 
 // Export the Router
 module.exports = router 

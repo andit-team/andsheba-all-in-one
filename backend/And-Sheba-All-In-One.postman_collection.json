@@ -1568,6 +1568,40 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjEwMjU1MjIyLCJleHAiOjE2MTAyODQwMjJ9.Vb9Jy9pnyOdnGRO41GUVz5mI8aINwYOfXQLDjHyoXqQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pro/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pro",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2092,7 +2126,14 @@
 					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"mobile\": \"+8801878091234\",\r\n    \"password\": \"12345678\"\r\n}",
@@ -2207,6 +2248,33 @@
 								"agent",
 								"service",
 								"5fe7186c4149003110925ca1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGQ0NDlmZGZmNDMzYTQzZDk1NzgiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MTAyNTcwOTgsImV4cCI6MTYxMDI4NTg5OH0.EsO_OUhyS_HGiIpeIkgH1Y-aUVMz2SzzSt2X2AJhP8Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/agent/dashboard",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"dashboard"
 							]
 						}
 					},
