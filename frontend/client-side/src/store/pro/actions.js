@@ -31,19 +31,29 @@ export const loginPro = async ({}, pro) => {
     }
 }
 
-export const fetchPro = async ({commit}) => {
-    let token = Cookies.get('token')
-    let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
-    if(response.data.error === false) {
-        commit('setPro', response.data.data);
+export const fetchPro = async ({commit, state}) => {
+    if(!state.pro.auth) {
+        let token = Cookies.get('token')
+        let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
+        if(response.data.error === false) {
+            commit('setPro', {
+                auth: true,
+                ...response.data.data
+            });
+            return {
+                error: false,
+                data: response.data.data
+            }
+        }
         return {
-            error: false,
-            data: response.data.data
+            error: true
         }
     }
     return {
-        error: true
+        error: false,
+        data: state.pro
     }
+
 }
 
 export const fetchProData = async ({commit},id) => {
@@ -168,6 +178,51 @@ export const updateProfile = async ({}, pro) => {
     }
 }
 
+export const fetchOrders = async ({commit}, status) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/pro/orders`, {headers, params: {status: status || ''}})
+    if(response.data.error === false) {
+        commit('setOrders', response.data.data)
+    }
+}
+
+export const fetchOrder = async ({commit}, id) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/pro/order`, {headers, params: {_id: id || ''}})
+    if(response.data.error === false) {
+        commit('setOrder', response.data.data)
+        return false
+    } else {
+        return true
+    }
+}
+
+export const updateOrder = async ({commit}, order) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let result = await axios.put(`${process.env.API_URL}/pro/order-status/${order._id}`, order, {headers})
+    if( result.error ) {
+        return {
+            error: true,
+            msg: "Request failed"
+        }
+    }
+    return {
+        error: result.data.error,
+        msg: result.data.msg
+    }
+}
 
 
 
@@ -178,7 +233,7 @@ function base64Data(ImageURL) {
     return  block[1].split(",")[1];
 }
 
-async function uploadSingleImage(image) {
+export async function uploadSingleImage(image) {
     try {
         const data = new FormData()
         data.append('image', base64Data(image))

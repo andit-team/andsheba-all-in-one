@@ -28,8 +28,8 @@
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">
 
 
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="register"> Registration</q-btn>
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="login"> Login</q-btn>
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="add" to="/register"> Registration</q-btn>
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="/login"> Login</q-btn>
                     <q-btn-dropdown flat icon="language" olor="grey-8">
                         <q-list>
                             <q-item clickable v-close-popup>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {LocalStorage, SessionStorage} from "quasar";
 
 export const fetchCategories = async ({commit}) => {
     let response = await axios.get(`${process.env.API_URL}/admin/categories-dropdown?parent=` );
@@ -38,4 +39,12 @@ export const fetchSearch = async ({}, key) => {
         return response.data.data
     }
     return []
+}
+
+export const updateAnswersLocal = ({}, answers) => {
+    LocalStorage.set('answers', answers)
+}
+
+export const updateServiceImagesLocal = ({}, images) => {
+    SessionStorage.set('service_images', images)
 }

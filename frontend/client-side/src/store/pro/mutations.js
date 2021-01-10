@@ -62,4 +62,10 @@ export const clearService = (state) => {
 }
 
 
+export const setOrders = (state, orders) => {
+    state.orders = orders.reverse()
+}
 
+export const setOrder = (state, order) => {
+    state.order = order
+}

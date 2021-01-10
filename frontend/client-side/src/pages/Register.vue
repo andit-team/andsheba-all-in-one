@@ -73,6 +73,7 @@
 </template>
 <script>
 import Swal from 'sweetalert2'
+import {LocalStorage} from "quasar";
 
 export default {
     data() {
@@ -113,7 +114,12 @@ export default {
                         response.msg,
                         'success'
                     ).then(r => {
-                        this.$router.push('/')
+                        let url = '/'
+                        if(LocalStorage.has('last_url')) {
+                            url = LocalStorage.getItem('last_url')
+                            LocalStorage.remove('last_url')
+                        }
+                        this.$router.push(url)
                         this.$store.dispatch('customer/fetchCustomer');
                     })
                 }

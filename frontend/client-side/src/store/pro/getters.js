@@ -18,3 +18,11 @@ export const getToken = state => {
 export const getService = state => {
     return state.service
 }
+
+export const getOrders = state => {
+    return state.orders
+}
+
+export const getOrder = state => {
+    return state.order
+}

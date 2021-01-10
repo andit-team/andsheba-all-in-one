@@ -20,4 +20,8 @@ export const getServices = state => {
 }
 
 
+export const getCart = state => {
+    return state.cart
+}
+
 

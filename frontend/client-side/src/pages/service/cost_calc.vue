@@ -3,7 +3,7 @@
         <div class="column justify-center content-center items-center q-mt-xl">
             <q-img v-if="$q.screen.gt.sm"
                    width="10%"
-                   :src="service.thumb_img"
+                   :src="service ? service.thumb_img : ''"
 
             />
             <div :class="[$q.screen.gt.sm?'text-h4':'text-h5 text-center']">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row q-my-xl q-px-lg justify-center q-gutter-md">
-            <div class="col-md-7 col-sm-6 col-xs-12">
+            <div class="col-md-7 col-sm-6 col-xs-12" v-if="service">
                 <q-card v-for="(question, index) in service.questions" :key="index" flat bordered class="q-mb-md">
                     <q-card-section>
                         <div class="text-h6">
@@ -24,13 +24,13 @@
                         </div>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'checkbox'" class="q-gutter-sm row">
-                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index][index1]" :label="option.answer_title_or_unit"/>
+                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index].answers[index1].value" :label="option.answer_title_or_unit"/>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'radio'" class="q-gutter-sm row">
-                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index]" :val="option.answer_title_or_unit" :label="option.answer_title_or_unit" />
+                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index].value" :val="option._id" :label="option.answer_title_or_unit" />
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'text'" class="q-gutter-sm row">
-                        <q-input v-model="answers[index]" class="full-width" outlined type="textarea"/>
+                        <q-input v-model="answers[index].value" class="full-width" outlined type="textarea"/>
                     </q-card-section>
                 </q-card>
 
@@ -39,12 +39,12 @@
                         <div class="block q-mt-lg q-mb-md">
                             <h6 class="q-ma-none">Upload Images to describe your service</h6>
                             <div class="row q-my-lg">
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >1467720872
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 q-pa-md" >
                                     <file-selector
                                         :height="200"
                                         class="file-selector"
                                         accept-extensions=".jpg,.svg,.png,.jpeg"
-                                        :multiple="false"
+                                        :multiple="true"
                                         :max-file-size="5 * 1024 * 1024"
                                         @changed="handleServiceImagesChange"
                                     >
@@ -86,7 +86,7 @@
                         <div class="text-h6">Total: <span> {{cart.total}} TK</span></div>
                         <q-space/>
                         <q-separator vertical/>
-                        <q-btn flat class="bg-primary" color="white">
+                        <q-btn flat class="bg-primary" @click="handleOrder" color="white">
                             Place Order
                         </q-btn>
                     </q-card-actions>
@@ -96,6 +96,10 @@
     </div>
 </template>
 <script>
+import Swal from "sweetalert2";
+import {LocalStorage} from "quasar";
+import {uploadSingleImage} from "src/store/pro/actions";
+
 export default {
     data() {
         return {
@@ -107,6 +111,7 @@ export default {
             pool: true,
             questions: null,
             service_images: [],
+            order: {}
         };
     },
     created() {
@@ -121,69 +126,113 @@ export default {
         answers: {
             get() {
                 if(this.questions === null) {
-                    this.questions = this.$store.getters["service/getAnswers"]
+                    this.questions = JSON.parse ( JSON.stringify ( this.$store.getters["service/getAnswers"] ) )
                 }
                 return this.questions
-            },
-            set(value) {
-                console.log(value)
             }
         },
         cart: {
             get() {
+                this.$store.dispatch('service/updateAnswersLocal', {
+                    service_id: this.service ? this.service._id : '',
+                    answers: this.questions
+                })
+
+                let order = {
+                    service_id: this.service ? this.service._id : '',
+                    answered_questions: []
+                }
                 if(this.questions === null) {
                     return {
                         list: [],
-                        total: 0
+                        total: 0,
                     }
                 } else {
                     let list = []
                     let total = 0
                     this.questions.forEach((question, i) => {
-                        if(typeof question === 'object') {
-                            if(this.service.questions[i].question_type == 'unit') {
-                                if(question.unit.length > 0) {
-                                    let unit = +question.unit
-                                    let price = unit *  this.service.questions[i].answers[0].price
-
+                        let answered_questions = {
+                            _id: this.service.questions[i]._id,
+                            title: this.service.questions[i].title,
+                            question_type: this.service.questions[i].question_type,
+                            answers: []
+                        }
+                        if(this.service.questions[i].question_type === "radio") {
+                            this.service.questions[i].answers.map(answer => {
+                                if(question.value === answer._id) {
                                     list.push({
-                                        _id: this.service.questions[i].answers[0]._id,
-                                        title: question.unit_type + " x " + unit,
-                                        price: price
+                                        _id: answer._id,
+                                        title: answer.answer_title_or_unit,
+                                        price: answer.price
                                     })
-                                    total = total + price
-                                }
-                            } else {
-                                question.forEach((option, j) => {
-                                    if(option === true) {
-                                        list.push({
-                                            _id: this.service.questions[i].answers[j]._id,
-                                            title: this.service.questions[i].answers[j].answer_title_or_unit,
-                                            price: this.service.questions[i].answers[j].price
-                                        })
-                                        total = total + this.service.questions[i].answers[j].price
-                                    }
-                                })
-                            }
-                        } else {
-                            this.service.questions[i].answers.forEach(option => {
-                                if(question === option.answer_title_or_unit) {
-                                    list.push({
-                                        _id: option._id,
-                                        title: option.answer_title_or_unit,
-                                        price: option.price
+                                    answered_questions.answers.push({
+                                        _id: answer._id,
+                                        answer_title_or_unit: answer.answer_title_or_unit,
+                                        price: answer.price
                                     })
-                                    total += option.price
+                                    total += answer.price
                                 }
                             })
-
+                        } else if(this.service.questions[i].question_type === "unit") {
+                            if(question.unit.length > 0) {
+                                let unit = +question.unit
+                                let price = unit *  this.service.questions[i].answers[0].price
+                                list.push({
+                                    _id: this.service.questions[i].answers[0]._id,
+                                    title: unit + " " +  question.unit_type ,
+                                    price: price
+                                })
+                                total = total + price
+                                answered_questions.answers = [{
+                                    _id: this.service.questions[i].answers[0]._id,
+                                    answer_title_or_unit: unit + " " + question.unit_type,
+                                    price: price
+                                }]
+                            }
+                        } else if(this.service.questions[i].question_type === "checkbox") {
+                            question.answers.map((answer, j) => {
+                                if(answer.value === true) {
+                                    list.push({
+                                        _id: this.service.questions[i].answers[j]._id,
+                                        title: this.service.questions[i].answers[j].answer_title_or_unit,
+                                        price: this.service.questions[i].answers[j].price
+                                    })
+                                    answered_questions.answers.push({
+                                        _id: this.service.questions[i].answers[j]._id,
+                                        answer_title_or_unit: this.service.questions[i].answers[j].answer_title_or_unit,
+                                        price: this.service.questions[i].answers[j].price
+                                    })
+                                    total += this.service.questions[i].answers[j].price
+                                }
+                            })
+                        } else if (this.service.questions[i].question_type === "text") {
+                            if(question.value.length > 0) {
+                                answered_questions.answers = [{
+                                    _id: question._id,
+                                    answer_title_or_unit: question.value,
+                                    price: 0
+                                }]
+                            }
+                        }
+                        if(answered_questions.answers.length > 0) {
+                            order.answered_questions.push(answered_questions)
                         }
                     })
+                    this.order = {
+                        ...order,
+                        total,
+                        images: this.service_images
+                    }
                     return {
                         list: list,
                         total: total
                     }
                 }
+            }
+        },
+        user: {
+            get() {
+                return this.$store.getters["customer/getCustomer"]
             }
         }
     },
@@ -191,26 +240,30 @@ export default {
         async handleServiceImagesChange(files) {
             let length = files.length
             for(let i=0;i<length;i++) {
-                let url = await this.handleFileUpload(files[i])
-                console.log(url);
-                if(url !== null) {
-                    this.service_images.push(url)
+                let fileReader = new FileReader()
+                fileReader.onload = e => {
+                    this.service_images.push(e.currentTarget.result)
+                }
+                fileReader.readAsDataURL(files[i])
+            }
+        },
+        async handleOrder() {
+            if(!this.user.isVerified) {
+                await Swal.fire('Warning', "Please log in", 'warning')
+                LocalStorage.set('last_url', this.$route.fullPath)
+                await this.$router.push('/login')
+            } else {
+                this.$swal_loading()
+                let result = await this.$store.dispatch('customer/placeOrder', this.order)
+                if (result.error) {
+                    await Swal.fire('Error', result.msg, 'error')
+                } else {
+                    await Swal.fire('Success', 'Successfully Order Placed', 'success')
+                    await this.$router.push('/user/orders')
                 }
             }
-            console.log(this.service_images)
+        }
 
-        },
-
-        async handleFileUpload(file) {
-            const data = new FormData()
-            data.append('image', file)
-            let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
-            const res = await this.$axios.post(url, data, {})
-            if (res.data.success) {
-                return res.data.data.image.url
-            }
-            return null
-        },
     }
 };
 </script>

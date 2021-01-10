@@ -22,7 +22,8 @@ module.exports = function (/* ctx */) {
       'axios',
       'google',
         'file-selector',
-        'autocomplete'
+        'autocomplete',
+        'swal-loading'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -104,6 +105,7 @@ module.exports = function (/* ctx */) {
       plugins: [
         'Cookies',
         'LocalStorage',
+        'SessionStorage',
         'Notify',
       ]
     },
