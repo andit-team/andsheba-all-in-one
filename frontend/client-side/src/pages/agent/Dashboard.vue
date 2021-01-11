@@ -3,13 +3,13 @@
         <div class="text-h5 q-ma-md">Dashboard</div>
         <div class="row q-ma-md full-width">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Bookings" value="245" bg-color="#ff0080"/>
+                <DashboardCards title="Bookings" bg-color="#ff0080" :value="dashboard.orderCount" link="/agent/orders" />
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Services" value="66" bg-color="#323031"/>
+                <DashboardCards title="Services" :value="dashboard.serviceCount" bg-color="#323031" link="/agent/services"/>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <DashboardCards title="Notification" value="8" bg-color="#d9c504"/>
+                <DashboardCards title="Notification" :value="8" bg-color="#d9c504"/>
             </div>
         </div>
     </div>
@@ -19,23 +19,18 @@
 <script>
 import DashboardCards from "components/dashboard/DashboardCards";
 export default {
-    name: "Dashboard",
+    name: "DashboardAgent",
     components: {DashboardCards},
-    data() {
-      return {
-          pro: null
-      }
-    },
-
-
     async created() {
-        // let response = await this.$store.dispatch('pro/fetchPro')
-        // if(response.error === true ) {
-        //     await this.$router.push('/login')
-        // }
-        // this.pro = response.data
+        await this.$store.dispatch('agent/fetchDashboard')
     },
-
+    computed: {
+        dashboard: {
+            get() {
+                return this.$store.getters["agent/getDashboard"]
+            }
+        }
+    }
 }
 </script>
 

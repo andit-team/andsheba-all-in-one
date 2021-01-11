@@ -18,12 +18,12 @@ export default {
     name: "Dashboard",
     components: {DashboardCards},
     async created() {
-        await this.$store.dispatch('pro/fetchDashboard')
+        await this.$store.dispatch('agent/fetchDashboard')
     },
     computed: {
         dashboard: {
             get() {
-                return this.$store.getters["pro/getDashboard"]
+                return this.$store.getters["agent/getDashboard"]
             }
         }
     }
