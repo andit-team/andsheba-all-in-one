@@ -168,6 +168,7 @@ export default {
             }
         },
         async handleSendProposal() {
+            let total = 0
             this.proposal = false
             let questions = JSON.parse(JSON.stringify(this.order.answered_questions))
             questions.push({
@@ -175,10 +176,17 @@ export default {
                 question_type: 'additional',
                 answers: this.additional
             })
+            questions.map(question => {
+                question.answers.map(answer => {
+                    total += +answer.price
+                })
+            })
+            console.log(total)
             let order = {
                 _id: this.order._id,
                 status: "accepted",
                 proposal_flag: true,
+                total: total,
                 answered_questions: questions
             }
             let result = await this.$store.dispatch('pro/updateOrder', order)

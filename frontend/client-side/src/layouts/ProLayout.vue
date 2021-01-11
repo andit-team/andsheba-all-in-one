@@ -178,21 +178,21 @@
                         <q-separator inset/>
                         <q-card-section class="column justify-center q-pa-md">
                             <q-list bordered separator>
-                                <q-item clickable v-ripple to="/pro" :active="active">
+                                <q-item clickable v-ripple to="/pro/dashboard">
                                     <q-item-section avatar>
                                         <q-icon name="dashboard"/>
                                     </q-item-section>
                                     <q-item-section>Dashboard</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/pro/services" :active="active">
+                                <q-item clickable v-ripple to="/pro/services" >
                                     <q-item-section avatar>
                                         <q-icon name="design_services"/>
                                     </q-item-section>
                                     <q-item-section>My Services</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/pro/booking_list" :active="active">
+                                <q-item clickable v-ripple to="/pro/booking_list">
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-check"/>
                                     </q-item-section>
@@ -200,20 +200,20 @@
                                 </q-item>
 
 
-                                <q-item clickable v-ripple to="/pro/profile" :active="active">
+                                <q-item clickable v-ripple to="/pro/profile">
                                     <q-item-section avatar>
                                         <q-icon name="person"/>
                                     </q-item-section>
                                     <q-item-section>Profile</q-item-section>
                                 </q-item>
 
-                                <q-item clickable v-ripple to="/pro/wallet" :active="active">
+                                <q-item clickable v-ripple to="/pro/wallet" >
                                     <q-item-section avatar>
                                         <q-icon name="fas fa-file-invoice-dollar"/>
                                     </q-item-section>
                                     <q-item-section>Wallet</q-item-section>
                                 </q-item>
-                                <q-item clickable v-ripple to="/pro/subscription" :active="active">
+                                <q-item clickable v-ripple to="/pro/subscription" >
                                     <q-item-section avatar>
                                         <q-icon name="far fa-calendar-alt"/>
                                     </q-item-section>
@@ -222,7 +222,6 @@
                                 <q-item
                                     clickable
                                     v-ripple
-                                    :active="active"
                                     @click="handleLogout"
                                 >
                                     <q-item-section avatar>
@@ -257,7 +256,6 @@ export default {
             },
             leftDrawerOpen: false,
             search: "",
-            active: true,
         };
     },
 
