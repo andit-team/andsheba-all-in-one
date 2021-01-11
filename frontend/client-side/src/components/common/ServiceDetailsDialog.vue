@@ -113,32 +113,22 @@
             </q-card-section>
         </q-card-section>
         <!-- pro -->
-        <q-dialog v-model="dialog2" persistent transition-show="scale" transition-hide="scale">
-            <q-card class="bg-teal text-white" style="width: 300px">
-                <q-card-section>
-                <div class="text-h6">Persistent</div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                Click/Tap on the backdrop.
-                </q-card-section>
-
-                <q-card-actions align="right" class="bg-white text-teal">
-                <q-btn flat label="OK" v-close-popup />
-                </q-card-actions>
-            </q-card>
+        <q-dialog v-model="dialog2nd" transition-show="scale" transition-hide="scale">
+            <ProDetailsDialog />
         </q-dialog>
     </q-card>
 </template>
 <script>
+import ProDetailsDialog from "components/common/ProDetailsDialog"
 export default {
 components:{
+    ProDetailsDialog
 },
   data() {
     return {
       slide:1,
       sortBy: null,
-      dialog2: false,
+      dialog2nd: false,
       sortOptions: [
         '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
       ]
@@ -152,15 +142,15 @@ components:{
     },
   },
   methods: {
-      proDetails(id){
-            // await this.$store.dispatch("service/fetchService", id);
-            this.dialog2 = true
+      async proDetails(id){
+            await this.$store.dispatch("pro/fetchProData", id);
+            this.dialog2nd = true
         }
   },
 };
 </script>
 
-<style>
+<style scoped>
 .faq .q-item {
   padding: 8px 0px !important;
 }

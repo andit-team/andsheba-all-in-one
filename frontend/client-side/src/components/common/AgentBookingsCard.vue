@@ -125,7 +125,7 @@
                                 </q-item-section>
 
                                 <q-item-section side top>
-                                    <q-btn color="primary" round size="sm" to="#">
+                                    <q-btn color="primary" round size="sm" to="#" @click="proDetails(order.pro._id)">
                                         <q-tooltip content-class="bg-black" :offset="[10, 10]">
                                             View pro Details
                                         </q-tooltip>
@@ -153,20 +153,27 @@
         <q-dialog v-model="dialog" transition-show="rotate" transition-hide="rotate">
             <OrderDetailsDialog />
         </q-dialog>
+
+        <q-dialog v-model="dialog2" transition-show="scale" transition-hide="scale">
+            <ProDetailsDialog />
+        </q-dialog>
     </q-card>
 </template>
 
 <script>
 import OrderDetailsDialog from "components/common/OrderDetailsDialog"
+import ProDetailsDialog from "components/common/ProDetailsDialog"
 export default {
     name: "AgentBookingsCard",
     components:{
-        OrderDetailsDialog
+        OrderDetailsDialog,
+        ProDetailsDialog
     },
     props: ['status','order'],
     data() {
         return {
-            dialog: false
+            dialog: false,
+            dialog2: false,
         }
     },
     mounted() {
@@ -175,6 +182,10 @@ export default {
         async orderDetails(id){
             await this.$store.dispatch('agent/fetchOrder', id )
             this.dialog = true
+        },
+        async proDetails(id){
+            await this.$store.dispatch("pro/fetchProData", id);
+            this.dialog2 = true
         }
     },
 }
