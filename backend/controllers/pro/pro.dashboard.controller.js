@@ -20,8 +20,10 @@ exports.sendHomePageData = (req, res, next ) => {
             const data = {
                 msg: 'Successfully Get Data',
                 error: false,
-                serviceCount: result,
-                orderCount: orderData
+                data: {
+                    serviceCount: result,
+                    orderCount: orderData
+                }
             }
             RESPONDER.response(res, 200, data)
     
