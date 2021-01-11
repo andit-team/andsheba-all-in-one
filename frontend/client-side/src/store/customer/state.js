@@ -4,6 +4,7 @@ export default function () {
             isVerified: false
         },
         orders: [],
+        ordersStatus: '',
         order: null,
         dashboard: null
     }

@@ -66,6 +66,10 @@ export const setOrders = (state, orders) => {
     state.orders = orders.reverse()
 }
 
+export const setOrdersStatus = (state, status) => {
+    state.ordersStatus = status
+}
+
 export const setOrder = (state, order) => {
     state.order = order
 }

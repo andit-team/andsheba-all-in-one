@@ -3,7 +3,11 @@ export const getCustomer = state => {
 }
 
 export const getOrders = state => {
-    return state.orders
+    return state.orders.reverse()
+}
+
+export const getOrdersStatus = state => {
+    return state.ordersStatus
 }
 
 export const getOrder = state => {

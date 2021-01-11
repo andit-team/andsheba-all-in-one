@@ -59,8 +59,9 @@ export default {
         handleStatus(status) {
             status = status == 'all' ? '' : status
             status = status == 'offers' ? 'pending' : status
+            this.$store.commit('customer/setOrdersStatus', status)
             this.$store.commit('customer/setOrders',[])
-            this.$store.dispatch('customer/fetchOrders', status)
+            this.$store.dispatch('customer/fetchOrders')
         }
     }
 

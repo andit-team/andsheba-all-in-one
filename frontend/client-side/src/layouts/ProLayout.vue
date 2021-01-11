@@ -297,9 +297,8 @@ export default {
                     console.log("Socket Connected")
                 });
                 newSocket.on("order_get_by_pro", (data) => {
+                    this.$store.dispatch('pro/fetchOrders')
                     this.playSound()
-                    let id = data._id
-                    console.log(data)
                     this.$q.notify({
                         progress: true,
                         message: 'A new booking received',
@@ -309,15 +308,13 @@ export default {
                         avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
                         timeout: 10000,
                         actions: [
-                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/order_details?id=${data._id}`) } }
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/booking_list`) } }
                         ]
                     })
                 });
 
                 newSocket.on("order_status_get_by_pro", (data) => {
                     this.playSound()
-                    let id = data._id
-                    console.log(data)
                     this.$q.notify({
                         progress: true,
                         message: 'A new booking update received',
@@ -327,7 +324,7 @@ export default {
                         avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
                         timeout: 10000,
                         actions: [
-                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/order_details?id=${data._id}`) } }
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/pro/booking_list`) } }
                         ]
                     })
                 });

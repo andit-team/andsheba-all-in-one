@@ -44,11 +44,17 @@ name: "BookingList",
             get() {
                 return this.$store.getters["pro/getOrders"]
             }
+        },
+        tableStatus: {
+            get() {
+                status = status == 'all' ? '' : status
+            }
         }
     },
     methods: {
         handleStatus(status) {
             status = status == 'all' ? '' : status
+            this.$store.commit('pro/setOrdersStatus', status)
             this.$store.commit('pro/setOrders',[])
             this.$store.dispatch('pro/fetchOrders', status)
         }
