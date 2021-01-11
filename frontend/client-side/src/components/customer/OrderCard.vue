@@ -60,8 +60,8 @@
                     <div class="q-mr-sm" style="margin-top: 40px"
                          v-if="order.status === 'pending' && !order.approved_by_customer">
                         <a @click="() => {this.details = true}"
-                           class="q-px-md q-py-sm cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''"
-                           style="background: #e2f6ee; color: #38af48;font-size: 12px;text-transform: capitalize;border-radius: 4px">Accept
+                           class="cursor-pointer" :class="$q.screen.gt.md ? 'float-right' : ''"
+                           style="background: #e2f6ee; color: #38af48;font-size: 12px;text-transform: capitalize;border-radius: 4px; padding: 8px 20px">Accept
                             new Offer</a>
                     </div>
                 </div>

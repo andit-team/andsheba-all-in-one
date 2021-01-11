@@ -242,7 +242,6 @@
 </template>
 
 <script>
-import {fabYoutube} from "@quasar/extras/fontawesome-v5";
 import {Cookies} from "quasar";
 import io from "socket.io-client"
 let data = { sound_url : 'http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3'}
@@ -260,7 +259,6 @@ export default {
     },
 
     async created() {
-        this.fabYoutube = fabYoutube;
         let response = await this.$store.dispatch('pro/fetchPro')
         if (response.error === true) {
             await this.$router.push('/pro/login')
