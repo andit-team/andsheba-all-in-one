@@ -48,7 +48,7 @@
                     </q-btn-dropdown>
                     <q-btn round flat>
                         <q-avatar size="26px">
-                            <img src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"/>
+                            <img :src="profile.thumb_image || 'https://www.w3schools.com/w3images/avatar2.png'"/>
                         </q-avatar>
                         <q-tooltip>Account</q-tooltip>
                     </q-btn>
@@ -155,7 +155,7 @@
                         <q-card-section class="row justify-center">
                             <q-avatar size="100px">
                                 <img
-                                    src="https://avatars3.githubusercontent.com/u/38374712?s=400&v=4"
+                                    :src="profile.thumb_image || 'https://www.w3schools.com/w3images/avatar2.png'"
                                 />
                             </q-avatar>
                         </q-card-section>

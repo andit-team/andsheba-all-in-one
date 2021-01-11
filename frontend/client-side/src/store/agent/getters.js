@@ -1,5 +1,5 @@
 export const getAgent = state => {
-    return state.agents
+    return state.agent
 }
 
 export const getServices = state => {
