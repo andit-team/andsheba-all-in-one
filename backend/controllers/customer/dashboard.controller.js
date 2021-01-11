@@ -12,7 +12,9 @@ exports.sendHomePageData = (req, res, next ) => {
         const data = {
             msg: 'Successfully Get Data',
             error: false,
-            orderCount: result
+            data: {
+                orderCount: result
+            }
         }
         RESPONDER.response(res, 200, data)
     }).catch( error => {
