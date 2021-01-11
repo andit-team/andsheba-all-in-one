@@ -27,6 +27,7 @@ export const fetchAgent = async ({commit}) => {
     
     let token = Cookies.get('token')
     let response = await axios.post(`${process.env.API_URL}/agent/verify`, {token} )
+    console.log(response)
     if(response.data.error === false) {
         commit('setAgent', response.data.data)
         return {
