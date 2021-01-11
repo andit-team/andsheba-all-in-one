@@ -3,12 +3,21 @@
         <div class="row">
             <div class="col-md-12">
                 <q-card-section :horizontal="$q.screen.gt.sm" class="q-pa-md row">
-                    <q-img :src="order.service.thumb_img !== ''?order.service.thumb_img:'https://cdn.quasar.dev/img/parallax1.jpg'" class="col-sm-3 col-xs-12"/>
+                    <q-img @click="orderDetails(order._id)" :src="order.service.thumb_img !== ''?order.service.thumb_img:'https://cdn.quasar.dev/img/parallax1.jpg'" class="col-sm-3 col-xs-12 cursor-pointer"/>
+                    <!-- <div class="orderOverlay">
+                        <q-btn
+                        fab
+                        color="primary"
+                        icon="visibility"
+                        class="absolute"
+                        style="top: 50%; right: 50%; transform: translateY(-50%);"
+                        />
+                    </div> -->
                     <q-card-section class="col-sm-5 col-xs-12">
                         <q-list>
                             <q-item>
                                 <q-item-section>
-                                    <q-item-label class="text-weight-bold text-h6">{{order.service.title}}</q-item-label>
+                                   <q-item-label class="text-weight-bold text-h6 cursor-pointer" @click="orderDetails(order._id)">{{order.service.title}}</q-item-label>
                                     <q-item-label caption>by {{order.pro.name}}</q-item-label>
                                 </q-item-section>
 
@@ -72,7 +81,7 @@
                             <q-item>
                                 <q-item-section top avatar>
                                 <q-avatar>
-                                    <img :src="order.pro.thumb_image !== ''?order.customer.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
+                                    <img style="width:auto"  :src="order.pro.thumb_image !== ''?order.customer.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
                                 </q-avatar>
                                 </q-item-section>
 
@@ -106,7 +115,7 @@
                             <q-item>
                                 <q-item-section top avatar>
                                 <q-avatar>
-                                    <img :src="order.pro.thumb_image !== ''?order.pro.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
+                                    <img style="width:auto"  :src="order.pro.thumb_image !== ''?order.pro.thumb_image:'https://cdn.quasar.dev/img/boy-avatar.png'">
                                 </q-avatar>
                                 </q-item-section>
 
@@ -140,15 +149,33 @@
                 </q-card-section>
             </div>
         </div>
+        <!-- Modal -->
+        <q-dialog v-model="dialog" transition-show="rotate" transition-hide="rotate">
+            <OrderDetailsDialog />
+        </q-dialog>
     </q-card>
 </template>
 
 <script>
+import OrderDetailsDialog from "components/common/OrderDetailsDialog"
 export default {
     name: "AgentBookingsCard",
+    components:{
+        OrderDetailsDialog
+    },
     props: ['status','order'],
+    data() {
+        return {
+            dialog: false
+        }
+    },
     mounted() {
-        console.log(this.order)
+    },
+    methods: {
+        async orderDetails(id){
+            await this.$store.dispatch('agent/fetchOrder', id )
+            this.dialog = true
+        }
     },
 }
 </script>
@@ -167,5 +194,16 @@ export default {
     &:hover {
         background: #ffffff3d;
     }
+}
+
+.orderOverlay {
+    position: absolute;
+    z-index: 999;
+    background: #f5f5f5a6;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    transition: all .5s ease;
 }
 </style>

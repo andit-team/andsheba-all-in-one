@@ -10,3 +10,7 @@ export const getServices = state => {
 export const getToken = state => {
     return state.token
 }
+
+export const getOrder = state => {
+    return state.order
+}
