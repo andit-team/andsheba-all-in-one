@@ -41,6 +41,7 @@ export default function () {
             village: null
         },
         orders: [],
+        ordersStatus: '',
         order: null,
         dashboard: null
     }

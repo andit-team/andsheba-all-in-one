@@ -291,7 +291,7 @@ export default {
                         avatar: 'https://cdn.quasar.dev/img/boy-avatar.png',
                         timeout: 10000,
                         actions: [
-                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/user/order_details?id=${data._id}`) } }
+                            { label: 'Check', color: 'yellow', handler: () => { this.$router.push(`/user/orders`) } }
                         ]
                     })
                 });

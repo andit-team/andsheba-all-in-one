@@ -69,7 +69,7 @@ export const fetchDashboard = async ({commit}) => {
     }
     let response = await axios.get(`${process.env.API_URL}/customer/dashboard`,{ headers })
     if(response.data.error === false) {
-        commit('setDashboard', response.data)
+        commit('setDashboard', response.data.data)
     }
 }
 
@@ -97,13 +97,13 @@ export const placeOrder = async ({}, order) => {
     }
 }
 
-export const fetchOrders = async ({commit}, status) => {
+export const fetchOrders = async ({commit, state}) => {
     let token = Cookies.get('token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
     }
-    let response = await axios.get(`${process.env.API_URL}/customer/orders`, {headers, params: {status: status || ''}})
+    let response = await axios.get(`${process.env.API_URL}/customer/orders`, {headers, params: {status: state.ordersStatus}})
     if(response.data.error === false) {
         commit('setOrders', response.data.data)
     }
