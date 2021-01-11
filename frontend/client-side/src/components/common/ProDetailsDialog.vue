@@ -23,9 +23,9 @@
             
             <div class="flex q-gutter-md">
               <q-rating
-                v-model="ratingModel"
                 size="2em"
-                :max="5"
+                max="5"
+                v-model="rating"
                 color="orange"
               />
               <q-separator vertical/>
@@ -100,12 +100,13 @@
 <script>
 import ServiceCard from "components/common/ServiceCard"
 export default {
+  name:'ProDetailsDialog',
 components:{
     ServiceCard
 },
   data() {
     return {
-      slide: 2,
+      rating: 4.5,
     };
   },
   computed: {

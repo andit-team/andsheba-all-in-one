@@ -58,7 +58,7 @@
 
 <script>
 export default {
-    name: "OrderDetailsCard",
+    name: "OrderDetailsDialog",
     data() {
         return {
             proposal: false,
