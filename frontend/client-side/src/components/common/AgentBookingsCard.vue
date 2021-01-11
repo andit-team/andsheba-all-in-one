@@ -2,9 +2,9 @@
     <q-card class="my-card q-mb-lg">
         <div class="row">
             <div class="col-md-12">
-                <q-card-section horizontal class="q-pa-md">
-                    <q-img src="https://cdn.quasar.dev/img/parallax1.jpg" class="col-2"/>
-                    <q-card-section>
+                <q-card-section :horizontal="$q.screen.gt.sm" class="q-pa-md row">
+                    <q-img :src="order.service.thumb_img !== ''?order.service.thumb_img:'https://cdn.quasar.dev/img/parallax1.jpg'" class="col-sm-3 col-xs-12"/>
+                    <q-card-section class="col-sm-5 col-xs-12">
                         <q-list>
                             <q-item>
                                 <q-item-section>
@@ -20,6 +20,8 @@
                                     <q-badge color="orange" style="font-size:15px" class="q-py-xs"  v-if="status === 'cancelled'">Cancelled</q-badge>
                                 </q-item-section>
                             </q-item>
+                            <q-item-label header>Order Details</q-item-label>
+                            <q-separator inset />
                             <q-item>
                                 <q-item-section avatar>
                                     <q-icon color="primary" name="event" />
@@ -35,10 +37,10 @@
                                 <q-item-section avatar>
                                     <q-icon color="primary" name="map" />
                                 </q-item-section>
-                                <q-item-section>32 Choto Mirzapur Khulna </q-item-section>
+                                <q-item-section>{{ order.service.address.address }} </q-item-section>
                                 <q-item-section side><q-badge color="orange" style="font-size:15px" class="q-py-xs">${{order.total}}</q-badge></q-item-section>
                             </q-item>
-                            <q-item class="row q-gutter-md">
+                            <!-- <q-item class="row q-gutter-md">
                                 <q-btn round color="black" icon="visibility">
                                     <q-tooltip content-class="bg-black" :offset="[10, 10]">
                                     View Details
@@ -59,10 +61,10 @@
                                     Cancel This
                                     </q-tooltip>
                                 </q-btn>
-                            </q-item>
+                            </q-item> -->
                         </q-list>
                     </q-card-section>
-                    <q-separator inset vertical />
+                    <q-separator v-if="$q.screen.gt.sm" inset vertical />
                     <q-card-section>
                         <q-list>
                             <q-item-label header>Customer Details</q-item-label>
@@ -80,7 +82,22 @@
                                 </q-item-section>
 
                                 <q-item-section side top>
-                                    <q-badge color="secondary" style="font-size:15px"><q-icon name="call" size="15px" class="q-ml-xs"/>&nbsp;<a :href="`tel:${order.customer.mobile}`" style="text-decoration: none;color:#fff">{{order.customer.mobile}}</a></q-badge>
+                                    <q-btn color="primary" round size="sm" to="#">
+                                        <q-tooltip content-class="bg-black" :offset="[10, 10]">
+                                            View Customer Details
+                                        </q-tooltip>
+                                        <q-icon name="visibility"/>
+                                    </q-btn>
+                                </q-item-section>
+                                <q-item-section side top>
+                                    <q-btn color="secondary" round size="sm">
+                                        <q-tooltip content-class="bg-black" :offset="[10, 10]">
+                                            {{order.customer.mobile}}
+                                        </q-tooltip>
+                                        <a :href="`tel:${order.customer.mobile}`" style="text-decoration: none;color:#fff">
+                                            <q-icon name="call"/>
+                                        </a>
+                                    </q-btn>
                                 </q-item-section>
                             </q-item>
                             
@@ -99,7 +116,22 @@
                                 </q-item-section>
 
                                 <q-item-section side top>
-                                    <q-badge color="secondary" style="font-size:15px"><q-icon name="call" size="15px" class="q-ml-xs"/>&nbsp;<a :href="`tel:${order.pro.mobile}`" style="text-decoration: none;color:#fff">{{order.pro.mobile}}</a></q-badge>
+                                    <q-btn color="primary" round size="sm" to="#">
+                                        <q-tooltip content-class="bg-black" :offset="[10, 10]">
+                                            View pro Details
+                                        </q-tooltip>
+                                        <q-icon name="visibility"/>
+                                    </q-btn>
+                                </q-item-section>
+                                <q-item-section side top>
+                                    <q-btn color="secondary" round size="sm">
+                                        <q-tooltip content-class="bg-black" :offset="[10, 10]">
+                                            {{order.pro.mobile}}
+                                        </q-tooltip>
+                                        <a :href="`tel:${order.pro.mobile}`" style="text-decoration: none;color:#fff">
+                                            <q-icon name="call"/>
+                                        </a>
+                                    </q-btn>
                                 </q-item-section>
                             </q-item>
                         </q-list>
