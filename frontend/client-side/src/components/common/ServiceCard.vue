@@ -54,7 +54,7 @@ export default {
     props: ['service'],
     data() {
         return {
-            rating: 4,
+            rating: 4.4,
             role:'',
             dialog:false,
         }

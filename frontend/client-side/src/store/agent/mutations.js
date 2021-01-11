@@ -13,3 +13,7 @@ export const setOrders = (state, data) => {
 export const setOrder = (state, data) => {
     state.order = data
 }
+
+export const setDashData = (state, data) => {
+    state.dashboard = data
+}

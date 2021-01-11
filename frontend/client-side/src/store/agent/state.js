@@ -6,5 +6,6 @@ export default function () {
         services:[],
         orders:[],
         order:[],
+        dashboard:[],
     }
 }

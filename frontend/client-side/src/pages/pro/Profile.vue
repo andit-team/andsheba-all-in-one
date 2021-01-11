@@ -192,14 +192,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.c-file-selector-btn {
-    .fs-droppable {
-
-    }
-}
-</style>
-
 <style lang="scss" scoped>
 .cover-img-area {
     height: 300px;

@@ -14,3 +14,7 @@ export const getToken = state => {
 export const getOrder = state => {
     return state.order
 }
+
+export const getDashboard = state => {
+    return state.dashboard
+}

@@ -8,11 +8,11 @@
                 <q-card-section>
                     <div :class="[$q.screen.gt.sm ? 'text-h4' : 'text-h5', 'q-mb-md text-weight-bold']">{{service.title}}</div>
                     <div :class="[$q.screen.gt.sm ?'q-py-md':'','row no-wrap items-center']">
-                    <q-avatar :size="[$q.screen.gt.sm ?'38px':'25px']" class="q-mr-md"
+                    <q-avatar size="38px" class="q-mr-md"
                         ><img :src="service.thumb_img"
                     /></q-avatar>
-                    <q-rating :size="[$q.screen.gt.sm ?'35px':'20px']" :max="5" color="orange" />
-                    <span :class="[$q.screen.gt.sm ?'text-h5':'text-subtitle2', 'text-grey q-ml-sm text-weight-bold']">4.2 (551)</span>
+                    <q-rating size="35px" max="5" v-model="serviceRating" color="orange" />
+                    <span :class="[$q.screen.gt.sm ?'text-h5':'text-subtitle2', 'text-grey q-ml-sm text-weight-bold']">{{ serviceRating }} (551)</span>
                     <span :class="[$q.screen.gt.sm ?'text-subtitel2':'text-caption','text-red q-ml-sm text-weight-bold']">6 Orders in Queue</span>
                     </div>
                 </q-card-section>
@@ -22,7 +22,7 @@
               v-for="(image, index) in service.gallery_images"
               :name="index + 1"
               :img-src="image || 'https://cdn.quasar.dev/img/mountains.jpg'"
-              :key="index"
+              :key="++index"
             />
 
             <q-carousel-slide
@@ -30,7 +30,7 @@
               img-src="https://cdn.quasar.dev/img/mountains.jpg"
             />
             <q-carousel-slide
-              :name="22"
+              :name="21"
               img-src="https://cdn.quasar.dev/img/parallax1.jpg"
             />
             <q-carousel-slide
@@ -91,7 +91,7 @@
                         </div>
                         </div>
 
-                        <q-rating color="red" :max="5" size="35px" />
+                        <q-rating color="red" max="5" v-model="proRating" size="35px" />
                     </q-card-section>
 
                     <q-card-section class="q-pt-none">
@@ -121,17 +121,16 @@
 <script>
 import ProDetailsDialog from "components/common/ProDetailsDialog"
 export default {
+  name:'ServiceDetailsDialog',
 components:{
     ProDetailsDialog
 },
   data() {
     return {
-      slide:1,
-      sortBy: null,
+      slide:20,
+      serviceRating:4.7,
+      proRating:4.5,
       dialog2nd: false,
-      sortOptions: [
-        '1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'
-      ]
     };
   },
   computed: {
@@ -143,8 +142,8 @@ components:{
   },
   methods: {
       async proDetails(id){
-            await this.$store.dispatch("pro/fetchProData", id);
-            this.dialog2nd = true
+          await this.$store.dispatch("pro/fetchProData", id);
+          this.dialog2nd = true
         }
   },
 };

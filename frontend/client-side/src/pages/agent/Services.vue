@@ -11,7 +11,7 @@
       narrow-indicator
     >
       <q-tab name="active" :label="`Active Services ( ${active.length} )`" class="text-success"/>
-      <q-tab name="inactive" :label="`Inactive Services ( ${inActive.length} )`" class="text-warning" />
+      <q-tab name="inactive" :label="`Inactive Services ( ${inactive.length} )`" class="text-warning" />
       <q-tab name="pending" :label="`Pending Services ( ${pending.length} )`" class="text-secondary"/>
     </q-tabs>
 
@@ -82,7 +82,7 @@ export default {
           (service) => service.status == "active");
       },
     },
-    inActive: {
+    inactive: {
       get() {
         return this.services.filter((service) => service.status == "inactive");
       },

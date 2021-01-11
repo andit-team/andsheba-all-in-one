@@ -86,3 +86,16 @@ export const fetchOrder = async ({commit},id) => {
         commit('setOrder', response.data.data)
     }
 }
+
+// Fetch Dashboard data
+export const fetchDashboard = async ({commit},id) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.get(`${process.env.API_URL}/agent/dashboard`,{ headers })
+    if(response.data.error === false) {
+        commit('setDashData', response.data.data)
+    }
+}
