@@ -19,7 +19,7 @@
             <q-tab name="rejected" :label="`Rejected Bookings`"/>
         </q-tabs>
 
-        <div class="text-right q-mr-lg">Total {{orders.length}} Booking</div>
+        <div class="text-right q-mr-lg q-mt-lg text-primary">Total {{orders.length}} Booking</div>
 
         <OrderCard v-for="order in orders" :order="order"/>
 

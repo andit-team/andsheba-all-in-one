@@ -1,7 +1,7 @@
 <template>
     <div class="q-ma-lg">
         <div class="text-h5 q-ma-md">Dashboard</div>
-        <div class="row q-ma-md full-width">
+        <div class="row q-ma-md full-width" v-if="dashboard">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <DashboardCards title="Bookings" :value="dashboard.orderCount" bg-color="#ff0080" link="/pro/booking_list"/>
             </div>
@@ -10,7 +10,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -18,11 +17,6 @@ import DashboardCards from "components/dashboard/DashboardCards";
 export default {
     name: "Dashboard",
     components: {DashboardCards},
-    data() {
-      return {
-          pro: null
-      }
-    },
     async created() {
         await this.$store.dispatch('pro/fetchDashboard')
     },
@@ -33,7 +27,6 @@ export default {
             }
         }
     }
-
 }
 </script>
 

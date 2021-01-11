@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card q-ma-lg no-shadow" style="border: 1px solid rgba(80,83,89, .5) !important;">
+    <q-card class="my-card q-mx-lg q-mb-lg q-mt-sm no-shadow" style="border: 1px solid rgba(80,83,89, .5) !important;">
         <div class="row">
             <div class="col-md-12 col-lg-9">
                 <q-card-section :horizontal="$q.screen.gt.sm" class="q-pa-lg">
