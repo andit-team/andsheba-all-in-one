@@ -10,9 +10,9 @@
       align="left"
       narrow-indicator
     >
-      <q-tab name="active" :label="`Active Services ( ${active.length} )`" />
-      <q-tab name="inactive" :label="`Inactive Services ( ${inActive.length} )`" />
-      <q-tab name="pending" :label="`Pending Services ( ${pending.length} )`" />
+      <q-tab name="active" :label="`Active Services ( ${active.length} )`" class="text-success"/>
+      <q-tab name="inactive" :label="`Inactive Services ( ${inActive.length} )`" class="text-warning" />
+      <q-tab name="pending" :label="`Pending Services ( ${pending.length} )`" class="text-secondary"/>
     </q-tabs>
 
     <q-tab-panels v-model="tab" animated>
