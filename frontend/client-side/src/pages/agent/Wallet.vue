@@ -1,50 +1,52 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-6 q-pa-lg">
-                <q-card class="wallet">
-                    <div class="text-h4 block q-pa-lg">Wallet</div>
-                    <div class="q-px-lg">
-                        <span class="text-h6">Wallet Balance</span>
-                        <span class="text-h4 block">$3885</span>
-                    </div>
-                    <div class="row q-px-lg">
-                        <div class="col-6">
-                            <span class="text-h6">Total Credit</span>
-                            <span class="text-h4 block">$5314</span>
-                        </div>
-                        <div class="col-6">
-                            <span class="text-h6">Total Debit</span>
-                            <span class="text-h4 block">$1431</span>
-                        </div>
-                    </div>
-                    <div class="row q-pa-lg">
-                        <div class="col-6 float-left">
-                            <span class="text-h6 block">$1431</span>
-                        </div>
-                        <div class="col-6 float-right">
-                            <span class="text-h6 block">$5314</span>
-                        </div>
-                    </div>
+            <div class="col-md-6">
+                <q-card class="wallet full-height q-mx-md">
+                    <q-card-section class="bg-secondary text-white text-center">
+                        <div class="text-h5">My Wallet</div>
+                        <div class="text-subtitle2">©Andsheba</div>
+                    </q-card-section>
+                    <q-card-section class="row justify-around items-center">
+                        <q-card-section>
+                            <span class="text-h6 text-weight-bold">Balance</span>
+                            <span class="text-h4 block text-orange">$3,885</span>
+                        </q-card-section>
+                        <q-card-section>
+                            <q-card-section>
+                                <span class="text-h6 text-weight-bold">Total Credit</span>
+                                <span class="text-h4 block text-red">$7,258</span>
+                            </q-card-section>
+                            
+                            <q-card-section>
+                                <span class="text-h6 text-weight-bold">Total Debit</span>
+                                <span class="text-h4 block text-green">$7,258</span>
+                            </q-card-section>
+                        </q-card-section>
+                    </q-card-section>
                 </q-card>
             </div>
-            <div class="col-md-6 q-pa-lg">
-                <q-card class="wallet">
-                    <div class="text-h4 block q-pa-lg">Withdraw</div>
+            <div class="col-md-6">
+                <q-card class="wallet full-height q-mx-md" >
+                    <q-card-section class="bg-green text-white text-center">
+                        <div class="text-h5">Amount to Withdraw</div>
+                        <div class="text-subtitle2">©SSLCommerse</div>
+                    </q-card-section>
+                    <div class="text-h6 text-center block q-pa-lg">Custom Amount</div>
                     <div class="q-px-lg">
                         <q-input>
                             <template v-slot:prepend>
                                 <q-icon name="fa fa-dollar-sign" />
                             </template>
                         </q-input>
-                        <div class="text-center text-h4 q-pa-sm">OR</div>
+                        <div class="text-center text-h6 q-pa-sm">OR</div>
                         <div class="text-center">
                             <q-btn class="q-ma-sm bg-primary text-white">$50</q-btn>
-                            <q-btn class="q-ma-sm bg-primary text-white">$100</q-btn>
-                            <q-btn class="q-ma-sm bg-primary text-white">$150</q-btn>
+                            <q-btn class="q-ma-sm bg-secondary text-white">$100</q-btn>
+                            <q-btn class="q-ma-sm bg-warning text-white">$150</q-btn>
                         </div>
                         <div class="text-center q-mt-md q-pb-lg">
-                            <q-btn class="q-ma-sm bg-primary text-white q-px-lg" style="font-size: 18px">Withdraw</q-btn>
+                            <q-btn class="q-ma-sm bg-green text-white q-px-lg" style="font-size: 18px">Withdraw</q-btn>
                         </div>
                     </div>
                 </q-card>
@@ -134,15 +136,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.wallet {
-    .text-h4 {
-        font-size: 24px;
-    }
-    .text-h6 {
-        color: #575b6b;
-        font-size: 15px;
-    }
-}
-</style>
