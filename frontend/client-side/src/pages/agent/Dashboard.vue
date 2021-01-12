@@ -1,7 +1,6 @@
 <template>
-    <div class="q-ma-lg">
-        <div class="text-h5 q-ma-md">Dashboard</div>
-        <div class="row q-ma-md full-width">
+    <div class="q-mx-md">
+        <div class="row full-width">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <DashboardCards title="Bookings" bg-color="#ff0080" :value="dashboard.orderCount" link="/agent/orders" />
             </div>
