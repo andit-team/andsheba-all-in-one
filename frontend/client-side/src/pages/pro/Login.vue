@@ -10,8 +10,8 @@
 
         <q-page-container>
             <div
-                class="q-pa-md full-width row wrap justify-center items-center content-center fixed-center" style="background-image: url('https://images.unsplash.com/photo-1540476547779-348beb642680?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;height: -webkit-fill-available;">
+                class="q-pa-md full-width row wrap justify-center items-center content-center" style="background-image: url('https://images.unsplash.com/photo-1540476547779-348beb642680?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;min-height: calc(100vh - 68px);">
                 <q-card class="my-card col-md-4 col-sm-8 col-xs-10 q-pa-md">
                     <q-card-section class="column items-center content-center">
                         <div class="text-h5">ফিরে আসার জন্য ধন্যবাদ</div>
