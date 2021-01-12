@@ -91,7 +91,7 @@
                                 </q-item-section>
 
                                 <q-item-section side top>
-                                    <q-btn color="primary" round size="sm" to="#">
+                                    <q-btn color="primary" round size="sm" to="#" @click="customerDetails(order.pro._id)">
                                         <q-tooltip content-class="bg-black" :offset="[10, 10]">
                                             View Customer Details
                                         </q-tooltip>
@@ -150,12 +150,16 @@
             </div>
         </div>
         <!-- Modal -->
-        <q-dialog v-model="dialog" transition-show="rotate" transition-hide="rotate">
+        <q-dialog v-model="dialog" transition-show="flip-down" transition-hide="flip-up">
             <OrderDetailsDialog />
         </q-dialog>
 
         <q-dialog v-model="dialog2" transition-show="scale" transition-hide="scale">
             <ProDetailsDialog />
+        </q-dialog>
+       
+        <q-dialog v-model="dialog3" transition-show="rotate" transition-hide="rotate">
+            <CustomerDetailsDialog />
         </q-dialog>
     </q-card>
 </template>
@@ -163,17 +167,20 @@
 <script>
 import OrderDetailsDialog from "components/common/OrderDetailsDialog"
 import ProDetailsDialog from "components/common/ProDetailsDialog"
+import CustomerDetailsDialog from "components/common/CustomerDetailsDialog"
 export default {
     name: "AgentBookingsCard",
     components:{
         OrderDetailsDialog,
-        ProDetailsDialog
+        ProDetailsDialog,
+        CustomerDetailsDialog
     },
     props: ['status','order'],
     data() {
         return {
             dialog: false,
             dialog2: false,
+            dialog3: false,
         }
     },
     mounted() {
@@ -186,6 +193,10 @@ export default {
         async proDetails(id){
             await this.$store.dispatch("pro/fetchProData", id);
             this.dialog2 = true
+        },
+        async customerDetails(id){
+            await this.$store.dispatch("pro/fetchProData", id);
+            this.dialog3 = true
         }
     },
 }
