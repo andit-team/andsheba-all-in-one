@@ -7,6 +7,7 @@ const Agent = require('../../controllers/agent/agent.controller')
 router.post('/signup', Agent.signUpAgent)
 router.post('/login', Agent.loginAgent)
 router.post('/verify', Agent.verifyAgent)
+router.put('/profile', Auth.agent, Agent.updateProfile)
 
 // Service Controller -----------------------------
 const Service = require('../../controllers/pro/service.controller')
