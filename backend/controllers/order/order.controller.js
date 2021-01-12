@@ -85,7 +85,7 @@ exports.getAllOrdersByPro = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('agent').populate('customer').populate('service').then(result => {
+    Order.find(query).sort({createdAt: -1}).populate('agent').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -119,7 +119,7 @@ exports.getAllOrdersByAgent = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('pro').populate('customer').populate('service').then(result => {
+    Order.find(query).sort({createdAt: -1}).populate('pro').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -153,7 +153,7 @@ exports.getAllOrdersByCustomer = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('pro').populate('agent').populate('service').then(result => {
+    Order.find(query).sort({createdAt: -1}).populate('pro').populate('agent').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
@@ -185,7 +185,7 @@ exports.getAllOrdersByAdmin = (req, res, next ) => {
             status: req.query.status
         }
     }
-    Order.find(query).populate('pro').populate('agent').populate('customer').populate('service').then(result => {
+    Order.find(query).sort({createdAt: -1}).populate('pro').populate('agent').populate('customer').populate('service').then(result => {
         if(result.length > 0){
             const data = {
                 msg: 'Order Data Get Successfully',
