@@ -5,7 +5,7 @@
                 :src="service.thumb_img" class="thumb-img"
             />
         </a>
-        <a class="service-content" :href="'/#/service/single?id=' + service._id">
+        <a class="service-content" :href="service._id ? '/#/service/single?id=' + service._id : '#'">
             <div class="text-h6 q-mb-xs" style="color: #242f51;">{{ service.title }}</div>
             <p>
                 <span class="top-pro">
