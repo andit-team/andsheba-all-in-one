@@ -327,3 +327,49 @@ exports.verifyAgent = (req, res, next) => {
         RESPONDER.response(res, 200, data)
     }
 }
+
+exports.updateProfile = (req, res, next) => {
+    
+    let updateData = {
+       name: req.body.name,
+       email: req.body.email,
+       cover_image: req.body.cover_image,
+       thumb_image: req.body.thumb_image,
+       date_of_birth: req.body.date_of_birth,
+       gender: req.body.gender,
+       description: req.body.description
+    }
+    if(req.body.password !== ''){
+        let hash = bcrypt.hashSync(req.body.password, 8)
+        updateData = {
+            ...updateData,
+            password: hash
+        }
+    }
+    let query = {
+        _id: req.userData.user_id
+    }
+    User.updateOne(query,updateData).then(result => {
+
+        if(result.n > 0){
+            const data = {
+                error:false,
+                msg: 'Successfully Update Profile'
+            }
+            RESPONDER.response(res, 200, data)
+        }else{
+            const data = {
+                error: true,
+                msg: 'Update Profile Unsuccessful'
+            }
+            RESPONDER.response(res, 200, data)
+        }
+
+    }).catch(error => {
+        const data = {
+            error: true,
+            msg: 'Update Profile Unsuccessful'
+        }
+        RESPONDER.response(res, 200, data)
+    })
+}

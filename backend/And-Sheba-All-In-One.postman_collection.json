@@ -1714,13 +1714,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGFlYjlmZGZmNDMzYTQzZDk1NzciLCJyb2xlIjoicHJvIiwiaWF0IjoxNjA5OTIyOTEwLCJleHAiOjE2MDk5NTE3MTB9.xrvTxBv-Bk3xeA5o5zNjeVtfnZfJPzfaAkKDTIYY4_M",
+										"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAyNzMwMzgsImV4cCI6MTYxMDMwMTgzOH0.aU_kO5sr8b82qNvKik9NOPCU75ylakrgWkEq0NOn8BA",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"status\": \"accepted\"\r\n}",
+									"raw": "{\r\n    \"status\": \"cancelled\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1728,7 +1728,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/customer/order-status/5ff579c5aaf580383ca05e4d",
+									"raw": "http://localhost:5000/api/customer/order-status/5ffa98b6916d26228ebf2be9",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1738,7 +1738,7 @@
 										"api",
 										"customer",
 										"order-status",
-										"5ff579c5aaf580383ca05e4d"
+										"5ffa98b6916d26228ebf2be9"
 									]
 								}
 							},
@@ -2029,7 +2029,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAyNzAyNDgsImV4cCI6MTYxMDI5OTA0OH0.atS3gcJ-HmqTmbvV4S2kZcDebn7y9TuTVUEZ3At-7JM",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYwMGUxYmY2OTlhZTA5YTQ0NDU3ZWUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MTAzNTk5ODUsImV4cCI6MTYxMDM4ODc4NX0.zHttF12T_OKvymCq3rRY4ajLrh2FjuYnPUn_wIsZyYk",
 								"type": "text"
 							}
 						],
@@ -2302,6 +2302,42 @@
 								"api",
 								"agent",
 								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Authorization eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmVkOGQ0NDlmZGZmNDMzYTQzZDk1NzgiLCJyb2xlIjoiYWdlbnQiLCJpYXQiOjE2MTA0MjE2MTUsImV4cCI6MTYxMDQ1MDQxNX0.aYtu_m4jITpCcwDB7vf0QHzpUF6M2IGBCadLm5ZKYso",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Shariful Islam\",\r\n    \"password\": \"\",\r\n    \"email\": \"hello@gmail.com\",\r\n    \"cover_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"thumb_image\": \"https://cdn2.f-cdn.com/contestentries/1316431/24595406/5ae8a3f2e4e98_thumb900.jpg\",\r\n    \"date_of_birth\": \"23-12-1990\",\r\n    \"gender\": \"male\",\r\n    \"description\": \"Lorem ip\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/agent/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"agent",
+								"profile"
 							]
 						}
 					},
