@@ -2,20 +2,16 @@
     <div>
         <div class="row q-mx-lg q-gutter-lg justify-around">
             <div class="col-md-4 col-sm-12">
-                <!-- <div class="text-h5 q-my-md text-center">Current Plan</div> -->
-                <q-card class="my-card" flat bordered>
-                    <q-img
-                        src="https://image.freepik.com/free-vector/big-sale-special-offer-banner-template_7547-308.jpg"
-                    />
+                <q-card class="my-card">
+                    <q-card-section class="bg-secondary text-white text-center">
+                        <div class="text-h5">Current plan</div>
+                    </q-card-section>
 
                     <q-card-section>
-                        <div class="text-overline text-orange-9">Current Plan</div>
-                        <div class="text-h5 q-mt-sm q-mb-xs">Standard Plan</div>
+                        <div class="text-overline text-orange-9 text-center">(10.02.2020 to 02.02.2021)</div>
+                        <div class="text-h5 q-mt-sm q-mb-xs">#Standard Plan</div>
                         <div class="text-caption text-grey">
                         Lorem ipsum dolor sit amet, consectetur.
-                        </div>
-                        <div class="text-caption text-grey text-weight-bold">
-                        (03-04-2020 TO 03-04-2021)
                         </div>
                         <q-list>
                             <q-item>
