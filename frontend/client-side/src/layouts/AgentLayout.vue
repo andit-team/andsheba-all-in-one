@@ -328,9 +328,9 @@ export default {
 <style scoped>
 .q-router-link--active {
     color: white;
-    background: #0188c5;
+    background: #26a69a;
     font-size: large;
-    border-right: 4px solid #ce080a;
+    border-right: 4px solid #505359;
     transition: all .5s ease;
 }
     
