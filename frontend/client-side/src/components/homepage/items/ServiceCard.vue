@@ -47,7 +47,9 @@ export default {
     },
     methods: {
         goToService() {
-            this.$router.push(`service/single?id=${this.service._id}`)
+            if(this.service._id) {
+                this.$router.push(`service/single?id=${this.service._id}`)
+            }
         }
     }
 
