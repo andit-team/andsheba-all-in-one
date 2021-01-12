@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="[$q.screen.gt.sm ? 'q-mt-xl q-gutter-xl' : 'q-pa-xl', 'row justify-center']">
+    <div :class="[$q.screen.gt.sm ? 'q-my-xl q-gutter-xl' : 'q-pa-xl', 'row justify-center']">
       <div class="col-md-6 col-sm-12 col-xs-12">
         
         <div :class="[$q.screen.gt.sm ? 'text-h4' : 'text-h5', 'q-mb-md text-weight-bold']">{{service.title}}</div>
@@ -129,7 +129,7 @@
 
           <q-separator />
           <!-- comment -->
-          <div class="row no-wrap items-center q-my-md">
+          <div class="row no-wrap items-center q-my-lg">
             <q-avatar size="28px" class="q-mr-md"
               ><img :src="service.thumb_img"
             /></q-avatar>

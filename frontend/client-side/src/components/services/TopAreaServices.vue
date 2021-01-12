@@ -60,7 +60,7 @@ export default {
                     category: {
                         name: "Electrical"
                     },
-                    title: "Electrical Panel Repairing Service"
+                    title: "Electrical Panel Repairing"
                 },
                 {
                     thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-04.jpg",
@@ -81,7 +81,7 @@ export default {
                     category: {
                         name: "Electrical"
                     },
-                    title: "Electrical Panel Repairing Service"
+                    title: "Electrical Panel Repairing"
                 },
                 {
                     thumb_img: "https://truelysell-html.dreamguystech.com/template/assets/img/services/service-04.jpg",
