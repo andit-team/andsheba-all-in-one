@@ -1,14 +1,15 @@
 <template>
-    <div>
-        <div class="text-h5 q-mx-lg q-mb-lg">Bookings in my Area</div>
+    <q-card class="fit q-mx-md" flat>
+        <q-card-section class="bg-secondary text-white text-center">
+            <div class="text-h5">Orders in my Area</div>
+        </q-card-section>
         <q-tabs
             v-model="tab"
             dense
-            class="text-grey q-ma-sm"
+            class="fixed-height bg-grey-2 text-grey-7 q-pa-sm"
             active-color="primary"
             indicator-color="primary"
-            align="left"
-            narrow-indicator
+            align="center"
         >
             <q-tab name="accepted" :label="`Accepted ( ${accepted} )`"   class="text-green"/>
             <q-tab name="pending" :label="`Pending ( ${pending} )`" class="text-warning" />
@@ -66,7 +67,7 @@
                 </q-tab-panel>
             </q-tab-panel>
         </q-tab-panels>
-    </div>
+    </q-card>
 </template>
 
 <script>
