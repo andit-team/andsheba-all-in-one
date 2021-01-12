@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <q-card class="wallet full-height q-mx-md">
-                    <q-card-section class="bg-secondary text-white text-center">
+                    <q-card-section class="bg-warning text-white text-center">
                         <div class="text-h5">My Wallet</div>
                         <div class="text-subtitle2">©Andsheba</div>
                     </q-card-section>
@@ -28,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <q-card class="wallet full-height q-mx-md" >
-                    <q-card-section class="bg-green text-white text-center">
+                    <q-card-section class="bg-primary text-white text-center">
                         <div class="text-h5">Amount to Withdraw</div>
                         <div class="text-subtitle2">©SSLCommerse</div>
                     </q-card-section>
@@ -52,14 +52,12 @@
                 </q-card>
             </div>
         </div>
-
-        <div class="text-h5 q-ma-lg">Recent Transactions</div>
-        <div class="q-ma-lg">
-            <q-table
-                :data="data"
-                row-key="name"
-            />
-        </div>
+        <q-card class="q-mx-md">
+            <q-card-section class="bg-secondary text-white text-center q-mt-md">
+                <div class="text-h5">My Recent Transactions</div>
+            </q-card-section>
+            <q-table  :data="data" row-key="name"/>
+        </q-card>
     </div>
 </template>
 
