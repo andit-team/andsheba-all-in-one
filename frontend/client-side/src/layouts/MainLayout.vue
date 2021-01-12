@@ -27,10 +27,10 @@
 
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">
 
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/register">
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/pro/register">
                         <q-icon name="fas fa-user-cog" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>Become a Pro
                     </q-btn>
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/register">
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/agent/register">
                         <q-icon name="fas fa-user-tie" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>Become an Agent
                     </q-btn>
 
@@ -101,7 +101,7 @@
                         </q-item-section>
                     </q-item>
 
-                    <q-item v-if="!customer.isVerified" to="/register" v-ripple clickable>
+                    <q-item v-if="!customer.isVerified" to="/pro/register" v-ripple clickable>
                         <q-item-section avatar>
                             <q-icon color="grey" name="fas fa-user-cog"/>
                         </q-item-section>
@@ -110,7 +110,7 @@
                         </q-item-section>
                     </q-item>
 
-                    <q-item v-if="!customer.isVerified" to="/register" v-ripple clickable>
+                    <q-item v-if="!customer.isVerified" to="/agent/register" v-ripple clickable>
                         <q-item-section avatar>
                             <q-icon color="grey" name="fas fa-user-tie"/>
                         </q-item-section>
