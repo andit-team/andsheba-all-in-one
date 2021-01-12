@@ -7,10 +7,11 @@
                         <div class="text-h5">My Wallet</div>
                     </q-card-section>
                     <q-card-section class="row justify-around items-center">
-                        <q-card-section>
+                        <q-card-section class="">
                             <span class="text-h6 text-weight-bold">Balance</span>
                             <span class="text-h4 block text-orange">$3,885</span>
                         </q-card-section>
+                        <q-separator vertical dark />
                         <q-card-section>
                             <q-card-section>
                                 <span class="text-h6 text-weight-bold">Total Credit</span>
@@ -32,19 +33,19 @@
                     </q-card-section>
                     <div class="text-h6 text-center block q-pa-lg">Custom Amount</div>
                     <div class="q-px-lg">
-                        <q-input>
+                        <q-input v-model="amount" class="text-h5 text-weight-bold">
                             <template v-slot:prepend>
                                 <q-icon name="fa fa-dollar-sign" />
                             </template>
                         </q-input>
                         <div class="text-center text-h6 q-pa-sm">OR</div>
                         <div class="text-center">
-                            <q-btn class="q-ma-sm bg-primary text-white">$50</q-btn>
-                            <q-btn class="q-ma-sm bg-secondary text-white">$100</q-btn>
-                            <q-btn class="q-ma-sm bg-red text-white">$150</q-btn>
+                            <q-btn class="q-ma-sm bg-primary text-white" @click="setAmount(50)">$50</q-btn>
+                            <q-btn class="q-ma-sm bg-secondary text-white" @click="setAmount(100)">$100</q-btn>
+                            <q-btn class="q-ma-sm bg-red text-white" @click="setAmount(150)">$150</q-btn>
                         </div>
                         <div class="text-center q-mt-md q-pb-lg">
-                            <q-btn class="q-ma-sm bg-secondary text-white q-px-lg" style="font-size: 18px">Withdraw</q-btn>
+                            <q-btn class="q-ma-sm bg-secondary text-white q-px-lg" style="font-size: 18px" @click="withdrawAmount">Withdraw</q-btn>
                         </div>
                     </div>
                 </q-card>
@@ -60,10 +61,20 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
     name: "Wallet",
+    methods: {
+        setAmount(a){
+            this.amount = a
+        },
+        async withdrawAmount(){
+           await Swal.fire('Success', 'ভাই, '+this.amount+' টাকা না নিলে হয় না ?', 'success') 
+        }
+    },
     data () {
         return {
+            amount:'',
             columns: [
                 {name: 'S.No', label: 'Fat (g)', field: 'fat', sortable: true, headerClasses: 'bg-grey text-white'},
                 {name: 'carbs', label: 'Carbs (g)', field: 'carbs', headerClasses: 'bg-grey text-white'},
