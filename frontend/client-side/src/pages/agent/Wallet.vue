@@ -69,7 +69,7 @@ export default {
             this.amount = a
         },
         async withdrawAmount(){
-           await Swal.fire('Success', 'ভাই, '+this.amount+' টাকা না নিলে হয় না ?', 'success') 
+            this.amount >1000? await Swal.fire('Success', 'ভাই, '+this.amount+' টাকা চলে গিয়েছে ?', 'error'): await Swal.fire('Success', 'ভাই, '+this.amount+' টাকা না নিলে হয় না ?', 'success') 
         }
     },
     data () {
