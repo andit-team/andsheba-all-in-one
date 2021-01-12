@@ -1,6 +1,6 @@
 <template>
     <div class="cursor-pointer" @click="() => {this.$router.push(link)}">
-        <q-card class="my-card q-ma-sm">
+        <q-card class="my-card q-mr-sm">
             <q-card-section class="q-pa-lg" style="color: #fff;height: 155px;" v-bind:style="{background: bgColor}">
                 <div class="text-h4 border-circle inline-block">
                     <span>{{value}}</span>

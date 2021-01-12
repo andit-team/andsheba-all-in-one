@@ -20,6 +20,7 @@ module.exports = function (/* ctx */) {
     boot: [
 
       'axios',
+      'apex',
       'google',
         'file-selector',
         'autocomplete',

@@ -1,6 +1,6 @@
 <template>
     <div class="q-mx-md">
-        <div class="row full-width">
+        <div class="row q-mb-md">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <DashboardCards title="Bookings" bg-color="#ff0080" :value="dashboard.orderCount" link="/agent/orders" />
             </div>
@@ -11,6 +11,23 @@
                 <DashboardCards title="Notification" :value="8" bg-color="#d9c504"/>
             </div>
         </div>
+
+        <div class="row q-mb-md">
+            <div class="col-xs-12 col-sm-12">
+                <apex-column-charts-basic></apex-column-charts-basic>
+            </div>
+        </div>
+
+        <!-- <div class="row q-gutter-md">
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <apex-simple-pie-chart></apex-simple-pie-chart>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <apex-radar></apex-radar>
+            </div>
+        </div> -->
+        
+        
     </div>
 
 </template>
@@ -19,7 +36,12 @@
 import DashboardCards from "components/dashboard/DashboardCards";
 export default {
     name: "DashboardAgent",
-    components: {DashboardCards},
+    components: {
+        DashboardCards,
+        ApexSimplePieChart: () => import('components/charts/ApexSimplePieChart'),
+        ApexColumnChartsBasic: () => import('components/charts/ApexColumnChartsBasic'),
+        ApexRadar: () => import('components/charts/ApexRadar'),
+        },
     async created() {
         await this.$store.dispatch('agent/fetchDashboard')
     },
