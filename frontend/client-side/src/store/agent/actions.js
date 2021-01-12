@@ -100,3 +100,16 @@ export const fetchDashboard = async ({commit},id) => {
         commit('setDashData', response.data.data)
     }
 }
+
+export const updateProfile = async ({}, pro) => {
+    let token = Cookies.get('token')
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Authorization ${token}`
+    }
+    let response = await axios.put(`${process.env.API_URL}/agent/profile`, {...pro}, { headers } )
+    return {
+        error: response.data.error,
+        msg: response.data.msg
+    }
+}
