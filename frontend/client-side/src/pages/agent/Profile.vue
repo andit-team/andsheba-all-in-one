@@ -1,5 +1,8 @@
 <template>
-    <q-card class="q-mx-lg">
+    <q-card class="q-mx-md">
+        <q-card-section class="bg-secondary text-white text-center">
+            <div class="text-h5">Profile Update</div>
+        </q-card-section>
         <div>
             <div class="cover-img-area" :style="`background-image: url('${cover_img || this.agent.cover_image || 'https://i.pinimg.com/originals/00/f3/6c/00f36c8d1184218b77734c0fd9a4a240.jpg'}')`">
                 <file-selector
@@ -8,7 +11,7 @@
                     :multiple="false"
                     :max-file-size="5 * 1024 * 1024"
                     @changed="handleCoverImageChange">
-                    <q-btn class="bg-warning q-ma-md text-white text-capitalize">Cover Image</q-btn>
+                    <q-btn class="bg-secondary q-ma-md text-white text-capitalize">Cover Image</q-btn>
                 </file-selector>
             </div>
 
@@ -23,7 +26,7 @@
                         :multiple="false"
                         :max-file-size="5 * 1024 * 1024"
                         @changed="handleProfileImageChange">
-                        <q-btn class="bg-primary q-mx-md q-mb-sm text-white text-capitalize"
+                        <q-btn class="bg-secondary q-mx-md q-mb-sm text-white text-capitalize"
                                 style="font-size: 12px">Thumb Image
                         </q-btn>
                     </file-selector>
@@ -90,7 +93,7 @@
                     type="textarea"
                     class="col-12 q-pa-sm"
                 />
-                <q-btn type="submit" class="bg-primary q-ma-sm text-white">Update</q-btn>
+                <q-btn type="submit" class="bg-secondary q-ma-sm text-white">Update</q-btn>
             </q-form>
         </form>
     </q-card>
