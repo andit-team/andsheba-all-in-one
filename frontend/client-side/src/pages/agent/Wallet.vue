@@ -3,9 +3,8 @@
         <div class="row">
             <div class="col-md-6">
                 <q-card class="wallet full-height q-mx-md">
-                    <q-card-section class="bg-warning text-white text-center">
+                    <q-card-section class="bg-secondary text-white text-center">
                         <div class="text-h5">My Wallet</div>
-                        <div class="text-subtitle2">©Andsheba</div>
                     </q-card-section>
                     <q-card-section class="row justify-around items-center">
                         <q-card-section>
@@ -28,9 +27,8 @@
             </div>
             <div class="col-md-6">
                 <q-card class="wallet full-height q-mx-md" >
-                    <q-card-section class="bg-primary text-white text-center">
+                    <q-card-section class="bg-secondary text-white text-center">
                         <div class="text-h5">Amount to Withdraw</div>
-                        <div class="text-subtitle2">©SSLCommerse</div>
                     </q-card-section>
                     <div class="text-h6 text-center block q-pa-lg">Custom Amount</div>
                     <div class="q-px-lg">
@@ -43,10 +41,10 @@
                         <div class="text-center">
                             <q-btn class="q-ma-sm bg-primary text-white">$50</q-btn>
                             <q-btn class="q-ma-sm bg-secondary text-white">$100</q-btn>
-                            <q-btn class="q-ma-sm bg-warning text-white">$150</q-btn>
+                            <q-btn class="q-ma-sm bg-red text-white">$150</q-btn>
                         </div>
                         <div class="text-center q-mt-md q-pb-lg">
-                            <q-btn class="q-ma-sm bg-green text-white q-px-lg" style="font-size: 18px">Withdraw</q-btn>
+                            <q-btn class="q-ma-sm bg-secondary text-white q-px-lg" style="font-size: 18px">Withdraw</q-btn>
                         </div>
                     </div>
                 </q-card>
