@@ -62,8 +62,12 @@
                 </q-card>
             </div>
             <div class="col-md-6 col-sm-12">
-                <div class="text-h5 q-my-md text-center">Subscription History</div>
-                <q-table  :data="data" row-key="name"/>
+                <q-card>
+                    <q-card-section class="bg-secondary text-white text-center">
+                        <div class="text-h5">My Subscription History</div>
+                    </q-card-section>
+                    <q-table  :data="data" row-key="name"/>
+                </q-card>
             </div>
         </div>
     </div>
