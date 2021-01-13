@@ -8,8 +8,8 @@
                         <div class="footer-widget footer-menu">
                             <div class="text-h2 footer-title">Quick Links</div>
                             <q-list>
-                                <div class="footer-link">About Us</div>
-                                <div class="footer-link">Contact Us</div>
+                                <div class="footer-link"> <a href="/#/about_us">About Us</a></div>
+                                <div class="footer-link"><a href="/#/contact_us">Contact Us</a></div>
                                 <div class="footer-link">Faq</div>
                                 <div class="footer-link">Help</div>
                                 <div class="footer-link"><a href="/#/agent">Become a Agent</a></div>
