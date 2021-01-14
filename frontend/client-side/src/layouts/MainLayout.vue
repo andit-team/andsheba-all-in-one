@@ -28,28 +28,27 @@
                 <div class="q-gutter-md row items-center no-wrap q-mr-lg" v-if="$q.screen.gt.sm">
 
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/pro/register">
-                        <q-icon name="fas fa-user-cog" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>Become a Pro
+                        <q-icon name="fas fa-user-cog" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>{{ $t('become_pro') }}
                     </q-btn>
                     <q-btn v-if="!customer.isVerified" flat color="grey-8" to="/agent/register">
-                        <q-icon name="fas fa-user-tie" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>Become an Agent
+                        <q-icon name="fas fa-user-tie" class="q-mr-sm q-mb-xs" style="font-size: 18px"/>{{ $t('become_agent') }}
                     </q-btn>
 
-                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="/login"> Login</q-btn>
-                    <q-btn-dropdown flat icon="language" olor="grey-8">
-                        <q-list>
-                            <q-item clickable v-close-popup>
-                                <q-item-section>
-                                    <q-item-label>বাংলা</q-item-label>
-                                </q-item-section>
-                            </q-item>
-
-                            <q-item clickable v-close-popup>
-                                <q-item-section>
-                                    <q-item-label>English</q-item-label>
-                                </q-item-section>
-                            </q-item>
-                        </q-list>
-                    </q-btn-dropdown>
+                    <q-btn v-if="!customer.isVerified" flat color="grey-8" icon="person" to="/login"> {{$t('login')}}</q-btn>
+                        <q-select
+                        v-model="lang"
+                        :options="langOptions"
+                        dense
+                        borderless
+                        emit-value
+                        map-options
+                        options-dense
+                        style="min-width: 150px"
+                    >
+                        <template v-slot:prepend>
+                            <q-icon name="language" />
+                        </template>
+                    </q-select>
                     <q-btn v-if="customer.isVerified" round flat to="/user/dashboard">
                         <q-avatar size="26px">
                             <img :src="customer.thumb_image" v-if="customer.thumb_image && customer.thumb_image.length > 5"/>
@@ -156,11 +155,22 @@ export default {
                 {icon: 'flag', text: 'Order history', route: '/'},
                 {icon: 'help', text: 'Payments', route: '/'},
                 {icon: 'money', text: 'Accounts', route: '/'}
+            ],
+            lang: this.$i18n.locale,
+            langOptions: [
+                { value: 'en-us', label: 'English' },
+                { value: 'de', label: 'German' },
+                { value: 'bn', label: 'Bangla' },
             ]
         }
     },
     created() {
         this.$store.dispatch('customer/fetchCustomer');
+    },
+    watch: {
+        lang(lang) {
+        this.$i18n.locale = lang
+        }
     },
     computed: {
         customer: {
