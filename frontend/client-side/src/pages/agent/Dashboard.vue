@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { Loading } from 'quasar'
 import DashboardCards from "components/dashboard/DashboardCards";
 export default {
     name: "DashboardAgent",
@@ -43,6 +44,7 @@ export default {
         ApexRadar: () => import('components/charts/ApexRadar'),
         },
     async created() {
+        Loading.show()
         await this.$store.dispatch('agent/fetchDashboard')
     },
     computed: {
@@ -51,7 +53,10 @@ export default {
                 return this.$store.getters["agent/getDashboard"]
             }
         }
-    }
+    },
+    mounted() {
+        Loading.hide()
+    },
 }
 </script>
 

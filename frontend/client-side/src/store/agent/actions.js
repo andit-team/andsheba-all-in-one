@@ -59,6 +59,7 @@ export const fetchServices = async ({commit}) => {
     let response = await axios.get(`${process.env.API_URL}/agent/service`,{ headers })
     if(response.data.error === false) {
         commit('setServices', response.data.data)
+        return response.data.error
     }
 }
 

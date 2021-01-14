@@ -151,7 +151,7 @@
         ]"
             >
                 <div class="col-md-2" v-if="$q.screen.gt.sm">
-                    <q-card class="bg-grey-2">
+                    <q-card class="bg-grey-2" style="overflow: hidden;">
                         <q-card-section class="row justify-center">
                             <q-avatar size="100px">
                                 <img
@@ -198,7 +198,10 @@
                     </q-card>
                 </div>
                 <div class="col-md-7 col-sm-12 col-xs-12">
-                    <router-view/>
+                    <!-- <router-view/> -->
+                    <transition name="fade">
+                        <router-view/>
+                    </transition>
                 </div>
             </div>
         </q-page-container>
@@ -330,8 +333,66 @@ export default {
     color: white;
     background: #26a69a;
     font-size: large;
-    border-right: 4px solid #505359;
+    /* border-right: 4px solid #505359; */
     transition: all .5s ease;
 }
-    
+
+.q-router-link--active:after {
+    width: 50px;
+    transform: rotate(44deg);
+    content: "";
+    height: 100%;
+    top: 0;
+    position: absolute;
+    right: -36px;
+    background: #f5f5f5;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .55s ease;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+.child-view {
+  position: absolute;
+  transition: all .55s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

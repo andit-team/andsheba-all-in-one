@@ -60,6 +60,7 @@
 
 <script>
 import ServiceCard from "components/common/ServiceCard";
+import { Loading } from 'quasar'
 import { mapState } from "vuex";
 export default {
   name: "Services",
@@ -71,7 +72,9 @@ export default {
     };
   },
   async created() {
+    Loading.show()
     await this.$store.dispatch("agent/fetchServices");
+    Loading.hide()
   },
   computed: {
     ...mapState({
