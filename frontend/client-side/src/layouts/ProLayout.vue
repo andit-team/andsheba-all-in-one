@@ -277,9 +277,7 @@ export default {
     methods: {
         handleLogout() {
             Cookies.remove('andsheba_token');
-             this.$store.commit('setPro', {
-                auth: false 
-            });
+            this.$store.commit('pro/setPro', {auth:false})
             this.$router.push('/')
         },
         setupSocket() {
