@@ -65,7 +65,7 @@
         <div class="row fixed-height">
           <div v-for="(service,index) in pro.services" :key="index" class="col-xs-12 col-sm-12 col-md-4 col-lg-3 q-pa-sm">
               <q-card>
-                  <q-img style="max-height:200px"
+                  <q-img style="height:200px"
                       :src="service.thumb_img"
                       basic
                   >

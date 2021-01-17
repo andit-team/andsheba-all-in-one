@@ -238,13 +238,12 @@
 
           <q-separator />
 
-          <q-card-actions>
-            <q-btn flat round icon="event" v-if="role !== 'agent'"/>
-            <q-btn flat color="primary" :to="'/service/quote?id=' + service._id" class="text-weight-bold" v-if="role !== 'agent'">
-              Request for Quote
+          <q-card-actions class="row items-center justify-center">
+            <q-btn color="secondary" :to="'/service/quote?id=' + service._id"  icon="event" class="text-weight-bold" v-if="role !== 'agent'">
+             &nbsp;Request for Quote
             </q-btn>
-            <q-btn color="primary" :to="'/pro/single?id=' + service.user._id"  icon="visibility" style ="margin:0 auto" class="text-weight-bold" v-if="role === 'agent'">
-              &nbsp;See Pro Profile
+            <q-btn color="primary" :to="'/pro/single?id=' + service.user._id"  icon="person" class="text-weight-bold">
+              &nbsp;See Profile
             </q-btn>
           </q-card-actions>
         </q-card>
