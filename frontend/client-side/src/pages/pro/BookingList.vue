@@ -21,7 +21,7 @@
 
         <div class="text-right q-mr-lg q-mt-lg text-primary">Total {{orders.length}} Booking</div>
 
-        <OrderCard v-for="order in orders" :order="order"/>
+        <OrderCard v-for="(order, index) in orders" :order="order" :key="index"/>
 
     </div>
 </template>

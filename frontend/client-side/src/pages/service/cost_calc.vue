@@ -24,10 +24,10 @@
                         </div>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'checkbox'" class="q-gutter-sm row">
-                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index].answers[index1].value" :label="option.answer_title_or_unit"/>
+                        <q-checkbox v-for="(option, index1) in question.answers" v-model="answers[index].answers[index1].value" :label="option.answer_title_or_unit" :key="index1"/>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'radio'" class="q-gutter-sm row">
-                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index].value" :val="option._id" :label="option.answer_title_or_unit" />
+                        <q-radio v-for="(option, index1) in question.answers" v-model="answers[index].value" :val="option._id" :label="option.answer_title_or_unit"  :key="index1"/>
                     </q-card-section>
                     <q-card-section v-if="question.question_type == 'text'" class="q-gutter-sm row">
                         <q-input v-model="answers[index].value" class="full-width" outlined type="textarea"/>
@@ -74,7 +74,7 @@
 
                     <q-markup-table>
                         <tbody>
-                            <tr v-for="(item, index) in cart.list">
+                            <tr v-for="(item, index) in cart.list" :key="index">
                                 <td class="text-left">{{ (index+1) + ". " + item.title}}</td>
                                 <td class="text-right">{{item.price}}</td>
                             </tr>

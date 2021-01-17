@@ -23,9 +23,12 @@
         <div v-if="tab !== 'offers'" class="text-right q-mr-lg text-primary">Total {{orders.length}} Orders</div>
         <div v-if="tab === 'offers'" class="text-right q-mr-lg text-primary">Total {{offers.length}} Offers</div>
 
-
-        <OrderCard v-if="tab !== 'offers'" v-for="order in orders" :order="order"/>
-        <OrderCard v-if="tab === 'offers'" v-for="order in offers" :order="order"/>
+        <div v-if="tab !== 'offers'">
+            <OrderCard v-for="(order, index) in orders" :order="order" :key="index"/>
+        </div>
+        <div v-if="tab === 'offers'">
+            <OrderCard v-for="(order, index) in offers" :order="order" :key="index"/>
+        </div>
     </div>
 </template>
 
