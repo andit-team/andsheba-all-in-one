@@ -11,13 +11,18 @@ const mongoose = require('mongoose')
 exports.signUpPro = (req, res, next) => {
 
     const hash = bcrypt.hashSync(req.body.password, 8)
+    let type = 'pro'
+    if(req.body.type === 'Agency'){
+        type = 'agency'
+    }
     const newUser = new User({
        name: req.body.name,
        mobile: req.body.mobile,
+       nid_no: req.body.nid,
        password: hash,
        email:req.body.email,
        status: 'active',
-       role: 'pro',
+       role: type,
        registration_ip: req.ip,
        plan: req.body.plan,
        address: req.body.address,
@@ -62,7 +67,14 @@ exports.login = (req, res, next) => {
     let fetchPro 
     User.findOne({
         mobile: req.body.mobile,
-        role: 'pro'
+        $or: [
+            {
+                role: 'pro'
+            },
+            {
+                role: 'agency'
+            }
+        ]
     })
         .then(user => {
             if(!user){
