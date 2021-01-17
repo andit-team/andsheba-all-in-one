@@ -274,7 +274,7 @@ export default {
           email: this.email,
           plan: this.plan._id,
           address: this.address,
-          nid: this.nid,
+          nid_no: this.nid,
           type: this.type
         };
         let response = await this.$store.dispatch("pro/registerPro", pro);
