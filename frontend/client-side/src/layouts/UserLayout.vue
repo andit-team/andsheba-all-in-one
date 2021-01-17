@@ -259,16 +259,16 @@ export default {
 
     methods: {
         handleLogout() {
-            Cookies.remove('token');
+            Cookies.remove('andsheba_token');
             this.$store.commit('customer/setCustomer', {isVerified: false})
             this.$router.push('/')
         },
         setupSocket() {
-            const token = Cookies.get('token')
+            const token = Cookies.get('andsheba_token')
             if (token && !this.socket) {
                 const newSocket = io(process.env.SOCKET_URL, {
                     query: {
-                        token: Cookies.get('token'),
+                        token: Cookies.get('andsheba_token'),
                     },
                 });
                 newSocket.on("disconnect", () => {

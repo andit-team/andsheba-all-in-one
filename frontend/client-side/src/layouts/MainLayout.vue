@@ -181,7 +181,7 @@ export default {
     },
     methods: {
         handleLogout() {
-            Cookies.remove('token');
+            Cookies.remove('andsheba_token');
             window.location.reload()
         }
     }

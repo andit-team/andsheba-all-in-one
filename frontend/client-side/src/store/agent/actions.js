@@ -4,7 +4,7 @@ import { Cookies } from 'quasar'
 export const registerAgent = async ({}, agent) => {
     let response = await axios.post(`${process.env.API_URL}/agent/signup`, agent );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -15,7 +15,7 @@ export const registerAgent = async ({}, agent) => {
 export const loginAgent = async ({}, agent) => {
     let response = await axios.post(`${process.env.API_URL}/agent/login`, agent );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -25,7 +25,7 @@ export const loginAgent = async ({}, agent) => {
 
 export const fetchAgent = async ({commit}) => {
     
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     let response = await axios.post(`${process.env.API_URL}/agent/verify`, {token} )
     console.log(response)
     if(response.data.error === false) {
@@ -41,7 +41,7 @@ export const fetchAgent = async ({commit}) => {
 }
 
 export const updateStatus = async ({}, service) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -51,7 +51,7 @@ export const updateStatus = async ({}, service) => {
 }
 
 export const fetchServices = async ({commit}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -65,7 +65,7 @@ export const fetchServices = async ({commit}) => {
 
 // Fetch Orders
 export const fetchOrders = async ({commit}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -78,7 +78,7 @@ export const fetchOrders = async ({commit}) => {
 
 // Fetch Order
 export const fetchOrder = async ({commit},id) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -91,7 +91,7 @@ export const fetchOrder = async ({commit},id) => {
 
 // Fetch Dashboard data
 export const fetchDashboard = async ({commit},id) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -103,7 +103,7 @@ export const fetchDashboard = async ({commit},id) => {
 }
 
 export const updateProfile = async ({}, pro) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`

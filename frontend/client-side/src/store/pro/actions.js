@@ -12,7 +12,7 @@ export const fetchPlans = async ({commit}) => {
 export const registerPro = async ({}, pro) => {
     let response = await axios.post(`${process.env.API_URL}/pro/signup`, pro );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -23,7 +23,7 @@ export const registerPro = async ({}, pro) => {
 export const loginPro = async ({}, pro) => {
     let response = await axios.post(`${process.env.API_URL}/pro/login`, pro );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -33,7 +33,7 @@ export const loginPro = async ({}, pro) => {
 
 export const fetchPro = async ({commit, state}) => {
     if(!state.pro.auth) {
-        let token = Cookies.get('token')
+        let token = Cookies.get('andsheba_token')
         let response = await axios.post(`${process.env.API_URL}/pro/verify`, {token} )
         if(response.data.error === false) {
             commit('setPro', {
@@ -71,7 +71,7 @@ export const fetchProData = async ({commit},id) => {
 }
 
 export const fetchDashboard = async ({commit}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -84,7 +84,7 @@ export const fetchDashboard = async ({commit}) => {
 
 
 export const addService = async ({state} ) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -132,7 +132,7 @@ export const addService = async ({state} ) => {
 }
 
 export const fetchServices = async ({commit}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -144,7 +144,7 @@ export const fetchServices = async ({commit}) => {
 }
 
 export const updateStatus = async ({}, service) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -177,7 +177,7 @@ export const fetchServiceLocal = async ({commit}) => {
 
 
 export const updateProfile = async ({}, pro) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -190,7 +190,7 @@ export const updateProfile = async ({}, pro) => {
 }
 
 export const fetchOrders = async ({commit, state}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -202,7 +202,7 @@ export const fetchOrders = async ({commit, state}) => {
 }
 
 export const fetchOrder = async ({commit}, id) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -217,7 +217,7 @@ export const fetchOrder = async ({commit}, id) => {
 }
 
 export const updateOrder = async ({commit}, order) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`

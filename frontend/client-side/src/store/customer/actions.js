@@ -5,7 +5,7 @@ import {uploadSingleImage} from "src/store/pro/actions";
 export const registerCustomer = async ({}, customer) => {
     let response = await axios.post(`${process.env.API_URL}/customer/signup`, customer );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -16,7 +16,7 @@ export const registerCustomer = async ({}, customer) => {
 export const loginCustomer = async ({}, customer) => {
     let response = await axios.post(`${process.env.API_URL}/customer/login`, customer );
     if(response.data.error === false) {
-        Cookies.set('token', response.data.token)
+        Cookies.set('andsheba_token', response.data.token)
     }
     return {
         error: response.data.error,
@@ -26,7 +26,7 @@ export const loginCustomer = async ({}, customer) => {
 
 export const fetchCustomer = async ({commit, state}) => {
     if(!state.customer.isVerified) {
-        let token = Cookies.get('token')
+        let token = Cookies.get('andsheba_token')
         let response = await axios.post(`${process.env.API_URL}/customer/verify`, {token} )
         if(response.data.error === false) {
             commit('setCustomer', {
@@ -42,7 +42,7 @@ export const fetchCustomer = async ({commit, state}) => {
 }
 
 export const updateCustomer = async ({commit}, customer) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -62,7 +62,7 @@ export const updateCustomer = async ({commit}, customer) => {
 }
 
 export const fetchDashboard = async ({commit}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -74,7 +74,7 @@ export const fetchDashboard = async ({commit}) => {
 }
 
 export const placeOrder = async ({}, order) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -98,7 +98,7 @@ export const placeOrder = async ({}, order) => {
 }
 
 export const fetchOrders = async ({commit, state}) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -110,7 +110,7 @@ export const fetchOrders = async ({commit, state}) => {
 }
 
 export const fetchOrder = async ({commit}, id) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`
@@ -125,7 +125,7 @@ export const fetchOrder = async ({commit}, id) => {
 }
 
 export const updateOrder = async ({commit}, order) => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('andsheba_token')
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Authorization ${token}`

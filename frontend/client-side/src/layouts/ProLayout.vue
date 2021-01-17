@@ -127,7 +127,7 @@
                         <q-item-section avatar>
                             <q-icon name="login"/>
                         </q-item-section>
-                        <q-item-section>Logout</q-item-section>
+                        <q-item-section>Logouts</q-item-section>
                     </q-item>
                 </q-list>
             </q-scroll-area>
@@ -260,6 +260,7 @@ export default {
 
     async created() {
         let response = await this.$store.dispatch('pro/fetchPro')
+        console.log(response)
         if (response.error === true) {
             await this.$router.push('/pro/login')
         }
@@ -275,15 +276,18 @@ export default {
 
     methods: {
         handleLogout() {
-            Cookies.remove('token');
+            Cookies.remove('andsheba_token');
+             this.$store.commit('setPro', {
+                auth: false 
+            });
             this.$router.push('/')
         },
         setupSocket() {
-            const token = Cookies.get('token')
+            const token = Cookies.get('andsheba_token')
             if (token && !this.socket) {
                 const newSocket = io(process.env.SOCKET_URL, {
                     query: {
-                        token: Cookies.get('token'),
+                        token: Cookies.get('andsheba_token'),
                     },
                 });
                 newSocket.on("disconnect", () => {
