@@ -14,6 +14,7 @@ exports.signUpPro = (req, res, next) => {
     const newUser = new User({
        name: req.body.name,
        mobile: req.body.mobile,
+       nid_no: req.body.nid,
        password: hash,
        email:req.body.email,
        status: 'active',
