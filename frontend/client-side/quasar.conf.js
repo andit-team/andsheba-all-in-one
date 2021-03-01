@@ -48,12 +48,13 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
+      publicPath: 'http://localhost:8080/', // available values: 'hash', 'history'
       env: {
-        API_URL: 'http://localhost:5000/api',
-        _API_URL: 'https://backend.andsheba.com/api',
-        _SOCKET_URL: 'https://backend.andsheba.com',
-        SOCKET_URL: 'http://localhost:5000'
+        _API_URL: 'http://localhost:5000/api',
+        API_URL: 'https://backend.andsheba.com/api',
+        SOCKET_URL: 'https://backend.andsheba.com',
+        _SOCKET_URL: 'http://localhost:5000'
       },
 
       // transpile: false,

@@ -248,7 +248,7 @@ export async function uploadSingleImage(image) {
     try {
         const data = new FormData()
         data.append('image', base64Data(image))
-        let url = "https://api.imgbb.com/1/upload?key=dbe026b9378783fd76fb76f8dea82edb";
+        let url = "https://api.imgbb.com/1/upload?key=ecd00bd91ab62d061472c1e7162d5248";
         const res = await axios.post(url, data, {})
         if (res.data.success) {
             return res.data.data.image.url
